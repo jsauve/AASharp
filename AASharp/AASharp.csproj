@@ -50,6 +50,7 @@
     <Compile Include="AASEarth.cs" />
     <Compile Include="AASGlobe.cs" />
     <Compile Include="AASMath.cs" />
+    <Compile Include="AASMoon.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
