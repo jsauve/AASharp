@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,15 +43,23 @@
   <ItemGroup>
     <Compile Include="AAS2DCoordinate.cs" />
     <Compile Include="AAS3DCoordinate.cs" />
+    <Compile Include="AASAngularSeparation.cs" />
     <Compile Include="AASCalendarDate.cs" />
     <Compile Include="AASCoordinateTransformation.cs" />
     <Compile Include="AASDate.cs" />
     <Compile Include="AASDiameters.cs" />
     <Compile Include="AASDynamicalTime.cs" />
     <Compile Include="AASEarth.cs" />
+    <Compile Include="AASFK5.cs" />
     <Compile Include="AASGlobe.cs" />
+    <Compile Include="AASInterpolate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AASKepler.cs" />
     <Compile Include="AASMath.cs" />
     <Compile Include="AASMoon.cs" />
+    <Compile Include="AASNutation.cs" />
+    <Compile Include="AASSun.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

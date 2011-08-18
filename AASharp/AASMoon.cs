@@ -160,13 +160,13 @@ namespace AASharp
           new MoonCoefficient1( 0, 0,  0,  3 ),
           new MoonCoefficient1( 0, 1,  -1, 1  ),
           new MoonCoefficient1( 1, 0,  0,  1 ),
-          new MoonCoefficient1( 0, 1,  1,  1,  ),
+          new MoonCoefficient1( 0, 1,  1,  1 ),
           new MoonCoefficient1( 0, 1,  1,  -1  ),
           new MoonCoefficient1( 0, 1,  0,  -1  ),
           new MoonCoefficient1( 1, 0,  0,  -1  ),
           new MoonCoefficient1( 0, 0,  3,  1  ),
           new MoonCoefficient1( 4, 0,  0,  -1  ),
-          new MoonCoefficient1( 4, 0,  -1, 1, ),
+          new MoonCoefficient1( 4, 0,  -1, 1 ),
           new MoonCoefficient1( 0, 0,  1,  -3 ),
           new MoonCoefficient1( 4, 0,  -2, 1  ),
           new MoonCoefficient1( 2, 0,  0,  -3 ),
@@ -326,8 +326,7 @@ namespace AASharp
           double SigmaL = 0;
           for (int i=0; i<nLCoefficients; i++)
           {
-            double ThisSigma = g_MoonCoefficients2[i].A * Math.Sin(g_MoonCoefficients1[i].D*D + g_MoonCoefficients1[i].M*M +
-                                                              g_MoonCoefficients1[i].Mdash*Mdash + g_MoonCoefficients1[i].F*F);
+            double ThisSigma = g_MoonCoefficients2[i].A * Math.Sin(g_MoonCoefficients1[i].D*D + g_MoonCoefficients1[i].M*M + g_MoonCoefficients1[i].Mdash*Mdash + g_MoonCoefficients1[i].F*F);
 
             if ((g_MoonCoefficients1[i].M == 1) || (g_MoonCoefficients1[i].M == -1))
               ThisSigma *= E;
@@ -343,7 +342,7 @@ namespace AASharp
           SigmaL += 318*Math.Sin(A2);
 
           //And finally apply the nutation in longitude
-          double NutationInLong = CAANutation::NutationInLongitude(JD);
+          double NutationInLong = AASNutation.NutationInLongitude(JD);
 
           return AASCoordinateTransformation.MapTo0To360Range(LdashDegrees + SigmaL/1000000 + NutationInLong/3600);
         }
