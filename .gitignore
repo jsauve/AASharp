@@ -1,2 +1,4 @@
 
 aaplus/AATest.opensdf
+*.dll
+*.pdb

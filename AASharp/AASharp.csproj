@@ -50,6 +50,7 @@
     <Compile Include="AASDiameters.cs" />
     <Compile Include="AASDynamicalTime.cs" />
     <Compile Include="AASEarth.cs" />
+    <Compile Include="AASEaster.cs" />
     <Compile Include="AASFK5.cs" />
     <Compile Include="AASGlobe.cs" />
     <Compile Include="AASInterpolate.cs">
@@ -59,6 +60,8 @@
     <Compile Include="AASMath.cs" />
     <Compile Include="AASMoon.cs" />
     <Compile Include="AASNutation.cs" />
+    <Compile Include="AASRiseTransitSet.cs" />
+    <Compile Include="AASSidereal.cs" />
     <Compile Include="AASSun.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

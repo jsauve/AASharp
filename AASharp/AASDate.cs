@@ -6,6 +6,8 @@ namespace AASharp
 {
     public class AASDate
     {
+        public AASDate() { }
+
         public AASDate(long Year, long Month, double Day, bool bGregorianCalendar)
         {
             Set(Year, Month, Day, 0, 0, 0, bGregorianCalendar);
