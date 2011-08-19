@@ -1,0 +1,5 @@
+C:\development\AASharp\AASharp\obj\Debug\ResolveAssemblyReference.cache
+C:\development\AASharp\AASharp\bin\Debug\AASharp.dll
+C:\development\AASharp\AASharp\bin\Debug\AASharp.pdb
+C:\development\AASharp\AASharp\obj\Debug\AASharp.dll
+C:\development\AASharp\AASharp\obj\Debug\AASharp.pdb
