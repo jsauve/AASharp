@@ -74,7 +74,7 @@
     <Compile Include="AASPluto.cs" />
     <Compile Include="AASSaturn.cs" />
     <Compile Include="AASUranus.cs" />
-    <Compile Include="CAAVenus.cs" />
+    <Compile Include="AASVenus.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
