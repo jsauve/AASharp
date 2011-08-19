@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AAS2DCoordinate.cs" />
     <Compile Include="AAS3DCoordinate.cs" />
+    <Compile Include="AASAberration.cs" />
     <Compile Include="AASAngularSeparation.cs" />
     <Compile Include="AASCalendarDate.cs" />
     <Compile Include="AASCoordinateTransformation.cs" />
@@ -51,6 +52,8 @@
     <Compile Include="AASDynamicalTime.cs" />
     <Compile Include="AASEarth.cs" />
     <Compile Include="AASEaster.cs" />
+    <Compile Include="AASEclipticalElements.cs" />
+    <Compile Include="AASElliptical.cs" />
     <Compile Include="AASFK5.cs" />
     <Compile Include="AASGlobe.cs" />
     <Compile Include="AASInterpolate.cs">
@@ -59,10 +62,23 @@
     <Compile Include="AASKepler.cs" />
     <Compile Include="AASMath.cs" />
     <Compile Include="AASMoon.cs" />
+    <Compile Include="AASMoonIlluminatedFraction.cs" />
+    <Compile Include="AASNodes.cs" />
     <Compile Include="AASNutation.cs" />
+    <Compile Include="AASParabolic.cs" />
+    <Compile Include="AASPhysicalMoon.cs" />
+    <Compile Include="AASPhysicalSun.cs" />
     <Compile Include="AASRiseTransitSet.cs" />
     <Compile Include="AASSidereal.cs" />
     <Compile Include="AASSun.cs" />
+    <Compile Include="AASJupiter.cs" />
+    <Compile Include="AASMars.cs" />
+    <Compile Include="AASMercury.cs" />
+    <Compile Include="AASNeptune.cs" />
+    <Compile Include="AASPluto.cs" />
+    <Compile Include="AASSaturn.cs" />
+    <Compile Include="AASUranus.cs" />
+    <Compile Include="CAAVenus.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
