@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AASharp
 {
     public static class AASMoon
     {
-        static MoonCoefficient1[] g_MoonCoefficients1 =
+        static readonly MoonCoefficient1[] g_MoonCoefficients1 =
         { 
           new MoonCoefficient1( 0, 0,  1,  0 ),
           new MoonCoefficient1( 2, 0,  -1, 0 ),
@@ -70,8 +69,8 @@ namespace AASharp
           new MoonCoefficient1( 2, 0,  3,  0 ),
           new MoonCoefficient1( 2, 0,  -1, -2 )
         };
-   
-        static MoonCoefficient2[] g_MoonCoefficients2 =
+
+        static readonly MoonCoefficient2[] g_MoonCoefficients2 =
         { 
           new MoonCoefficient2( 6288774,	-20905355 ),
           new MoonCoefficient2( 1274027,	-3699111 ),
@@ -135,7 +134,7 @@ namespace AASharp
           new MoonCoefficient2( 0,	      8752 )
         };
 
-        static MoonCoefficient1[] g_MoonCoefficients3 =
+        static readonly MoonCoefficient1[] g_MoonCoefficients3 =
         { 
           new MoonCoefficient1( 0, 0,  0,  1  ),
           new MoonCoefficient1( 0, 0,  1,  1  ),
@@ -199,7 +198,7 @@ namespace AASharp
           new MoonCoefficient1( 2, -2, 0,  1  ),
         };
 
-        static double[] g_MoonCoefficients4 =
+        static readonly double[] g_MoonCoefficients4 =
         { 
           5128122,     
           280602,      
@@ -468,38 +467,4 @@ namespace AASharp
           return AASCoordinateTransformation.MapTo0To360Range(TrueAscendingNode);
         }
     }
-
-    internal struct MoonCoefficient1
-    {
-        internal MoonCoefficient1(int d, int m, int mDash, int f)
-        {
-            _D = d;
-            _M = m;
-            _Mdash = mDash;
-            _F = f;
-        }
-
-        private readonly int _D;
-        public int D { get { return _D; } }
-        private readonly int _M;
-        public int M { get { return _M; } }
-        private readonly int _Mdash;
-        public int Mdash { get { return _Mdash; } }
-        private readonly int _F;
-        public int F { get { return _F; } }
-    };
-
-    internal struct MoonCoefficient2
-    {
-        internal MoonCoefficient2(double a, double b)
-        {
-            _A = a;
-            _B = b;
-        }
-
-        private readonly double _A;
-        public double A { get { return _A; } }
-        private readonly double _B;
-        public double B { get { return _B; } }
-    };
 }
