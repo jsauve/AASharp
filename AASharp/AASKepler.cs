@@ -7,7 +7,7 @@ namespace AASharp
 {
     public static class AASKepler
     {
-        public static double Calculate(double M, double e, int nIterations)
+        public static double Calculate(double M, double e, int nIterations = 53)
         {
             //Convert from degrees to radians
             M = AASCoordinateTransformation.DegreesToRadians(M);
