@@ -1,10 +1,7 @@
-
 aaplus/AATest.opensdf
+*.suo
 *.dll
 *.pdb
-*.dll
-*.pdb
-AASharp/bin/Debug/AASharp.dll
-*.dll
-*.pdb
+*.sdf
 aaplus/Debug/
+aaplus/obj
