@@ -264,207 +264,207 @@ namespace AASharp
 
         public static double MeanLongitude(double JD)
         {
-          double T = (JD - 2451545) / 36525;
-          double Tsquared = T*T;
-          double Tcubed = Tsquared*T;
-          double T4 = Tcubed*T;
-          return AASCoordinateTransformation.MapTo0To360Range(218.3164477 + 481267.88123421*T - 0.0015786*Tsquared + Tcubed/538841 - T4/65194000);
+            double T = (JD - 2451545) / 36525;
+            double Tsquared = T * T;
+            double Tcubed = Tsquared * T;
+            double T4 = Tcubed * T;
+            return AASCoordinateTransformation.MapTo0To360Range(218.3164477 + 481267.88123421 * T - 0.0015786 * Tsquared + Tcubed / 538841 - T4 / 65194000);
         }
 
         public static double MeanElongation(double JD)
         {
-          double T = (JD - 2451545) / 36525;
-          double Tsquared = T*T;
-          double Tcubed = Tsquared*T;
-          double T4 = Tcubed*T;
-          return AASCoordinateTransformation.MapTo0To360Range(297.8501921 + 445267.1114034*T - 0.0018819*Tsquared + Tcubed/545868 - T4/113065000);
+            double T = (JD - 2451545) / 36525;
+            double Tsquared = T * T;
+            double Tcubed = Tsquared * T;
+            double T4 = Tcubed * T;
+            return AASCoordinateTransformation.MapTo0To360Range(297.8501921 + 445267.1114034 * T - 0.0018819 * Tsquared + Tcubed / 545868 - T4 / 113065000);
         }
 
         public static double MeanAnomaly(double JD)
         {
-          double T = (JD - 2451545) / 36525;
-          double Tsquared = T*T;
-          double Tcubed = Tsquared*T;
-          double T4 = Tcubed*T;
-          return AASCoordinateTransformation.MapTo0To360Range(134.9633964 + 477198.8675055*T + 0.0087414*Tsquared + Tcubed/69699 - T4/14712000); 
+            double T = (JD - 2451545) / 36525;
+            double Tsquared = T * T;
+            double Tcubed = Tsquared * T;
+            double T4 = Tcubed * T;
+            return AASCoordinateTransformation.MapTo0To360Range(134.9633964 + 477198.8675055 * T + 0.0087414 * Tsquared + Tcubed / 69699 - T4 / 14712000);
         }
 
         public static double ArgumentOfLatitude(double JD)
         {
-          double T = (JD - 2451545) / 36525;
-          double Tsquared = T*T;
-          double Tcubed = Tsquared*T;
-          double T4 = Tcubed*T;
-          return AASCoordinateTransformation.MapTo0To360Range(93.2720950 + 483202.0175233*T - 0.0036539*Tsquared - Tcubed/3526000 + T4/863310000);
+            double T = (JD - 2451545) / 36525;
+            double Tsquared = T * T;
+            double Tcubed = Tsquared * T;
+            double T4 = Tcubed * T;
+            return AASCoordinateTransformation.MapTo0To360Range(93.2720950 + 483202.0175233 * T - 0.0036539 * Tsquared - Tcubed / 3526000 + T4 / 863310000);
         }
 
         public static double EclipticLongitude(double JD)
         {
-          double Ldash = MeanLongitude(JD);
-          double LdashDegrees = Ldash;
-          Ldash = AASCoordinateTransformation.DegreesToRadians(Ldash);
-          double D = MeanElongation(JD);
-          D = AASCoordinateTransformation.DegreesToRadians(D);
-          double M = AASEarth.SunMeanAnomaly(JD);
-          M = AASCoordinateTransformation.DegreesToRadians(M);
-          double Mdash = MeanAnomaly(JD);
-          Mdash = AASCoordinateTransformation.DegreesToRadians(Mdash);
-          double F = ArgumentOfLatitude(JD);
-          F = AASCoordinateTransformation.DegreesToRadians(F);
+            double Ldash = MeanLongitude(JD);
+            double LdashDegrees = Ldash;
+            Ldash = AASCoordinateTransformation.DegreesToRadians(Ldash);
+            double D = MeanElongation(JD);
+            D = AASCoordinateTransformation.DegreesToRadians(D);
+            double M = AASEarth.SunMeanAnomaly(JD);
+            M = AASCoordinateTransformation.DegreesToRadians(M);
+            double Mdash = MeanAnomaly(JD);
+            Mdash = AASCoordinateTransformation.DegreesToRadians(Mdash);
+            double F = ArgumentOfLatitude(JD);
+            F = AASCoordinateTransformation.DegreesToRadians(F);
 
-          double E = AASEarth.Eccentricity(JD);
-          double Esquared = E*E;
-          double T = (JD - 2451545) / 36525;
+            double E = AASEarth.Eccentricity(JD);
+            double Esquared = E * E;
+            double T = (JD - 2451545) / 36525;
 
-          double A1 = AASCoordinateTransformation.MapTo0To360Range(119.75 + 131.849*T);
-          A1 = AASCoordinateTransformation.DegreesToRadians(A1);
-          double A2 = AASCoordinateTransformation.MapTo0To360Range(53.09 + 479264.290*T);
-          A2 = AASCoordinateTransformation.DegreesToRadians(A2);
+            double A1 = AASCoordinateTransformation.MapTo0To360Range(119.75 + 131.849 * T);
+            A1 = AASCoordinateTransformation.DegreesToRadians(A1);
+            double A2 = AASCoordinateTransformation.MapTo0To360Range(53.09 + 479264.290 * T);
+            A2 = AASCoordinateTransformation.DegreesToRadians(A2);
 
-          int nLCoefficients = g_MoonCoefficients1.Length;
-          double SigmaL = 0;
-          for (int i=0; i<nLCoefficients; i++)
-          {
-            double ThisSigma = g_MoonCoefficients2[i].A * Math.Sin(g_MoonCoefficients1[i].D*D + g_MoonCoefficients1[i].M*M + g_MoonCoefficients1[i].Mdash*Mdash + g_MoonCoefficients1[i].F*F);
+            int nLCoefficients = g_MoonCoefficients1.Length;
+            double SigmaL = 0;
+            for (int i = 0; i < nLCoefficients; i++)
+            {
+                double ThisSigma = g_MoonCoefficients2[i].A * Math.Sin(g_MoonCoefficients1[i].D * D + g_MoonCoefficients1[i].M * M + g_MoonCoefficients1[i].Mdash * Mdash + g_MoonCoefficients1[i].F * F);
 
-            if ((g_MoonCoefficients1[i].M == 1) || (g_MoonCoefficients1[i].M == -1))
-              ThisSigma *= E;
-            else if ((g_MoonCoefficients1[i].M == 2) || (g_MoonCoefficients1[i].M == -2))
-              ThisSigma *= Esquared;
+                if ((g_MoonCoefficients1[i].M == 1) || (g_MoonCoefficients1[i].M == -1))
+                    ThisSigma *= E;
+                else if ((g_MoonCoefficients1[i].M == 2) || (g_MoonCoefficients1[i].M == -2))
+                    ThisSigma *= Esquared;
 
-            SigmaL += ThisSigma;
-          }
+                SigmaL += ThisSigma;
+            }
 
-          //Finally the additive terms
-          SigmaL += 3958*Math.Sin(A1);
-          SigmaL += 1962*Math.Sin(Ldash - F);
-          SigmaL += 318*Math.Sin(A2);
+            //Finally the additive terms
+            SigmaL += 3958 * Math.Sin(A1);
+            SigmaL += 1962 * Math.Sin(Ldash - F);
+            SigmaL += 318 * Math.Sin(A2);
 
-          //And finally apply the nutation in longitude
-          double NutationInLong = AASNutation.NutationInLongitude(JD);
+            //And finally apply the nutation in longitude
+            double NutationInLong = AASNutation.NutationInLongitude(JD);
 
-          return AASCoordinateTransformation.MapTo0To360Range(LdashDegrees + SigmaL/1000000 + NutationInLong/3600);
+            return AASCoordinateTransformation.MapTo0To360Range(LdashDegrees + SigmaL / 1000000 + NutationInLong / 3600);
         }
 
         public static double RadiusVector(double JD)
         {
-          double D = MeanElongation(JD);
-          D = AASCoordinateTransformation.DegreesToRadians(D);
-          double M = AASEarth.SunMeanAnomaly(JD);
-          M = AASCoordinateTransformation.DegreesToRadians(M);
-          double Mdash = MeanAnomaly(JD);
-          Mdash = AASCoordinateTransformation.DegreesToRadians(Mdash);
-          double F = ArgumentOfLatitude(JD);
-          F = AASCoordinateTransformation.DegreesToRadians(F);
-          double E = AASEarth.Eccentricity(JD);
+            double D = MeanElongation(JD);
+            D = AASCoordinateTransformation.DegreesToRadians(D);
+            double M = AASEarth.SunMeanAnomaly(JD);
+            M = AASCoordinateTransformation.DegreesToRadians(M);
+            double Mdash = MeanAnomaly(JD);
+            Mdash = AASCoordinateTransformation.DegreesToRadians(Mdash);
+            double F = ArgumentOfLatitude(JD);
+            F = AASCoordinateTransformation.DegreesToRadians(F);
+            double E = AASEarth.Eccentricity(JD);
 
-          int nRCoefficients = g_MoonCoefficients1.Length;
-          double SigmaR = 0;
-          for (int i=0; i<nRCoefficients; i++)
-          {
-            double ThisSigma = g_MoonCoefficients2[i].B * Math.Cos(g_MoonCoefficients1[i].D*D + g_MoonCoefficients1[i].M*M + g_MoonCoefficients1[i].Mdash*Mdash + g_MoonCoefficients1[i].F*F);
-            if (g_MoonCoefficients1[i].M == 1)  // in the C++, this was "if (g_MoonCoefficients1[i].M)", because 0 and 1 are used to represent false and true in C++
-                ThisSigma *= E;
+            int nRCoefficients = g_MoonCoefficients1.Length;
+            double SigmaR = 0;
+            for (int i = 0; i < nRCoefficients; i++)
+            {
+                double ThisSigma = g_MoonCoefficients2[i].B * Math.Cos(g_MoonCoefficients1[i].D * D + g_MoonCoefficients1[i].M * M + g_MoonCoefficients1[i].Mdash * Mdash + g_MoonCoefficients1[i].F * F);
+                if (g_MoonCoefficients1[i].M == 1)  // in the C++, this was "if (g_MoonCoefficients1[i].M)", because 0 and 1 are used to represent false and true in C++
+                    ThisSigma *= E;
 
-            SigmaR += ThisSigma;
-          }
+                SigmaR += ThisSigma;
+            }
 
-          return 385000.56 + SigmaR/1000;
+            return 385000.56 + SigmaR / 1000;
         }
 
         public static double EclipticLatitude(double JD)
         {
-          double Ldash = MeanLongitude(JD);
-          Ldash = AASCoordinateTransformation.DegreesToRadians(Ldash);
-          double D = MeanElongation(JD);
-          D = AASCoordinateTransformation.DegreesToRadians(D);
-          double M = AASEarth.SunMeanAnomaly(JD);
-          M = AASCoordinateTransformation.DegreesToRadians(M);
-          double Mdash = MeanAnomaly(JD);
-          Mdash = AASCoordinateTransformation.DegreesToRadians(Mdash);
-          double F = ArgumentOfLatitude(JD);
-          F = AASCoordinateTransformation.DegreesToRadians(F);
+            double Ldash = MeanLongitude(JD);
+            Ldash = AASCoordinateTransformation.DegreesToRadians(Ldash);
+            double D = MeanElongation(JD);
+            D = AASCoordinateTransformation.DegreesToRadians(D);
+            double M = AASEarth.SunMeanAnomaly(JD);
+            M = AASCoordinateTransformation.DegreesToRadians(M);
+            double Mdash = MeanAnomaly(JD);
+            Mdash = AASCoordinateTransformation.DegreesToRadians(Mdash);
+            double F = ArgumentOfLatitude(JD);
+            F = AASCoordinateTransformation.DegreesToRadians(F);
 
-          double E = AASEarth.Eccentricity(JD);
-          double T = (JD - 2451545) / 36525;
+            double E = AASEarth.Eccentricity(JD);
+            double T = (JD - 2451545) / 36525;
 
-          double A1 = AASCoordinateTransformation.MapTo0To360Range(119.75 + 131.849*T);
-          A1 = AASCoordinateTransformation.DegreesToRadians(A1);
-          double A3 = AASCoordinateTransformation.MapTo0To360Range(313.45 + 481266.484*T);
-          A3 = AASCoordinateTransformation.DegreesToRadians(A3);
+            double A1 = AASCoordinateTransformation.MapTo0To360Range(119.75 + 131.849 * T);
+            A1 = AASCoordinateTransformation.DegreesToRadians(A1);
+            double A3 = AASCoordinateTransformation.MapTo0To360Range(313.45 + 481266.484 * T);
+            A3 = AASCoordinateTransformation.DegreesToRadians(A3);
 
-          int nBCoefficients = g_MoonCoefficients3.Length;
-          double SigmaB = 0;
-          for (int i=0; i<nBCoefficients; i++)
-          {
-            double ThisSigma = g_MoonCoefficients4[i] * Math.Sin(g_MoonCoefficients3[i].D*D + g_MoonCoefficients3[i].M*M + g_MoonCoefficients3[i].Mdash*Mdash + g_MoonCoefficients3[i].F*F);
+            int nBCoefficients = g_MoonCoefficients3.Length;
+            double SigmaB = 0;
+            for (int i = 0; i < nBCoefficients; i++)
+            {
+                double ThisSigma = g_MoonCoefficients4[i] * Math.Sin(g_MoonCoefficients3[i].D * D + g_MoonCoefficients3[i].M * M + g_MoonCoefficients3[i].Mdash * Mdash + g_MoonCoefficients3[i].F * F);
 
-            if (g_MoonCoefficients3[i].M == 1)
-              ThisSigma *= E;
+                if (g_MoonCoefficients3[i].M == 1)
+                    ThisSigma *= E;
 
-            SigmaB += ThisSigma;
-          }
+                SigmaB += ThisSigma;
+            }
 
-          //Finally the additive terms
-          SigmaB -= 2235*Math.Sin(Ldash);
-          SigmaB += 382*Math.Sin(A3);
-          SigmaB += 175*Math.Sin(A1 - F);
-          SigmaB += 175*Math.Sin(A1 + F);
-          SigmaB += 127*Math.Sin(Ldash - Mdash);
-          SigmaB -= 115*Math.Sin(Ldash + Mdash);
+            //Finally the additive terms
+            SigmaB -= 2235 * Math.Sin(Ldash);
+            SigmaB += 382 * Math.Sin(A3);
+            SigmaB += 175 * Math.Sin(A1 - F);
+            SigmaB += 175 * Math.Sin(A1 + F);
+            SigmaB += 127 * Math.Sin(Ldash - Mdash);
+            SigmaB -= 115 * Math.Sin(Ldash + Mdash);
 
-          return SigmaB/1000000;
+            return SigmaB / 1000000;
         }
 
         public static double RadiusVectorToHorizontalParallax(double RadiusVector)
         {
-          return AASCoordinateTransformation.RadiansToDegrees(Math.Asin(6378.14 / RadiusVector));
+            return AASCoordinateTransformation.RadiansToDegrees(Math.Asin(6378.14 / RadiusVector));
         }
 
         public static double HorizontalParallaxToRadiusVector(double Parallax)
         {
-          return 6378.14 / Math.Sin(AASCoordinateTransformation.DegreesToRadians(Parallax));
+            return 6378.14 / Math.Sin(AASCoordinateTransformation.DegreesToRadians(Parallax));
         }
 
         public static double MeanLongitudeAscendingNode(double JD)
         {
-          double T = (JD - 2451545) / 36525;
-          double Tsquared = T*T;
-          double Tcubed = Tsquared*T;
-          double T4 = Tcubed*T;
-          return AASCoordinateTransformation.MapTo0To360Range(125.0445479 - 1934.1362891*T + 0.0020754*Tsquared + Tcubed/467441 - T4/60616000);
+            double T = (JD - 2451545) / 36525;
+            double Tsquared = T * T;
+            double Tcubed = Tsquared * T;
+            double T4 = Tcubed * T;
+            return AASCoordinateTransformation.MapTo0To360Range(125.0445479 - 1934.1362891 * T + 0.0020754 * Tsquared + Tcubed / 467441 - T4 / 60616000);
         }
 
         public static double MeanLongitudePerigee(double JD)
         {
-          double T = (JD - 2451545) / 36525;
-          double Tsquared = T*T;
-          double Tcubed = Tsquared*T;
-          double T4 = Tcubed*T;
-          return AASCoordinateTransformation.MapTo0To360Range(83.3532465 + 4069.0137287*T - 0.0103200*Tsquared - Tcubed/80053 + T4/18999000);
+            double T = (JD - 2451545) / 36525;
+            double Tsquared = T * T;
+            double Tcubed = Tsquared * T;
+            double T4 = Tcubed * T;
+            return AASCoordinateTransformation.MapTo0To360Range(83.3532465 + 4069.0137287 * T - 0.0103200 * Tsquared - Tcubed / 80053 + T4 / 18999000);
         }
 
         public static double TrueLongitudeAscendingNode(double JD)
         {
-          double TrueAscendingNode = MeanLongitudeAscendingNode(JD);
+            double TrueAscendingNode = MeanLongitudeAscendingNode(JD);
 
-          double D = MeanElongation(JD);
-          D = AASCoordinateTransformation.DegreesToRadians(D);
-          double M = AASEarth.SunMeanAnomaly(JD);
-          M = AASCoordinateTransformation.DegreesToRadians(M);
-          double Mdash = MeanAnomaly(JD);
-          Mdash = AASCoordinateTransformation.DegreesToRadians(Mdash);
-          double F = ArgumentOfLatitude(JD);
-          F = AASCoordinateTransformation.DegreesToRadians(F);
+            double D = MeanElongation(JD);
+            D = AASCoordinateTransformation.DegreesToRadians(D);
+            double M = AASEarth.SunMeanAnomaly(JD);
+            M = AASCoordinateTransformation.DegreesToRadians(M);
+            double Mdash = MeanAnomaly(JD);
+            Mdash = AASCoordinateTransformation.DegreesToRadians(Mdash);
+            double F = ArgumentOfLatitude(JD);
+            F = AASCoordinateTransformation.DegreesToRadians(F);
 
-          //Add the principal additive terms
-          TrueAscendingNode -= 1.4979*Math.Sin(2*(D - F));
-          TrueAscendingNode -= 0.1500*Math.Sin(M);
-          TrueAscendingNode -= 0.1226*Math.Sin(2*D);
-          TrueAscendingNode += 0.1176*Math.Sin(2*F);
-          TrueAscendingNode -= 0.0801*Math.Sin(2*(Mdash-F));
+            //Add the principal additive terms
+            TrueAscendingNode -= 1.4979 * Math.Sin(2 * (D - F));
+            TrueAscendingNode -= 0.1500 * Math.Sin(M);
+            TrueAscendingNode -= 0.1226 * Math.Sin(2 * D);
+            TrueAscendingNode += 0.1176 * Math.Sin(2 * F);
+            TrueAscendingNode -= 0.0801 * Math.Sin(2 * (Mdash - F));
 
-          return AASCoordinateTransformation.MapTo0To360Range(TrueAscendingNode);
+            return AASCoordinateTransformation.MapTo0To360Range(TrueAscendingNode);
         }
     }
 }

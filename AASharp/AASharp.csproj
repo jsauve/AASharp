@@ -79,6 +79,8 @@
     <Compile Include="Enums.cs" />
     <Compile Include="MoonCoefficient1.cs" />
     <Compile Include="MoonCoefficient2.cs" />
+    <Compile Include="PlutoCoefficient1.cs" />
+    <Compile Include="PlutoCoefficient2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VSOP87Coefficient.cs" />
   </ItemGroup>
