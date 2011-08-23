@@ -3,5 +3,7 @@ aaplus/AATest.opensdf
 *.dll
 *.pdb
 *.sdf
+*.cache
 aaplus/Debug/
-aaplus/obj
+aaplus/obj/
+aaplus/ipch/
