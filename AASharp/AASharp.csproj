@@ -60,6 +60,7 @@
     <Compile Include="AASFK5.cs" />
     <Compile Include="AASGalileanMoons.cs" />
     <Compile Include="AASGlobe.cs" />
+    <Compile Include="AASIlluminatedFraction.cs" />
     <Compile Include="AASInterpolate.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -75,9 +76,18 @@
     <Compile Include="AASNodes.cs" />
     <Compile Include="AASNutation.cs" />
     <Compile Include="AASParabolic.cs" />
+    <Compile Include="AASParallactic.cs" />
+    <Compile Include="AASParallax.cs" />
+    <Compile Include="AASPhysicalJupiter.cs" />
+    <Compile Include="AASPhysicalMars.cs" />
     <Compile Include="AASPhysicalMoon.cs" />
     <Compile Include="AASPhysicalSun.cs" />
+    <Compile Include="AASPlanetaryPhenomena.cs" />
+    <Compile Include="AASPlanetPerihelionAphelion.cs" />
+    <Compile Include="AASPrecession.cs" />
+    <Compile Include="AASRefraction.cs" />
     <Compile Include="AASRiseTransitSet.cs" />
+    <Compile Include="AASSaturnMoons.cs" />
     <Compile Include="AASSidereal.cs" />
     <Compile Include="AASSolarEclipseDetails.cs" />
     <Compile Include="AASSun.cs" />
@@ -92,10 +102,12 @@
     <Compile Include="AberrationCoefficient.cs" />
     <Compile Include="AASGalileanMoonDetail.cs" />
     <Compile Include="AASGalileanMoonsDetails.cs" />
-    <Compile Include="CAAMoonPerigeeApogee.cs" />
-    <Compile Include="Enums.cs" />
+    <Compile Include="EventType.cs" />
+    <Compile Include="MoonPerigeeApogeeCoefficient.cs" />
+    <Compile Include="DAY_OF_WEEK.cs" />
     <Compile Include="MoonCoefficient1.cs" />
     <Compile Include="MoonCoefficient2.cs" />
+    <Compile Include="PlanetaryObject.cs" />
     <Compile Include="PlutoCoefficient1.cs" />
     <Compile Include="PlutoCoefficient2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

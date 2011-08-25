@@ -1,0 +1,5 @@
+C:\development\projects\AASharp\AASharp\bin\Release\AASharp.dll
+C:\development\projects\AASharp\AASharp\bin\Release\AASharp.pdb
+C:\development\projects\AASharp\AASharp\obj\Release\ResolveAssemblyReference.cache
+C:\development\projects\AASharp\AASharp\obj\Release\AASharp.dll
+C:\development\projects\AASharp\AASharp\obj\Release\AASharp.pdb
