@@ -712,9 +712,6 @@ namespace AASharp
   new VSOP87Coefficient( 2,	  0.56,	  117.32 )
 };
 
-
-        ///////////////////////////// Implementation //////////////////////////////////
-
         public static double EclipticLongitude(double JD)
         {
             double rho = (JD - 2451545) / 365250;

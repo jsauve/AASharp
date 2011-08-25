@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -30,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -41,6 +42,8 @@
     <Compile Include="AAS3DCoordinate.cs" />
     <Compile Include="AASAberration.cs" />
     <Compile Include="AASAngularSeparation.cs" />
+    <Compile Include="AASBinaryStar.cs" />
+    <Compile Include="AASBinaryStarDetails.cs" />
     <Compile Include="AASCalendarDate.cs" />
     <Compile Include="AASCoordinateTransformation.cs" />
     <Compile Include="AASDate.cs" />
@@ -48,25 +51,45 @@
     <Compile Include="AASDynamicalTime.cs" />
     <Compile Include="AASEarth.cs" />
     <Compile Include="AASEaster.cs" />
+    <Compile Include="AASEclipses.cs" />
     <Compile Include="AASEclipticalElements.cs" />
+    <Compile Include="AASElementsPlanetaryOrbit.cs" />
     <Compile Include="AASElliptical.cs" />
+    <Compile Include="AASEquationOfTime.cs" />
+    <Compile Include="AASEquinoxesAndSolstices.cs" />
     <Compile Include="AASFK5.cs" />
+    <Compile Include="AASGalileanMoons.cs" />
     <Compile Include="AASGlobe.cs" />
+    <Compile Include="AASIlluminatedFraction.cs" />
     <Compile Include="AASInterpolate.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AASKepler.cs" />
+    <Compile Include="AASLunarEclipseDetails.cs" />
     <Compile Include="AASMath.cs" />
     <Compile Include="AASMoon.cs" />
     <Compile Include="AASMoonIlluminatedFraction.cs" />
+    <Compile Include="AASMoonMaxDeclinations.cs" />
+    <Compile Include="AASMoonNodes.cs" />
+    <Compile Include="AASMoonPhases.cs" />
+    <Compile Include="AASNearParabolic.cs" />
     <Compile Include="AASNodes.cs" />
     <Compile Include="AASNutation.cs" />
     <Compile Include="AASParabolic.cs" />
+    <Compile Include="AASParallactic.cs" />
+    <Compile Include="AASParallax.cs" />
+    <Compile Include="AASPhysicalJupiter.cs" />
+    <Compile Include="AASPhysicalMars.cs" />
     <Compile Include="AASPhysicalMoon.cs" />
     <Compile Include="AASPhysicalSun.cs" />
+    <Compile Include="AASPlanetaryPhenomena.cs" />
+    <Compile Include="AASPlanetPerihelionAphelion.cs" />
+    <Compile Include="AASPrecession.cs" />
+    <Compile Include="AASRefraction.cs" />
     <Compile Include="AASRiseTransitSet.cs" />
-    <Compile Include="AASSaturnRings.cs" />
+    <Compile Include="AASSaturnMoons.cs" />
     <Compile Include="AASSidereal.cs" />
+    <Compile Include="AASSolarEclipseDetails.cs" />
     <Compile Include="AASSun.cs" />
     <Compile Include="AASJupiter.cs" />
     <Compile Include="AASMars.cs" />
@@ -77,9 +100,16 @@
     <Compile Include="AASUranus.cs" />
     <Compile Include="AASVenus.cs" />
     <Compile Include="AberrationCoefficient.cs" />
-    <Compile Include="Enums.cs" />
+    <Compile Include="AASGalileanMoonDetail.cs" />
+    <Compile Include="AASGalileanMoonsDetails.cs" />
+    <Compile Include="EventType.cs" />
+    <Compile Include="MoonPerigeeApogeeCoefficient.cs" />
+    <Compile Include="DAY_OF_WEEK.cs" />
     <Compile Include="MoonCoefficient1.cs" />
     <Compile Include="MoonCoefficient2.cs" />
+    <Compile Include="PlanetaryObject.cs" />
+    <Compile Include="PlutoCoefficient1.cs" />
+    <Compile Include="PlutoCoefficient2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VSOP87Coefficient.cs" />
   </ItemGroup>
