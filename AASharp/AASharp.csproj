@@ -65,6 +65,7 @@
     <Compile Include="AASPhysicalMoon.cs" />
     <Compile Include="AASPhysicalSun.cs" />
     <Compile Include="AASRiseTransitSet.cs" />
+    <Compile Include="AASSaturnRings.cs" />
     <Compile Include="AASSidereal.cs" />
     <Compile Include="AASSun.cs" />
     <Compile Include="AASJupiter.cs" />
