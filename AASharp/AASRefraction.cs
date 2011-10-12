@@ -6,7 +6,7 @@ namespace AASharp
 {
     public static class AASRefraction
     {
-        public static double AASRefractionRefractionFromApparent(double Altitude, double Pressure, double Temperature)
+        public static double RefractionFromApparent(double Altitude, double Pressure = 1010, double Temperature = 10)
         {
             //return a constant value from this method if the altitude is below a specific value
             if (Altitude <= -1.6962987799993996)
@@ -18,7 +18,7 @@ namespace AASharp
             return value;
         }
 
-        public static double AASRefractionRefractionFromTrue(double Altitude, double Pressure, double Temperature)
+        public static double RefractionFromTrue(double Altitude, double Pressure = 1010, double Temperature = 10)
         {
             //return a constant value from this method if the altitude is below a specific value
             if (Altitude <= -1.9006387000003735)

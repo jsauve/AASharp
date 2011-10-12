@@ -5,9 +5,6 @@ using System.Text;
 
 namespace AASharp
 {
-
-
-
     public class AASSaturnMoonDetail
     {
         public AAS3DCoordinate TrueRectangularCoordinates;

@@ -58,7 +58,7 @@ namespace AASharp
                 return ((Year % 4) == 0) ? true : false;
         }
 
-        public static void DayOfYearToDayAndMonth(long DayOfYear, bool bLeap, ref long DayOfMonth, ref long Month)
+        public void DayOfYearToDayAndMonth(long DayOfYear, bool bLeap, ref long DayOfMonth, ref long Month)
         {
             long K = bLeap ? 1 : 2;
 

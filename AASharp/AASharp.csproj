@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -88,8 +88,10 @@
     <Compile Include="AASRefraction.cs" />
     <Compile Include="AASRiseTransitSet.cs" />
     <Compile Include="AASSaturnMoons.cs" />
+    <Compile Include="AASSaturnRings.cs" />
     <Compile Include="AASSidereal.cs" />
     <Compile Include="AASSolarEclipseDetails.cs" />
+    <Compile Include="AASStellarMagnitudes.cs" />
     <Compile Include="AASSun.cs" />
     <Compile Include="AASJupiter.cs" />
     <Compile Include="AASMars.cs" />

@@ -27,7 +27,7 @@ namespace AASharp
         public double T { get { return _T; } }
     };
 
-    public static class CAAMoonPerigeeApogee
+    public static class AASMoonPerigeeApogee
     {
         
 
@@ -309,5 +309,30 @@ namespace AASharp
             return MeanJD + Sigma;
         }
 
+        public static double ApogeeParallax(double k)
+        {
+            //convert from K to T
+            double T = k / 1325.55;
+            double Tsquared = T * T;
+            double Tcubed = Tsquared * T;
+            double T4 = Tcubed * T;
+
+            double D = AASCoordinateTransformation.MapTo0To360Range(171.9179 + 335.9106046 * k - 0.0100383 * Tsquared - 0.00001156 * Tcubed + 0.000000055 * T4);
+            D = AASCoordinateTransformation.DegreesToRadians(D);
+            double M = AASCoordinateTransformation.MapTo0To360Range(347.3477 + 27.1577721 * k - 0.0008130 * Tsquared - 0.0000010 * Tcubed);
+            M = AASCoordinateTransformation.DegreesToRadians(M);
+            double F = AASCoordinateTransformation.MapTo0To360Range(316.6109 + 364.5287911 * k - 0.0125053 * Tsquared - 0.0000148 * Tcubed);
+            F = AASCoordinateTransformation.DegreesToRadians(F);
+
+            int nApogeeCoefficients = g_MoonPerigeeApogeeCoefficients4.Length;
+            double Parallax = 3245.251;
+            for (int i = 0; i < nApogeeCoefficients; i++)
+            {
+                Parallax += (g_MoonPerigeeApogeeCoefficients4[i].C + T * g_MoonPerigeeApogeeCoefficients4[i].T) * cos(D * g_MoonPerigeeApogeeCoefficients4[i].D + M * g_MoonPerigeeApogeeCoefficients4[i].M +
+                                                                                                                    F * g_MoonPerigeeApogeeCoefficients4[i].F);
+            }
+
+            return Parallax / 3600;
+        }
     }
 }
