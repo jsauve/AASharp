@@ -14,10 +14,28 @@ namespace AASharp
         }
 
         private readonly int _J;
-        public int J { get { return _J; } }
+        public int J
+        {
+            get
+            {
+                return _J;
+            }
+        }
         private readonly int _S;
-        public int S { get { return _S; } }
+        public int S
+        {
+            get
+            {
+                return _S;
+            }
+        }
         private readonly int _P;
-        public int P { get { return _P; } }
-    };
+        public int P
+        {
+            get
+            {
+                return _P;
+            }
+        }
+    }
 }

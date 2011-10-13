@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,7 +11,7 @@ namespace AASharp
             GeographicalLatitude = AASCoordinateTransformation.DegreesToRadians(GeographicalLatitude);
 
             double U = Math.Atan(0.99664719 * Math.Tan(GeographicalLatitude));
-            return 0.99664719 * Math.Sin(U) + (Height/6378149 * Math.Sin(GeographicalLatitude));
+            return 0.99664719 * Math.Sin(U) + (Height / 6378149 * Math.Sin(GeographicalLatitude));
         }
 
         public static double RhoCosThetaPrime(double GeographicalLatitude, double Height)
@@ -20,7 +20,7 @@ namespace AASharp
             GeographicalLatitude = AASCoordinateTransformation.DegreesToRadians(GeographicalLatitude);
 
             double U = Math.Atan(0.99664719 * Math.Tan(GeographicalLatitude));
-            return Math.Cos(U) + (Height/6378149 * Math.Cos(GeographicalLatitude));
+            return Math.Cos(U) + (Height / 6378149 * Math.Cos(GeographicalLatitude));
         }
 
         public static double RadiusOfParallelOfLatitude(double GeographicalLatitude)
@@ -29,7 +29,7 @@ namespace AASharp
             GeographicalLatitude = AASCoordinateTransformation.DegreesToRadians(GeographicalLatitude);
 
             double sinGeo = Math.Sin(GeographicalLatitude);
-            return (6378.14 * Math.Cos(GeographicalLatitude)) / (Math.Sqrt(1 - 0.0066943847614084*sinGeo*sinGeo));
+            return (6378.14 * Math.Cos(GeographicalLatitude)) / (Math.Sqrt(1 - 0.0066943847614084 * sinGeo * sinGeo));
         }
 
         public static double RadiusOfCurvature(double GeographicalLatitude)
@@ -58,16 +58,16 @@ namespace AASharp
             double sinF = Math.Sin(F);
             double sinLambda = Math.Sin(lambda);
             double cosLambda = Math.Cos(lambda);
-            double S = (sinG*sinG*cosLambda*cosLambda) + (cosF*cosF*sinLambda*sinLambda);
-            double C = (cosG*cosG*cosLambda*cosLambda) + (sinF*sinF*sinLambda*sinLambda);
-            double w = Math.Atan(Math.Sqrt(S/C));
-            double R = Math.Sqrt(S*C)/w;
-            double D = 2*w*6378.14;
-            double Hprime = (3*R - 1) / (2*C);
-            double Hprime2 = (3*R + 1) / (2*S);
+            double S = (sinG * sinG * cosLambda * cosLambda) + (cosF * cosF * sinLambda * sinLambda);
+            double C = (cosG * cosG * cosLambda * cosLambda) + (sinF * sinF * sinLambda * sinLambda);
+            double w = Math.Atan(Math.Sqrt(S / C));
+            double R = Math.Sqrt(S * C) / w;
+            double D = 2 * w * 6378.14;
+            double Hprime = (3 * R - 1) / (2 * C);
+            double Hprime2 = (3 * R + 1) / (2 * S);
             const double f = 0.0033528131778969144060323814696721;
 
-            return D * (1 + (f*Hprime*sinF*sinF*cosG*cosG) - (f*Hprime2*cosF*cosF*sinG*sinG));
+            return D * (1 + (f * Hprime * sinF * sinF * cosG * cosG) - (f * Hprime2 * cosF * cosF * sinG * sinG));
         }
 
     }

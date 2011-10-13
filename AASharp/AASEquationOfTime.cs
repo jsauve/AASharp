@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,7 +16,7 @@ namespace AASharp
 
             //Calculate the Suns mean longitude
             double L0 = AASCoordinateTransformation.MapTo0To360Range(280.4664567 + 360007.6982779 * rho + 0.03032028 * rhosquared +
-                                                                      rhocubed / 49931 - rho4 / 15300 - rho5 / 2000000);
+            rhocubed / 49931 - rho4 / 15300 - rho5 / 2000000);
 
             //Calculate the Suns apparent right ascension
             double SunLong = AASSun.ApparentEclipticLongitude(JD);

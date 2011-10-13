@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,7 +15,7 @@ namespace AASharp
             AAS2DCoordinate Ecliptic = new AAS2DCoordinate { X = RadiansToDegrees(Math.Atan2(Math.Sin(Alpha) * Math.Cos(Epsilon) + Math.Tan(Delta) * Math.Sin(Epsilon), Math.Cos(Alpha))) };
             if (Ecliptic.X < 0)
                 Ecliptic.X += 360;
-            Ecliptic.Y = RadiansToDegrees(Math.Asin(Math.Sin(Delta)*Math.Cos(Epsilon) - Math.Cos(Delta)*Math.Sin(Epsilon)*Math.Sin(Alpha)));
+            Ecliptic.Y = RadiansToDegrees(Math.Asin(Math.Sin(Delta) * Math.Cos(Epsilon) - Math.Cos(Delta) * Math.Sin(Epsilon) * Math.Sin(Alpha)));
 
             return Ecliptic;
         }
@@ -29,9 +29,9 @@ namespace AASharp
             AAS2DCoordinate Equatorial = new AAS2DCoordinate { X = RadiansToHours(Math.Atan2(Math.Sin(Lambda) * Math.Cos(Epsilon) - Math.Tan(Beta) * Math.Sin(Epsilon), Math.Cos(Lambda))) };
             if (Equatorial.X < 0)
                 Equatorial.X += 24;
-            Equatorial.Y = RadiansToDegrees(Math.Asin(Math.Sin(Beta)*Math.Cos(Epsilon) + Math.Cos(Beta)*Math.Sin(Epsilon)*Math.Sin(Lambda)));
-	
-	        return Equatorial;
+            Equatorial.Y = RadiansToDegrees(Math.Asin(Math.Sin(Beta) * Math.Cos(Epsilon) + Math.Cos(Beta) * Math.Sin(Epsilon) * Math.Sin(Lambda)));
+
+            return Equatorial;
         }
 
         public static AAS2DCoordinate Equatorial2Horizontal(double LocalHourAngle, double Delta, double Latitude)
@@ -43,8 +43,8 @@ namespace AASharp
             AAS2DCoordinate Horizontal = new AAS2DCoordinate { X = RadiansToDegrees(Math.Atan2(Math.Sin(LocalHourAngle), Math.Cos(LocalHourAngle) * Math.Sin(Latitude) - Math.Tan(Delta) * Math.Cos(Latitude))) };
             if (Horizontal.X < 0)
                 Horizontal.X += 360;
-            Horizontal.Y = RadiansToDegrees(Math.Asin(Math.Sin(Latitude)*Math.Cos(Delta) + Math.Cos(Latitude)*Math.Cos(Delta)*Math.Cos(LocalHourAngle)));
-		
+            Horizontal.Y = RadiansToDegrees(Math.Asin(Math.Sin(Latitude) * Math.Cos(Delta) + Math.Cos(Latitude) * Math.Cos(Delta) * Math.Cos(LocalHourAngle)));
+
             return Horizontal;
         }
 
@@ -58,8 +58,8 @@ namespace AASharp
             AAS2DCoordinate Equatorial = new AAS2DCoordinate { X = RadiansToHours(Math.Atan2(Math.Sin(Azimuth), Math.Cos(Azimuth) * Math.Sin(Latitude) + Math.Tan(Altitude) * Math.Cos(Latitude))) };
             if (Equatorial.X < 0)
                 Equatorial.X += 24;
-            Equatorial.Y = RadiansToDegrees(Math.Asin(Math.Sin(Latitude)*Math.Sin(Altitude) - Math.Cos(Latitude)*Math.Cos(Altitude)*Math.Cos(Azimuth)));
-	
+            Equatorial.Y = RadiansToDegrees(Math.Asin(Math.Sin(Latitude) * Math.Sin(Altitude) - Math.Cos(Latitude) * Math.Cos(Altitude) * Math.Cos(Azimuth)));
+
             return Equatorial;
         }
 
@@ -69,12 +69,12 @@ namespace AASharp
             Alpha = DegreesToRadians(Alpha);
             Delta = DegreesToRadians(Delta);
 
-            AAS2DCoordinate Galactic = new AAS2DCoordinate() { X =RadiansToDegrees(Math.Atan2(Math.Sin(Alpha), Math.Cos(Alpha)*Math.Sin(DegreesToRadians(27.4)) - Math.Tan(Delta)*Math.Cos(DegreesToRadians(27.4)))) };
+            AAS2DCoordinate Galactic = new AAS2DCoordinate() { X = RadiansToDegrees(Math.Atan2(Math.Sin(Alpha), Math.Cos(Alpha) * Math.Sin(DegreesToRadians(27.4)) - Math.Tan(Delta) * Math.Cos(DegreesToRadians(27.4)))) };
             Galactic.X = 303 - Galactic.X;
             if (Galactic.X >= 360)
                 Galactic.X -= 360;
-            Galactic.Y = RadiansToDegrees(Math.Asin(Math.Sin(Delta)*Math.Sin(DegreesToRadians(27.4)) + Math.Cos(Delta)*Math.Cos(DegreesToRadians(27.4))*Math.Cos(Alpha)));
-		
+            Galactic.Y = RadiansToDegrees(Math.Asin(Math.Sin(Delta) * Math.Sin(DegreesToRadians(27.4)) + Math.Cos(Delta) * Math.Cos(DegreesToRadians(27.4)) * Math.Cos(Alpha)));
+
             return Galactic;
         }
 
@@ -89,8 +89,8 @@ namespace AASharp
             if (Equatorial.X < 0)
                 Equatorial.X += 360;
             Equatorial.X = DegreesToHours(Equatorial.X);
-            Equatorial.Y = RadiansToDegrees(Math.Asin(Math.Sin(b)*Math.Sin(DegreesToRadians(27.4)) + Math.Cos(b)*Math.Cos(DegreesToRadians(27.4))*Math.Cos(l)));
-		
+            Equatorial.Y = RadiansToDegrees(Math.Asin(Math.Sin(b) * Math.Sin(DegreesToRadians(27.4)) + Math.Cos(b) * Math.Cos(DegreesToRadians(27.4)) * Math.Cos(l)));
+
             return Equatorial;
         }
 
@@ -100,9 +100,12 @@ namespace AASharp
             //validate our parameters
             if (!bPositive)
             {
-                if (Degrees < 0) throw new ArgumentOutOfRangeException("Degrees", "Degrees must be greater than 0");
-                if (Minutes < 0) throw new ArgumentOutOfRangeException("Minutes", "Minutes must be greater than 0");
-                if (Seconds < 0) throw new ArgumentOutOfRangeException("Seconds", "Seconds must be greater than 0");
+                if (Degrees < 0)
+                    throw new ArgumentOutOfRangeException("Degrees", "Degrees must be greater than 0");
+                if (Minutes < 0)
+                    throw new ArgumentOutOfRangeException("Minutes", "Minutes must be greater than 0");
+                if (Seconds < 0)
+                    throw new ArgumentOutOfRangeException("Seconds", "Seconds must be greater than 0");
             }
 
             if (bPositive)

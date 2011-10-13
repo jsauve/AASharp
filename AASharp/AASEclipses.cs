@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,51 +52,51 @@ namespace AASharp
             double DeltaJD = 0;
             if (bSolarEclipse)
                 DeltaJD += -0.4075 * Math.Sin(Mdash) +
-                           0.1721 * E * Math.Sin(M);
+                0.1721 * E * Math.Sin(M);
             else
                 DeltaJD += -0.4065 * Math.Sin(Mdash) +
-                           0.1727 * E * Math.Sin(M);
+                0.1727 * E * Math.Sin(M);
             DeltaJD += 0.0161 * Math.Sin(2 * Mdash) +
-                       -0.0097 * Math.Sin(2 * Fdash) +
-                       0.0073 * E * Math.Sin(Mdash - M) +
-                       -0.0050 * E * Math.Sin(Mdash + M) +
-                       -0.0023 * Math.Sin(Mdash - 2 * Fdash) +
-                       0.0021 * E * Math.Sin(2 * M) +
-                       0.0012 * Math.Sin(Mdash + 2 * Fdash) +
-                       0.0006 * E * Math.Sin(2 * Mdash + M) +
-                       -0.0004 * Math.Sin(3 * Mdash) +
-                       -0.0003 * E * Math.Sin(M + 2 * Fdash) +
-                       0.0003 * Math.Sin(A1) +
-                       -0.0002 * E * Math.Sin(M - 2 * Fdash) +
-                       -0.0002 * E * Math.Sin(2 * Mdash - M) +
-                       -0.0002 * Math.Sin(omega);
+            -0.0097 * Math.Sin(2 * Fdash) +
+            0.0073 * E * Math.Sin(Mdash - M) +
+            -0.0050 * E * Math.Sin(Mdash + M) +
+            -0.0023 * Math.Sin(Mdash - 2 * Fdash) +
+            0.0021 * E * Math.Sin(2 * M) +
+            0.0012 * Math.Sin(Mdash + 2 * Fdash) +
+            0.0006 * E * Math.Sin(2 * Mdash + M) +
+            -0.0004 * Math.Sin(3 * Mdash) +
+            -0.0003 * E * Math.Sin(M + 2 * Fdash) +
+            0.0003 * Math.Sin(A1) +
+            -0.0002 * E * Math.Sin(M - 2 * Fdash) +
+            -0.0002 * E * Math.Sin(2 * Mdash - M) +
+            -0.0002 * Math.Sin(omega);
 
             details.TimeOfMaximumEclipse += DeltaJD;
 
             double P = 0.2070 * E * Math.Sin(M) +
-                       0.0024 * E * Math.Sin(2 * M) +
-                       -0.0392 * Math.Sin(Mdash) +
-                       0.0116 * Math.Sin(2 * Mdash) +
-                       -0.0073 * E * Math.Sin(Mdash + M) +
-                       0.0067 * E * Math.Sin(Mdash - M) +
-                       0.0118 * Math.Sin(2 * Fdash);
+            0.0024 * E * Math.Sin(2 * M) +
+            -0.0392 * Math.Sin(Mdash) +
+            0.0116 * Math.Sin(2 * Mdash) +
+            -0.0073 * E * Math.Sin(Mdash + M) +
+            0.0067 * E * Math.Sin(Mdash - M) +
+            0.0118 * Math.Sin(2 * Fdash);
 
             double Q = 5.2207 +
-                       -0.0048 * E * Math.Cos(M) +
-                       0.0020 * E * Math.Cos(2 * M) +
-                       -0.3299 * Math.Cos(Mdash) +
-                       -0.0060 * E * Math.Cos(Mdash + M) +
-                       0.0041 * E * Math.Cos(Mdash - M);
+            -0.0048 * E * Math.Cos(M) +
+            0.0020 * E * Math.Cos(2 * M) +
+            -0.3299 * Math.Cos(Mdash) +
+            -0.0060 * E * Math.Cos(Mdash + M) +
+            0.0041 * E * Math.Cos(Mdash - M);
 
             double W = Math.Abs(Math.Cos(Fdash));
 
             details.gamma = (P * Math.Cos(Fdash) + Q * Math.Sin(Fdash)) * (1 - 0.0048 * W);
 
             details.u = 0.0059 +
-                       0.0046 * E * Math.Cos(M) +
-                       -0.0182 * Math.Cos(Mdash) +
-                       0.0004 * Math.Cos(2 * Mdash) +
-                       -0.0005 * Math.Cos(M + Mdash);
+            0.0046 * E * Math.Cos(M) +
+            -0.0182 * Math.Cos(Mdash) +
+            0.0004 * Math.Cos(2 * Mdash) +
+            -0.0005 * Math.Cos(M + Mdash);
 
             //Check to see if the eclipse is visible from the Earth's surface
             if (Math.Abs(details.gamma) > (1.5433 + details.u))
@@ -113,7 +113,7 @@ namespace AASharp
             return details;
         }
 
-        static public AASSolarEclipseDetails CalculateSolar(double k)
+        public static AASSolarEclipseDetails CalculateSolar(double k)
         {
 #if DEBUG
             double intp = 0;

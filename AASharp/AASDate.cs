@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,7 +6,9 @@ namespace AASharp
 {
     public class AASDate
     {
-        public AASDate() { }
+        public AASDate()
+        {
+        }
 
         public AASDate(long Year, long Month, double Day, bool bGregorianCalendar)
         {
@@ -129,7 +131,8 @@ namespace AASharp
 
         public static long DaysInMonth(long Month, bool bLeap)
         {
-            if (Month < 1 && Month > 12) throw new ArgumentOutOfRangeException("Month", "Month must be 1 - 12");
+            if (Month < 1 && Month > 12)
+                throw new ArgumentOutOfRangeException("Month", "Month must be 1 - 12");
             int[] MonthLength = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
             if (bLeap)
                 MonthLength[1]++;
@@ -146,7 +149,10 @@ namespace AASharp
 
         public double Julian
         {
-            get { return m_dblJulian; }
+            get
+            {
+                return m_dblJulian;
+            }
         }
 
         public long Day

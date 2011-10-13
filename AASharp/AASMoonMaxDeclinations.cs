@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -58,96 +58,96 @@ namespace AASharp
             if (bNortherly)
             {
                 DeltaJD = 0.8975 * Math.Cos(F) +
-                          -0.4726 * Math.Sin(Mdash) +
-                          -0.1030 * Math.Sin(2 * F) +
-                          -0.0976 * Math.Sin(2 * D - Mdash) +
-                          -0.0462 * Math.Cos(Mdash - F) +
-                          -0.0461 * Math.Cos(Mdash + F) +
-                          -0.0438 * Math.Sin(2 * D) +
-                          0.0162 * E * Math.Sin(M) +
-                          -0.0157 * Math.Cos(3 * F) +
-                          0.0145 * Math.Sin(Mdash + 2 * F) +
-                          0.0136 * Math.Cos(2 * D - F) +
-                          -0.0095 * Math.Cos(2 * D - Mdash - F) +
-                          -0.0091 * Math.Cos(2 * D - Mdash + F) +
-                          -0.0089 * Math.Cos(2 * D + F) +
-                          0.0075 * Math.Sin(2 * Mdash) +
-                          -0.0068 * Math.Sin(Mdash - 2 * F) +
-                          0.0061 * Math.Cos(2 * Mdash - F) +
-                          -0.0047 * Math.Sin(Mdash + 3 * F) +
-                          -0.0043 * E * Math.Sin(2 * D - M - Mdash) +
-                          -0.0040 * Math.Cos(Mdash - 2 * F) +
-                          -0.0037 * Math.Sin(2 * D - 2 * Mdash) +
-                          0.0031 * Math.Sin(F) +
-                          0.0030 * Math.Sin(2 * D + Mdash) +
-                          -0.0029 * Math.Cos(Mdash + 2 * F) +
-                          -0.0029 * E * Math.Sin(2 * D - M) +
-                          -0.0027 * Math.Sin(Mdash + F) +
-                          0.0024 * E * Math.Sin(M - Mdash) +
-                          -0.0021 * Math.Sin(Mdash - 3 * F) +
-                          0.0019 * Math.Sin(2 * Mdash + F) +
-                          0.0018 * Math.Cos(2 * D - 2 * Mdash - F) +
-                          0.0018 * Math.Sin(3 * F) +
-                          0.0017 * Math.Cos(Mdash + 3 * F) +
-                          0.0017 * Math.Cos(2 * Mdash) +
-                          -0.0014 * Math.Cos(2 * D - Mdash) +
-                          0.0013 * Math.Cos(2 * D + Mdash + F) +
-                          0.0013 * Math.Cos(Mdash) +
-                          0.0012 * Math.Sin(3 * Mdash + F) +
-                          0.0011 * Math.Sin(2 * D - Mdash + F) +
-                          -0.0011 * Math.Cos(2 * D - 2 * Mdash) +
-                          0.0010 * Math.Cos(D + F) +
-                          0.0010 * E * Math.Sin(M + Mdash) +
-                          -0.0009 * Math.Sin(2 * D - 2 * F) +
-                          0.0007 * Math.Cos(2 * Mdash + F) +
-                          -0.0007 * Math.Cos(3 * Mdash + F);
+                -0.4726 * Math.Sin(Mdash) +
+                -0.1030 * Math.Sin(2 * F) +
+                -0.0976 * Math.Sin(2 * D - Mdash) +
+                -0.0462 * Math.Cos(Mdash - F) +
+                -0.0461 * Math.Cos(Mdash + F) +
+                -0.0438 * Math.Sin(2 * D) +
+                0.0162 * E * Math.Sin(M) +
+                -0.0157 * Math.Cos(3 * F) +
+                0.0145 * Math.Sin(Mdash + 2 * F) +
+                0.0136 * Math.Cos(2 * D - F) +
+                -0.0095 * Math.Cos(2 * D - Mdash - F) +
+                -0.0091 * Math.Cos(2 * D - Mdash + F) +
+                -0.0089 * Math.Cos(2 * D + F) +
+                0.0075 * Math.Sin(2 * Mdash) +
+                -0.0068 * Math.Sin(Mdash - 2 * F) +
+                0.0061 * Math.Cos(2 * Mdash - F) +
+                -0.0047 * Math.Sin(Mdash + 3 * F) +
+                -0.0043 * E * Math.Sin(2 * D - M - Mdash) +
+                -0.0040 * Math.Cos(Mdash - 2 * F) +
+                -0.0037 * Math.Sin(2 * D - 2 * Mdash) +
+                0.0031 * Math.Sin(F) +
+                0.0030 * Math.Sin(2 * D + Mdash) +
+                -0.0029 * Math.Cos(Mdash + 2 * F) +
+                -0.0029 * E * Math.Sin(2 * D - M) +
+                -0.0027 * Math.Sin(Mdash + F) +
+                0.0024 * E * Math.Sin(M - Mdash) +
+                -0.0021 * Math.Sin(Mdash - 3 * F) +
+                0.0019 * Math.Sin(2 * Mdash + F) +
+                0.0018 * Math.Cos(2 * D - 2 * Mdash - F) +
+                0.0018 * Math.Sin(3 * F) +
+                0.0017 * Math.Cos(Mdash + 3 * F) +
+                0.0017 * Math.Cos(2 * Mdash) +
+                -0.0014 * Math.Cos(2 * D - Mdash) +
+                0.0013 * Math.Cos(2 * D + Mdash + F) +
+                0.0013 * Math.Cos(Mdash) +
+                0.0012 * Math.Sin(3 * Mdash + F) +
+                0.0011 * Math.Sin(2 * D - Mdash + F) +
+                -0.0011 * Math.Cos(2 * D - 2 * Mdash) +
+                0.0010 * Math.Cos(D + F) +
+                0.0010 * E * Math.Sin(M + Mdash) +
+                -0.0009 * Math.Sin(2 * D - 2 * F) +
+                0.0007 * Math.Cos(2 * Mdash + F) +
+                -0.0007 * Math.Cos(3 * Mdash + F);
             }
             else
             {
                 DeltaJD = -0.8975 * Math.Cos(F) +
-                          -0.4726 * Math.Sin(Mdash) +
-                          -0.1030 * Math.Sin(2 * F) +
-                          -0.0976 * Math.Sin(2 * D - Mdash) +
-                          0.0541 * Math.Cos(Mdash - F) +
-                          0.0516 * Math.Cos(Mdash + F) +
-                          -0.0438 * Math.Sin(2 * D) +
-                          0.0112 * E * Math.Sin(M) +
-                          0.0157 * Math.Cos(3 * F) +
-                          0.0023 * Math.Sin(Mdash + 2 * F) +
-                          -0.0136 * Math.Cos(2 * D - F) +
-                          0.0110 * Math.Cos(2 * D - Mdash - F) +
-                          0.0091 * Math.Cos(2 * D - Mdash + F) +
-                          0.0089 * Math.Cos(2 * D + F) +
-                          0.0075 * Math.Sin(2 * Mdash) +
-                          -0.0030 * Math.Sin(Mdash - 2 * F) +
-                          -0.0061 * Math.Cos(2 * Mdash - F) +
-                          -0.0047 * Math.Sin(Mdash + 3 * F) +
-                          -0.0043 * E * Math.Sin(2 * D - M - Mdash) +
-                          0.0040 * Math.Cos(Mdash - 2 * F) +
-                          -0.0037 * Math.Sin(2 * D - 2 * Mdash) +
-                          -0.0031 * Math.Sin(F) +
-                          0.0030 * Math.Sin(2 * D + Mdash) +
-                          0.0029 * Math.Cos(Mdash + 2 * F) +
-                          -0.0029 * E * Math.Sin(2 * D - M) +
-                          -0.0027 * Math.Sin(Mdash + F) +
-                          0.0024 * E * Math.Sin(M - Mdash) +
-                          -0.0021 * Math.Sin(Mdash - 3 * F) +
-                          -0.0019 * Math.Sin(2 * Mdash + F) +
-                          -0.0006 * Math.Cos(2 * D - 2 * Mdash - F) +
-                          -0.0018 * Math.Sin(3 * F) +
-                          -0.0017 * Math.Cos(Mdash + 3 * F) +
-                          0.0017 * Math.Cos(2 * Mdash) +
-                          0.0014 * Math.Cos(2 * D - Mdash) +
-                          -0.0013 * Math.Cos(2 * D + Mdash + F) +
-                          -0.0013 * Math.Cos(Mdash) +
-                          0.0012 * Math.Sin(3 * Mdash + F) +
-                          0.0011 * Math.Sin(2 * D - Mdash + F) +
-                          0.0011 * Math.Cos(2 * D - 2 * Mdash) +
-                          0.0010 * Math.Cos(D + F) +
-                          0.0010 * E * Math.Sin(M + Mdash) +
-                          -0.0009 * Math.Sin(2 * D - 2 * F) +
-                          -0.0007 * Math.Cos(2 * Mdash + F) +
-                          -0.0007 * Math.Cos(3 * Mdash + F);
+                -0.4726 * Math.Sin(Mdash) +
+                -0.1030 * Math.Sin(2 * F) +
+                -0.0976 * Math.Sin(2 * D - Mdash) +
+                0.0541 * Math.Cos(Mdash - F) +
+                0.0516 * Math.Cos(Mdash + F) +
+                -0.0438 * Math.Sin(2 * D) +
+                0.0112 * E * Math.Sin(M) +
+                0.0157 * Math.Cos(3 * F) +
+                0.0023 * Math.Sin(Mdash + 2 * F) +
+                -0.0136 * Math.Cos(2 * D - F) +
+                0.0110 * Math.Cos(2 * D - Mdash - F) +
+                0.0091 * Math.Cos(2 * D - Mdash + F) +
+                0.0089 * Math.Cos(2 * D + F) +
+                0.0075 * Math.Sin(2 * Mdash) +
+                -0.0030 * Math.Sin(Mdash - 2 * F) +
+                -0.0061 * Math.Cos(2 * Mdash - F) +
+                -0.0047 * Math.Sin(Mdash + 3 * F) +
+                -0.0043 * E * Math.Sin(2 * D - M - Mdash) +
+                0.0040 * Math.Cos(Mdash - 2 * F) +
+                -0.0037 * Math.Sin(2 * D - 2 * Mdash) +
+                -0.0031 * Math.Sin(F) +
+                0.0030 * Math.Sin(2 * D + Mdash) +
+                0.0029 * Math.Cos(Mdash + 2 * F) +
+                -0.0029 * E * Math.Sin(2 * D - M) +
+                -0.0027 * Math.Sin(Mdash + F) +
+                0.0024 * E * Math.Sin(M - Mdash) +
+                -0.0021 * Math.Sin(Mdash - 3 * F) +
+                -0.0019 * Math.Sin(2 * Mdash + F) +
+                -0.0006 * Math.Cos(2 * D - 2 * Mdash - F) +
+                -0.0018 * Math.Sin(3 * F) +
+                -0.0017 * Math.Cos(Mdash + 3 * F) +
+                0.0017 * Math.Cos(2 * Mdash) +
+                0.0014 * Math.Cos(2 * D - Mdash) +
+                -0.0013 * Math.Cos(2 * D + Mdash + F) +
+                -0.0013 * Math.Cos(Mdash) +
+                0.0012 * Math.Sin(3 * Mdash + F) +
+                0.0011 * Math.Sin(2 * D - Mdash + F) +
+                0.0011 * Math.Cos(2 * D - 2 * Mdash) +
+                0.0010 * Math.Cos(D + F) +
+                0.0010 * E * Math.Sin(M + Mdash) +
+                -0.0009 * Math.Sin(2 * D - 2 * F) +
+                -0.0007 * Math.Cos(2 * Mdash + F) +
+                -0.0007 * Math.Cos(3 * Mdash + F);
             }
 
             return MeanGreatestDeclination(k, bNortherly) + DeltaJD;
@@ -180,82 +180,82 @@ namespace AASharp
             if (bNortherly)
             {
                 DeltaValue = 5.1093 * Math.Sin(F) +
-                             0.2658 * Math.Cos(2 * F) +
-                             0.1448 * Math.Sin(2 * D - F) +
-                             -0.0322 * Math.Sin(3 * F) +
-                             0.0133 * Math.Cos(2 * D - 2 * F) +
-                             0.0125 * Math.Cos(2 * D) +
-                             -0.0124 * Math.Sin(Mdash - F) +
-                             -0.0101 * Math.Sin(Mdash + 2 * F) +
-                             0.0097 * Math.Cos(F) +
-                             -0.0087 * E * Math.Sin(2 * D + M - F) +
-                             0.0074 * Math.Sin(Mdash + 3 * F) +
-                             0.0067 * Math.Sin(D + F) +
-                             0.0063 * Math.Sin(Mdash - 2 * F) +
-                             0.0060 * E * Math.Sin(2 * D - M - F) +
-                             -0.0057 * Math.Sin(2 * D - Mdash - F) +
-                             -0.0056 * Math.Cos(Mdash + F) +
-                             0.0052 * Math.Cos(Mdash + 2 * F) +
-                             0.0041 * Math.Cos(2 * Mdash + F) +
-                             -0.0040 * Math.Cos(Mdash - 3 * F) +
-                             0.0038 * Math.Cos(2 * Mdash - F) +
-                             -0.0034 * Math.Cos(Mdash - 2 * F) +
-                             -0.0029 * Math.Sin(2 * Mdash) +
-                             0.0029 * Math.Sin(3 * Mdash + F) +
-                             -0.0028 * E * Math.Cos(2 * D + M - F) +
-                             -0.0028 * Math.Cos(Mdash - F) +
-                             -0.0023 * Math.Cos(3 * F) +
-                             -0.0021 * Math.Sin(2 * D + F) +
-                             0.0019 * Math.Cos(Mdash + 3 * F) +
-                             0.0018 * Math.Cos(D + F) +
-                             0.0017 * Math.Sin(2 * Mdash - F) +
-                             0.0015 * Math.Cos(3 * Mdash + F) +
-                             0.0014 * Math.Cos(2 * D + 2 * Mdash + F) +
-                             -0.0012 * Math.Sin(2 * D - 2 * Mdash - F) +
-                             -0.0012 * Math.Cos(2 * Mdash) +
-                             -0.0010 * Math.Cos(Mdash) +
-                             -0.0010 * Math.Sin(2 * F) +
-                             0.0006 * Math.Sin(Mdash + F);
+                0.2658 * Math.Cos(2 * F) +
+                0.1448 * Math.Sin(2 * D - F) +
+                -0.0322 * Math.Sin(3 * F) +
+                0.0133 * Math.Cos(2 * D - 2 * F) +
+                0.0125 * Math.Cos(2 * D) +
+                -0.0124 * Math.Sin(Mdash - F) +
+                -0.0101 * Math.Sin(Mdash + 2 * F) +
+                0.0097 * Math.Cos(F) +
+                -0.0087 * E * Math.Sin(2 * D + M - F) +
+                0.0074 * Math.Sin(Mdash + 3 * F) +
+                0.0067 * Math.Sin(D + F) +
+                0.0063 * Math.Sin(Mdash - 2 * F) +
+                0.0060 * E * Math.Sin(2 * D - M - F) +
+                -0.0057 * Math.Sin(2 * D - Mdash - F) +
+                -0.0056 * Math.Cos(Mdash + F) +
+                0.0052 * Math.Cos(Mdash + 2 * F) +
+                0.0041 * Math.Cos(2 * Mdash + F) +
+                -0.0040 * Math.Cos(Mdash - 3 * F) +
+                0.0038 * Math.Cos(2 * Mdash - F) +
+                -0.0034 * Math.Cos(Mdash - 2 * F) +
+                -0.0029 * Math.Sin(2 * Mdash) +
+                0.0029 * Math.Sin(3 * Mdash + F) +
+                -0.0028 * E * Math.Cos(2 * D + M - F) +
+                -0.0028 * Math.Cos(Mdash - F) +
+                -0.0023 * Math.Cos(3 * F) +
+                -0.0021 * Math.Sin(2 * D + F) +
+                0.0019 * Math.Cos(Mdash + 3 * F) +
+                0.0018 * Math.Cos(D + F) +
+                0.0017 * Math.Sin(2 * Mdash - F) +
+                0.0015 * Math.Cos(3 * Mdash + F) +
+                0.0014 * Math.Cos(2 * D + 2 * Mdash + F) +
+                -0.0012 * Math.Sin(2 * D - 2 * Mdash - F) +
+                -0.0012 * Math.Cos(2 * Mdash) +
+                -0.0010 * Math.Cos(Mdash) +
+                -0.0010 * Math.Sin(2 * F) +
+                0.0006 * Math.Sin(Mdash + F);
             }
             else
             {
                 DeltaValue = -5.1093 * Math.Sin(F) +
-                             0.2658 * Math.Cos(2 * F) +
-                             -0.1448 * Math.Sin(2 * D - F) +
-                             0.0322 * Math.Sin(3 * F) +
-                             0.0133 * Math.Cos(2 * D - 2 * F) +
-                             0.0125 * Math.Cos(2 * D) +
-                             -0.0015 * Math.Sin(Mdash - F) +
-                             0.0101 * Math.Sin(Mdash + 2 * F) +
-                             -0.0097 * Math.Cos(F) +
-                             0.0087 * E * Math.Sin(2 * D + M - F) +
-                             0.0074 * Math.Sin(Mdash + 3 * F) +
-                             0.0067 * Math.Sin(D + F) +
-                             -0.0063 * Math.Sin(Mdash - 2 * F) +
-                             -0.0060 * E * Math.Sin(2 * D - M - F) +
-                             0.0057 * Math.Sin(2 * D - Mdash - F) +
-                             -0.0056 * Math.Cos(Mdash + F) +
-                             -0.0052 * Math.Cos(Mdash + 2 * F) +
-                             -0.0041 * Math.Cos(2 * Mdash + F) +
-                             -0.0040 * Math.Cos(Mdash - 3 * F) +
-                             -0.0038 * Math.Cos(2 * Mdash - F) +
-                             0.0034 * Math.Cos(Mdash - 2 * F) +
-                             -0.0029 * Math.Sin(2 * Mdash) +
-                             0.0029 * Math.Sin(3 * Mdash + F) +
-                             0.0028 * E * Math.Cos(2 * D + M - F) +
-                             -0.0028 * Math.Cos(Mdash - F) +
-                             0.0023 * Math.Cos(3 * F) +
-                             0.0021 * Math.Sin(2 * D + F) +
-                             0.0019 * Math.Cos(Mdash + 3 * F) +
-                             0.0018 * Math.Cos(D + F) +
-                             -0.0017 * Math.Sin(2 * Mdash - F) +
-                             0.0015 * Math.Cos(3 * Mdash + F) +
-                             0.0014 * Math.Cos(2 * D + 2 * Mdash + F) +
-                             0.0012 * Math.Sin(2 * D - 2 * Mdash - F) +
-                             -0.0012 * Math.Cos(2 * Mdash) +
-                             0.0010 * Math.Cos(Mdash) +
-                             -0.0010 * Math.Sin(2 * F) +
-                             0.0037 * Math.Sin(Mdash + F);
+                0.2658 * Math.Cos(2 * F) +
+                -0.1448 * Math.Sin(2 * D - F) +
+                0.0322 * Math.Sin(3 * F) +
+                0.0133 * Math.Cos(2 * D - 2 * F) +
+                0.0125 * Math.Cos(2 * D) +
+                -0.0015 * Math.Sin(Mdash - F) +
+                0.0101 * Math.Sin(Mdash + 2 * F) +
+                -0.0097 * Math.Cos(F) +
+                0.0087 * E * Math.Sin(2 * D + M - F) +
+                0.0074 * Math.Sin(Mdash + 3 * F) +
+                0.0067 * Math.Sin(D + F) +
+                -0.0063 * Math.Sin(Mdash - 2 * F) +
+                -0.0060 * E * Math.Sin(2 * D - M - F) +
+                0.0057 * Math.Sin(2 * D - Mdash - F) +
+                -0.0056 * Math.Cos(Mdash + F) +
+                -0.0052 * Math.Cos(Mdash + 2 * F) +
+                -0.0041 * Math.Cos(2 * Mdash + F) +
+                -0.0040 * Math.Cos(Mdash - 3 * F) +
+                -0.0038 * Math.Cos(2 * Mdash - F) +
+                0.0034 * Math.Cos(Mdash - 2 * F) +
+                -0.0029 * Math.Sin(2 * Mdash) +
+                0.0029 * Math.Sin(3 * Mdash + F) +
+                0.0028 * E * Math.Cos(2 * D + M - F) +
+                -0.0028 * Math.Cos(Mdash - F) +
+                0.0023 * Math.Cos(3 * F) +
+                0.0021 * Math.Sin(2 * D + F) +
+                0.0019 * Math.Cos(Mdash + 3 * F) +
+                0.0018 * Math.Cos(D + F) +
+                -0.0017 * Math.Sin(2 * Mdash - F) +
+                0.0015 * Math.Cos(3 * Mdash + F) +
+                0.0014 * Math.Cos(2 * D + 2 * Mdash + F) +
+                0.0012 * Math.Sin(2 * D - 2 * Mdash - F) +
+                -0.0012 * Math.Cos(2 * Mdash) +
+                0.0010 * Math.Cos(Mdash) +
+                -0.0010 * Math.Sin(2 * F) +
+                0.0037 * Math.Sin(Mdash + F);
             }
 
             return MeanGreatestDeclinationValue(k) + DeltaValue;

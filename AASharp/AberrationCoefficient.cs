@@ -57,28 +57,166 @@ namespace AASharp
         private readonly int _zcos;
         private readonly int _zcost;
 
-        public int L2 { get { return _L2; } }
-        public int L3 { get { return _L3; } }
-        public int L4 { get { return _L4; } }
-        public int L5 { get { return _L5; } }
-        public int L6 { get { return _L6; } }
-        public int L7 { get { return _L7; } }
-        public int L8 { get { return _L8; } }
-        public int Ldash { get { return _Ldash; } }
-        public int D { get { return _D; } }
-        public int Mdash { get { return _Mdash; } }
-        public int F { get { return _F; } }
-        public int xsin { get { return _xsin; } }
-        public int xsint { get { return _xsint; } }
-        public int xcos { get { return _xcos; } }
-        public int xcost { get { return _xcost; } }
-        public int ysin { get { return _ysin; } }
-        public int ysint { get { return _ysint; } }
-        public int ycos { get { return _ycos; } }
-        public int ycost { get { return _ycost; } }
-        public int zsin { get { return _zsin; } }
-        public int zsint { get { return _zsint; } }
-        public int zcos { get { return _zcos; } }
-        public int zcost { get { return _zcost; } }
-    };
+        public int L2
+        {
+            get
+            {
+                return _L2;
+            }
+        }
+        public int L3
+        {
+            get
+            {
+                return _L3;
+            }
+        }
+        public int L4
+        {
+            get
+            {
+                return _L4;
+            }
+        }
+        public int L5
+        {
+            get
+            {
+                return _L5;
+            }
+        }
+        public int L6
+        {
+            get
+            {
+                return _L6;
+            }
+        }
+        public int L7
+        {
+            get
+            {
+                return _L7;
+            }
+        }
+        public int L8
+        {
+            get
+            {
+                return _L8;
+            }
+        }
+        public int Ldash
+        {
+            get
+            {
+                return _Ldash;
+            }
+        }
+        public int D
+        {
+            get
+            {
+                return _D;
+            }
+        }
+        public int Mdash
+        {
+            get
+            {
+                return _Mdash;
+            }
+        }
+        public int F
+        {
+            get
+            {
+                return _F;
+            }
+        }
+        public int xsin
+        {
+            get
+            {
+                return _xsin;
+            }
+        }
+        public int xsint
+        {
+            get
+            {
+                return _xsint;
+            }
+        }
+        public int xcos
+        {
+            get
+            {
+                return _xcos;
+            }
+        }
+        public int xcost
+        {
+            get
+            {
+                return _xcost;
+            }
+        }
+        public int ysin
+        {
+            get
+            {
+                return _ysin;
+            }
+        }
+        public int ysint
+        {
+            get
+            {
+                return _ysint;
+            }
+        }
+        public int ycos
+        {
+            get
+            {
+                return _ycos;
+            }
+        }
+        public int ycost
+        {
+            get
+            {
+                return _ycost;
+            }
+        }
+        public int zsin
+        {
+            get
+            {
+                return _zsin;
+            }
+        }
+        public int zsint
+        {
+            get
+            {
+                return _zsint;
+            }
+        }
+        public int zcos
+        {
+            get
+            {
+                return _zcos;
+            }
+        }
+        public int zcost
+        {
+            get
+            {
+                return _zcost;
+            }
+        }
+    }
 }

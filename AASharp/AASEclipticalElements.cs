@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +7,9 @@ namespace AASharp
 {
     public class AASEclipticalElementDetails
     {
-        public AASEclipticalElementDetails() { }
+        public AASEclipticalElementDetails()
+        {
+        }
 
         public double i;
         public double w;

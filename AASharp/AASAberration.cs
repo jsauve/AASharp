@@ -7,7 +7,7 @@ namespace AASharp
     public static class AASAberration
     {
         static readonly AberrationCoefficient[] g_AberrationCoefficients =
-    { 
+        {
         //L2   L3   L4  L5  L6  L7  L8  Ldash D   Mdash F   xsin      xsint xcos    xcost ysin   ysint ycos     ycost zsin   zsint zcos    zcost
         new AberrationCoefficient(  0,  1,   0,  0,  0,  0,  0,  0,    0,  0,    0,  -1719914, -2,   -25,    0,    25,    -13,  1578089, 156,  10,    32,   684185, -358 ),
         new AberrationCoefficient(  0,  2,   0,  0,  0,  0,  0,  0,    0,  0,    0,  6434,     141,  28007,  -107, 25697, -95,  -5904,   -130, 11141, -48,  -2559,  -55  ),
@@ -45,7 +45,7 @@ namespace AASharp
         new AberrationCoefficient(  3,  -3,  0,  0,  0,  0,  0,  0,    0,  0,    0,  0,        0,    -7,     0,    -6,    0,    0,       0,    -3,    0,    0,      0    ),
         new AberrationCoefficient(  0,  2,   -2, 0,  0,  0,  0,  0,    0,  0,    0,  5,        0,    -5,     0,    -4,    0,    -5,      0,    -2,    0,    -2,     0    ),
         new AberrationCoefficient(  0,  0,   0,  0,  0,  0,  0,  1,    -2, 0,    0,  5,        0,    0,      0,    0,     0,    -5,      0,    0,     0,    -2,     0    )
-    };
+        };
 
         public static AAS3DCoordinate EarthVelocity(double JD)
         {
@@ -68,11 +68,11 @@ namespace AASharp
             for (int i = 0; i < nAberrationCoefficients; i++)
             {
                 double Argument = g_AberrationCoefficients[i].L2 * L2 + g_AberrationCoefficients[i].L3 * L3 +
-                                  g_AberrationCoefficients[i].L4 * L4 + g_AberrationCoefficients[i].L5 * L5 +
-                                  g_AberrationCoefficients[i].L6 * L6 + g_AberrationCoefficients[i].L7 * L7 +
-                                  g_AberrationCoefficients[i].L8 * L8 + g_AberrationCoefficients[i].Ldash * Ldash +
-                                  g_AberrationCoefficients[i].D * D + g_AberrationCoefficients[i].Mdash * Mdash +
-                                  g_AberrationCoefficients[i].F * F;
+                g_AberrationCoefficients[i].L4 * L4 + g_AberrationCoefficients[i].L5 * L5 +
+                g_AberrationCoefficients[i].L6 * L6 + g_AberrationCoefficients[i].L7 * L7 +
+                g_AberrationCoefficients[i].L8 * L8 + g_AberrationCoefficients[i].Ldash * Ldash +
+                g_AberrationCoefficients[i].D * D + g_AberrationCoefficients[i].Mdash * Mdash +
+                g_AberrationCoefficients[i].F * F;
                 velocity.X += (g_AberrationCoefficients[i].xsin + g_AberrationCoefficients[i].xsint * T) * Math.Sin(Argument);
                 velocity.X += (g_AberrationCoefficients[i].xcos + g_AberrationCoefficients[i].xcost * T) * Math.Cos(Argument);
 

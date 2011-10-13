@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +7,9 @@ namespace AASharp
 {
     public class AASPhysicalMoonDetails
     {
-        public AASPhysicalMoonDetails() { }
+        public AASPhysicalMoonDetails()
+        {
+        }
 
         public double ldash;
         public double bdash;
@@ -20,7 +22,9 @@ namespace AASharp
 
     public class AASSelenographicMoonDetails
     {
-        public AASSelenographicMoonDetails() { }
+        public AASSelenographicMoonDetails()
+        {
+        }
 
         public double l0;
         public double b0;
@@ -64,49 +68,49 @@ namespace AASharp
             double E = AASEarth.Eccentricity(JD);
 
             rho = -0.02752 * Math.Cos(Mdash) +
-                  -0.02245 * Math.Sin(F) +
-                  0.00684 * Math.Cos(Mdash - 2 * F) +
-                  -0.00293 * Math.Cos(2 * F) +
-                  -0.00085 * Math.Cos(2 * F - 2 * D) +
-                  -0.00054 * Math.Cos(Mdash - 2 * D) +
-                  -0.00020 * Math.Sin(Mdash + F) +
-                  -0.00020 * Math.Cos(Mdash + 2 * F) +
-                  -0.00020 * Math.Cos(Mdash - F) +
-                  0.00014 * Math.Cos(Mdash + 2 * F - 2 * D);
+            -0.02245 * Math.Sin(F) +
+            0.00684 * Math.Cos(Mdash - 2 * F) +
+            -0.00293 * Math.Cos(2 * F) +
+            -0.00085 * Math.Cos(2 * F - 2 * D) +
+            -0.00054 * Math.Cos(Mdash - 2 * D) +
+            -0.00020 * Math.Sin(Mdash + F) +
+            -0.00020 * Math.Cos(Mdash + 2 * F) +
+            -0.00020 * Math.Cos(Mdash - F) +
+            0.00014 * Math.Cos(Mdash + 2 * F - 2 * D);
 
             sigma = -0.02816 * Math.Sin(Mdash) +
-                    0.02244 * Math.Cos(F) +
-                    -0.00682 * Math.Sin(Mdash - 2 * F) +
-                    -0.00279 * Math.Sin(2 * F) +
-                    -0.00083 * Math.Sin(2 * F - 2 * D) +
-                    0.00069 * Math.Sin(Mdash - 2 * D) +
-                    0.00040 * Math.Cos(Mdash + F) +
-                    -0.00025 * Math.Sin(2 * Mdash) +
-                    -0.00023 * Math.Sin(Mdash + 2 * F) +
-                    0.00020 * Math.Cos(Mdash - F) +
-                    0.00019 * Math.Sin(Mdash - F) +
-                    0.00013 * Math.Sin(Mdash + 2 * F - 2 * D) +
-                    -0.00010 * Math.Cos(Mdash - 3 * F);
+            0.02244 * Math.Cos(F) +
+            -0.00682 * Math.Sin(Mdash - 2 * F) +
+            -0.00279 * Math.Sin(2 * F) +
+            -0.00083 * Math.Sin(2 * F - 2 * D) +
+            0.00069 * Math.Sin(Mdash - 2 * D) +
+            0.00040 * Math.Cos(Mdash + F) +
+            -0.00025 * Math.Sin(2 * Mdash) +
+            -0.00023 * Math.Sin(Mdash + 2 * F) +
+            0.00020 * Math.Cos(Mdash - F) +
+            0.00019 * Math.Sin(Mdash - F) +
+            0.00013 * Math.Sin(Mdash + 2 * F - 2 * D) +
+            -0.00010 * Math.Cos(Mdash - 3 * F);
 
             double tau = 0.02520 * E * Math.Sin(M) +
-                         0.00473 * Math.Sin(2 * Mdash - 2 * F) +
-                         -0.00467 * Math.Sin(Mdash) +
-                         0.00396 * Math.Sin(K1) +
-                         0.00276 * Math.Sin(2 * Mdash - 2 * D) +
-                         0.00196 * Math.Sin(omega) +
-                         -0.00183 * Math.Cos(Mdash - F) +
-                         0.00115 * Math.Sin(Mdash - 2 * D) +
-                         -0.00096 * Math.Sin(Mdash - D) +
-                         0.00046 * Math.Sin(2 * F - 2 * D) +
-                         -0.00039 * Math.Sin(Mdash - F) +
-                         -0.00032 * Math.Sin(Mdash - M - D) +
-                         0.00027 * Math.Sin(2 * Mdash - M - 2 * D) +
-                         0.00023 * Math.Sin(K2) +
-                         -0.00014 * Math.Sin(2 * D) +
-                         0.00014 * Math.Cos(2 * Mdash - 2 * F) +
-                         -0.00012 * Math.Sin(Mdash - 2 * F) +
-                         -0.00012 * Math.Sin(2 * Mdash) +
-                         0.00011 * Math.Sin(2 * Mdash - 2 * M - 2 * D);
+            0.00473 * Math.Sin(2 * Mdash - 2 * F) +
+            -0.00467 * Math.Sin(Mdash) +
+            0.00396 * Math.Sin(K1) +
+            0.00276 * Math.Sin(2 * Mdash - 2 * D) +
+            0.00196 * Math.Sin(omega) +
+            -0.00183 * Math.Cos(Mdash - F) +
+            0.00115 * Math.Sin(Mdash - 2 * D) +
+            -0.00096 * Math.Sin(Mdash - D) +
+            0.00046 * Math.Sin(2 * F - 2 * D) +
+            -0.00039 * Math.Sin(Mdash - F) +
+            -0.00032 * Math.Sin(Mdash - M - D) +
+            0.00027 * Math.Sin(2 * Mdash - M - 2 * D) +
+            0.00023 * Math.Sin(K2) +
+            -0.00014 * Math.Sin(2 * D) +
+            0.00014 * Math.Cos(2 * Mdash - 2 * F) +
+            -0.00012 * Math.Sin(Mdash - 2 * F) +
+            -0.00012 * Math.Sin(2 * Mdash) +
+            0.00011 * Math.Sin(2 * Mdash - 2 * M - 2 * D);
 
             ldash2 = -tau + (rho * Math.Cos(A) + sigma * Math.Sin(A)) * Math.Tan(bdash);
             bdash = AASCoordinateTransformation.RadiansToDegrees(bdash);

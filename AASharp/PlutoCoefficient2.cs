@@ -13,8 +13,20 @@ namespace AASharp
         }
 
         private readonly double _A;
-        public double A { get { return _A; } }
+        public double A
+        {
+            get
+            {
+                return _A;
+            }
+        }
         private readonly double _B;
-        public double B { get { return _B; } }
-    };
+        public double B
+        {
+            get
+            {
+                return _B;
+            }
+        }
+    }
 }

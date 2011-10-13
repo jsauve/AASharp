@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -84,7 +84,7 @@ namespace AASharp
 
             //Calculate the Principal inequality in the longitude of Jupiter
             double GAMMA = 0.33033 * Math.Sin(AASCoordinateTransformation.DegreesToRadians(163.679 + 0.0010512 * t)) +
-                           0.03439 * Math.Sin(AASCoordinateTransformation.DegreesToRadians(34.486 - 0.0161731 * t));
+            0.03439 * Math.Sin(AASCoordinateTransformation.DegreesToRadians(34.486 - 0.0161731 * t));
 
             //Calculate the "phase of free libration"
             double philambda = AASCoordinateTransformation.DegreesToRadians(199.6766 + 0.17379190 * t);
@@ -101,162 +101,162 @@ namespace AASharp
 
             //Calculate the periodic terms in the longitudes of the satellites
             double Sigma1 = 0.47259 * Math.Sin(2 * (l1rad - l2rad)) +
-                            -0.03478 * Math.Sin(pi3 - pi4) +
-                            0.01081 * Math.Sin(l2rad - 2 * l3rad + pi3) +
-                            0.00738 * Math.Sin(philambda) +
-                            0.00713 * Math.Sin(l2rad - 2 * l3rad + pi2) +
-                            -0.00674 * Math.Sin(pi1 + pi3 - 2 * PI - 2 * G) +
-                            0.00666 * Math.Sin(l2rad - 2 * l3rad + pi4) +
-                            0.00445 * Math.Sin(l1rad - pi3) +
-                            -0.00354 * Math.Sin(l1rad - l2rad) +
-                            -0.00317 * Math.Sin(2 * psi - 2 * PI) +
-                            0.00265 * Math.Sin(l1rad - pi4) +
-                            -0.00186 * Math.Sin(G) +
-                            0.00162 * Math.Sin(pi2 - pi3) +
-                            0.00158 * Math.Sin(4 * (l1rad - l2rad)) +
-                            -0.00155 * Math.Sin(l1rad - l3rad) +
-                            -0.00138 * Math.Sin(psi + w3rad - 2 * PI - 2 * G) +
-                            -0.00115 * Math.Sin(2 * (l1rad - 2 * l2rad + w2rad)) +
-                            0.00089 * Math.Sin(pi2 - pi4) +
-                            0.00085 * Math.Sin(l1rad + pi3 - 2 * PI - 2 * G) +
-                            0.00083 * Math.Sin(w2rad - w3rad) +
-                            0.00053 * Math.Sin(psi - w2rad);
+            -0.03478 * Math.Sin(pi3 - pi4) +
+            0.01081 * Math.Sin(l2rad - 2 * l3rad + pi3) +
+            0.00738 * Math.Sin(philambda) +
+            0.00713 * Math.Sin(l2rad - 2 * l3rad + pi2) +
+            -0.00674 * Math.Sin(pi1 + pi3 - 2 * PI - 2 * G) +
+            0.00666 * Math.Sin(l2rad - 2 * l3rad + pi4) +
+            0.00445 * Math.Sin(l1rad - pi3) +
+            -0.00354 * Math.Sin(l1rad - l2rad) +
+            -0.00317 * Math.Sin(2 * psi - 2 * PI) +
+            0.00265 * Math.Sin(l1rad - pi4) +
+            -0.00186 * Math.Sin(G) +
+            0.00162 * Math.Sin(pi2 - pi3) +
+            0.00158 * Math.Sin(4 * (l1rad - l2rad)) +
+            -0.00155 * Math.Sin(l1rad - l3rad) +
+            -0.00138 * Math.Sin(psi + w3rad - 2 * PI - 2 * G) +
+            -0.00115 * Math.Sin(2 * (l1rad - 2 * l2rad + w2rad)) +
+            0.00089 * Math.Sin(pi2 - pi4) +
+            0.00085 * Math.Sin(l1rad + pi3 - 2 * PI - 2 * G) +
+            0.00083 * Math.Sin(w2rad - w3rad) +
+            0.00053 * Math.Sin(psi - w2rad);
             double Sigma1rad = AASCoordinateTransformation.DegreesToRadians(Sigma1);
 
             double Sigma2 = 1.06476 * Math.Sin(2 * (l2rad - l3rad)) +
-                            0.04256 * Math.Sin(l1rad - 2 * l2rad + pi3) +
-                            0.03581 * Math.Sin(l2rad - pi3) +
-                            0.02395 * Math.Sin(l1rad - 2 * l2rad + pi4) +
-                            0.01984 * Math.Sin(l2rad - pi4) +
-                            -0.01778 * Math.Sin(philambda) +
-                            0.01654 * Math.Sin(l2rad - pi2) +
-                            0.01334 * Math.Sin(l2rad - 2 * l3rad + pi2) +
-                            0.01294 * Math.Sin(pi3 - pi4) +
-                            -0.01142 * Math.Sin(l2rad - l3rad) +
-                            -0.01057 * Math.Sin(G) +
-                            -0.00775 * Math.Sin(2 * (psi - PI)) +
-                            0.00524 * Math.Sin(2 * (l1rad - l2rad)) +
-                            -0.00460 * Math.Sin(l1rad - l3rad) +
-                            0.00316 * Math.Sin(psi - 2 * G + w3rad - 2 * PI) +
-                            -0.00203 * Math.Sin(pi1 + pi3 - 2 * PI - 2 * G) +
-                            0.00146 * Math.Sin(psi - w3rad) +
-                            -0.00145 * Math.Sin(2 * G) +
-                            0.00125 * Math.Sin(psi - w4rad) +
-                            -0.00115 * Math.Sin(l1rad - 2 * l3rad + pi3) +
-                            -0.00094 * Math.Sin(2 * (l2rad - w2rad)) +
-                            0.00086 * Math.Sin(2 * (l1rad - 2 * l2rad + w2rad)) +
-                            -0.00086 * Math.Sin(5 * Gdash - 2 * G + AASCoordinateTransformation.DegreesToRadians(52.225)) +
-                            -0.00078 * Math.Sin(l2rad - l4rad) +
-                            -0.00064 * Math.Sin(3 * l3rad - 7 * l4rad + 4 * pi4) +
-                            0.00064 * Math.Sin(pi1 - pi4) +
-                            -0.00063 * Math.Sin(l1rad - 2 * l3rad + pi4) +
-                            0.00058 * Math.Sin(w3rad - w4rad) +
-                            0.00056 * Math.Sin(2 * (psi - PI - G)) +
-                            0.00056 * Math.Sin(2 * (l2rad - l4rad)) +
-                            0.00055 * Math.Sin(2 * (l1rad - l3rad)) +
-                            0.00052 * Math.Sin(3 * l3rad - 7 * l4rad + pi3 + 3 * pi4) +
-                            -0.00043 * Math.Sin(l1rad - pi3) +
-                            0.00041 * Math.Sin(5 * (l2rad - l3rad)) +
-                            0.00041 * Math.Sin(pi4 - PI) +
-                            0.00032 * Math.Sin(w2rad - w3rad) +
-                            0.00032 * Math.Sin(2 * (l3rad - G - PI));
+            0.04256 * Math.Sin(l1rad - 2 * l2rad + pi3) +
+            0.03581 * Math.Sin(l2rad - pi3) +
+            0.02395 * Math.Sin(l1rad - 2 * l2rad + pi4) +
+            0.01984 * Math.Sin(l2rad - pi4) +
+            -0.01778 * Math.Sin(philambda) +
+            0.01654 * Math.Sin(l2rad - pi2) +
+            0.01334 * Math.Sin(l2rad - 2 * l3rad + pi2) +
+            0.01294 * Math.Sin(pi3 - pi4) +
+            -0.01142 * Math.Sin(l2rad - l3rad) +
+            -0.01057 * Math.Sin(G) +
+            -0.00775 * Math.Sin(2 * (psi - PI)) +
+            0.00524 * Math.Sin(2 * (l1rad - l2rad)) +
+            -0.00460 * Math.Sin(l1rad - l3rad) +
+            0.00316 * Math.Sin(psi - 2 * G + w3rad - 2 * PI) +
+            -0.00203 * Math.Sin(pi1 + pi3 - 2 * PI - 2 * G) +
+            0.00146 * Math.Sin(psi - w3rad) +
+            -0.00145 * Math.Sin(2 * G) +
+            0.00125 * Math.Sin(psi - w4rad) +
+            -0.00115 * Math.Sin(l1rad - 2 * l3rad + pi3) +
+            -0.00094 * Math.Sin(2 * (l2rad - w2rad)) +
+            0.00086 * Math.Sin(2 * (l1rad - 2 * l2rad + w2rad)) +
+            -0.00086 * Math.Sin(5 * Gdash - 2 * G + AASCoordinateTransformation.DegreesToRadians(52.225)) +
+            -0.00078 * Math.Sin(l2rad - l4rad) +
+            -0.00064 * Math.Sin(3 * l3rad - 7 * l4rad + 4 * pi4) +
+            0.00064 * Math.Sin(pi1 - pi4) +
+            -0.00063 * Math.Sin(l1rad - 2 * l3rad + pi4) +
+            0.00058 * Math.Sin(w3rad - w4rad) +
+            0.00056 * Math.Sin(2 * (psi - PI - G)) +
+            0.00056 * Math.Sin(2 * (l2rad - l4rad)) +
+            0.00055 * Math.Sin(2 * (l1rad - l3rad)) +
+            0.00052 * Math.Sin(3 * l3rad - 7 * l4rad + pi3 + 3 * pi4) +
+            -0.00043 * Math.Sin(l1rad - pi3) +
+            0.00041 * Math.Sin(5 * (l2rad - l3rad)) +
+            0.00041 * Math.Sin(pi4 - PI) +
+            0.00032 * Math.Sin(w2rad - w3rad) +
+            0.00032 * Math.Sin(2 * (l3rad - G - PI));
             double Sigma2rad = AASCoordinateTransformation.DegreesToRadians(Sigma2);
 
             double Sigma3 = 0.16490 * Math.Sin(l3rad - pi3) +
-                            0.09081 * Math.Sin(l3rad - pi4) +
-                            -0.06907 * Math.Sin(l2rad - l3rad) +
-                            0.03784 * Math.Sin(pi3 - pi4) +
-                            0.01846 * Math.Sin(2 * (l3rad - l4rad)) +
-                            -0.01340 * Math.Sin(G) +
-                            -0.01014 * Math.Sin(2 * (psi - PI)) +
-                            0.00704 * Math.Sin(l2rad - 2 * l3rad + pi3) +
-                            -0.00620 * Math.Sin(l2rad - 2 * l3rad + pi2) +
-                            -0.00541 * Math.Sin(l3rad - l4rad) +
-                            0.00381 * Math.Sin(l2rad - 2 * l3rad + pi4) +
-                            0.00235 * Math.Sin(psi - w3rad) +
-                            0.00198 * Math.Sin(psi - w4rad) +
-                            0.00176 * Math.Sin(philambda) +
-                            0.00130 * Math.Sin(3 * (l3rad - l4rad)) +
-                            0.00125 * Math.Sin(l1rad - l3rad) +
-                            -0.00119 * Math.Sin(5 * Gdash - 2 * G + AASCoordinateTransformation.DegreesToRadians(52.225)) +
-                            0.00109 * Math.Sin(l1rad - l2rad) +
-                            -0.00100 * Math.Sin(3 * l3rad - 7 * l4rad + 4 * pi4) +
-                            0.00091 * Math.Sin(w3rad - w4rad) +
-                            0.00080 * Math.Sin(3 * l3rad - 7 * l4rad + pi3 + 3 * pi4) +
-                            -0.00075 * Math.Sin(2 * l2rad - 3 * l3rad + pi3) +
-                            0.00072 * Math.Sin(pi1 + pi3 - 2 * PI - 2 * G) +
-                            0.00069 * Math.Sin(pi4 - PI) +
-                            -0.00058 * Math.Sin(2 * l3rad - 3 * l4rad + pi4) +
-                            -0.00057 * Math.Sin(l3rad - 2 * l4rad + pi4) +
-                            0.00056 * Math.Sin(l3rad + pi3 - 2 * PI - 2 * G) +
-                            -0.00052 * Math.Sin(l2rad - 2 * l3rad + pi1) +
-                            -0.00050 * Math.Sin(pi2 - pi3) +
-                            0.00048 * Math.Sin(l3rad - 2 * l4rad + pi3) +
-                            -0.00045 * Math.Sin(2 * l2rad - 3 * l3rad + pi4) +
-                            -0.00041 * Math.Sin(pi2 - pi4) +
-                            -0.00038 * Math.Sin(2 * G) +
-                            -0.00037 * Math.Sin(pi3 - pi4 + w3rad - w4rad) +
-                            -0.00032 * Math.Sin(3 * l3rad - 7 * l4rad + 2 * pi3 + 2 * pi4) +
-                            0.00030 * Math.Sin(4 * (l3rad - l4rad)) +
-                            0.00029 * Math.Sin(l3rad + pi4 - 2 * PI - 2 * G) +
-                            -0.00028 * Math.Sin(w3rad + psi - 2 * PI - 2 * G) +
-                            0.00026 * Math.Sin(l3rad - PI - G) +
-                            0.00024 * Math.Sin(l2rad - 3 * l3rad + 2 * l4rad) +
-                            0.00021 * Math.Sin(l3rad - PI - G) +
-                            -0.00021 * Math.Sin(l3rad - pi2) +
-                            0.00017 * Math.Sin(2 * (l3rad - pi3));
+            0.09081 * Math.Sin(l3rad - pi4) +
+            -0.06907 * Math.Sin(l2rad - l3rad) +
+            0.03784 * Math.Sin(pi3 - pi4) +
+            0.01846 * Math.Sin(2 * (l3rad - l4rad)) +
+            -0.01340 * Math.Sin(G) +
+            -0.01014 * Math.Sin(2 * (psi - PI)) +
+            0.00704 * Math.Sin(l2rad - 2 * l3rad + pi3) +
+            -0.00620 * Math.Sin(l2rad - 2 * l3rad + pi2) +
+            -0.00541 * Math.Sin(l3rad - l4rad) +
+            0.00381 * Math.Sin(l2rad - 2 * l3rad + pi4) +
+            0.00235 * Math.Sin(psi - w3rad) +
+            0.00198 * Math.Sin(psi - w4rad) +
+            0.00176 * Math.Sin(philambda) +
+            0.00130 * Math.Sin(3 * (l3rad - l4rad)) +
+            0.00125 * Math.Sin(l1rad - l3rad) +
+            -0.00119 * Math.Sin(5 * Gdash - 2 * G + AASCoordinateTransformation.DegreesToRadians(52.225)) +
+            0.00109 * Math.Sin(l1rad - l2rad) +
+            -0.00100 * Math.Sin(3 * l3rad - 7 * l4rad + 4 * pi4) +
+            0.00091 * Math.Sin(w3rad - w4rad) +
+            0.00080 * Math.Sin(3 * l3rad - 7 * l4rad + pi3 + 3 * pi4) +
+            -0.00075 * Math.Sin(2 * l2rad - 3 * l3rad + pi3) +
+            0.00072 * Math.Sin(pi1 + pi3 - 2 * PI - 2 * G) +
+            0.00069 * Math.Sin(pi4 - PI) +
+            -0.00058 * Math.Sin(2 * l3rad - 3 * l4rad + pi4) +
+            -0.00057 * Math.Sin(l3rad - 2 * l4rad + pi4) +
+            0.00056 * Math.Sin(l3rad + pi3 - 2 * PI - 2 * G) +
+            -0.00052 * Math.Sin(l2rad - 2 * l3rad + pi1) +
+            -0.00050 * Math.Sin(pi2 - pi3) +
+            0.00048 * Math.Sin(l3rad - 2 * l4rad + pi3) +
+            -0.00045 * Math.Sin(2 * l2rad - 3 * l3rad + pi4) +
+            -0.00041 * Math.Sin(pi2 - pi4) +
+            -0.00038 * Math.Sin(2 * G) +
+            -0.00037 * Math.Sin(pi3 - pi4 + w3rad - w4rad) +
+            -0.00032 * Math.Sin(3 * l3rad - 7 * l4rad + 2 * pi3 + 2 * pi4) +
+            0.00030 * Math.Sin(4 * (l3rad - l4rad)) +
+            0.00029 * Math.Sin(l3rad + pi4 - 2 * PI - 2 * G) +
+            -0.00028 * Math.Sin(w3rad + psi - 2 * PI - 2 * G) +
+            0.00026 * Math.Sin(l3rad - PI - G) +
+            0.00024 * Math.Sin(l2rad - 3 * l3rad + 2 * l4rad) +
+            0.00021 * Math.Sin(l3rad - PI - G) +
+            -0.00021 * Math.Sin(l3rad - pi2) +
+            0.00017 * Math.Sin(2 * (l3rad - pi3));
             double Sigma3rad = AASCoordinateTransformation.DegreesToRadians(Sigma3);
 
             double Sigma4 = 0.84287 * Math.Sin(l4rad - pi4) +
-                            0.03431 * Math.Sin(pi4 - pi3) +
-                            -0.03305 * Math.Sin(2 * (psi - PI)) +
-                            -0.03211 * Math.Sin(G) +
-                            -0.01862 * Math.Sin(l4rad - pi3) +
-                            0.01186 * Math.Sin(psi - w4rad) +
-                            0.00623 * Math.Sin(l4rad + pi4 - 2 * G - 2 * PI) +
-                            0.00387 * Math.Sin(2 * (l4rad - pi4)) +
-                            -0.00284 * Math.Sin(5 * Gdash - 2 * G + AASCoordinateTransformation.DegreesToRadians(52.225)) +
-                            -0.00234 * Math.Sin(2 * (psi - pi4)) +
-                            -0.00223 * Math.Sin(l3rad - l4rad) +
-                            -0.00208 * Math.Sin(l4rad - PI) +
-                            0.00178 * Math.Sin(psi + w4rad - 2 * pi4) +
-                            0.00134 * Math.Sin(pi4 - PI) +
-                            0.00125 * Math.Sin(2 * (l4rad - G - PI)) +
-                            -0.00117 * Math.Sin(2 * G) +
-                            -0.00112 * Math.Sin(2 * (l3rad - l4rad)) +
-                            0.00107 * Math.Sin(3 * l3rad - 7 * l4rad + 4 * pi4) +
-                            0.00102 * Math.Sin(l4rad - G - PI) +
-                            0.00096 * Math.Sin(2 * l4rad - psi - w4rad) +
-                            0.00087 * Math.Sin(2 * (psi - w4rad)) +
-                            -0.00085 * Math.Sin(3 * l3rad - 7 * l4rad + pi3 + 3 * pi4) +
-                            0.00085 * Math.Sin(l3rad - 2 * l4rad + pi4) +
-                            -0.00081 * Math.Sin(2 * (l4rad - psi)) +
-                            0.00071 * Math.Sin(l4rad + pi4 - 2 * PI - 3 * G) +
-                            0.00061 * Math.Sin(l1rad - l4rad) +
-                            -0.00056 * Math.Sin(psi - w3rad) +
-                            -0.00054 * Math.Sin(l3rad - 2 * l4rad + pi3) +
-                            0.00051 * Math.Sin(l2rad - l4rad) +
-                            0.00042 * Math.Sin(2 * (psi - G - PI)) +
-                            0.00039 * Math.Sin(2 * (pi4 - w4rad)) +
-                            0.00036 * Math.Sin(psi + PI - pi4 - w4rad) +
-                            0.00035 * Math.Sin(2 * Gdash - G + AASCoordinateTransformation.DegreesToRadians(188.37)) +
-                            -0.00035 * Math.Sin(l4rad - pi4 + 2 * PI - 2 * psi) +
-                            -0.00032 * Math.Sin(l4rad + pi4 - 2 * PI - G) +
-                            0.00030 * Math.Sin(2 * Gdash - 2 * G + AASCoordinateTransformation.DegreesToRadians(149.15)) +
-                            0.00029 * Math.Sin(3 * l3rad - 7 * l4rad + 2 * pi3 + 2 * pi4) +
-                            0.00028 * Math.Sin(l4rad - pi4 + 2 * psi - 2 * PI) +
-                            -0.00028 * Math.Sin(2 * (l4rad - w4rad)) +
-                            -0.00027 * Math.Sin(pi3 - pi4 + w3rad - w4rad) +
-                            -0.00026 * Math.Sin(5 * Gdash - 3 * G + AASCoordinateTransformation.DegreesToRadians(188.37)) +
-                            0.00025 * Math.Sin(w4rad - w3rad) +
-                            -0.00025 * Math.Sin(l2rad - 3 * l3rad + 2 * l4rad) +
-                            -0.00023 * Math.Sin(3 * (l3rad - l4rad)) +
-                            0.00021 * Math.Sin(2 * l4rad - 2 * PI - 3 * G) +
-                            -0.00021 * Math.Sin(2 * l3rad - 3 * l4rad + pi4) +
-                            0.00019 * Math.Sin(l4rad - pi4 - G) +
-                            -0.00019 * Math.Sin(2 * l4rad - pi3 - pi4) +
-                            -0.00018 * Math.Sin(l4rad - pi4 + G) +
-                            -0.00016 * Math.Sin(l4rad + pi3 - 2 * PI - 2 * G);
+            0.03431 * Math.Sin(pi4 - pi3) +
+            -0.03305 * Math.Sin(2 * (psi - PI)) +
+            -0.03211 * Math.Sin(G) +
+            -0.01862 * Math.Sin(l4rad - pi3) +
+            0.01186 * Math.Sin(psi - w4rad) +
+            0.00623 * Math.Sin(l4rad + pi4 - 2 * G - 2 * PI) +
+            0.00387 * Math.Sin(2 * (l4rad - pi4)) +
+            -0.00284 * Math.Sin(5 * Gdash - 2 * G + AASCoordinateTransformation.DegreesToRadians(52.225)) +
+            -0.00234 * Math.Sin(2 * (psi - pi4)) +
+            -0.00223 * Math.Sin(l3rad - l4rad) +
+            -0.00208 * Math.Sin(l4rad - PI) +
+            0.00178 * Math.Sin(psi + w4rad - 2 * pi4) +
+            0.00134 * Math.Sin(pi4 - PI) +
+            0.00125 * Math.Sin(2 * (l4rad - G - PI)) +
+            -0.00117 * Math.Sin(2 * G) +
+            -0.00112 * Math.Sin(2 * (l3rad - l4rad)) +
+            0.00107 * Math.Sin(3 * l3rad - 7 * l4rad + 4 * pi4) +
+            0.00102 * Math.Sin(l4rad - G - PI) +
+            0.00096 * Math.Sin(2 * l4rad - psi - w4rad) +
+            0.00087 * Math.Sin(2 * (psi - w4rad)) +
+            -0.00085 * Math.Sin(3 * l3rad - 7 * l4rad + pi3 + 3 * pi4) +
+            0.00085 * Math.Sin(l3rad - 2 * l4rad + pi4) +
+            -0.00081 * Math.Sin(2 * (l4rad - psi)) +
+            0.00071 * Math.Sin(l4rad + pi4 - 2 * PI - 3 * G) +
+            0.00061 * Math.Sin(l1rad - l4rad) +
+            -0.00056 * Math.Sin(psi - w3rad) +
+            -0.00054 * Math.Sin(l3rad - 2 * l4rad + pi3) +
+            0.00051 * Math.Sin(l2rad - l4rad) +
+            0.00042 * Math.Sin(2 * (psi - G - PI)) +
+            0.00039 * Math.Sin(2 * (pi4 - w4rad)) +
+            0.00036 * Math.Sin(psi + PI - pi4 - w4rad) +
+            0.00035 * Math.Sin(2 * Gdash - G + AASCoordinateTransformation.DegreesToRadians(188.37)) +
+            -0.00035 * Math.Sin(l4rad - pi4 + 2 * PI - 2 * psi) +
+            -0.00032 * Math.Sin(l4rad + pi4 - 2 * PI - G) +
+            0.00030 * Math.Sin(2 * Gdash - 2 * G + AASCoordinateTransformation.DegreesToRadians(149.15)) +
+            0.00029 * Math.Sin(3 * l3rad - 7 * l4rad + 2 * pi3 + 2 * pi4) +
+            0.00028 * Math.Sin(l4rad - pi4 + 2 * psi - 2 * PI) +
+            -0.00028 * Math.Sin(2 * (l4rad - w4rad)) +
+            -0.00027 * Math.Sin(pi3 - pi4 + w3rad - w4rad) +
+            -0.00026 * Math.Sin(5 * Gdash - 3 * G + AASCoordinateTransformation.DegreesToRadians(188.37)) +
+            0.00025 * Math.Sin(w4rad - w3rad) +
+            -0.00025 * Math.Sin(l2rad - 3 * l3rad + 2 * l4rad) +
+            -0.00023 * Math.Sin(3 * (l3rad - l4rad)) +
+            0.00021 * Math.Sin(2 * l4rad - 2 * PI - 3 * G) +
+            -0.00021 * Math.Sin(2 * l3rad - 3 * l4rad + pi4) +
+            0.00019 * Math.Sin(l4rad - pi4 - G) +
+            -0.00019 * Math.Sin(2 * l4rad - pi3 - pi4) +
+            -0.00018 * Math.Sin(l4rad - pi4 + G) +
+            -0.00016 * Math.Sin(l4rad + pi3 - 2 * PI - 2 * G);
             //There is no need to calculate a Sigma4rad as it is not used in any subsequent trignometric functions
 
             details.Satellite1.MeanLongitude = AASCoordinateTransformation.MapTo0To360Range(l1);
@@ -277,96 +277,96 @@ namespace AASharp
 
             //Calculate the periodic terms in the latitudes of the satellites
             double B1 = Math.Atan(0.0006393 * Math.Sin(L1 - w1rad) +
-                             0.0001825 * Math.Sin(L1 - w2rad) +
-                             0.0000329 * Math.Sin(L1 - w3rad) +
-                             -0.0000311 * Math.Sin(L1 - psi) +
-                             0.0000093 * Math.Sin(L1 - w4rad) +
-                             0.0000075 * Math.Sin(3 * L1 - 4 * l2rad - 1.9927 * Sigma1rad + w2rad) +
-                             0.0000046 * Math.Sin(L1 + psi - 2 * PI - 2 * G));
+            0.0001825 * Math.Sin(L1 - w2rad) +
+            0.0000329 * Math.Sin(L1 - w3rad) +
+            -0.0000311 * Math.Sin(L1 - psi) +
+            0.0000093 * Math.Sin(L1 - w4rad) +
+            0.0000075 * Math.Sin(3 * L1 - 4 * l2rad - 1.9927 * Sigma1rad + w2rad) +
+            0.0000046 * Math.Sin(L1 + psi - 2 * PI - 2 * G));
             details.Satellite1.EquatorialLatitude = AASCoordinateTransformation.RadiansToDegrees(B1);
 
             double B2 = Math.Atan(0.0081004 * Math.Sin(L2 - w2rad) +
-                             0.0004512 * Math.Sin(L2 - w3rad) +
-                             -0.0003284 * Math.Sin(L2 - psi) +
-                             0.0001160 * Math.Sin(L2 - w4rad) +
-                             0.0000272 * Math.Sin(l1rad - 2 * l3rad + 1.0146 * Sigma2rad + w2rad) +
-                             -0.0000144 * Math.Sin(L2 - w1rad) +
-                             0.0000143 * Math.Sin(L2 + psi - 2 * PI - 2 * G) +
-                             0.0000035 * Math.Sin(L2 - psi + G) +
-                             -0.0000028 * Math.Sin(l1rad - 2 * l3rad + 1.0146 * Sigma2rad + w3rad));
+            0.0004512 * Math.Sin(L2 - w3rad) +
+            -0.0003284 * Math.Sin(L2 - psi) +
+            0.0001160 * Math.Sin(L2 - w4rad) +
+            0.0000272 * Math.Sin(l1rad - 2 * l3rad + 1.0146 * Sigma2rad + w2rad) +
+            -0.0000144 * Math.Sin(L2 - w1rad) +
+            0.0000143 * Math.Sin(L2 + psi - 2 * PI - 2 * G) +
+            0.0000035 * Math.Sin(L2 - psi + G) +
+            -0.0000028 * Math.Sin(l1rad - 2 * l3rad + 1.0146 * Sigma2rad + w3rad));
             details.Satellite2.EquatorialLatitude = AASCoordinateTransformation.RadiansToDegrees(B2);
 
             double B3 = Math.Atan(0.0032402 * Math.Sin(L3 - w3rad) +
-                             -0.0016911 * Math.Sin(L3 - psi) +
-                             0.0006847 * Math.Sin(L3 - w4rad) +
-                             -0.0002797 * Math.Sin(L3 - w2rad) +
-                             0.0000321 * Math.Sin(L3 + psi - 2 * PI - 2 * G) +
-                             0.0000051 * Math.Sin(L3 - psi + G) +
-                             -0.0000045 * Math.Sin(L3 - psi - G) +
-                             -0.0000045 * Math.Sin(L3 + psi - 2 * PI) +
-                             0.0000037 * Math.Sin(L3 + psi - 2 * PI - 3 * G) +
-                             0.0000030 * Math.Sin(2 * l2rad - 3 * L3 + 4.03 * Sigma3rad + w2rad) +
-                             -0.0000021 * Math.Sin(2 * l2rad - 3 * L3 + 4.03 * Sigma3rad + w3rad));
+            -0.0016911 * Math.Sin(L3 - psi) +
+            0.0006847 * Math.Sin(L3 - w4rad) +
+            -0.0002797 * Math.Sin(L3 - w2rad) +
+            0.0000321 * Math.Sin(L3 + psi - 2 * PI - 2 * G) +
+            0.0000051 * Math.Sin(L3 - psi + G) +
+            -0.0000045 * Math.Sin(L3 - psi - G) +
+            -0.0000045 * Math.Sin(L3 + psi - 2 * PI) +
+            0.0000037 * Math.Sin(L3 + psi - 2 * PI - 3 * G) +
+            0.0000030 * Math.Sin(2 * l2rad - 3 * L3 + 4.03 * Sigma3rad + w2rad) +
+            -0.0000021 * Math.Sin(2 * l2rad - 3 * L3 + 4.03 * Sigma3rad + w3rad));
             details.Satellite3.EquatorialLatitude = AASCoordinateTransformation.RadiansToDegrees(B3);
 
             double B4 = Math.Atan(-0.0076579 * Math.Sin(L4 - psi) +
-                             0.0044134 * Math.Sin(L4 - w4rad) +
-                             -0.0005112 * Math.Sin(L4 - w3rad) +
-                             0.0000773 * Math.Sin(L4 + psi - 2 * PI - 2 * G) +
-                             0.0000104 * Math.Sin(L4 - psi + G) +
-                             -0.0000102 * Math.Sin(L4 - psi - G) +
-                             0.0000088 * Math.Sin(L4 + psi - 2 * PI - 3 * G) +
-                             -0.0000038 * Math.Sin(L4 + psi - 2 * PI - G));
+            0.0044134 * Math.Sin(L4 - w4rad) +
+            -0.0005112 * Math.Sin(L4 - w3rad) +
+            0.0000773 * Math.Sin(L4 + psi - 2 * PI - 2 * G) +
+            0.0000104 * Math.Sin(L4 - psi + G) +
+            -0.0000102 * Math.Sin(L4 - psi - G) +
+            0.0000088 * Math.Sin(L4 + psi - 2 * PI - 3 * G) +
+            -0.0000038 * Math.Sin(L4 + psi - 2 * PI - G));
             details.Satellite4.EquatorialLatitude = AASCoordinateTransformation.RadiansToDegrees(B4);
 
             //Calculate the periodic terms for the radius vector
             details.Satellite1.r = 5.90569 * (1 + (-0.0041339 * Math.Cos(2 * (l1rad - l2rad)) +
-                                                   -0.0000387 * Math.Cos(l1rad - pi3) +
-                                                   -0.0000214 * Math.Cos(l1rad - pi4) +
-                                                   0.0000170 * Math.Cos(l1rad - l2rad) +
-                                                   -0.0000131 * Math.Cos(4 * (l1rad - l2rad)) +
-                                                   0.0000106 * Math.Cos(l1rad - l3rad) +
-                                                   -0.0000066 * Math.Cos(l1rad + pi3 - 2 * PI - 2 * G)));
+            -0.0000387 * Math.Cos(l1rad - pi3) +
+            -0.0000214 * Math.Cos(l1rad - pi4) +
+            0.0000170 * Math.Cos(l1rad - l2rad) +
+            -0.0000131 * Math.Cos(4 * (l1rad - l2rad)) +
+            0.0000106 * Math.Cos(l1rad - l3rad) +
+            -0.0000066 * Math.Cos(l1rad + pi3 - 2 * PI - 2 * G)));
 
             details.Satellite2.r = 9.39657 * (1 + (0.0093848 * Math.Cos(l1rad - l2rad) +
-                                                   -0.0003116 * Math.Cos(l2rad - pi3) +
-                                                   -0.0001744 * Math.Cos(l2rad - pi4) +
-                                                   -0.0001442 * Math.Cos(l2rad - pi2) +
-                                                   0.0000553 * Math.Cos(l2rad - l3rad) +
-                                                   0.0000523 * Math.Cos(l1rad - l3rad) +
-                                                   -0.0000290 * Math.Cos(2 * (l1rad - l2rad)) +
-                                                   0.0000164 * Math.Cos(2 * (l2rad - w2rad)) +
-                                                   0.0000107 * Math.Cos(l1rad - 2 * l3rad + pi3) +
-                                                   -0.0000102 * Math.Cos(l2rad - pi1) +
-                                                   -0.0000091 * Math.Cos(2 * (l1rad - l3rad))));
+            -0.0003116 * Math.Cos(l2rad - pi3) +
+            -0.0001744 * Math.Cos(l2rad - pi4) +
+            -0.0001442 * Math.Cos(l2rad - pi2) +
+            0.0000553 * Math.Cos(l2rad - l3rad) +
+            0.0000523 * Math.Cos(l1rad - l3rad) +
+            -0.0000290 * Math.Cos(2 * (l1rad - l2rad)) +
+            0.0000164 * Math.Cos(2 * (l2rad - w2rad)) +
+            0.0000107 * Math.Cos(l1rad - 2 * l3rad + pi3) +
+            -0.0000102 * Math.Cos(l2rad - pi1) +
+            -0.0000091 * Math.Cos(2 * (l1rad - l3rad))));
 
             details.Satellite3.r = 14.98832 * (1 + (-0.0014388 * Math.Cos(l3rad - pi3) +
-                                                    -0.0007919 * Math.Cos(l3rad - pi4) +
-                                                    0.0006342 * Math.Cos(l2rad - l3rad) +
-                                                    -0.0001761 * Math.Cos(2 * (l3rad - l4rad)) +
-                                                    0.0000294 * Math.Cos(l3rad - l4rad) +
-                                                    -0.0000156 * Math.Cos(3 * (l3rad - l4rad)) +
-                                                    0.0000156 * Math.Cos(l1rad - l3rad) +
-                                                    -0.0000153 * Math.Cos(l1rad - l2rad) +
-                                                    0.0000070 * Math.Cos(2 * l2rad - 3 * l3rad + pi3) +
-                                                    -0.0000051 * Math.Cos(l3rad + pi3 - 2 * PI - 2 * G)));
+            -0.0007919 * Math.Cos(l3rad - pi4) +
+            0.0006342 * Math.Cos(l2rad - l3rad) +
+            -0.0001761 * Math.Cos(2 * (l3rad - l4rad)) +
+            0.0000294 * Math.Cos(l3rad - l4rad) +
+            -0.0000156 * Math.Cos(3 * (l3rad - l4rad)) +
+            0.0000156 * Math.Cos(l1rad - l3rad) +
+            -0.0000153 * Math.Cos(l1rad - l2rad) +
+            0.0000070 * Math.Cos(2 * l2rad - 3 * l3rad + pi3) +
+            -0.0000051 * Math.Cos(l3rad + pi3 - 2 * PI - 2 * G)));
 
             details.Satellite4.r = 26.36273 * (1 + (-0.0073546 * Math.Cos(l4rad - pi4) +
-                                                    0.0001621 * Math.Cos(l4rad - pi3) +
-                                                    0.0000974 * Math.Cos(l3rad - l4rad) +
-                                                    -0.0000543 * Math.Cos(l4rad + pi4 - 2 * PI - 2 * G) +
-                                                    -0.0000271 * Math.Cos(2 * (l4rad - pi4)) +
-                                                    0.0000182 * Math.Cos(l4rad - PI) +
-                                                    0.0000177 * Math.Cos(2 * (l3rad - l4rad)) +
-                                                    -0.0000167 * Math.Cos(2 * l4rad - psi - w4rad) +
-                                                    0.0000167 * Math.Cos(psi - w4rad) +
-                                                    -0.0000155 * Math.Cos(2 * (l4rad - PI - G)) +
-                                                    0.0000142 * Math.Cos(2 * (l4rad - psi)) +
-                                                    0.0000105 * Math.Cos(l1rad - l4rad) +
-                                                    0.0000092 * Math.Cos(l2rad - l4rad) +
-                                                    -0.0000089 * Math.Cos(l4rad - PI - G) +
-                                                    -0.0000062 * Math.Cos(l4rad + pi4 - 2 * PI - 3 * G) +
-                                                    0.0000048 * Math.Cos(2 * (l4rad - w4rad))));
+            0.0001621 * Math.Cos(l4rad - pi3) +
+            0.0000974 * Math.Cos(l3rad - l4rad) +
+            -0.0000543 * Math.Cos(l4rad + pi4 - 2 * PI - 2 * G) +
+            -0.0000271 * Math.Cos(2 * (l4rad - pi4)) +
+            0.0000182 * Math.Cos(l4rad - PI) +
+            0.0000177 * Math.Cos(2 * (l3rad - l4rad)) +
+            -0.0000167 * Math.Cos(2 * l4rad - psi - w4rad) +
+            0.0000167 * Math.Cos(psi - w4rad) +
+            -0.0000155 * Math.Cos(2 * (l4rad - PI - G)) +
+            0.0000142 * Math.Cos(2 * (l4rad - psi)) +
+            0.0000105 * Math.Cos(l1rad - l4rad) +
+            0.0000092 * Math.Cos(l2rad - l4rad) +
+            -0.0000089 * Math.Cos(l4rad - PI - G) +
+            -0.0000062 * Math.Cos(l4rad + pi4 - 2 * PI - 3 * G) +
+            0.0000048 * Math.Cos(2 * (l4rad - w4rad))));
 
             //Calculate T0
             double T0 = (JD - 2433282.423) / 36525;
@@ -478,7 +478,7 @@ namespace AASharp
             return details;
         }
 
-        private static AASGalileanMoonsDetails Calculate(double JD)
+        public static AASGalileanMoonsDetails Calculate(double JD)
         {
             //Calculate the position of the Sun
             double sunlong = AASSun.GeometricEclipticLongitude(JD);

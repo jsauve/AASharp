@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +7,9 @@ namespace AASharp
 {
     public class AASRiseTransitSetDetails
     {
-        public AASRiseTransitSetDetails() { }
+        public AASRiseTransitSetDetails()
+        {
+        }
 
         public bool bRiseValid { get; set; }
         public double Rise { get; set; }
@@ -76,18 +78,21 @@ namespace AASharp
                 while (M2 < 0)
                     M2 += 1;
             }
-            else if (cosH0 < 1)
-                details.bTransitAboveHorizon = true;
+            else
+                if (cosH0 < 1)
+                    details.bTransitAboveHorizon = true;
 
             //Ensure the RA values are corrected for interpolation. Due to important Remark 2 by Meeus on Interopolation of RA values
             if ((Alpha2 - Alpha1) > 12.0)
                 Alpha1 += 24;
-            else if ((Alpha2 - Alpha1) < -12.0)
-                Alpha2 += 24;
+            else
+                if ((Alpha2 - Alpha1) < -12.0)
+                    Alpha2 += 24;
             if ((Alpha3 - Alpha2) > 12.0)
                 Alpha2 += 24;
-            else if ((Alpha3 - Alpha2) < -12.0)
-                Alpha3 += 24;
+            else
+                if ((Alpha3 - Alpha2) < -12.0)
+                    Alpha3 += 24;
 
             for (int i = 0; i < 2; i++)
             {
@@ -143,7 +148,7 @@ namespace AASharp
 
                     double DeltaM = -H / 360;
                     M0 += DeltaM;
-                }   
+                }
             }
 
             details.Rise = details.bRiseValid ? (M1 * 24) : 0.0;

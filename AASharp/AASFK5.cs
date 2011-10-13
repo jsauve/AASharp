@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,9 +36,9 @@ namespace AASharp
         {
             AAS3DCoordinate result = new AAS3DCoordinate()
             {
-                X = value.X + 0.000000440360 * value.Y - 0.000000190919 * value.Z,
-                Y = -0.000000479966 * value.X + 0.917482137087 * value.Y - 0.397776982902 * value.Z,
-                Z = 0.397776982902 * value.Y + 0.917482137087 * value.Z
+            X = value.X + 0.000000440360 * value.Y - 0.000000190919 * value.Z,
+            Y = -0.000000479966 * value.X + 0.917482137087 * value.Y - 0.397776982902 * value.Z,
+            Z = 0.397776982902 * value.Y + 0.917482137087 * value.Z
             };
 
             return result;
@@ -48,9 +48,9 @@ namespace AASharp
         {
             AAS3DCoordinate result = new AAS3DCoordinate()
             {
-                X = 0.999925702634 * value.X + 0.012189716217 * value.Y + 0.000011134016 * value.Z,
-                Y = -0.011179418036 * value.X + 0.917413998946 * value.Y - 0.397777041885 * value.Z,
-                Z = -0.004859003787 * value.X + 0.397747363646 * value.Y + 0.917482111428 * value.Z
+            X = 0.999925702634 * value.X + 0.012189716217 * value.Y + 0.000011134016 * value.Z,
+            Y = -0.011179418036 * value.X + 0.917413998946 * value.Y - 0.397777041885 * value.Z,
+            Z = -0.004859003787 * value.X + 0.397747363646 * value.Y + 0.917482111428 * value.Z
             };
 
             return result;
@@ -90,9 +90,9 @@ namespace AASharp
 
             AAS3DCoordinate result = new AAS3DCoordinate()
             {
-                X = xx * value.X + yx * value.Y + zx * value.Z,
-                Y = xy * value.X + yy * value.Y + zy * value.Z,
-                Z = xz * value.X + yz * value.Y + zz * value.Z
+            X = xx * value.X + yx * value.Y + zx * value.Z,
+            Y = xy * value.X + yy * value.Y + zy * value.Z,
+            Z = xz * value.X + yz * value.Y + zz * value.Z
             };
 
             return result;

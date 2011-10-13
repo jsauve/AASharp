@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +16,7 @@ namespace AASharp
         public double e;
     }
 
-    public class CAANearParabolicObjectDetails
+    public class AASNearParabolicObjectDetails
     {
         public AAS3DCoordinate HeliocentricRectangularEquatorial;
         public AAS3DCoordinate HeliocentricRectangularEcliptical;
@@ -60,14 +60,14 @@ namespace AASharp
             r = elements.q * (1 + w2) / (1 + w2 * f);
         }
 
-        public static CAANearParabolicObjectDetails Calculate(double JD, ref AASNearParabolicObjectElements elements)
+        public static AASNearParabolicObjectDetails Calculate(double JD, ref AASNearParabolicObjectElements elements)
         {
             double Epsilon = AASNutation.MeanObliquityOfEcliptic(elements.JDEquinox);
 
             double JD0 = JD;
 
             //What will be the return value
-            CAANearParabolicObjectDetails details = new CAANearParabolicObjectDetails();
+            AASNearParabolicObjectDetails details = new AASNearParabolicObjectDetails();
 
             Epsilon = AASCoordinateTransformation.DegreesToRadians(Epsilon);
             double omega = AASCoordinateTransformation.DegreesToRadians(elements.omega);
@@ -157,7 +157,8 @@ namespace AASharp
                     details.PhaseAngle = AASCoordinateTransformation.RadiansToDegrees(Math.Acos((r * r + Distance * Distance - RES * RES) / (2 * r * Distance)));
                 }
 
-                if (j == 0) //Prepare for the next loop around
+                if (j == 0)
+                    //Prepare for the next loop around
                     JD0 = JD - details.TrueGeocentricLightTime;
             }
 

@@ -14,5 +14,5 @@ namespace AASharp
         WESTERN_ELONGATION,
         STATION1,
         STATION2
-    };
+    }
 }

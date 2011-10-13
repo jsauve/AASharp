@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -76,9 +76,9 @@ namespace AASharp
 
             AAS3DCoordinate value = new AAS3DCoordinate()
             {
-                X = R * Math.Cos(Latitude) * Math.Cos(Longitude),
-                Y = R * (Math.Cos(Latitude) * Math.Sin(Longitude) * Math.Cos(epsilon) - Math.Sin(Latitude) * Math.Sin(epsilon)),
-                Z = R * (Math.Cos(Latitude) * Math.Sin(Longitude) * Math.Sin(epsilon) + Math.Sin(Latitude) * Math.Cos(epsilon))
+            X = R * Math.Cos(Latitude) * Math.Cos(Longitude),
+            Y = R * (Math.Cos(Latitude) * Math.Sin(Longitude) * Math.Cos(epsilon) - Math.Sin(Latitude) * Math.Sin(epsilon)),
+            Z = R * (Math.Cos(Latitude) * Math.Sin(Longitude) * Math.Sin(epsilon) + Math.Sin(Latitude) * Math.Cos(epsilon))
             };
 
             return value;
@@ -95,9 +95,9 @@ namespace AASharp
             double coslatitude = Math.Cos(Latitude);
             AAS3DCoordinate value = new AAS3DCoordinate()
             {
-                X = R * coslatitude * Math.Cos(Longitude),
-                Y = R * coslatitude * Math.Sin(Longitude),
-                Z = R * Math.Sin(Latitude)
+            X = R * coslatitude * Math.Cos(Longitude),
+            Y = R * coslatitude * Math.Sin(Longitude),
+            Z = R * Math.Sin(Latitude)
             };
 
             return value;

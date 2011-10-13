@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -39,31 +39,31 @@ namespace AASharp
             P = AASCoordinateTransformation.DegreesToRadians(P);
 
             double JD = 2451565.1619 + 27.212220817 * k
-                        + 0.0002762 * Tsquared
-                        + 0.000000021 * Tcubed
-                        - 0.000000000088 * T4
-                        - 0.4721 * Math.Sin(Mdash)
-                        - 0.1649 * Math.Sin(D2)
-                        - 0.0868 * Math.Sin(D2 - Mdash)
-                        + 0.0084 * Math.Sin(D2 + Mdash)
-                        - E * 0.0083 * Math.Sin(D2 - M)
-                        - E * 0.0039 * Math.Sin(D2 - M - Mdash)
-                        + 0.0034 * Math.Sin(Mdash2)
-                        - 0.0031 * Math.Sin(D2 - Mdash2)
-                        + E * 0.0030 * Math.Sin(D2 + M)
-                        + E * 0.0028 * Math.Sin(M - Mdash)
-                        + E * 0.0026 * Math.Sin(M)
-                        + 0.0025 * Math.Sin(D4)
-                        + 0.0024 * Math.Sin(D)
-                        + E * 0.0022 * Math.Sin(M + Mdash)
-                        + 0.0017 * Math.Sin(omega)
-                        + 0.0014 * Math.Sin(D4 - Mdash)
-                        + E * 0.0005 * Math.Sin(D2 + M - Mdash)
-                        + E * 0.0004 * Math.Sin(D2 - M + Mdash)
-                        - E * 0.0003 * Math.Sin(D2 - M * M)
-                        + E * 0.0003 * Math.Sin(D4 - M)
-                        + 0.0003 * Math.Sin(V)
-                        + 0.0003 * Math.Sin(P);
+            + 0.0002762 * Tsquared
+            + 0.000000021 * Tcubed
+            - 0.000000000088 * T4
+            - 0.4721 * Math.Sin(Mdash)
+            - 0.1649 * Math.Sin(D2)
+            - 0.0868 * Math.Sin(D2 - Mdash)
+            + 0.0084 * Math.Sin(D2 + Mdash)
+            - E * 0.0083 * Math.Sin(D2 - M)
+            - E * 0.0039 * Math.Sin(D2 - M - Mdash)
+            + 0.0034 * Math.Sin(Mdash2)
+            - 0.0031 * Math.Sin(D2 - Mdash2)
+            + E * 0.0030 * Math.Sin(D2 + M)
+            + E * 0.0028 * Math.Sin(M - Mdash)
+            + E * 0.0026 * Math.Sin(M)
+            + 0.0025 * Math.Sin(D4)
+            + 0.0024 * Math.Sin(D)
+            + E * 0.0022 * Math.Sin(M + Mdash)
+            + 0.0017 * Math.Sin(omega)
+            + 0.0014 * Math.Sin(D4 - Mdash)
+            + E * 0.0005 * Math.Sin(D2 + M - Mdash)
+            + E * 0.0004 * Math.Sin(D2 - M + Mdash)
+            - E * 0.0003 * Math.Sin(D2 - M * M)
+            + E * 0.0003 * Math.Sin(D4 - M)
+            + 0.0003 * Math.Sin(V)
+            + 0.0003 * Math.Sin(P);
 
             return JD;
         }

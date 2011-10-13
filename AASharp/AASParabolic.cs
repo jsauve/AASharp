@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +7,9 @@ namespace AASharp
 {
     public class AASParabolicObjectElements
     {
-        public AASParabolicObjectElements() { }
+        public AASParabolicObjectElements()
+        {
+        }
 
         public double q;
         public double i;
@@ -19,7 +21,9 @@ namespace AASharp
 
     public class AASParabolicObjectDetails
     {
-        public AASParabolicObjectDetails() { }
+        public AASParabolicObjectDetails()
+        {
+        }
 
         public AAS3DCoordinate HeliocentricRectangularEquatorial;
         public AAS3DCoordinate HeliocentricRectangularEcliptical;
@@ -153,7 +157,8 @@ namespace AASharp
                     details.PhaseAngle = AASCoordinateTransformation.RadiansToDegrees(Math.Acos((r * r + Distance * Distance - RES * RES) / (2 * r * Distance)));
                 }
 
-                if (j == 0) //Prepare for the next loop around
+                if (j == 0)
+                    //Prepare for the next loop around
                     JD0 = JD - details.TrueGeocentricLightTime;
             }
 

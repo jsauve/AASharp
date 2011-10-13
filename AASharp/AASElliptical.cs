@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +18,9 @@ namespace AASharp
 
     public class AASEllipticalPlanetaryDetails
     {
-        public AASEllipticalPlanetaryDetails() { }
+        public AASEllipticalPlanetaryDetails()
+        {
+        }
 
         public double ApparentGeocentricLongitude;
         public double ApparentGeocentricLatitude;
@@ -57,8 +59,7 @@ namespace AASharp
         URANUS,
         NEPTUNE,
         PLUTO
-    };
-
+    }
     public static class AASElliptical
     {
         public static double DistanceToLightTime(double Distance)
@@ -422,7 +423,8 @@ namespace AASharp
                     details.PhaseAngle = AASCoordinateTransformation.RadiansToDegrees(details.PhaseAngle);
                 }
 
-                if (j == 0) //Prepare for the next loop around
+                if (j == 0)
+                    //Prepare for the next loop around
                     JD0 = JD - details.TrueGeocentricLightTime;
             }
 
