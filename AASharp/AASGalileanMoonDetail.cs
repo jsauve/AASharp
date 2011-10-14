@@ -6,6 +6,12 @@ namespace AASharp
 {
     public class AASGalileanMoonDetail
     {
+        public AASGalileanMoonDetail()
+        {
+            TrueRectangularCoordinates = new AAS3DCoordinate();
+            ApparentRectangularCoordinates = new AAS3DCoordinate();
+        }
+
         public double MeanLongitude;
         public double TrueLongitude;
         public double TropicalLongitude;

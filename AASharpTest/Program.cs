@@ -56,7 +56,7 @@ namespace AASharpTest
             for (int _YYYY = -4712; _YYYY < 5000; _YYYY++) //Change the end YYYY value if you would like to test a longer range
             {
                 if ((_YYYY % 1000) == 0)
-                    Console.Write("Doing date tests on year %d\n", _YYYY);
+                    Console.Write(string.Format("Doing date tests on year {0}\n", _YYYY));
                 for (int MMMM = 1; MMMM <= 12; MMMM++)
                 {
                     bool _bLeap = AASDate.IsLeap(_YYYY, (_YYYY >= 1582));
@@ -65,10 +65,10 @@ namespace AASharpTest
                         bool bGregorian = AASDate.AfterPapalReform(_YYYY, MMMM, DDDD);
                         AASDate _date = new AASDate(_YYYY, MMMM, DDDD, 12, 0, 0, bGregorian);
                         if ((_date.Year != _YYYY) || (_date.Month != MMMM) || (_date.Day != DDDD))
-                            Console.Write("Round trip bug with date %d/%d/%d\n", _YYYY, MMMM, DDDD);
+                            Console.Write(string.Format("Round trip bug with date {0}/{1}/{2}\n", _YYYY, MMMM, DDDD));
                         double currentJulian = _date.Julian;
                         if ((prevJulian != -1) && ((prevJulian + 1) != currentJulian))
-                            Console.Write("Julian Day monotonic bug with date %d/%d/%d\n", _YYYY, MMMM, DDDD);
+                            Console.Write(string.Format("Julian Day monotonic bug with date {0}/{1}/{2}\n", _YYYY, MMMM, DDDD));
                         prevJulian = currentJulian;
 
                         //Only do round trip tests between the Julian and Gregorian calendars after the papal 
@@ -79,12 +79,12 @@ namespace AASharpTest
                             AASCalendarDate GregorianDate = AASDate.JulianToGregorian(_YYYY, MMMM, DDDD);
                             AASCalendarDate JulianDate = AASDate.GregorianToJulian(GregorianDate.Year, GregorianDate.Month, GregorianDate.Day);
                             if ((JulianDate.Year != _YYYY) || (JulianDate.Month != MMMM) || (JulianDate.Day != DDDD))
-                                Console.Write("Round trip bug with Julian -> Gregorian Calendar %d/%d/%d\n", _YYYY, MMMM, DDDD);
+                                Console.Write(string.Format("Round trip bug with Julian -> Gregorian Calendar {0}/{1}/{2}\n", _YYYY, MMMM, DDDD));
                         }
                     }
                 }
             }
-            Console.Write("Date tests completed\n");
+            Console.Write(string.Format("Date tests completed\n"));
 
             //Test out the AADate class
 
@@ -572,14 +572,7 @@ namespace AASharpTest
 
             AASEllipticalPlanetaryDetails SunDetails = AASElliptical.Calculate(2453149.5, AASEllipticalObject.SUN);
 
-            AASEllipticalObjectElements elements = new AASEllipticalObjectElements();
-            elements.a = 2.2091404;
-            elements.e = 0.8502196;
-            elements.i = 11.94524;
-            elements.omega = 334.75006;
-            elements.w = 186.23352;
-            elements.T = 2448192.5 + 0.54502;
-            elements.JDEquinox = 2451544.5;
+            AASEllipticalObjectElements elements = new AASEllipticalObjectElements() { a = 2.2091404, e = 0.8502196, i = 11.94524, omega = 334.75006, w = 186.23352, T = 2448192.5 + 0.54502, JDEquinox = 2451544.5 };
             AASEllipticalObjectDetails details = AASElliptical.Calculate(2448170.5, ref elements);
 
             double Velocity1 = AASElliptical.InstantaneousVelocity(1, 17.9400782);
@@ -670,7 +663,7 @@ namespace AASharpTest
                 long _Minutes = 0;
                 double _Sec = 0;
                 rtsDate.Get(ref Year, ref Month, ref Day, ref _Hours, ref _Minutes, ref _Sec);
-                Console.Write("Venus rise for Boston for UTC %d/%d/%d occurs at %02d:%02d:%02d\n", (int)(Year), (int)(Month), (int)(Day), (int)(_Hours), (int)(_Minutes), (int)(_Sec));
+                Console.Write(string.Format("Venus rise for Boston for UTC {0}/{1}/{2} occurs at {3}:{4}:{5}\n", (int)(Year), (int)(Month), (int)(Day), String.Format("{0,2:00}", (int)(_Hours)), String.Format("{0,2:00}", (int)(_Minutes)), String.Format("{0,2:00}", (int)(_Sec))));
             }
             else
             {
@@ -679,7 +672,7 @@ namespace AASharpTest
                 long _Minutes = 0;
                 double _Sec = 0;
                 rtsDate.Get(ref Year, ref Month, ref Day, ref _Hours, ref _Minutes, ref _Sec);
-                Console.Write("Venus does not rise for Boston for UTC %d/%d/%d\n", (int)(Year), (int)(Month), (int)(Day));
+                Console.Write(string.Format("Venus does not rise for Boston for UTC {0}/{1}/{2}\n", (int)(Year), (int)(Month), (int)(Day)));
             }
             double transitJD = (JD2 + (RiseTransitSetTime.Transit / 24.00));
             rtsDate = new AASDate(transitJD, true);
@@ -688,21 +681,21 @@ namespace AASharpTest
             double Sec = 0;
             rtsDate.Get(ref Year, ref Month, ref Day, ref Hours, ref Minutes, ref Sec);
             if (RiseTransitSetTime.bTransitAboveHorizon)
-                Console.Write("Venus transit for Boston for UTC %d/%d/%d occurs at %02d:%02d:%02d\n", (int)(Year), (int)(Month), (int)(Day), (int)(Hours), (int)(Minutes), (int)(Sec));
+                Console.Write(string.Format("Venus transit for Boston for UTC {0}/{1}/{2} occurs at {3}:{4}:{5}\n", (int)(Year), (int)(Month), (int)(Day), String.Format("{0,2:00}", (int)(Hours)), String.Format("{0,2:00}", (int)(Minutes)), String.Format("{0,2:00}", (int)(Sec))));
             else
-                Console.Write("Venus transit for Boston (below horizon) for UTC %d/%d/%d occurs at %02d:%02d:%02d\n", (int)(Year), (int)(Month), (int)(Day), (int)(Hours), (int)(Minutes), (int)(Sec));
+                Console.Write(string.Format("Venus transit for Boston (below horizon) for UTC {0}/{1}/{2} occurs at {3}:{4}:{5}\n", (int)(Year), (int)(Month), (int)(Day), String.Format("{0,2:00}", (int)(Hours)), String.Format("{0,2:00}", (int)(Minutes)), String.Format("{0,2:00}", (int)(Sec))));
             if (RiseTransitSetTime.bSetValid)
             {
                 double setJD = (JD2 + (RiseTransitSetTime.Set / 24.00));
                 rtsDate = new AASDate(setJD, true);
                 rtsDate.Get(ref Year, ref Month, ref Day, ref Hours, ref Minutes, ref Sec);
-                Console.Write("Venus set for Boston UTC %d/%d/%d occurs at %02d:%02d:%02d\n", (int)(Year), (int)(Month), (int)(Day), (int)(Hours), (int)(Minutes), (int)(Sec));
+                Console.Write(string.Format("Venus set for Boston UTC {0}/{1}/{2} occurs at {3}:{4}:{5}\n", (int)(Year), (int)(Month), (int)(Day), String.Format("{0,2:00}", (int)(Hours)), String.Format("{0,2:00}", (int)(Minutes)), String.Format("{0,2:00}", (int)(Sec))));
             }
             else
             {
                 rtsDate = new AASDate(JD2, true);
                 rtsDate.Get(ref Year, ref Month, ref Day, ref Hours, ref Minutes, ref Sec);
-                Console.Write("Venus does not set for Boston for UTC %d/%d/%d\n", (int)(Year), (int)(Month), (int)(Day));
+                Console.Write(string.Format("Venus does not set for Boston for UTC {0}/{1}/{2}\n", (int)(Year), (int)(Month), (int)(Day)));
             }
 
             //Calculate the time of moon set for 11th of August 2009 UTC for Palomar Observatory 
@@ -722,33 +715,33 @@ namespace AASharpTest
                 double riseJD = (JD2 + (RiseTransitSetTime.Rise / 24.00));
                 rtsDate = new AASDate(riseJD, true);
                 rtsDate.Get(ref Year, ref Month, ref Day, ref Hours, ref Minutes, ref Sec);
-                Console.Write("Moon rise for Palomar Observatory for UTC %d/%d/%d occurs at %02d:%02d:%02d\n", (int)(Year), (int)(Month), (int)(Day), (int)(Hours), (int)(Minutes), (int)(Sec));
+                Console.Write(string.Format("Moon rise for Palomar Observatory for UTC {0}/{1}/{2} occurs at {3}:{4}:{5}\n", (int)(Year), (int)(Month), (int)(Day), String.Format("{0,2:00}", (int)(Hours)), String.Format("{0,2:00}", (int)(Minutes)), String.Format("{0,2:00}", (int)(Sec))));
             }
             else
             {
                 rtsDate = new AASDate(JD2, true);
                 rtsDate.Get(ref Year, ref Month, ref Day, ref Hours, ref Minutes, ref Sec);
-                Console.Write("Moon does not rise for Palomar Observatory for UTC %d/%d/%d\n", (int)(Year), (int)(Month), (int)(Day));
+                Console.Write(string.Format("Moon does not rise for Palomar Observatory for UTC {0}/{1}/{2}\n", (int)(Year), (int)(Month), (int)(Day)));
             }
             transitJD = (JD2 + (RiseTransitSetTime.Transit / 24.00));
             rtsDate = new AASDate(transitJD, true);
             rtsDate.Get(ref Year, ref Month, ref Day, ref Hours, ref Minutes, ref Sec);
             if (RiseTransitSetTime.bTransitAboveHorizon)
-                Console.Write("Moon transit for Palomar Observatory for UTC %d/%d/%d occurs at %02d:%02d:%02d\n", (int)(Year), (int)(Month), (int)(Day), (int)(Hours), (int)(Minutes), (int)(Sec));
+                Console.Write(string.Format("Moon transit for Palomar Observatory for UTC {0}/{1}/{2} occurs at {3}:{4}:{5}\n", (int)(Year), (int)(Month), (int)(Day), String.Format("{0,2:00}", (int)(Hours)), String.Format("{0,2:00}", (int)(Minutes)), String.Format("{0,2:00}", (int)(Sec))));
             else
-                Console.Write("Moon transit for Palomar Observatory (below horizon) for UTC %d/%d/%d occurs at %02d:%02d:%02d\n", (int)(Year), (int)(Month), (int)(Day), (int)(Hours), (int)(Minutes), (int)(Sec));
+                Console.Write(string.Format("Moon transit for Palomar Observatory (below horizon) for UTC {0}/{1}/{2} occurs at {3}:{4}:{5}\n", (int)(Year), (int)(Month), (int)(Day), String.Format("{0,2:00}", (int)(Hours)), String.Format("{0,2:00}", (int)(Minutes)), String.Format("{0,2:00}", (int)(Sec))));
             if (RiseTransitSetTime.bSetValid)
             {
                 double setJD = (JD2 + (RiseTransitSetTime.Set / 24.00));
                 rtsDate = new AASDate(setJD, true);
                 rtsDate.Get(ref Year, ref Month, ref Day, ref Hours, ref Minutes, ref Sec);
-                Console.Write("Moon set for Palomar Observatory for UTC %d/%d/%d occurs at %02d:%02d:%02d\n", (int)(Year), (int)(Month), (int)(Day), (int)(Hours), (int)(Minutes), (int)(Sec));
+                Console.Write(string.Format("Moon set for Palomar Observatory for UTC {0}/{1}/{2} occurs at {3}:{4}:{5}\n", (int)(Year), (int)(Month), (int)(Day), String.Format("{0,2:00}", (int)(Hours)), String.Format("{0,2:00}", (int)(Minutes)), String.Format("{0,2:00}", (int)(Sec))));
             }
             else
             {
                 rtsDate = new AASDate(JD2, true);
                 rtsDate.Get(ref Year, ref Month, ref Day, ref Hours, ref Minutes, ref Sec);
-                Console.Write("Moon does not set for Palomar Observatory for UTC %d/%d/%d\n", (int)(Year), (int)(Month), (int)(Day));
+                Console.Write(string.Format("Moon does not set for Palomar Observatory for UTC {0}/{1}/{2} \n", (int)(Year), (int)(Month), (int)(Day)));
             }
 
             double Kpp = AASPlanetaryPhenomena.K(1993.75, PlanetaryObject.MERCURY, EventType.INFERIOR_CONJUNCTION);

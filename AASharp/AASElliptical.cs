@@ -373,18 +373,19 @@ namespace AASharp
 
                 if (j == 0)
                 {
-                    details.HeliocentricRectangularEquatorial.X = x;
-                    details.HeliocentricRectangularEquatorial.Y = y;
-                    details.HeliocentricRectangularEquatorial.Z = z;
+                    details.HeliocentricRectangularEquatorial = new AAS3DCoordinate() { X = x, Y = y, Z = z };
 
                     //Calculate the heliocentric ecliptic coordinates also
                     double u = w + v;
                     double cosu = Math.Cos(u);
                     double sinu = Math.Sin(u);
 
-                    details.HeliocentricRectangularEcliptical.X = r * (cosOmega * cosu - sinOmega * sinu * cosi);
-                    details.HeliocentricRectangularEcliptical.Y = r * (sinOmega * cosu + cosOmega * sinu * cosi);
-                    details.HeliocentricRectangularEcliptical.Z = r * sini * sinu;
+                    details.HeliocentricRectangularEcliptical = new AAS3DCoordinate()
+                    {
+                        X = r * (cosOmega * cosu - sinOmega * sinu * cosi),
+                        Y = r * (sinOmega * cosu + cosOmega * sinu * cosi),
+                        Z = r * sini * sinu
+                    };
 
                     details.HeliocentricEclipticLongitude = AASCoordinateTransformation.MapTo0To360Range(AASCoordinateTransformation.RadiansToDegrees(Math.Atan2(details.HeliocentricRectangularEcliptical.Y, details.HeliocentricRectangularEcliptical.X)));
                     details.HeliocentricEclipticLatitude = AASCoordinateTransformation.RadiansToDegrees(Math.Asin(details.HeliocentricRectangularEcliptical.Z / r));

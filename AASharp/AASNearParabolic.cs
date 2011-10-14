@@ -18,6 +18,12 @@ namespace AASharp
 
     public class AASNearParabolicObjectDetails
     {
+        public AASNearParabolicObjectDetails()
+        {
+            HeliocentricRectangularEquatorial = new AAS3DCoordinate();
+            HeliocentricRectangularEcliptical = new AAS3DCoordinate();
+        }
+
         public AAS3DCoordinate HeliocentricRectangularEquatorial;
         public AAS3DCoordinate HeliocentricRectangularEcliptical;
         public double HeliocentricEclipticLongitude;
