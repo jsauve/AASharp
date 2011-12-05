@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="c:\development\AASharp\Src\AASharp\AASJewishCalendar.cs">
+    <Files>
+      <File FileName="c:\development\AASharp\Src\AASharp\AASCoordinateTransformation.cs" Line="78" Column="29" />
+      <File FileName="c:\development\AASharp\Src\AASharp\AASInterpolate.cs" Line="44" Column="37" />
+      <File FileName="c:\development\AASharp\Src\AASharp\AASJewishCalendar.cs" Line="69" Column="27" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

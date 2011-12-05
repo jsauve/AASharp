@@ -1,7 +1,0 @@
-C:\development\projects\AASharp\AASharpTest\obj\x86\Release\ResolveAssemblyReference.cache
-C:\development\projects\AASharp\AASharpTest\bin\Release\AASharpTest.exe
-C:\development\projects\AASharp\AASharpTest\bin\Release\AASharpTest.pdb
-C:\development\projects\AASharp\AASharpTest\bin\Release\AASharp.dll
-C:\development\projects\AASharp\AASharpTest\bin\Release\AASharp.pdb
-C:\development\projects\AASharp\AASharpTest\obj\x86\Release\AASharpTest.exe
-C:\development\projects\AASharp\AASharpTest\obj\x86\Release\AASharpTest.pdb

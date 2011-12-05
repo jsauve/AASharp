@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E3934190-045B-48E6-9BE2-814CD87A9C1D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>AASharp.Mono</RootNamespace>
+    <AssemblyName>AASharp.Mono</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AAS2DCoordinate.cs">
+      <Link>AAS2DCoordinate.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AAS3DCoordinate.cs">
+      <Link>AAS3DCoordinate.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASAberration.cs">
+      <Link>AASAberration.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASAngularSeparation.cs">
+      <Link>AASAngularSeparation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASBinaryStar.cs">
+      <Link>AASBinaryStar.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASBinaryStarDetails.cs">
+      <Link>AASBinaryStarDetails.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASCalendarDate.cs">
+      <Link>AASCalendarDate.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASCoordinateTransformation.cs">
+      <Link>AASCoordinateTransformation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASDate.cs">
+      <Link>AASDate.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASDiameters.cs">
+      <Link>AASDiameters.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASDynamicalTime.cs">
+      <Link>AASDynamicalTime.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASEarth.cs">
+      <Link>AASEarth.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASEaster.cs">
+      <Link>AASEaster.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASEclipses.cs">
+      <Link>AASEclipses.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASEclipticalElements.cs">
+      <Link>AASEclipticalElements.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASElementsPlanetaryOrbit.cs">
+      <Link>AASElementsPlanetaryOrbit.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASElliptical.cs">
+      <Link>AASElliptical.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASEquationOfTime.cs">
+      <Link>AASEquationOfTime.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASEquinoxesAndSolstices.cs">
+      <Link>AASEquinoxesAndSolstices.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASFK5.cs">
+      <Link>AASFK5.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASGalileanMoonDetail.cs">
+      <Link>AASGalileanMoonDetail.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASGalileanMoons.cs">
+      <Link>AASGalileanMoons.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASGalileanMoonsDetails.cs">
+      <Link>AASGalileanMoonsDetails.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASGlobe.cs">
+      <Link>AASGlobe.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASIlluminatedFraction.cs">
+      <Link>AASIlluminatedFraction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASInterpolate.cs">
+      <Link>AASInterpolate.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASJupiter.cs">
+      <Link>AASJupiter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASKepler.cs">
+      <Link>AASKepler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASLunarEclipseDetails.cs">
+      <Link>AASLunarEclipseDetails.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASMars.cs">
+      <Link>AASMars.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASMath.cs">
+      <Link>AASMath.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASMercury.cs">
+      <Link>AASMercury.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASMoon.cs">
+      <Link>AASMoon.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASMoonIlluminatedFraction.cs">
+      <Link>AASMoonIlluminatedFraction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASMoonMaxDeclinations.cs">
+      <Link>AASMoonMaxDeclinations.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASMoonNodes.cs">
+      <Link>AASMoonNodes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASMoonPhases.cs">
+      <Link>AASMoonPhases.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASNearParabolic.cs">
+      <Link>AASNearParabolic.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASNeptune.cs">
+      <Link>AASNeptune.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASNodes.cs">
+      <Link>AASNodes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASNutation.cs">
+      <Link>AASNutation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASParabolic.cs">
+      <Link>AASParabolic.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASParallactic.cs">
+      <Link>AASParallactic.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASParallax.cs">
+      <Link>AASParallax.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASPhysicalJupiter.cs">
+      <Link>AASPhysicalJupiter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASPhysicalMars.cs">
+      <Link>AASPhysicalMars.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASPhysicalMoon.cs">
+      <Link>AASPhysicalMoon.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASPhysicalSun.cs">
+      <Link>AASPhysicalSun.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASPlanetaryPhenomena.cs">
+      <Link>AASPlanetaryPhenomena.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASPlanetPerihelionAphelion.cs">
+      <Link>AASPlanetPerihelionAphelion.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASPluto.cs">
+      <Link>AASPluto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASPrecession.cs">
+      <Link>AASPrecession.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASRefraction.cs">
+      <Link>AASRefraction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASRiseTransitSet.cs">
+      <Link>AASRiseTransitSet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASSaturn.cs">
+      <Link>AASSaturn.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASSaturnMoons.cs">
+      <Link>AASSaturnMoons.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASSaturnRings.cs">
+      <Link>AASSaturnRings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASSidereal.cs">
+      <Link>AASSidereal.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASSolarEclipseDetails.cs">
+      <Link>AASSolarEclipseDetails.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASStellarMagnitudes.cs">
+      <Link>AASStellarMagnitudes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASSun.cs">
+      <Link>AASSun.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASUranus.cs">
+      <Link>AASUranus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVenus.cs">
+      <Link>AASVenus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AberrationCoefficient.cs">
+      <Link>AberrationCoefficient.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\DAY_OF_WEEK.cs">
+      <Link>DAY_OF_WEEK.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\EventType.cs">
+      <Link>EventType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\MoonCoefficient1.cs">
+      <Link>MoonCoefficient1.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\MoonCoefficient2.cs">
+      <Link>MoonCoefficient2.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\MoonPerigeeApogeeCoefficient.cs">
+      <Link>MoonPerigeeApogeeCoefficient.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\PlanetaryObject.cs">
+      <Link>PlanetaryObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\PlutoCoefficient1.cs">
+      <Link>PlutoCoefficient1.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\PlutoCoefficient2.cs">
+      <Link>PlutoCoefficient2.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\VSOP87Coefficient.cs">
+      <Link>VSOP87Coefficient.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
