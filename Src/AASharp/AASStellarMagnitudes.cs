@@ -13,7 +13,7 @@ namespace AASharp
             return m2 - 2.5 * Math.Log10(Math.Pow(10.0, x) + 1);
         }
 
-        public static unsafe double CombinedMagnitude(int Magnitudes, double* pMagnitudes)
+        public static double CombinedMagnitude(int Magnitudes, double[] pMagnitudes)
         {
             double value = 0;
             for (int i = 0; i < Magnitudes; i++)

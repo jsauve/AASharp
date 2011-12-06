@@ -66,7 +66,7 @@ namespace AASharp
             AASCalendarDate NextPesach = DateOfPesach(CivilYear + 1);
             AASDate NextYear = new AASDate(CivilYear + 1, NextPesach.Month, NextPesach.Day, bGregorian);
 
-            return (long)(NextYear - CurrentYear);
+            return (long)(NextYear.Julian - CurrentYear.Julian);
         }
     }
 }

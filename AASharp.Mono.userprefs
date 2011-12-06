@@ -1,11 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Src\AASharpTest\Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="c:\development\AASharp\Src\AASharp\AASJewishCalendar.cs">
     <Files>
       <File FileName="c:\development\AASharp\Src\AASharp\AASCoordinateTransformation.cs" Line="126" Column="3" />
-      <File FileName="c:\development\AASharp\Src\AASharp\AASInterpolate.cs" Line="1" Column="1" />
-      <File FileName="c:\development\AASharp\Src\AASharp\AASJewishCalendar.cs" Line="1" Column="1" />
-      <File FileName="Src\AASharpTest\Program.cs" Line="7" Column="6" />
+      <File FileName="c:\development\AASharp\Src\AASharp\AASInterpolate.cs" Line="44" Column="23" />
+      <File FileName="c:\development\AASharp\Src\AASharp\AASJewishCalendar.cs" Line="5" Column="1" />
+      <File FileName="Src\AASharpTest\Program.cs" Line="625" Column="4" />
+      <File FileName="Src\AASharp\AASRiseTransitSet.cs" Line="8" Column="42" />
+      <File FileName="Src\AASharp\AASMoonPhases.cs" Line="48" Column="11" />
+      <File FileName="Src\AASharp\AASDate.cs" Line="13" Column="12" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

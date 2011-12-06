@@ -41,7 +41,7 @@ namespace AASharp
             return (9 * (Y2 + Y3) - Y1 - Y4) / 16;
         }
 
-        public static unsafe double LagrangeInterpolate(double X, int n, double* pX, double* pY)
+        public static double LagrangeInterpolate(double X, int n, double[] pX, double[] pY)
         {
             double V = 0;
 

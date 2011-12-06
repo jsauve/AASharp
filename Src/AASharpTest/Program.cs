@@ -261,14 +261,8 @@ namespace AASharpTest
             //Test out the CAAStellarMagnitudes class
             double CombinedMag = AASStellarMagnitudes.CombinedMagnitude(1.96, 2.89);
 
-            double[] Mags = { 4.73, 5.22, 5.60 };
-            unsafe
-            {
-                fixed (double* mags = Mags)
-                {
-                    double CombinedMag2 = AASStellarMagnitudes.CombinedMagnitude(3, mags);
-                }
-            }
+            double[] mags = { 4.73, 5.22, 5.60 };
+            double CombinedMag2 = AASStellarMagnitudes.CombinedMagnitude(3, mags);
 
             double BrightnessRatio = AASStellarMagnitudes.BrightnessRatio(0.14, 2.12);
             double MagDiff = AASStellarMagnitudes.MagnitudeDifference(BrightnessRatio);
@@ -623,25 +617,13 @@ namespace AASharpTest
 
             double Y3 = AASInterpolate.InterpolateToHalves(1128.732, 1402.835, 1677.247, 1951.983);
 
-            double[] X1 = { 29.43, 30.97, 27.69, 28.11, 31.58, 33.05 };
-            double[] Y1 = { 0.4913598528, 0.5145891926, 0.4646875083, 0.4711658342, 0.5236885653, 0.5453707057 };
-            unsafe
-            {
-                fixed (double* x1 = X1, y1 = Y1)
-                {
-                    double Y4 = AASInterpolate.LagrangeInterpolate(30, 6, x1, y1);
-                }
-                fixed (double* x1 = X1, y1 = Y1)
-                {
-                    double Y5 = AASInterpolate.LagrangeInterpolate(0, 6, x1, y1);
-                }
-                fixed (double* x1 = X1, y1 = Y1)
-                {
-                    double Y6 = AASInterpolate.LagrangeInterpolate(90, 6, x1, y1);
-                }
-            }
-            
-
+            double[] x1 = { 29.43, 30.97, 27.69, 28.11, 31.58, 33.05 };
+            double[] y1 = { 0.4913598528, 0.5145891926, 0.4646875083, 0.4711658342, 0.5236885653, 0.5453707057 };
+			
+            double Y4 = AASInterpolate.LagrangeInterpolate(30, 6, x1, y1);
+            double Y5 = AASInterpolate.LagrangeInterpolate(0, 6, x1, y1);
+            double Y6 = AASInterpolate.LagrangeInterpolate(90, 6, x1, y1);
+           
             double Alpha1 = AASCoordinateTransformation.DMSToDegrees(2, 42, 43.25);
             double Alpha2 = AASCoordinateTransformation.DMSToDegrees(2, 46, 55.51);
             double Alpha3 = AASCoordinateTransformation.DMSToDegrees(2, 51, 07.69);
