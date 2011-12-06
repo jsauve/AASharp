@@ -40,7 +40,7 @@ namespace AASharp
             M = AASCoordinateTransformation.DegreesToRadians(M);
             double Mdash = AASCoordinateTransformation.MapTo0To360Range(201.5643 + 385.81693528 * k + 0.0107582 * T2 + 0.00001238 * T3 - 0.000000058 * T4);
             Mdash = AASCoordinateTransformation.DegreesToRadians(Mdash);
-            double F = AASCoordinateTransformation.MapTo0To360Range(160.7108 + 390.67050284 * k - 0.0016118 * T2 - 0.00000227 * T3 + 0.00000001 * T4);
+            double F = AASCoordinateTransformation.MapTo0To360Range(160.7108 + 390.67050284 * k - 0.0016118 * T2 - 0.00000227 * T3 + 0.000000011 * T4);
             F = AASCoordinateTransformation.DegreesToRadians(F);
             double omega = AASCoordinateTransformation.MapTo0To360Range(124.7746 - 1.56375588 * k + 0.0020672 * T2 + 0.00000215 * T3);
             omega = AASCoordinateTransformation.DegreesToRadians(omega);

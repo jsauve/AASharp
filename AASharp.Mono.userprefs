@@ -4,8 +4,8 @@
     <Files>
       <File FileName="c:\development\AASharp\Src\AASharp\AASCoordinateTransformation.cs" Line="126" Column="3" />
       <File FileName="c:\development\AASharp\Src\AASharp\AASInterpolate.cs" Line="1" Column="1" />
-      <File FileName="c:\development\AASharp\Src\AASharp\AASJewishCalendar.cs" Line="12" Column="10" />
-      <File FileName="Src\AASharpTest\Program.cs" Line="10" Column="6" />
+      <File FileName="c:\development\AASharp\Src\AASharp\AASJewishCalendar.cs" Line="1" Column="1" />
+      <File FileName="Src\AASharpTest\Program.cs" Line="7" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
