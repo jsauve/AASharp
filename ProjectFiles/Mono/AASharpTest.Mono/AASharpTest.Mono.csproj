@@ -35,7 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="..\Src\AASharpTest\Program.cs">
+    <Compile Include="..\..\..\Src\AASharpTest\Program.cs">
       <Link>Program.cs</Link>
     </Compile>
   </ItemGroup>
