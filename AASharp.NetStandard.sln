@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AASharp.NetStandard", "ProjectFiles\NetStandard\AASharp.NetStandard\AASharp.NetStandard.csproj", "{C8505121-FC4F-4437-A54F-16344F42FA6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AASharpTest.NetStandard", "ProjectFiles\NetStandard\AASharpTest.NetStandard\AASharpTest.NetStandard.csproj", "{6BF53D8F-14B9-4B13-B2FF-6BB8D61BA6DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8505121-FC4F-4437-A54F-16344F42FA6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8505121-FC4F-4437-A54F-16344F42FA6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8505121-FC4F-4437-A54F-16344F42FA6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8505121-FC4F-4437-A54F-16344F42FA6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BF53D8F-14B9-4B13-B2FF-6BB8D61BA6DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BF53D8F-14B9-4B13-B2FF-6BB8D61BA6DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BF53D8F-14B9-4B13-B2FF-6BB8D61BA6DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BF53D8F-14B9-4B13-B2FF-6BB8D61BA6DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

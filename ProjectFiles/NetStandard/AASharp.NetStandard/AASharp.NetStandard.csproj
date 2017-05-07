@@ -1,0 +1,84 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\..\Src\AASharp\AAS2DCoordinate.cs" Link="AAS2DCoordinate.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AAS3DCoordinate.cs" Link="AAS3DCoordinate.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASAberration.cs" Link="AASAberration.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASAngularSeparation.cs" Link="AASAngularSeparation.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASBinaryStar.cs" Link="AASBinaryStar.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASBinaryStarDetails.cs" Link="AASBinaryStarDetails.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASCalendarDate.cs" Link="AASCalendarDate.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASCoordinateTransformation.cs" Link="AASCoordinateTransformation.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASDate.cs" Link="AASDate.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASDiameters.cs" Link="AASDiameters.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASDynamicalTime.cs" Link="AASDynamicalTime.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASEarth.cs" Link="AASEarth.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASEaster.cs" Link="AASEaster.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASEclipses.cs" Link="AASEclipses.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASEclipticalElements.cs" Link="AASEclipticalElements.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASElementsPlanetaryOrbit.cs" Link="AASElementsPlanetaryOrbit.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASElliptical.cs" Link="AASElliptical.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASEquationOfTime.cs" Link="AASEquationOfTime.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASEquinoxesAndSolstices.cs" Link="AASEquinoxesAndSolstices.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASFK5.cs" Link="AASFK5.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASGalileanMoonDetail.cs" Link="AASGalileanMoonDetail.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASGalileanMoons.cs" Link="AASGalileanMoons.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASGalileanMoonsDetails.cs" Link="AASGalileanMoonsDetails.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASGlobe.cs" Link="AASGlobe.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASIlluminatedFraction.cs" Link="AASIlluminatedFraction.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASInterpolate.cs" Link="AASInterpolate.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASJewishCalendar.cs" Link="AASJewishCalendar.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASJupiter.cs" Link="AASJupiter.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASKepler.cs" Link="AASKepler.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASLunarEclipseDetails.cs" Link="AASLunarEclipseDetails.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASMars.cs" Link="AASMars.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASMath.cs" Link="AASMath.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASMercury.cs" Link="AASMercury.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASMoon.cs" Link="AASMoon.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASMoonIlluminatedFraction.cs" Link="AASMoonIlluminatedFraction.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASMoonMaxDeclinations.cs" Link="AASMoonMaxDeclinations.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASMoonNodes.cs" Link="AASMoonNodes.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASMoonPhases.cs" Link="AASMoonPhases.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASNearParabolic.cs" Link="AASNearParabolic.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASNeptune.cs" Link="AASNeptune.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASNodes.cs" Link="AASNodes.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASNutation.cs" Link="AASNutation.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASParabolic.cs" Link="AASParabolic.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASParallactic.cs" Link="AASParallactic.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASParallax.cs" Link="AASParallax.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASPhysicalJupiter.cs" Link="AASPhysicalJupiter.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASPhysicalMars.cs" Link="AASPhysicalMars.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASPhysicalMoon.cs" Link="AASPhysicalMoon.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASPhysicalSun.cs" Link="AASPhysicalSun.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASPlanetaryPhenomena.cs" Link="AASPlanetaryPhenomena.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASPlanetPerihelionAphelion.cs" Link="AASPlanetPerihelionAphelion.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASPluto.cs" Link="AASPluto.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASPrecession.cs" Link="AASPrecession.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASRefraction.cs" Link="AASRefraction.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASRiseTransitSet.cs" Link="AASRiseTransitSet.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASSaturn.cs" Link="AASSaturn.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASSaturnMoons.cs" Link="AASSaturnMoons.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASSaturnRings.cs" Link="AASSaturnRings.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASSidereal.cs" Link="AASSidereal.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASSolarEclipseDetails.cs" Link="AASSolarEclipseDetails.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASStellarMagnitudes.cs" Link="AASStellarMagnitudes.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASSun.cs" Link="AASSun.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASUranus.cs" Link="AASUranus.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASVenus.cs" Link="AASVenus.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AberrationCoefficient.cs" Link="AberrationCoefficient.cs" />
+    <Compile Include="..\..\..\Src\AASharp\DAY_OF_WEEK.cs" Link="DAY_OF_WEEK.cs" />
+    <Compile Include="..\..\..\Src\AASharp\EventType.cs" Link="EventType.cs" />
+    <Compile Include="..\..\..\Src\AASharp\MoonCoefficient1.cs" Link="MoonCoefficient1.cs" />
+    <Compile Include="..\..\..\Src\AASharp\MoonCoefficient2.cs" Link="MoonCoefficient2.cs" />
+    <Compile Include="..\..\..\Src\AASharp\MoonPerigeeApogeeCoefficient.cs" Link="MoonPerigeeApogeeCoefficient.cs" />
+    <Compile Include="..\..\..\Src\AASharp\PlanetaryObject.cs" Link="PlanetaryObject.cs" />
+    <Compile Include="..\..\..\Src\AASharp\PlutoCoefficient1.cs" Link="PlutoCoefficient1.cs" />
+    <Compile Include="..\..\..\Src\AASharp\PlutoCoefficient2.cs" Link="PlutoCoefficient2.cs" />
+    <Compile Include="..\..\..\Src\AASharp\VSOP87Coefficient.cs" Link="VSOP87Coefficient.cs" />
+  </ItemGroup>
+
+</Project>
