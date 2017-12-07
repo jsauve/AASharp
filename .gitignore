@@ -58,3 +58,4 @@ _ReSharper*/
 #NuGet
 packages/
 .vs/
+.idea/
