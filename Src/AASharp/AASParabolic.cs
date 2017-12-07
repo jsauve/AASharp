@@ -4,10 +4,6 @@ namespace AASharp
 {
     public class AASParabolicObjectElements
     {
-        public AASParabolicObjectElements()
-        {
-        }
-
         public double q;
         public double i;
         public double w;
@@ -18,10 +14,6 @@ namespace AASharp
 
     public class AASParabolicObjectDetails
     {
-        public AASParabolicObjectDetails()
-        {
-        }
-
         public AAS3DCoordinate HeliocentricRectangularEquatorial;
         public AAS3DCoordinate HeliocentricRectangularEcliptical;
         public double HeliocentricEclipticLongitude;

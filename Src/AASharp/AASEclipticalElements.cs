@@ -4,10 +4,6 @@ namespace AASharp
 {
     public class AASEclipticalElementDetails
     {
-        public AASEclipticalElementDetails()
-        {
-        }
-
         public double i;
         public double w;
         public double omega;

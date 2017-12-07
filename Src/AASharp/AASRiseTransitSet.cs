@@ -4,10 +4,6 @@ namespace AASharp
 {
     public class AASRiseTransitSetDetails
     {
-        public AASRiseTransitSetDetails()
-        {
-        }
-
         public bool bRiseValid { get; set; }
         public double Rise { get; set; }
         public bool bTransitAboveHorizon { get; set; }

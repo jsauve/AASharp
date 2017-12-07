@@ -15,10 +15,6 @@ namespace AASharp
 
     public class AASEllipticalPlanetaryDetails
     {
-        public AASEllipticalPlanetaryDetails()
-        {
-        }
-
         public double ApparentGeocentricLongitude;
         public double ApparentGeocentricLatitude;
         public double ApparentGeocentricDistance;

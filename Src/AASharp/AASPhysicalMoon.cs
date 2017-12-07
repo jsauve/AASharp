@@ -4,10 +4,6 @@ namespace AASharp
 {
     public class AASPhysicalMoonDetails
     {
-        public AASPhysicalMoonDetails()
-        {
-        }
-
         public double ldash;
         public double bdash;
         public double ldash2;
@@ -19,10 +15,6 @@ namespace AASharp
 
     public class AASSelenographicMoonDetails
     {
-        public AASSelenographicMoonDetails()
-        {
-        }
-
         public double l0;
         public double b0;
         public double c0;
