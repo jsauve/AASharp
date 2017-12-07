@@ -349,7 +349,7 @@ namespace AASharp
 
         public void SetInGregorianCalendar(bool bGregorianCalendar)
         {
-            bool bAfterPapalReform = (m_dblJulian >= 2299160.5);
+            bool bAfterPapalReform = AfterPapalReform(m_dblJulian);
 
 #if DEBUG
             if (bGregorianCalendar) //We do not allow storage of propalatic Gregorian dates

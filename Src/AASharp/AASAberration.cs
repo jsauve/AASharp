@@ -47,6 +47,8 @@ namespace AASharp
 
         public static AAS3DCoordinate EarthVelocity(double JD)
         {
+            //TODO : Add bHighPrecision 
+            
             double T = (JD - 2451545) / 36525;
             double L2 = 3.1761467 + 1021.3285546 * T;
             double L3 = 1.7534703 + 628.3075849 * T;
