@@ -49,7 +49,7 @@ namespace AASharp
             return S;
         }
 
-        public static AASParabolicObjectDetails Calculate(double JD, ref AASParabolicObjectElements elements)
+        public static AASParabolicObjectDetails Calculate(double JD, ref AASParabolicObjectElements elements, bool bHighPrecision)
         {
             double Epsilon = AASNutation.MeanObliquityOfEcliptic(elements.JDEquinox);
 
@@ -83,7 +83,7 @@ namespace AASharp
             double B = Math.Atan2(G, Q);
             double C = Math.Atan2(H, R);
 
-            AAS3DCoordinate SunCoord = AASSun.EquatorialRectangularCoordinatesAnyEquinox(JD, elements.JDEquinox);
+            AAS3DCoordinate SunCoord = AASSun.EquatorialRectangularCoordinatesAnyEquinox(JD, elements.JDEquinox, bHighPrecision);
 
             for (int j = 0; j < 2; j++)
             {

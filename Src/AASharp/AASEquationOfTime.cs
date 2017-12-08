@@ -4,7 +4,7 @@ namespace AASharp
 {
     public static class AASEquationOfTime
     {
-        public static double Calculate(double JD)
+        public static double Calculate(double JD, bool bHighPrecision)
         {
             double rho = (JD - 2451545) / 365250;
             double rhosquared = rho * rho;
@@ -17,8 +17,8 @@ namespace AASharp
             rhocubed / 49931 - rho4 / 15300 - rho5 / 2000000);
 
             //Calculate the Suns apparent right ascension
-            double SunLong = AASSun.ApparentEclipticLongitude(JD);
-            double SunLat = AASSun.ApparentEclipticLatitude(JD);
+            double SunLong = AASSun.ApparentEclipticLongitude(JD, bHighPrecision);
+            double SunLat = AASSun.ApparentEclipticLatitude(JD, bHighPrecision);
             double epsilon = AASNutation.TrueObliquityOfEcliptic(JD);
             AAS2DCoordinate Equatorial = AASCoordinateTransformation.Ecliptic2Equatorial(SunLong, SunLat, epsilon);
 

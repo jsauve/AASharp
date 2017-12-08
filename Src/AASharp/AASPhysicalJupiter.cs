@@ -15,7 +15,7 @@ namespace AASharp
 
     public static class AASPhysicalJupiter
     {
-        public static CAAPhysicalJupiterDetails Calculate(double JD)
+        public static CAAPhysicalJupiterDetails Calculate(double JD, bool bHighPrecision)
         {
             //What will be the return value
             CAAPhysicalJupiterDetails details = new CAAPhysicalJupiterDetails();
@@ -33,18 +33,18 @@ namespace AASharp
             double W2 = AASCoordinateTransformation.MapTo0To360Range(16.838 + 870.27003539 * d);
 
             //Step 3
-            double l0 = AASEarth.EclipticLongitude(JD);
+            double l0 = AASEarth.EclipticLongitude(JD, bHighPrecision);
             double l0rad = AASCoordinateTransformation.DegreesToRadians(l0);
-            double b0 = AASEarth.EclipticLatitude(JD);
+            double b0 = AASEarth.EclipticLatitude(JD, bHighPrecision);
             double b0rad = AASCoordinateTransformation.DegreesToRadians(b0);
-            double R = AASEarth.RadiusVector(JD);
+            double R = AASEarth.RadiusVector(JD, bHighPrecision);
 
             //Step 4
-            double l = AASJupiter.EclipticLongitude(JD);
+            double l = AASJupiter.EclipticLongitude(JD, bHighPrecision);
             double lrad = AASCoordinateTransformation.DegreesToRadians(l);
-            double b = AASJupiter.EclipticLatitude(JD);
+            double b = AASJupiter.EclipticLatitude(JD, bHighPrecision);
             double brad = AASCoordinateTransformation.DegreesToRadians(b);
-            double r = AASJupiter.RadiusVector(JD);
+            double r = AASJupiter.RadiusVector(JD, bHighPrecision);
 
             //Step 5
             double x = r * Math.Cos(brad) * Math.Cos(lrad) - R * Math.Cos(l0rad);

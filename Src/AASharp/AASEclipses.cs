@@ -48,11 +48,10 @@ namespace AASharp
 
             double DeltaJD = 0;
             if (bSolarEclipse)
-                DeltaJD += -0.4075 * Math.Sin(Mdash) +
-                0.1721 * E * Math.Sin(M);
+                DeltaJD += -0.4075 * Math.Sin(Mdash) + 0.1721 * E * Math.Sin(M);
             else
-                DeltaJD += -0.4065 * Math.Sin(Mdash) +
-                0.1727 * E * Math.Sin(M);
+                DeltaJD += -0.4065 * Math.Sin(Mdash) + 0.1727 * E * Math.Sin(M);
+            
             DeltaJD += 0.0161 * Math.Sin(2 * Mdash) +
             -0.0097 * Math.Sin(2 * Fdash) +
             0.0073 * E * Math.Sin(Mdash - M) +
@@ -96,16 +95,53 @@ namespace AASharp
             -0.0005 * Math.Cos(M + Mdash);
 
             //Check to see if the eclipse is visible from the Earth's surface
-            if (Math.Abs(details.gamma) > (1.5433 + details.u))
+            double fgamma = Math.Abs(details.gamma);
+            if (fgamma > (1.5433 + details.u))
                 return details;
 
-            //We have an eclipse at this time
-            details.bEclipse = true;
+            //We have an eclipse at this time, fill in the details
+            if (fgamma < 0.9972)
+            {
+                if (details.u < 0)
+                    details.Flags = AASSolarEclipseDetails.TOTAL_ECLIPSE;
+                else if (details.u > 0.0047)
+                    details.Flags = AASSolarEclipseDetails.ANNULAR_ECLIPSE;
+                else if (details.u >= 0 && details.u <= 0.0047)
+                {
+                    double w = 0.00464 * Math.Sqrt(1 - (details.gamma * details.gamma));
+                    if (details.u < w)
+                        details.Flags = AASSolarEclipseDetails.ANNULAR_TOTAL_ECLIPSE;
+                    else
+                        details.Flags = AASSolarEclipseDetails.ANNULAR_ECLIPSE;
+                }
 
-            //In the case of a partial eclipse, calculate its magnitude
-            double fgamma = Math.Abs(details.gamma);
-            if (((fgamma > 0.9972) && (fgamma < 1.5433 + details.u)))
-                details.GreatestMagnitude = (1.5433 + details.u - fgamma) / (0.5461 + 2 * details.u);
+                details.Flags |= AASSolarEclipseDetails.CENTRAL_ECLIPSE;
+            }
+            else if ((fgamma > 0.9972) && (fgamma < (1.5433 + details.u)))
+            {
+                if ((fgamma > 0.9972) && (fgamma < (0.9972 + Math.Abs(details.u))))
+                {
+                    if (details.u < 0)
+                        details.Flags = AASSolarEclipseDetails.TOTAL_ECLIPSE;
+                    else if (details.u > 0.0047)
+                        details.Flags = AASSolarEclipseDetails.ANNULAR_ECLIPSE;
+                    else if (details.u >= 0 && details.u <= 0.0047)
+                    {
+                        double w = 0.00464 * Math.Sqrt(1 - (details.gamma * details.gamma));
+                        if (details.u < w)
+                            details.Flags = AASSolarEclipseDetails.ANNULAR_TOTAL_ECLIPSE;
+                        else
+                            details.Flags = AASSolarEclipseDetails.ANNULAR_ECLIPSE;
+                    }
+                }
+                else
+                {
+                    details.Flags = AASSolarEclipseDetails.PARTIAL_ECLIPSE;
+                    details.GreatestMagnitude = (1.5433 + details.u - fgamma) / (0.5461 + (2*details.u));
+                }
+
+                details.Flags |= AASSolarEclipseDetails.NON_CENTRAL_ECLIPSE;
+            }
 
             return details;
         }
@@ -135,7 +171,14 @@ namespace AASharp
             AASSolarEclipseDetails solarDetails = Calculate(k, ref Mdash);
 
             //What will be the return value
-            AASLunarEclipseDetails details = new AASLunarEclipseDetails { bEclipse = solarDetails.bEclipse, F = solarDetails.F, gamma = solarDetails.gamma, TimeOfMaximumEclipse = solarDetails.TimeOfMaximumEclipse, u = solarDetails.u };
+            AASLunarEclipseDetails details = new AASLunarEclipseDetails
+            {
+                bEclipse = solarDetails.Flags != 0, 
+                F = solarDetails.F, 
+                gamma = solarDetails.gamma, 
+                TimeOfMaximumEclipse = solarDetails.TimeOfMaximumEclipse, 
+                u = solarDetails.u
+            };
 
             if (details.bEclipse)
             {

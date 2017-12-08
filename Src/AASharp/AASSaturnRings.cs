@@ -14,7 +14,7 @@ namespace AASharp
 
     public static class AASSaturnRings
     {
-        public static AASSaturnRingDetails Calculate(double JD)
+        public static AASSaturnRingDetails Calculate(double JD, bool bHighPrecision)
         {
             //What will be the return value
             AASSaturnRingDetails details = new AASSaturnRingDetails();
@@ -29,13 +29,13 @@ namespace AASharp
             double omegarad = AASCoordinateTransformation.DegreesToRadians(omega);
 
             //Step 2. Calculate the heliocentric longitude, latitude and radius vector of the Earth in the FK5 system
-            double l0 = AASEarth.EclipticLongitude(JD);
-            double b0 = AASEarth.EclipticLatitude(JD);
+            double l0 = AASEarth.EclipticLongitude(JD, bHighPrecision);
+            double b0 = AASEarth.EclipticLatitude(JD, bHighPrecision);
             l0 += AASFK5.CorrectionInLongitude(l0, b0, JD);
             double l0rad = AASCoordinateTransformation.DegreesToRadians(l0);
             b0 += AASFK5.CorrectionInLatitude(l0, JD);
             double b0rad = AASCoordinateTransformation.DegreesToRadians(b0);
-            double R = AASEarth.RadiusVector(JD);
+            double R = AASEarth.RadiusVector(JD, bHighPrecision);
 
             //Step 3. Calculate the corresponding coordinates l,b,r for Saturn but for the instance t-lightraveltime
             double DELTA = 9;
@@ -52,14 +52,14 @@ namespace AASharp
             while (bIterate)
             {
                 //Calculate the position of Saturn
-                l = AASSaturn.EclipticLongitude(JD1);
-                b = AASSaturn.EclipticLatitude(JD1);
+                l = AASSaturn.EclipticLongitude(JD1, bHighPrecision);
+                b = AASSaturn.EclipticLatitude(JD1, bHighPrecision);
                 l += AASFK5.CorrectionInLongitude(l, b, JD1);
                 b += AASFK5.CorrectionInLatitude(l, JD1);
 
                 double lrad = AASCoordinateTransformation.DegreesToRadians(l);
                 double brad = AASCoordinateTransformation.DegreesToRadians(b);
-                r = AASSaturn.RadiusVector(JD1);
+                r = AASSaturn.RadiusVector(JD1, bHighPrecision);
 
                 //Step 4
                 x = r * Math.Cos(brad) * Math.Cos(lrad) - R * Math.Cos(l0rad);

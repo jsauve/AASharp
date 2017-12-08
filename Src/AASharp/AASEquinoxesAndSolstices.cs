@@ -4,7 +4,7 @@ namespace AASharp
 {
     public static class AASEquinoxesAndSolstices
     {
-        public static double SpringEquinox(long Year)
+        public static double NorthwardEquinox(long Year, bool bHighPrecision)
         {
             //calculate the approximate date
             double JDE;
@@ -28,7 +28,7 @@ namespace AASharp
             double Correction;
             do
             {
-                double SunLongitude = AASSun.ApparentEclipticLongitude(JDE);
+                double SunLongitude = AASSun.ApparentEclipticLongitude(JDE, bHighPrecision);
                 Correction = 58 * Math.Sin(AASCoordinateTransformation.DegreesToRadians(-SunLongitude));
                 JDE += Correction;
             }
@@ -37,7 +37,7 @@ namespace AASharp
             return JDE;
         }
 
-        public static double SummerSolstice(long Year)
+        public static double NorthernSolstice(long Year, bool bHighPrecision)
         {
             //calculate the approximate date
             double JDE;
@@ -61,7 +61,7 @@ namespace AASharp
             double Correction;
             do
             {
-                double SunLongitude = AASSun.ApparentEclipticLongitude(JDE);
+                double SunLongitude = AASSun.ApparentEclipticLongitude(JDE, bHighPrecision);
                 Correction = 58 * Math.Sin(AASCoordinateTransformation.DegreesToRadians(90 - SunLongitude));
                 JDE += Correction;
             }
@@ -70,7 +70,7 @@ namespace AASharp
             return JDE;
         }
 
-        public static double AutumnEquinox(long Year)
+        public static double SouthwardEquinox(long Year, bool bHighPrecision)
         {
             //calculate the approximate date
             double JDE;
@@ -94,7 +94,7 @@ namespace AASharp
             double Correction;
             do
             {
-                double SunLongitude = AASSun.ApparentEclipticLongitude(JDE);
+                double SunLongitude = AASSun.ApparentEclipticLongitude(JDE, bHighPrecision);
                 Correction = 58 * Math.Sin(AASCoordinateTransformation.DegreesToRadians(180 - SunLongitude));
                 JDE += Correction;
             }
@@ -103,7 +103,7 @@ namespace AASharp
             return JDE;
         }
 
-        public static double WinterSolstice(long Year)
+        public static double SouthernSolstice(long Year, bool bHighPrecision)
         {
             //calculate the approximate date
             double JDE;
@@ -127,7 +127,7 @@ namespace AASharp
             double Correction;
             do
             {
-                double SunLongitude = AASSun.ApparentEclipticLongitude(JDE);
+                double SunLongitude = AASSun.ApparentEclipticLongitude(JDE, bHighPrecision);
                 Correction = 58 * Math.Sin(AASCoordinateTransformation.DegreesToRadians(270 - SunLongitude));
                 JDE += Correction;
             }
@@ -136,25 +136,42 @@ namespace AASharp
             return JDE;
         }
 
-        public static double LengthOfSpring(long Year)
+        public static double LengthOfSpring(long Year, bool bNorthernHemisphere, bool bHighPrecision)
         {
-            return SummerSolstice(Year) - SpringEquinox(Year);
+            if (bNorthernHemisphere)
+                return NorthernSolstice(Year, bHighPrecision) - NorthwardEquinox(Year, bHighPrecision);
+            else
+                return SouthernSolstice(Year, bHighPrecision) - SouthwardEquinox(Year, bHighPrecision);
         }
 
-        public static double LengthOfSummer(long Year)
+        public static double LengthOfSummer(long Year, bool bNorthernHemisphere, bool bHighPrecision)
         {
-            return AutumnEquinox(Year) - SummerSolstice(Year);
+            if (bNorthernHemisphere)
+                return SouthwardEquinox(Year, bHighPrecision) - NorthernSolstice(Year, bHighPrecision);
+            else
+            {
+                //The Summer season wraps around into the following year for the southern hemisphere
+                return NorthwardEquinox(Year + 1, bHighPrecision) - SouthernSolstice(Year, bHighPrecision);
+            } 
         }
 
-        public static double LengthOfAutumn(long Year)
+        public static double LengthOfAutumn(long Year, bool bNorthernHemisphere, bool bHighPrecision)
         {
-            return WinterSolstice(Year) - AutumnEquinox(Year);
+            if (bNorthernHemisphere)
+                return SouthernSolstice(Year, bHighPrecision) - SouthwardEquinox(Year, bHighPrecision);
+            else
+                return NorthernSolstice(Year, bHighPrecision) - NorthwardEquinox(Year, bHighPrecision);
         }
 
-        public static double LengthOfWinter(long Year)
+        public static double LengthOfWinter(long Year, bool bNorthernHemisphere, bool bHighPrecision)
         {
-            //The winter season wraps around into the following Year
-            return SpringEquinox(Year + 1) - WinterSolstice(Year);
+            if (bNorthernHemisphere)
+            {
+                //The Winter season wraps around into the following year for the nothern hemisphere
+                return NorthwardEquinox(Year + 1, bHighPrecision) - SouthernSolstice(Year, bHighPrecision);
+            }
+            else
+                return SouthwardEquinox(Year, bHighPrecision) - NorthernSolstice(Year, bHighPrecision);
         }
     }
 }

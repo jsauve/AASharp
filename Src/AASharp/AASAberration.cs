@@ -105,7 +105,7 @@ namespace AASharp
             return aberration;
         }
 
-        public static AAS2DCoordinate EclipticAberration(double Lambda, double Beta, double JD)
+        public static AAS2DCoordinate EclipticAberration(double Lambda, double Beta, double JD, bool bHighPrecision)
         {
             //What is the return value
             AAS2DCoordinate aberration = new AAS2DCoordinate();
@@ -115,7 +115,7 @@ namespace AASharp
             double e = 0.016708634 - 0.000042037 * T - 0.0000001267 * Tsquared;
             double pi = 102.93735 + 1.71946 * T + 0.00046 * Tsquared;
             const double k = 20.49552;
-            double SunLongitude = AASSun.GeometricEclipticLongitude(JD);
+            double SunLongitude = AASSun.GeometricEclipticLongitude(JD, bHighPrecision);
 
             //Convert to radians
             pi = AASCoordinateTransformation.DegreesToRadians(pi);

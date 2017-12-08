@@ -45,7 +45,7 @@ namespace AASharp
     {
 
 
-        public static AASSaturnMoonsDetails CalculateHelper(double JD, double sunlongrad, double betarad, double R)
+        public static AASSaturnMoonsDetails CalculateHelper(double JD, double sunlongrad, double betarad, double R, bool bHighPrecision)
         {
             //What will be the return value
             AASSaturnMoonsDetails details = new AASSaturnMoonsDetails();
@@ -62,11 +62,11 @@ namespace AASharp
             while (bIterate)
             {
                 //Calculate the position of Saturn
-                double l = AASSaturn.EclipticLongitude(JD1);
+                double l = AASSaturn.EclipticLongitude(JD1, bHighPrecision);
                 double lrad = AASCoordinateTransformation.DegreesToRadians(l);
-                double b = AASSaturn.EclipticLatitude(JD1);
+                double b = AASSaturn.EclipticLatitude(JD1, bHighPrecision);
                 double brad = AASCoordinateTransformation.DegreesToRadians(b);
-                double r = AASSaturn.RadiusVector(JD1);
+                double r = AASSaturn.RadiusVector(JD1, bHighPrecision);
 
                 x = r * Math.Cos(brad) * Math.Cos(lrad) + R * Math.Cos(sunlongrad);
                 y = r * Math.Cos(brad) * Math.Sin(lrad) + R * Math.Sin(sunlongrad);
@@ -509,14 +509,14 @@ namespace AASharp
             return details;
         }
 
-        public static AASSaturnMoonsDetails Calculate(double JD)
+        public static AASSaturnMoonsDetails Calculate(double JD, bool bHighPrecision)
         {
             //Calculate the position of the Sun
-            double sunlong = AASSun.GeometricEclipticLongitude(JD);
+            double sunlong = AASSun.GeometricEclipticLongitude(JD, bHighPrecision);
             double sunlongrad = AASCoordinateTransformation.DegreesToRadians(sunlong);
-            double beta = AASSun.GeometricEclipticLatitude(JD);
+            double beta = AASSun.GeometricEclipticLatitude(JD, bHighPrecision);
             double betarad = AASCoordinateTransformation.DegreesToRadians(beta);
-            double R = AASEarth.RadiusVector(JD);
+            double R = AASEarth.RadiusVector(JD, bHighPrecision);
 
             //Calculate the the light travel time from Saturn to the Earth
             double DELTA = 9;
@@ -530,11 +530,11 @@ namespace AASharp
             while (bIterate)
             {
                 //Calculate the position of Jupiter
-                double l = AASSaturn.EclipticLongitude(JD1);
+                double l = AASSaturn.EclipticLongitude(JD1, bHighPrecision);
                 double lrad = AASCoordinateTransformation.DegreesToRadians(l);
-                double b = AASSaturn.EclipticLatitude(JD1);
+                double b = AASSaturn.EclipticLatitude(JD1, bHighPrecision);
                 double brad = AASCoordinateTransformation.DegreesToRadians(b);
-                double r = AASSaturn.RadiusVector(JD1);
+                double r = AASSaturn.RadiusVector(JD1, bHighPrecision);
 
                 x = r * Math.Cos(brad) * Math.Cos(lrad) + R * Math.Cos(sunlongrad);
                 y = r * Math.Cos(brad) * Math.Sin(lrad) + R * Math.Sin(sunlongrad);
@@ -552,7 +552,7 @@ namespace AASharp
             }
 
             //Calculate the details as seen from the earth
-            AASSaturnMoonsDetails details1 = CalculateHelper(JD, sunlongrad, betarad, R);
+            AASSaturnMoonsDetails details1 = CalculateHelper(JD, sunlongrad, betarad, R, bHighPrecision);
 
             var  details1Satellite1 = details1.Satellite1;
             var  details1Satellite2 = details1.Satellite2;
@@ -575,11 +575,11 @@ namespace AASharp
             //Calculate the the light travel time from Saturn to the Sun
             JD1 = JD - EarthLightTravelTime;
             {
-                double l = AASSaturn.EclipticLongitude(JD1);
+                double l = AASSaturn.EclipticLongitude(JD1, bHighPrecision);
                 double lrad = AASCoordinateTransformation.DegreesToRadians(l);
-                double b = AASSaturn.EclipticLatitude(JD1);
+                double b = AASSaturn.EclipticLatitude(JD1, bHighPrecision);
                 double brad = AASCoordinateTransformation.DegreesToRadians(b);
-                double r = AASSaturn.RadiusVector(JD1);
+                double r = AASSaturn.RadiusVector(JD1, bHighPrecision);
                 x = r * Math.Cos(brad) * Math.Cos(lrad);
                 y = r * Math.Cos(brad) * Math.Sin(lrad);
                 z = r * Math.Sin(brad);
@@ -588,7 +588,7 @@ namespace AASharp
             double SunLightTravelTime = AASElliptical.DistanceToLightTime(DELTA);
 
             //Calculate the details as seen from the Sun
-            AASSaturnMoonsDetails details2 = CalculateHelper(JD + SunLightTravelTime - EarthLightTravelTime, sunlongrad, betarad, 0);
+            AASSaturnMoonsDetails details2 = CalculateHelper(JD + SunLightTravelTime - EarthLightTravelTime, sunlongrad, betarad, 0, bHighPrecision);
 
             var details2Satellite1 = details2.Satellite1;
             var details2Satellite2 = details2.Satellite2;

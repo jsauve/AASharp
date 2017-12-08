@@ -4,16 +4,18 @@ using AASharp;
 namespace AASharpTest
 {
     class Program
-    {
+    {   
         static void Main(string[] args)
         {
+            var bHighPrecision = false;
+            
             //Calculate the topocentric horizontal position of the Sun for Palomar Observatory on midnight UTC for the 21st of September 2007
             AASDate dateSunCalc = new AASDate(2007, 9, 21, true);
             double JDSun = dateSunCalc.Julian + AASDynamicalTime.DeltaT(dateSunCalc.Julian) / 86400.0;
-            double SunLong = AASSun.ApparentEclipticLongitude(JDSun);
-            double SunLat = AASSun.ApparentEclipticLatitude(JDSun);
+            double SunLong = AASSun.ApparentEclipticLongitude(JDSun, bHighPrecision);
+            double SunLat = AASSun.ApparentEclipticLatitude(JDSun, bHighPrecision);
             AAS2DCoordinate Equatorial = AASCoordinateTransformation.Ecliptic2Equatorial(SunLong, SunLat, AASNutation.TrueObliquityOfEcliptic(JDSun));
-            double SunRad = AASEarth.RadiusVector(JDSun);
+            double SunRad = AASEarth.RadiusVector(JDSun, bHighPrecision);
             double Longitude = AASCoordinateTransformation.DMSToDegrees(116, 51, 45); //West is considered positive
             double Latitude = AASCoordinateTransformation.DMSToDegrees(33, 21, 22);
             double Height = 1706;
@@ -268,72 +270,72 @@ namespace AASharpTest
 
 
             //Test out the CAAVenus class
-            double VenusLong = AASVenus.EclipticLongitude(2448976.5);
-            double VenusLat = AASVenus.EclipticLatitude(2448976.5);
-            double VenusRadius = AASVenus.RadiusVector(2448976.5);
+            double VenusLong = AASVenus.EclipticLongitude(2448976.5, bHighPrecision);
+            double VenusLat = AASVenus.EclipticLatitude(2448976.5, bHighPrecision);
+            double VenusRadius = AASVenus.RadiusVector(2448976.5, bHighPrecision);
 
 
             //Test out the CAAMercury class
-            double MercuryLong = AASMercury.EclipticLongitude(2448976.5);
-            double MercuryLat = AASMercury.EclipticLatitude(2448976.5);
-            double MercuryRadius = AASMercury.RadiusVector(2448976.5);
+            double MercuryLong = AASMercury.EclipticLongitude(2448976.5, bHighPrecision);
+            double MercuryLat = AASMercury.EclipticLatitude(2448976.5, bHighPrecision);
+            double MercuryRadius = AASMercury.RadiusVector(2448976.5, bHighPrecision);
 
 
             //Test out the CAAEarth class
-            double EarthLong = AASEarth.EclipticLongitude(2448908.5);
-            double EarthLat = AASEarth.EclipticLatitude(2448908.5);
-            double EarthRadius = AASEarth.RadiusVector(2448908.5);
+            double EarthLong = AASEarth.EclipticLongitude(2448908.5, bHighPrecision);
+            double EarthLat = AASEarth.EclipticLatitude(2448908.5, bHighPrecision);
+            double EarthRadius = AASEarth.RadiusVector(2448908.5, bHighPrecision);
 
             double EarthLong2 = AASEarth.EclipticLongitudeJ2000(2448908.5);
             double EarthLat2 = AASEarth.EclipticLatitudeJ2000(2448908.5);
 
 
             //Test out the CAASun class
-            SunLong = AASSun.GeometricEclipticLongitude(2448908.5);
-            SunLat = AASSun.GeometricEclipticLatitude(2448908.5);
+            SunLong = AASSun.GeometricEclipticLongitude(2448908.5, bHighPrecision);
+            SunLat = AASSun.GeometricEclipticLatitude(2448908.5, bHighPrecision);
 
             double SunLongCorrection = AASFK5.CorrectionInLongitude(SunLong, SunLat, 2448908.5);
             double SunLatCorrection = AASFK5.CorrectionInLatitude(SunLong, 2448908.5);
 
-            SunLong = AASSun.ApparentEclipticLongitude(2448908.5);
-            SunLat = AASSun.ApparentEclipticLatitude(2448908.5);
+            SunLong = AASSun.ApparentEclipticLongitude(2448908.5, bHighPrecision);
+            SunLat = AASSun.ApparentEclipticLatitude(2448908.5, bHighPrecision);
             Equatorial = AASCoordinateTransformation.Ecliptic2Equatorial(SunLong, SunLat, AASNutation.TrueObliquityOfEcliptic(2448908.5));
 
-            AAS3DCoordinate SunCoord = AASSun.EquatorialRectangularCoordinatesMeanEquinox(2448908.5);
-            AAS3DCoordinate SunCoord2 = AASSun.EclipticRectangularCoordinatesJ2000(2448908.5);
-            AAS3DCoordinate SunCoord3 = AASSun.EquatorialRectangularCoordinatesJ2000(2448908.5);
-            AAS3DCoordinate SunCoord4 = AASSun.EquatorialRectangularCoordinatesB1950(2448908.5);
-            AAS3DCoordinate SunCoord5 = AASSun.EquatorialRectangularCoordinatesAnyEquinox(2448908.5, 2467616.0);
+            AAS3DCoordinate SunCoord = AASSun.EquatorialRectangularCoordinatesMeanEquinox(2448908.5, bHighPrecision);
+            AAS3DCoordinate SunCoord2 = AASSun.EclipticRectangularCoordinatesJ2000(2448908.5, bHighPrecision);
+            AAS3DCoordinate SunCoord3 = AASSun.EquatorialRectangularCoordinatesJ2000(2448908.5, bHighPrecision);
+            AAS3DCoordinate SunCoord4 = AASSun.EquatorialRectangularCoordinatesB1950(2448908.5, bHighPrecision);
+            AAS3DCoordinate SunCoord5 = AASSun.EquatorialRectangularCoordinatesAnyEquinox(2448908.5, 2467616.0, bHighPrecision);
 
 
             //Test out the CAAMars class
-            double MarsLong = AASMars.EclipticLongitude(2448935.500683);
-            double MarsLat = AASMars.EclipticLatitude(2448935.500683);
-            double MarsRadius = AASMars.RadiusVector(2448935.500683);
+            double MarsLong = AASMars.EclipticLongitude(2448935.500683, bHighPrecision);
+            double MarsLat = AASMars.EclipticLatitude(2448935.500683, bHighPrecision);
+            double MarsRadius = AASMars.RadiusVector(2448935.500683, bHighPrecision);
 
 
             //Test out the CAAJupiter class
-            double JupiterLong = AASJupiter.EclipticLongitude(2448972.50068);
-            double JupiterLat = AASJupiter.EclipticLatitude(2448972.50068);
-            double JupiterRadius = AASJupiter.RadiusVector(2448972.50068);
+            double JupiterLong = AASJupiter.EclipticLongitude(2448972.50068, bHighPrecision);
+            double JupiterLat = AASJupiter.EclipticLatitude(2448972.50068, bHighPrecision);
+            double JupiterRadius = AASJupiter.RadiusVector(2448972.50068, bHighPrecision);
 
 
             //Test out the CAANeptune class
-            double NeptuneLong = AASNeptune.EclipticLongitude(2448935.500683);
-            double NeptuneLat = AASNeptune.EclipticLatitude(2448935.500683);
-            double NeptuneRadius = AASNeptune.RadiusVector(2448935.500683);
+            double NeptuneLong = AASNeptune.EclipticLongitude(2448935.500683, bHighPrecision);
+            double NeptuneLat = AASNeptune.EclipticLatitude(2448935.500683, bHighPrecision);
+            double NeptuneRadius = AASNeptune.RadiusVector(2448935.500683, bHighPrecision);
 
 
             //Test out the CAAUranus class
-            double UranusLong = AASUranus.EclipticLongitude(2448976.5);
-            double UranusLat = AASUranus.EclipticLatitude(2448976.5);
-            double UranusRadius = AASUranus.RadiusVector(2448976.5);
+            double UranusLong = AASUranus.EclipticLongitude(2448976.5, bHighPrecision);
+            double UranusLat = AASUranus.EclipticLatitude(2448976.5, bHighPrecision);
+            double UranusRadius = AASUranus.RadiusVector(2448976.5, bHighPrecision);
 
 
             //Test out the CAASaturn class
-            double SaturnLong = AASSaturn.EclipticLongitude(2448972.50068);
-            double SaturnLat = AASSaturn.EclipticLatitude(2448972.50068);
-            double SaturnRadius = AASSaturn.RadiusVector(2448972.50068);
+            double SaturnLong = AASSaturn.EclipticLongitude(2448972.50068, bHighPrecision);
+            double SaturnLat = AASSaturn.EclipticLatitude(2448972.50068, bHighPrecision);
+            double SaturnRadius = AASSaturn.RadiusVector(2448972.50068, bHighPrecision);
 
 
             //Test out the CAAPluto class
@@ -400,61 +402,61 @@ namespace AASharpTest
 
 
             //Test out the CAAEquationOfTime class
-            double E = AASEquationOfTime.Calculate(2448908.5);
+            double E = AASEquationOfTime.Calculate(2448908.5, bHighPrecision);
 
 
             //Test out the CAAPhysicalSun class
-            AASPhysicalSunDetails psd = AASPhysicalSun.Calculate(2448908.50068);
+            AASPhysicalSunDetails psd = AASPhysicalSun.Calculate(2448908.50068, bHighPrecision);
             double JED = AASPhysicalSun.TimeOfStartOfRotation(1699);
 
 
             //Test out the CAAEquinoxesAndSolstices class
-            double JuneSolstice = AASEquinoxesAndSolstices.SummerSolstice(1962);
+            double JuneSolstice = AASEquinoxesAndSolstices.NorthernSolstice(1962, bHighPrecision);
 
 
-            double MarchEquinox2 = AASEquinoxesAndSolstices.SpringEquinox(1996);
+            double MarchEquinox2 = AASEquinoxesAndSolstices.NorthwardEquinox(1996, bHighPrecision);
             date.Set(MarchEquinox2, true);
             date.Get(ref Year, ref Month, ref Day, ref Hour, ref Minute, ref Second);
-            double JuneSolstice2 = AASEquinoxesAndSolstices.SummerSolstice(1996);
+            double JuneSolstice2 = AASEquinoxesAndSolstices.NorthernSolstice(1996, bHighPrecision);
             date.Set(JuneSolstice2, true);
             date.Get(ref Year, ref Month, ref Day, ref Hour, ref Minute, ref Second);
-            double SeptemberEquinox2 = AASEquinoxesAndSolstices.AutumnEquinox(1996);
+            double SeptemberEquinox2 = AASEquinoxesAndSolstices.SouthwardEquinox(1996, bHighPrecision);
             date.Set(SeptemberEquinox2, true);
             date.Get(ref Year, ref Month, ref Day, ref Hour, ref Minute, ref Second);
-            double DecemberSolstice2 = AASEquinoxesAndSolstices.WinterSolstice(1996);
+            double DecemberSolstice2 = AASEquinoxesAndSolstices.SouthernSolstice(1996, bHighPrecision);
             date.Set(DecemberSolstice2, true);
             date.Get(ref Year, ref Month, ref Day, ref Hour, ref Minute, ref Second);
 
-            DecemberSolstice2 = AASEquinoxesAndSolstices.WinterSolstice(2000);
+            DecemberSolstice2 = AASEquinoxesAndSolstices.SouthernSolstice(2000, bHighPrecision);
             date.Set(DecemberSolstice2, true);
             date.Get(ref Year, ref Month, ref Day, ref Hour, ref Minute, ref Second);
 
-            DecemberSolstice2 = AASEquinoxesAndSolstices.WinterSolstice(1997);
+            DecemberSolstice2 = AASEquinoxesAndSolstices.SouthernSolstice(1997, bHighPrecision);
             date.Set(DecemberSolstice2, true);
             date.Get(ref Year, ref Month, ref Day, ref Hour, ref Minute, ref Second);
 
-            DecemberSolstice2 = AASEquinoxesAndSolstices.WinterSolstice(2003);
+            DecemberSolstice2 = AASEquinoxesAndSolstices.SouthernSolstice(2003, bHighPrecision);
             date.Set(DecemberSolstice2, true);
             date.Get(ref Year, ref Month, ref Day, ref Hour, ref Minute, ref Second);
 
-            JuneSolstice2 = AASEquinoxesAndSolstices.SummerSolstice(2003);
+            JuneSolstice2 = AASEquinoxesAndSolstices.NorthernSolstice(2003, bHighPrecision);
             date.Set(JuneSolstice2, true);
             date.Get(ref Year, ref Month, ref Day, ref Hour, ref Minute, ref Second);
 
-            double SpringLength = AASEquinoxesAndSolstices.LengthOfSpring(2000);
-            double SummerLength = AASEquinoxesAndSolstices.LengthOfSummer(2000);
-            double AutumnLength = AASEquinoxesAndSolstices.LengthOfAutumn(2000);
-            double WinterLength = AASEquinoxesAndSolstices.LengthOfWinter(2000);
+            double SpringLength = AASEquinoxesAndSolstices.LengthOfSpring(2000, true, bHighPrecision);
+            double SummerLength = AASEquinoxesAndSolstices.LengthOfSummer(2000, true, bHighPrecision);
+            double AutumnLength = AASEquinoxesAndSolstices.LengthOfAutumn(2000, true, bHighPrecision);
+            double WinterLength = AASEquinoxesAndSolstices.LengthOfWinter(2000, true, bHighPrecision);
 
-            SpringLength = AASEquinoxesAndSolstices.LengthOfSpring(-2000);
-            SummerLength = AASEquinoxesAndSolstices.LengthOfSummer(-2000);
-            AutumnLength = AASEquinoxesAndSolstices.LengthOfAutumn(-2000);
-            WinterLength = AASEquinoxesAndSolstices.LengthOfWinter(-2000);
+            SpringLength = AASEquinoxesAndSolstices.LengthOfSpring(-2000, true, bHighPrecision);
+            SummerLength = AASEquinoxesAndSolstices.LengthOfSummer(-2000, true, bHighPrecision);
+            AutumnLength = AASEquinoxesAndSolstices.LengthOfAutumn(-2000, true, bHighPrecision);
+            WinterLength = AASEquinoxesAndSolstices.LengthOfWinter(-2000, true, bHighPrecision);
 
-            SpringLength = AASEquinoxesAndSolstices.LengthOfSpring(4000);
-            SummerLength = AASEquinoxesAndSolstices.LengthOfSummer(4000);
-            AutumnLength = AASEquinoxesAndSolstices.LengthOfAutumn(4000);
-            WinterLength = AASEquinoxesAndSolstices.LengthOfWinter(4000);
+            SpringLength = AASEquinoxesAndSolstices.LengthOfSpring(4000, true, bHighPrecision);
+            SummerLength = AASEquinoxesAndSolstices.LengthOfSummer(4000, true, bHighPrecision);
+            AutumnLength = AASEquinoxesAndSolstices.LengthOfAutumn(4000, true, bHighPrecision);
+            WinterLength = AASEquinoxesAndSolstices.LengthOfWinter(4000, true, bHighPrecision);
 
 
             //Test out the CAAElementsPlanetaryOrbit class
@@ -559,12 +561,12 @@ namespace AASharpTest
             double MoonIlluminatedFraction = AASMoonIlluminatedFraction.IlluminatedFraction(MoonPhaseAngle);
             double MoonPositionAngle = AASMoonIlluminatedFraction.PositionAngle(AASCoordinateTransformation.DMSToDegrees(1, 22, 37.9), 8.6964, 134.6885 / 15, 13.7684);
 
-            AASEllipticalPlanetaryDetails VenusDetails = AASElliptical.Calculate(2448976.5, AASEllipticalObject.VENUS);
+            AASEllipticalPlanetaryDetails VenusDetails = AASElliptical.Calculate(2448976.5, AASEllipticalObject.VENUS, bHighPrecision);
 
-            AASEllipticalPlanetaryDetails SunDetails = AASElliptical.Calculate(2453149.5, AASEllipticalObject.SUN);
+            AASEllipticalPlanetaryDetails SunDetails = AASElliptical.Calculate(2453149.5, AASEllipticalObject.SUN, bHighPrecision);
 
             AASEllipticalObjectElements elements = new AASEllipticalObjectElements() { a = 2.2091404, e = 0.8502196, i = 11.94524, omega = 334.75006, w = 186.23352, T = 2448192.5 + 0.54502, JDEquinox = 2451544.5 };
-            AASEllipticalObjectDetails details = AASElliptical.Calculate(2448170.5, ref elements);
+            AASEllipticalObjectDetails details = AASElliptical.Calculate(2448170.5, ref elements, bHighPrecision);
 
             double Velocity1 = AASElliptical.InstantaneousVelocity(1, 17.9400782);
             double Velocity2 = AASElliptical.VelocityAtPerihelion(0.96727426, 17.9400782);
@@ -577,7 +579,7 @@ namespace AASharpTest
             double Mag3 = AASElliptical.CometMagnitude(5.5, 1.1017, 10, 1.5228);
 
             AASParabolicObjectElements elements2 = new AASParabolicObjectElements { q = 1.48678, i = 104.668 /*J2000*/, omega = 222.103 /*J2000*/, w = 1.146 /*J2000*/, T = AASDate.DateToJD(1998, 4, 14.205, true), JDEquinox = 2451545.0 /*J2000*/ }; //Elements taken from http://www.cfa.harvard.edu/mpec/J98/J98H29.html
-            AASParabolicObjectDetails details2 = AASParabolic.Calculate(2451030.5, ref elements2);
+            AASParabolicObjectDetails details2 = AASParabolic.Calculate(2451030.5, ref elements2, bHighPrecision);
 
             AASEllipticalObjectElements elements3 = new AASEllipticalObjectElements { a = 17.9400782, e = 0.96727426, i = 0 /*Not required*/, omega = 0 /*Not required*/, w = 111.84644, T = 2446470.5 + 0.45891, JDEquinox = 0 /*Not required*/ };
             AASNodeObjectDetails nodedetails = AASNodes.PassageThroAscendingNode(ref elements3);
@@ -782,19 +784,19 @@ namespace AASharpTest
             double SaturnMag2 = AASIlluminatedFraction.SaturnMagnitudeAA(9.867882, 10.464606, 4.198, 16.442);
 
 
-            CAAPhysicalMarsDetails MarsDetails = AASPhysicalMars.Calculate(2448935.500683);
+            CAAPhysicalMarsDetails MarsDetails = AASPhysicalMars.Calculate(2448935.500683, bHighPrecision);
 
-            CAAPhysicalJupiterDetails JupiterDetails = AASPhysicalJupiter.Calculate(2448972.50068);
+            CAAPhysicalJupiterDetails JupiterDetails = AASPhysicalJupiter.Calculate(2448972.50068, bHighPrecision);
 
             //The example as given in the book
-            AASGalileanMoonsDetails GalileanDetails = AASGalileanMoons.Calculate(2448972.50068);
+            AASGalileanMoonsDetails GalileanDetails = AASGalileanMoons.Calculate(2448972.50068, bHighPrecision);
 
             //Calculate the Eclipse Disappearance of Satellite 1 on February 1 2004 at 13:32 UCT
             double JD = 2453037.05903;
             int i;
             for (i = 0; i < 10; i++)
             {
-                AASGalileanMoonsDetails GalileanDetails1 = AASGalileanMoons.Calculate(JD);
+                AASGalileanMoonsDetails GalileanDetails1 = AASGalileanMoons.Calculate(JD, bHighPrecision);
                 JD += (1.0 / 1440);
             }
 
@@ -802,7 +804,7 @@ namespace AASharpTest
             JD = 2453038.04236;
             for (i = 0; i < 10; i++)
             {
-                AASGalileanMoonsDetails GalileanDetails1 = AASGalileanMoons.Calculate(JD);
+                AASGalileanMoonsDetails GalileanDetails1 = AASGalileanMoons.Calculate(JD, bHighPrecision);
                 JD += (1.0 / 1440);
             }
 
@@ -810,7 +812,7 @@ namespace AASharpTest
             JD = 2453042.45486;
             for (i = 0; i < 10; i++)
             {
-                AASGalileanMoonsDetails GalileanDetails1 = AASGalileanMoons.Calculate(JD);
+                AASGalileanMoonsDetails GalileanDetails1 = AASGalileanMoons.Calculate(JD, bHighPrecision);
                 JD += (1.0 / 1440);
             }
 
@@ -818,7 +820,7 @@ namespace AASharpTest
             JD = 2453042.61042;
             for (i = 0; i < 10; i++)
             {
-                AASGalileanMoonsDetails GalileanDetails1 = AASGalileanMoons.Calculate(JD);
+                AASGalileanMoonsDetails GalileanDetails1 = AASGalileanMoons.Calculate(JD, bHighPrecision);
                 JD += (1.0 / 1440);
             }
 
@@ -826,7 +828,7 @@ namespace AASharpTest
             JD = 2453042.71181;
             for (i = 0; i < 10; i++)
             {
-                AASGalileanMoonsDetails GalileanDetails1 = AASGalileanMoons.Calculate(JD);
+                AASGalileanMoonsDetails GalileanDetails1 = AASGalileanMoons.Calculate(JD, bHighPrecision);
                 JD += (1.0 / 1440);
             }
 
@@ -834,13 +836,13 @@ namespace AASharpTest
             JD = 2453042.82222;
             for (i = 0; i < 10; i++)
             {
-                AASGalileanMoonsDetails GalileanDetails1 = AASGalileanMoons.Calculate(JD);
+                AASGalileanMoonsDetails GalileanDetails1 = AASGalileanMoons.Calculate(JD, bHighPrecision);
                 JD += (1.0 / 1440);
             }
 
-            AASSaturnRingDetails saturnrings = AASSaturnRings.Calculate(2448972.50068);
+            AASSaturnRingDetails saturnrings = AASSaturnRings.Calculate(2448972.50068, bHighPrecision);
 
-            AASSaturnMoonsDetails saturnMoons = AASSaturnMoons.Calculate(2451439.50074);
+            AASSaturnMoonsDetails saturnMoons = AASSaturnMoons.Calculate(2451439.50074, bHighPrecision);
 
             double ApproxK = AASMoonPhases.K(1977.13);
             double NewMoonJD = AASMoonPhases.TruePhase(-283);
@@ -924,11 +926,11 @@ namespace AASharpTest
 
             AASPhysicalMoonDetails MoonDetails = AASPhysicalMoon.CalculateGeocentric(2448724.5);
             AASPhysicalMoonDetails MoonDetail2 = AASPhysicalMoon.CalculateTopocentric(2448724.5, 10, 52);
-            AASSelenographicMoonDetails AASSelenographicMoonDetails = AASPhysicalMoon.CalculateSelenographicPositionOfSun(2448724.5);
+            AASSelenographicMoonDetails AASSelenographicMoonDetails = AASPhysicalMoon.CalculateSelenographicPositionOfSun(2448724.5, bHighPrecision);
 
-            double AltitudeOfSun = AASPhysicalMoon.AltitudeOfSun(2448724.5, -20, 9.7);
-            double TimeOfSunrise = AASPhysicalMoon.TimeOfSunrise(2448724.5, -20, 9.7);
-            double TimeOfSunset = AASPhysicalMoon.TimeOfSunset(2448724.5, -20, 9.7);
+            double AltitudeOfSun = AASPhysicalMoon.AltitudeOfSun(2448724.5, -20, 9.7, bHighPrecision);
+            double TimeOfSunrise = AASPhysicalMoon.TimeOfSunrise(2448724.5, -20, 9.7, bHighPrecision);
+            double TimeOfSunset = AASPhysicalMoon.TimeOfSunset(2448724.5, -20, 9.7, bHighPrecision);
 
             AASSolarEclipseDetails EclipseDetails = AASEclipses.CalculateSolar(-82);
             AASSolarEclipseDetails EclipseDetails2 = AASEclipses.CalculateSolar(118);
@@ -961,25 +963,25 @@ namespace AASharpTest
 
 
             AASNearParabolicObjectElements elements6 = new AASNearParabolicObjectElements { q = 0.921326, e = 1, i = 0 /*unknown*/, omega = 0 /*unknown*/, w = 0 /*unknown*/, T = 0, JDEquinox = 0 };
-            AASNearParabolicObjectDetails details3 = AASNearParabolic.Calculate(138.4783, ref elements6);
+            AASNearParabolicObjectDetails details3 = AASNearParabolic.Calculate(138.4783, ref elements6, bHighPrecision);
 
             elements6.q = 0.1;
             elements6.e = 0.987;
-            details3 = AASNearParabolic.Calculate(254.9, ref elements6);
+            details3 = AASNearParabolic.Calculate(254.9, ref elements6, bHighPrecision);
 
             elements6.q = 0.123456;
             elements6.e = 0.99997;
-            details3 = AASNearParabolic.Calculate(-30.47, ref elements6);
+            details3 = AASNearParabolic.Calculate(-30.47, ref elements6, bHighPrecision);
 
             elements6.q = 3.363943;
             elements6.e = 1.05731;
-            details3 = AASNearParabolic.Calculate(1237.1, ref elements6);
+            details3 = AASNearParabolic.Calculate(1237.1, ref elements6, bHighPrecision);
 
             elements6.q = 0.5871018;
             elements6.e = 0.9672746;
-            details3 = AASNearParabolic.Calculate(20, ref elements6);
+            details3 = AASNearParabolic.Calculate(20, ref elements6, bHighPrecision);
 
-            details3 = AASNearParabolic.Calculate(0, ref elements6);
+            details3 = AASNearParabolic.Calculate(0, ref elements6, bHighPrecision);
 
             AASEclipticalElementDetails ed5 = AASEclipticalElements.Calculate(131.5856, 242.6797, 138.6637, 2433282.4235, 2448188.500000 + 0.6954 - 63.6954);
             AASEclipticalElementDetails ed6 = AASEclipticalElements.Calculate(131.5856, 242.6797, 138.6637, 2433282.4235, 2433282.4235);
@@ -992,7 +994,7 @@ namespace AASharpTest
             elements6.w = ed5.w;
             elements6.T = 2448188.500000 + 0.6954;
             elements6.JDEquinox = elements6.T;
-            AASNearParabolicObjectDetails details4 = AASNearParabolic.Calculate(elements6.T - 63.6954, ref elements6);
+            AASNearParabolicObjectDetails details4 = AASNearParabolic.Calculate(elements6.T - 63.6954, ref elements6, bHighPrecision);
 
             Console.ReadLine();
             return;

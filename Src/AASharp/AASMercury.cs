@@ -221,7 +221,7 @@ namespace AASharp
         new VSOP87Coefficient( 2,  1.21, 130439.52 )
         };
 
-        public static double EclipticLongitude(double JD)
+        public static double EclipticLongitude(double JD, bool bHighPrecision)
         {
             double rho = (JD - 2451545) / 365250;
             double rhosquared = rho * rho;
@@ -273,7 +273,7 @@ namespace AASharp
             return value;
         }
 
-        public static double EclipticLatitude(double JD)
+        public static double EclipticLatitude(double JD, bool bHighPrecision)
         {
             double rho = (JD - 2451545) / 365250;
             double rhosquared = rho * rho;
@@ -318,7 +318,7 @@ namespace AASharp
             return value;
         }
 
-        public static double RadiusVector(double JD)
+        public static double RadiusVector(double JD, bool bHighPrecision)
         {
             double rho = (JD - 2451545) / 365250;
             double rhosquared = rho * rho;
