@@ -36,6 +36,7 @@ namespace AASharp
         public double Elongation;
         public double PhaseAngle;
     }
+
     public static class AASNearParabolic
     {
         private static double Cbrt(double x)
@@ -101,8 +102,8 @@ namespace AASharp
 
             for (int j = 0; j < 2; j++)
             {
-                double v = 0;
-                double r = 0;
+                double v;
+                double r;
                 CalulateTrueAnnomalyAndRadius(JD0, ref elements, ref v, ref r);
 
                 double x = r * a * Math.Sin(A + w + v);
@@ -124,10 +125,8 @@ namespace AASharp
                     details.HeliocentricRectangularEcliptical.Y = r * (sinOmega * cosu + cosOmega * sinu * cosi);
                     details.HeliocentricRectangularEcliptical.Z = r * sini * sinu;
 
-                    details.HeliocentricEclipticLongitude = Math.Atan2(y, x);
-                    details.HeliocentricEclipticLongitude = AASCoordinateTransformation.MapTo0To24Range(AASCoordinateTransformation.RadiansToDegrees(details.HeliocentricEclipticLongitude) / 15);
-                    details.HeliocentricEclipticLatitude = Math.Asin(z / r);
-                    details.HeliocentricEclipticLatitude = AASCoordinateTransformation.RadiansToDegrees(details.HeliocentricEclipticLatitude);
+                    details.HeliocentricEclipticLongitude = AASCoordinateTransformation.MapTo0To360Range(AASCoordinateTransformation.RadiansToDegrees(Math.Atan2(details.HeliocentricRectangularEcliptical.Y, details.HeliocentricRectangularEcliptical.X)));
+                    details.HeliocentricEclipticLatitude = AASCoordinateTransformation.RadiansToDegrees(Math.Asin(details.HeliocentricRectangularEcliptical.Z / r));
                 }
 
                 double psi = SunCoord.X + x;
@@ -160,8 +159,7 @@ namespace AASharp
                     details.PhaseAngle = AASCoordinateTransformation.RadiansToDegrees(Math.Acos((r * r + Distance * Distance - RES * RES) / (2 * r * Distance)));
                 }
 
-                if (j == 0)
-                    //Prepare for the next loop around
+                if (j == 0) //Prepare for the next loop around
                     JD0 = JD - details.TrueGeocentricLightTime;
             }
 

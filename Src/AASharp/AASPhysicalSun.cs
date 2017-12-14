@@ -35,11 +35,10 @@ namespace AASharp
             double y = Math.Atan(-Math.Cos(SunLong - K) * Math.Tan(I));
 
             AASPhysicalSunDetails details = new AASPhysicalSunDetails();
-
             details.P = AASCoordinateTransformation.RadiansToDegrees(x + y);
             details.B0 = AASCoordinateTransformation.RadiansToDegrees(Math.Asin(Math.Sin(SunLong - K) * Math.Sin(I)));
-
-            double eta = Math.Atan(Math.Tan(SunLong - K) * Math.Cos(I));
+            double SunLongMinusK = SunLong - K;
+            double eta = Math.Atan2(-Math.Sin(SunLongMinusK) * Math.Cos(I), -Math.Cos(SunLongMinusK));
             details.L0 = AASCoordinateTransformation.MapTo0To360Range(AASCoordinateTransformation.RadiansToDegrees(eta - theta));
 
             return details;
