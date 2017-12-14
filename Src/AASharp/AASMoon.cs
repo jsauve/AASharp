@@ -4,259 +4,265 @@ namespace AASharp
 {
     public static class AASMoon
     {
+        #region coefficients
+        
         static readonly MoonCoefficient1[] g_MoonCoefficients1 =
         {
-        new MoonCoefficient1( 0, 0,  1,  0 ),
-        new MoonCoefficient1( 2, 0,  -1, 0 ),
-        new MoonCoefficient1( 2, 0,  0,  0 ),
-        new MoonCoefficient1( 0, 0,  2,  0 ),
-        new MoonCoefficient1( 0, 1,  0,  0 ),
-        new MoonCoefficient1( 0, 0,  0,  2 ),
-        new MoonCoefficient1( 2, 0,  -2, 0 ),
-        new MoonCoefficient1( 2, -1, -1, 0 ),
-        new MoonCoefficient1( 2, 0,  1,  0 ),
-        new MoonCoefficient1( 2, -1, 0,  0 ),
-        new MoonCoefficient1( 0, 1,  -1, 0 ),
-        new MoonCoefficient1( 1, 0,  0,  0 ),
-        new MoonCoefficient1( 0, 1,  1,  0 ),
-        new MoonCoefficient1( 2, 0,  0,  -2 ),
-        new MoonCoefficient1( 0, 0,  1,  2 ),
-        new MoonCoefficient1( 0, 0,  1,  -2 ),
-        new MoonCoefficient1( 4, 0,  -1, 0 ),
-        new MoonCoefficient1( 0, 0,  3,  0 ),
-        new MoonCoefficient1( 4, 0,  -2, 0 ),
-        new MoonCoefficient1( 2, 1,  -1, 0 ),
-        new MoonCoefficient1( 2, 1,  0,  0 ),
-        new MoonCoefficient1( 1, 0,  -1, 0 ),
-        new MoonCoefficient1( 1, 1,  0,  0 ),
-        new MoonCoefficient1( 2, -1, 1,  0 ),
-        new MoonCoefficient1( 2, 0,  2,  0 ),
-        new MoonCoefficient1( 4, 0,  0,  0 ),
-        new MoonCoefficient1( 2, 0,  -3, 0 ),
-        new MoonCoefficient1( 0, 1,  -2, 0 ),
-        new MoonCoefficient1( 2, 0,  -1, 2 ),
-        new MoonCoefficient1( 2, -1, -2, 0 ),
-        new MoonCoefficient1( 1, 0,  1,  0 ),
-        new MoonCoefficient1( 2, -2, 0,  0 ),
-        new MoonCoefficient1( 0, 1,  2,  0 ),
-        new MoonCoefficient1( 0, 2,  0,  0 ),
-        new MoonCoefficient1( 2, -2, -1, 0 ),
-        new MoonCoefficient1( 2, 0,  1,  -2 ),
-        new MoonCoefficient1( 2, 0,  0,  2 ),
-        new MoonCoefficient1( 4, -1, -1, 0 ),
-        new MoonCoefficient1( 0, 0,  2,  2 ),
-        new MoonCoefficient1( 3, 0,  -1, 0 ),
-        new MoonCoefficient1( 2, 1,  1,  0 ),
-        new MoonCoefficient1( 4, -1, -2, 0 ),
-        new MoonCoefficient1( 0, 2,  -1, 0 ),
-        new MoonCoefficient1( 2, 2,  -1, 0 ),
-        new MoonCoefficient1( 2, 1,  -2, 0 ),
-        new MoonCoefficient1( 2, -1, 0,  -2 ),
-        new MoonCoefficient1( 4, 0,  1,  0 ),
-        new MoonCoefficient1( 0, 0,  4,  0 ),
-        new MoonCoefficient1( 4, -1, 0,  0 ),
-        new MoonCoefficient1( 1, 0,  -2, 0 ),
-        new MoonCoefficient1( 2, 1,  0,  -2 ),
-        new MoonCoefficient1( 0, 0,  2,  -2 ),
-        new MoonCoefficient1( 1, 1,  1,  0 ),
-        new MoonCoefficient1( 3, 0,  -2, 0 ),
-        new MoonCoefficient1( 4, 0,  -3, 0 ),
-        new MoonCoefficient1( 2, -1, 2,  0 ),
-        new MoonCoefficient1( 0, 2,  1,  0 ),
-        new MoonCoefficient1( 1, 1,  -1, 0 ),
-        new MoonCoefficient1( 2, 0,  3,  0 ),
-        new MoonCoefficient1( 2, 0,  -1, -2 )
+          new MoonCoefficient1( 0,  0,  1,  0 ),
+          new MoonCoefficient1( 2,  0, -1,  0 ),
+          new MoonCoefficient1( 2,  0,  0,  0 ),
+          new MoonCoefficient1( 0,  0,  2,  0 ),
+          new MoonCoefficient1( 0,  1,  0,  0 ),
+          new MoonCoefficient1( 0,  0,  0,  2 ),
+          new MoonCoefficient1( 2,  0, -2,  0 ),
+          new MoonCoefficient1( 2, -1, -1,  0 ),
+          new MoonCoefficient1( 2,  0,  1,  0 ),
+          new MoonCoefficient1( 2, -1,  0,  0 ),
+          new MoonCoefficient1( 0,  1, -1,  0 ),
+          new MoonCoefficient1( 1,  0,  0,  0 ),
+          new MoonCoefficient1( 0,  1,  1,  0 ),
+          new MoonCoefficient1( 2,  0,  0, -2 ),
+          new MoonCoefficient1( 0,  0,  1,  2 ),
+          new MoonCoefficient1( 0,  0,  1, -2 ),
+          new MoonCoefficient1( 4,  0, -1,  0 ),
+          new MoonCoefficient1( 0,  0,  3,  0 ),
+          new MoonCoefficient1( 4,  0, -2,  0 ),
+          new MoonCoefficient1( 2,  1, -1,  0 ),
+          new MoonCoefficient1( 2,  1,  0,  0 ),
+          new MoonCoefficient1( 1,  0, -1,  0 ),
+          new MoonCoefficient1( 1,  1,  0,  0 ),
+          new MoonCoefficient1( 2, -1,  1,  0 ),
+          new MoonCoefficient1( 2,  0,  2,  0 ),
+          new MoonCoefficient1( 4,  0,  0,  0 ),
+          new MoonCoefficient1( 2,  0, -3,  0 ),
+          new MoonCoefficient1( 0,  1, -2,  0 ),
+          new MoonCoefficient1( 2,  0, -1,  2 ),
+          new MoonCoefficient1( 2, -1, -2,  0 ),
+          new MoonCoefficient1( 1,  0,  1,  0 ),
+          new MoonCoefficient1( 2, -2,  0,  0 ),
+          new MoonCoefficient1( 0,  1,  2,  0 ),
+          new MoonCoefficient1( 0,  2,  0,  0 ),
+          new MoonCoefficient1( 2, -2, -1,  0 ),
+          new MoonCoefficient1( 2,  0,  1, -2 ),
+          new MoonCoefficient1( 2,  0,  0,  2 ),
+          new MoonCoefficient1( 4, -1, -1,  0 ),
+          new MoonCoefficient1( 0,  0,  2,  2 ),
+          new MoonCoefficient1( 3,  0, -1,  0 ),
+          new MoonCoefficient1( 2,  1,  1,  0 ),
+          new MoonCoefficient1( 4, -1, -2,  0 ),
+          new MoonCoefficient1( 0,  2, -1,  0 ),
+          new MoonCoefficient1( 2,  2, -1,  0 ),
+          new MoonCoefficient1( 2,  1, -2,  0 ),
+          new MoonCoefficient1( 2, -1,  0, -2 ),
+          new MoonCoefficient1( 4,  0,  1,  0 ),
+          new MoonCoefficient1( 0,  0,  4,  0 ),
+          new MoonCoefficient1( 4, -1,  0,  0 ),
+          new MoonCoefficient1( 1,  0, -2,  0 ),
+          new MoonCoefficient1( 2,  1,  0, -2 ),
+          new MoonCoefficient1( 0,  0,  2, -2 ),
+          new MoonCoefficient1( 1,  1,  1,  0 ),
+          new MoonCoefficient1( 3,  0, -2,  0 ),
+          new MoonCoefficient1( 4,  0, -3,  0 ),
+          new MoonCoefficient1( 2, -1,  2,  0 ),
+          new MoonCoefficient1( 0,  2,  1,  0 ),
+          new MoonCoefficient1( 1,  1, -1,  0 ),
+          new MoonCoefficient1( 2,  0,  3,  0 ),
+          new MoonCoefficient1( 2,  0, -1, -2 )
         };
-
+        
         static readonly MoonCoefficient2[] g_MoonCoefficients2 =
         {
-        new MoonCoefficient2( 6288774, -20905355 ),
-        new MoonCoefficient2( 1274027, -3699111 ),
-        new MoonCoefficient2( 658314,  -2955968 ),
-        new MoonCoefficient2( 213618,  -569925 ),
-        new MoonCoefficient2( -185116, 48888 ),
-        new MoonCoefficient2( -114332, -3149 ),
-        new MoonCoefficient2( 58793,  246158 ),
-        new MoonCoefficient2( 57066,  -152138 ),
-        new MoonCoefficient2( 53322,  -170733 ),
-        new MoonCoefficient2( 45758,  -204586 ),
-        new MoonCoefficient2( -40923,  -129620 ),
-        new MoonCoefficient2( -34720,  108743 ),
-        new MoonCoefficient2( -30383,  104755 ),
-        new MoonCoefficient2( 15327,  10321 ),
-        new MoonCoefficient2( -12528,  0 ),
-        new MoonCoefficient2( 10980,  79661 ),
-        new MoonCoefficient2( 10675,  -34782 ),
-        new MoonCoefficient2( 10034,  -23210 ),
-        new MoonCoefficient2( 8548,    -21636 ),
-        new MoonCoefficient2( -7888,  24208 ),
-        new MoonCoefficient2( -6766,  30824 ),
-        new MoonCoefficient2( -5163,  -8379 ),
-        new MoonCoefficient2( 4987,    -16675 ),
-        new MoonCoefficient2( 4036,    -12831 ),
-        new MoonCoefficient2( 3994,    -10445 ),
-        new MoonCoefficient2( 3861,    -11650 ),
-        new MoonCoefficient2( 3665,    14403 ),
-        new MoonCoefficient2( -2689,  -7003 ),
-        new MoonCoefficient2( -2602,  0 ),
-        new MoonCoefficient2( 2390,    10056 ),
-        new MoonCoefficient2( -2348,  6322 ),
-        new MoonCoefficient2( 2236,    -9884 ),
-        new MoonCoefficient2( -2120,  5751 ),
-        new MoonCoefficient2( -2069,  0 ),
-        new MoonCoefficient2( 2048,    -4950 ),
-        new MoonCoefficient2( -1773,  4130 ),
-        new MoonCoefficient2( -1595,  0 ),
-        new MoonCoefficient2( 1215,    -3958 ),
-        new MoonCoefficient2( -1110,  0 ),
-        new MoonCoefficient2( -892,    3258 ),
-        new MoonCoefficient2( -810,    2616 ),
-        new MoonCoefficient2( 759,    -1897 ),
-        new MoonCoefficient2( -713,    -2117 ),
-        new MoonCoefficient2( -700,    2354 ),
-        new MoonCoefficient2( 691,    0 ),
-        new MoonCoefficient2( 596,    0 ),
-        new MoonCoefficient2( 549,    -1423 ),
-        new MoonCoefficient2( 537,    -1117 ),
-        new MoonCoefficient2( 520,    -1571 ),
-        new MoonCoefficient2( -487,    -1739 ),
-        new MoonCoefficient2( -399,    0 ),
-        new MoonCoefficient2( -381,    -4421 ),
-        new MoonCoefficient2( 351,    0 ),
-        new MoonCoefficient2( -340,    0 ),
-        new MoonCoefficient2( 330,    0 ) ,
-        new MoonCoefficient2( 327,    0 ),
-        new MoonCoefficient2( -323,    1165 ),
-        new MoonCoefficient2( 299,    0 ),
-        new MoonCoefficient2( 294,    0 ),
-        new MoonCoefficient2( 0,      8752 )
+          new MoonCoefficient2(  6288774, -20905355 ),
+          new MoonCoefficient2(  1274027, -3699111  ),
+          new MoonCoefficient2(  658314,  -2955968  ),
+          new MoonCoefficient2(  213618,  -569925   ),
+          new MoonCoefficient2( -185116,   48888    ),
+          new MoonCoefficient2( -114332,  -3149     ),
+          new MoonCoefficient2(  58793,    246158   ),
+          new MoonCoefficient2(  57066,   -152138   ),
+          new MoonCoefficient2(  53322,   -170733   ),
+          new MoonCoefficient2(  45758,   -204586   ),
+          new MoonCoefficient2( -40923,   -129620   ),
+          new MoonCoefficient2( -34720,    108743   ),
+          new MoonCoefficient2( -30383,    104755   ),
+          new MoonCoefficient2(  15327,    10321    ),
+          new MoonCoefficient2( -12528,    0        ),
+          new MoonCoefficient2(  10980,    79661    ),
+          new MoonCoefficient2(  10675,   -34782    ),
+          new MoonCoefficient2(  10034,   -23210    ),
+          new MoonCoefficient2(  8548,    -21636    ),
+          new MoonCoefficient2( -7888,     24208    ),
+          new MoonCoefficient2( -6766,     30824    ),
+          new MoonCoefficient2( -5163,    -8379     ),
+          new MoonCoefficient2(  4987,    -16675    ),
+          new MoonCoefficient2(  4036,    -12831    ),
+          new MoonCoefficient2(  3994,    -10445    ),
+          new MoonCoefficient2(  3861,    -11650    ),
+          new MoonCoefficient2(  3665,     14403    ),
+          new MoonCoefficient2( -2689,    -7003     ),
+          new MoonCoefficient2( -2602,     0        ),
+          new MoonCoefficient2(  2390,     10056    ),
+          new MoonCoefficient2( -2348,     6322     ),
+          new MoonCoefficient2(  2236,    -9884     ),
+          new MoonCoefficient2( -2120,     5751     ),
+          new MoonCoefficient2( -2069,     0        ),
+          new MoonCoefficient2(  2048,    -4950     ),
+          new MoonCoefficient2( -1773,     4130     ),
+          new MoonCoefficient2( -1595,     0        ),
+          new MoonCoefficient2(  1215,    -3958     ),
+          new MoonCoefficient2( -1110,     0        ),
+          new MoonCoefficient2( -892,      3258     ),
+          new MoonCoefficient2( -810,      2616     ),
+          new MoonCoefficient2(  759,     -1897     ),
+          new MoonCoefficient2( -713,     -2117     ),
+          new MoonCoefficient2( -700,      2354     ),
+          new MoonCoefficient2(  691,      0        ),
+          new MoonCoefficient2(  596,      0        ),
+          new MoonCoefficient2(  549,     -1423     ),
+          new MoonCoefficient2(  537,     -1117     ),
+          new MoonCoefficient2(  520,     -1571     ),
+          new MoonCoefficient2( -487,     -1739     ),
+          new MoonCoefficient2( -399,      0        ),
+          new MoonCoefficient2( -381,     -4421     ),
+          new MoonCoefficient2(  351,      0        ),
+          new MoonCoefficient2( -340,      0        ),
+          new MoonCoefficient2(  330,      0        ),
+          new MoonCoefficient2(  327,      0        ),
+          new MoonCoefficient2( -323,      1165     ),
+          new MoonCoefficient2(  299,      0        ),
+          new MoonCoefficient2(  294,      0        ),
+          new MoonCoefficient2(  0,        8752     )
         };
-
+        
         static readonly MoonCoefficient1[] g_MoonCoefficients3 =
         {
-        new MoonCoefficient1( 0, 0,  0,  1  ),
-        new MoonCoefficient1( 0, 0,  1,  1  ),
-        new MoonCoefficient1( 0, 0,  1,  -1  ),
-        new MoonCoefficient1( 2, 0,  0,  -1  ),
-        new MoonCoefficient1( 2, 0,  -1, 1  ),
-        new MoonCoefficient1( 2, 0,  -1, -1 ),
-        new MoonCoefficient1( 2, 0,  0,  1  ),
-        new MoonCoefficient1( 0, 0,  2,  1 ),
-        new MoonCoefficient1( 2, 0,  1,  -1  ),
-        new MoonCoefficient1( 0, 0,  2,  -1 ),
-        new MoonCoefficient1( 2, -1, 0,  -1 ),
-        new MoonCoefficient1( 2, 0,  -2, -1 ),
-        new MoonCoefficient1( 2, 0,  1,  1 ),
-        new MoonCoefficient1( 2, 1,  0,  -1  ),
-        new MoonCoefficient1( 2, -1, -1, 1 ),
-        new MoonCoefficient1( 2, -1, 0,  1  ),
-        new MoonCoefficient1( 2, -1, -1, -1  ),
-        new MoonCoefficient1( 0, 1,  -1, -1 ),
-        new MoonCoefficient1( 4, 0,  -1, -1  ) ,
-        new MoonCoefficient1( 0, 1,  0,  1  ),
-        new MoonCoefficient1( 0, 0,  0,  3 ),
-        new MoonCoefficient1( 0, 1,  -1, 1  ),
-        new MoonCoefficient1( 1, 0,  0,  1 ),
-        new MoonCoefficient1( 0, 1,  1,  1 ),
-        new MoonCoefficient1( 0, 1,  1,  -1  ),
-        new MoonCoefficient1( 0, 1,  0,  -1  ),
-        new MoonCoefficient1( 1, 0,  0,  -1  ),
-        new MoonCoefficient1( 0, 0,  3,  1  ),
-        new MoonCoefficient1( 4, 0,  0,  -1  ),
-        new MoonCoefficient1( 4, 0,  -1, 1 ),
-        new MoonCoefficient1( 0, 0,  1,  -3 ),
-        new MoonCoefficient1( 4, 0,  -2, 1  ),
-        new MoonCoefficient1( 2, 0,  0,  -3 ),
-        new MoonCoefficient1( 2, 0,  2,  -1 ),
-        new MoonCoefficient1( 2, -1, 1,  -1 ),
-        new MoonCoefficient1( 2, 0,  -2, 1  ),
-        new MoonCoefficient1( 0, 0,  3,  -1 ),
-        new MoonCoefficient1( 2, 0,  2,  1  ),
-        new MoonCoefficient1( 2, 0,  -3, -1 ),
-        new MoonCoefficient1( 2, 1,  -1, 1  ),
-        new MoonCoefficient1( 2, 1,  0,  1  ),
-        new MoonCoefficient1( 4, 0,  0,  1  ),
-        new MoonCoefficient1( 2, -1, 1,  1  ),
-        new MoonCoefficient1( 2, -2, 0,  -1 ),
-        new MoonCoefficient1( 0, 0,  1,  3  ),
-        new MoonCoefficient1( 2, 1,  1,  -1 ),
-        new MoonCoefficient1( 1, 1,  0,  -1 ),
-        new MoonCoefficient1( 1, 1,  0,  1  ),
-        new MoonCoefficient1( 0, 1,  -2, -1 ),
-        new MoonCoefficient1( 2, 1,  -1, -1 ),
-        new MoonCoefficient1( 1, 0,  1,  1  ),
-        new MoonCoefficient1( 2, -1, -2, -1 ),
-        new MoonCoefficient1( 0, 1,  2,  1  ),
-        new MoonCoefficient1( 4, 0,  -2, -1 ),
-        new MoonCoefficient1( 4, -1, -1, -1 ),
-        new MoonCoefficient1( 1, 0,  1,  -1 ),
-        new MoonCoefficient1( 4, 0,  1,  -1 ),
-        new MoonCoefficient1( 1, 0,  -1, -1 ),
-        new MoonCoefficient1( 4, -1, 0,  -1 ),
-        new MoonCoefficient1( 2, -2, 0,  1  ) };
-
+          new MoonCoefficient1( 0,  0,  0,  1 ),
+          new MoonCoefficient1( 0,  0,  1,  1 ),
+          new MoonCoefficient1( 0,  0,  1, -1 ),
+          new MoonCoefficient1( 2,  0,  0, -1 ),
+          new MoonCoefficient1( 2,  0, -1,  1 ),
+          new MoonCoefficient1( 2,  0, -1, -1 ),
+          new MoonCoefficient1( 2,  0,  0,  1 ),
+          new MoonCoefficient1( 0,  0,  2,  1 ),
+          new MoonCoefficient1( 2,  0,  1, -1 ),
+          new MoonCoefficient1( 0,  0,  2, -1 ),
+          new MoonCoefficient1( 2, -1,  0, -1 ),
+          new MoonCoefficient1( 2,  0, -2, -1 ),
+          new MoonCoefficient1( 2,  0,  1,  1 ),
+          new MoonCoefficient1( 2,  1,  0, -1 ),
+          new MoonCoefficient1( 2, -1, -1,  1 ),
+          new MoonCoefficient1( 2, -1,  0,  1 ),
+          new MoonCoefficient1( 2, -1, -1, -1 ),
+          new MoonCoefficient1( 0,  1, -1, -1 ),
+          new MoonCoefficient1( 4,  0, -1, -1 ),
+          new MoonCoefficient1( 0,  1,  0,  1 ),
+          new MoonCoefficient1( 0,  0,  0,  3 ),
+          new MoonCoefficient1( 0,  1, -1,  1 ),
+          new MoonCoefficient1( 1,  0,  0,  1 ),
+          new MoonCoefficient1( 0,  1,  1,  1 ),
+          new MoonCoefficient1( 0,  1,  1, -1 ),
+          new MoonCoefficient1( 0,  1,  0, -1 ),
+          new MoonCoefficient1( 1,  0,  0, -1 ),
+          new MoonCoefficient1( 0,  0,  3,  1 ),
+          new MoonCoefficient1( 4,  0,  0, -1 ),
+          new MoonCoefficient1( 4,  0, -1,  1 ),
+          new MoonCoefficient1( 0,  0,  1, -3 ),
+          new MoonCoefficient1( 4,  0, -2,  1 ),
+          new MoonCoefficient1( 2,  0,  0, -3 ),
+          new MoonCoefficient1( 2,  0,  2, -1 ),
+          new MoonCoefficient1( 2, -1,  1, -1 ),
+          new MoonCoefficient1( 2,  0, -2,  1 ),
+          new MoonCoefficient1( 0,  0,  3, -1 ),
+          new MoonCoefficient1( 2,  0,  2,  1 ),
+          new MoonCoefficient1( 2,  0, -3, -1 ),
+          new MoonCoefficient1( 2,  1, -1,  1 ),
+          new MoonCoefficient1( 2,  1,  0,  1 ),
+          new MoonCoefficient1( 4,  0,  0,  1 ),
+          new MoonCoefficient1( 2, -1,  1,  1 ),
+          new MoonCoefficient1( 2, -2,  0, -1 ),
+          new MoonCoefficient1( 0,  0,  1,  3 ),
+          new MoonCoefficient1( 2,  1,  1, -1 ),
+          new MoonCoefficient1( 1,  1,  0, -1 ),
+          new MoonCoefficient1( 1,  1,  0,  1 ),
+          new MoonCoefficient1( 0,  1, -2, -1 ),
+          new MoonCoefficient1( 2,  1, -1, -1 ),
+          new MoonCoefficient1( 1,  0,  1,  1 ),
+          new MoonCoefficient1( 2, -1, -2, -1 ),
+          new MoonCoefficient1( 0,  1,  2,  1 ),
+          new MoonCoefficient1( 4,  0, -2, -1 ),
+          new MoonCoefficient1( 4, -1, -1, -1 ),
+          new MoonCoefficient1( 1,  0,  1, -1 ),
+          new MoonCoefficient1( 4,  0,  1, -1 ),
+          new MoonCoefficient1( 1,  0, -1, -1 ),
+          new MoonCoefficient1( 4, -1,  0, -1 ),
+          new MoonCoefficient1( 2, -2,  0,  1 ),
+        };
+        
         static readonly double[] g_MoonCoefficients4 =
         {
-        5128122,
-        280602,
-        277693,
-        173237,
-        55413,
-        46271,
-        32573,
-        17198,
-        9266,
-        8822,
-        8216,
-        4324,
-        4200,
-        -3359,
-        2463,
-        2211,
-        2065,
-        -1870,
-        1828,
-        -1794,
-        -1749,
-        -1565,
-        -1491,
-        -1475,
-        -1410,
-        -1344,
-        -1335,
-        1107,
-        1021,
-        833,
-        777,
-        671,
-        607,
-        596,
-        491,
-        -451,
-        439,
-        422,
-        421,
-        -366,
-        -351,
-        331,
-        315,
-        302,
-        -283,
-        -229,
-        223,
-        223,
-        -220,
-        -220,
-        -185,
-        181,
-        -177,
-        176,
-        166,
-        -164,
-        132,
-        -119,
-        115,
-        107 };
+          5128122,
+          280602,
+          277693,
+          173237,
+          55413,
+          46271,
+          32573,
+          17198,
+          9266,
+          8822,
+          8216,
+          4324,
+          4200,
+         -3359,
+          2463,
+          2211,
+          2065,
+         -1870,
+          1828,
+         -1794,
+         -1749,
+         -1565,
+         -1491,
+         -1475,
+         -1410,
+         -1344,
+         -1335,
+          1107,
+          1021,
+          833,
+          777,
+          671,
+          607,
+          596,
+          491,
+         -451,
+          439,
+          422,
+          421,
+         -366,
+         -351,
+          331,
+          315,
+          302,
+         -283,
+         -229,
+          223,
+          223,
+         -220,
+         -220,
+         -185,
+          181,
+         -177,
+          176,
+          166,
+         -164,
+          132,
+         -119,
+          115,
+          107
+        };
+        
+        #endregion
 
         public static double MeanLongitude(double JD)
         {
@@ -309,38 +315,38 @@ namespace AASharp
             F = AASCoordinateTransformation.DegreesToRadians(F);
 
             double E = AASEarth.Eccentricity(JD);
-            double Esquared = E * E;
+            double Esquared = E*E;
             double T = (JD - 2451545) / 36525;
 
-            double A1 = AASCoordinateTransformation.MapTo0To360Range(119.75 + 131.849 * T);
+            double A1 = AASCoordinateTransformation.MapTo0To360Range(119.75 + 131.849*T);
             A1 = AASCoordinateTransformation.DegreesToRadians(A1);
-            double A2 = AASCoordinateTransformation.MapTo0To360Range(53.09 + 479264.290 * T);
+            double A2 = AASCoordinateTransformation.MapTo0To360Range(53.09 + 479264.290*T);
             A2 = AASCoordinateTransformation.DegreesToRadians(A2);
 
             int nLCoefficients = g_MoonCoefficients1.Length;
             double SigmaL = 0;
-            for (int i = 0; i < nLCoefficients; i++)
+            for (int i=0; i<nLCoefficients; i++)
             {
-                double ThisSigma = g_MoonCoefficients2[i].A * Math.Sin(g_MoonCoefficients1[i].D * D + g_MoonCoefficients1[i].M * M + g_MoonCoefficients1[i].Mdash * Mdash + g_MoonCoefficients1[i].F * F);
+                double ThisSigma = g_MoonCoefficients2[i].A * Math.Sin(g_MoonCoefficients1[i].D*D + g_MoonCoefficients1[i].M*M +
+                                                                  g_MoonCoefficients1[i].Mdash*Mdash + g_MoonCoefficients1[i].F*F);
 
                 if ((g_MoonCoefficients1[i].M == 1) || (g_MoonCoefficients1[i].M == -1))
                     ThisSigma *= E;
-                else
-                    if ((g_MoonCoefficients1[i].M == 2) || (g_MoonCoefficients1[i].M == -2))
-                        ThisSigma *= Esquared;
+                else if ((g_MoonCoefficients1[i].M == 2) || (g_MoonCoefficients1[i].M == -2))
+                    ThisSigma *= Esquared;
 
                 SigmaL += ThisSigma;
             }
 
             //Finally the additive terms
-            SigmaL += 3958 * Math.Sin(A1);
-            SigmaL += 1962 * Math.Sin(Ldash - F);
-            SigmaL += 318 * Math.Sin(A2);
+            SigmaL += 3958*Math.Sin(A1);
+            SigmaL += 1962*Math.Sin(Ldash - F);
+            SigmaL += 318*Math.Sin(A2);
 
             //And finally apply the nutation in longitude
             double NutationInLong = AASNutation.NutationInLongitude(JD);
 
-            return AASCoordinateTransformation.MapTo0To360Range(LdashDegrees + SigmaL / 1000000 + NutationInLong / 3600);
+            return AASCoordinateTransformation.MapTo0To360Range(LdashDegrees + SigmaL/1000000 + NutationInLong/3600);
         }
 
         public static double RadiusVector(double JD)
@@ -354,20 +360,23 @@ namespace AASharp
             double F = ArgumentOfLatitude(JD);
             F = AASCoordinateTransformation.DegreesToRadians(F);
             double E = AASEarth.Eccentricity(JD);
+            double Esquared = E*E;
 
             int nRCoefficients = g_MoonCoefficients1.Length;
             double SigmaR = 0;
-            for (int i = 0; i < nRCoefficients; i++)
+            for (int i=0; i<nRCoefficients; i++)
             {
-                double ThisSigma = g_MoonCoefficients2[i].B * Math.Cos(g_MoonCoefficients1[i].D * D + g_MoonCoefficients1[i].M * M + g_MoonCoefficients1[i].Mdash * Mdash + g_MoonCoefficients1[i].F * F);
-                if (g_MoonCoefficients1[i].M == 1)
-                    // in the C++, this was "if (g_MoonCoefficients1[i].M)", because 0 and 1 are used to represent false and true in C++
+                double ThisSigma = g_MoonCoefficients2[i].B * Math.Cos(g_MoonCoefficients1[i].D*D + g_MoonCoefficients1[i].M*M +
+                                                                  g_MoonCoefficients1[i].Mdash*Mdash + g_MoonCoefficients1[i].F*F);
+                if ((g_MoonCoefficients1[i].M == 1) || (g_MoonCoefficients1[i].M == -1))
                     ThisSigma *= E;
+                else if ((g_MoonCoefficients1[i].M == 2) || (g_MoonCoefficients1[i].M == -2))
+                    ThisSigma *= Esquared;
 
                 SigmaR += ThisSigma;
             }
 
-            return 385000.56 + SigmaR / 1000;
+            return 385000.56 + SigmaR/1000;
         }
 
         public static double EclipticLatitude(double JD)
@@ -384,34 +393,38 @@ namespace AASharp
             F = AASCoordinateTransformation.DegreesToRadians(F);
 
             double E = AASEarth.Eccentricity(JD);
+            double Esquared = E*E;
             double T = (JD - 2451545) / 36525;
 
-            double A1 = AASCoordinateTransformation.MapTo0To360Range(119.75 + 131.849 * T);
+            double A1 = AASCoordinateTransformation.MapTo0To360Range(119.75 + 131.849*T);
             A1 = AASCoordinateTransformation.DegreesToRadians(A1);
-            double A3 = AASCoordinateTransformation.MapTo0To360Range(313.45 + 481266.484 * T);
+            double A3 = AASCoordinateTransformation.MapTo0To360Range(313.45 + 481266.484*T);
             A3 = AASCoordinateTransformation.DegreesToRadians(A3);
 
             int nBCoefficients = g_MoonCoefficients3.Length;
             double SigmaB = 0;
-            for (int i = 0; i < nBCoefficients; i++)
+            for (int i=0; i<nBCoefficients; i++)
             {
-                double ThisSigma = g_MoonCoefficients4[i] * Math.Sin(g_MoonCoefficients3[i].D * D + g_MoonCoefficients3[i].M * M + g_MoonCoefficients3[i].Mdash * Mdash + g_MoonCoefficients3[i].F * F);
+                double ThisSigma = g_MoonCoefficients4[i] * Math.Sin(g_MoonCoefficients3[i].D*D + g_MoonCoefficients3[i].M*M + 
+                                                                g_MoonCoefficients3[i].Mdash*Mdash + g_MoonCoefficients3[i].F*F);
 
-                if (g_MoonCoefficients3[i].M == 1)
+                if ((g_MoonCoefficients3[i].M == 1) || (g_MoonCoefficients3[i].M == -1))
                     ThisSigma *= E;
+                else if ((g_MoonCoefficients3[i].M == 2) || (g_MoonCoefficients3[i].M == -2))
+                    ThisSigma *= Esquared;
 
                 SigmaB += ThisSigma;
             }
 
             //Finally the additive terms
-            SigmaB -= 2235 * Math.Sin(Ldash);
-            SigmaB += 382 * Math.Sin(A3);
-            SigmaB += 175 * Math.Sin(A1 - F);
-            SigmaB += 175 * Math.Sin(A1 + F);
-            SigmaB += 127 * Math.Sin(Ldash - Mdash);
-            SigmaB -= 115 * Math.Sin(Ldash + Mdash);
+            SigmaB -= 2235*Math.Sin(Ldash);
+            SigmaB += 382*Math.Sin(A3);
+            SigmaB += 175*Math.Sin(A1 - F);
+            SigmaB += 175*Math.Sin(A1 + F);
+            SigmaB += 127*Math.Sin(Ldash - Mdash);
+            SigmaB -= 115*Math.Sin(Ldash + Mdash);
 
-            return SigmaB / 1000000;
+            return SigmaB/1000000;
         }
 
         public static double RadiusVectorToHorizontalParallax(double RadiusVector)

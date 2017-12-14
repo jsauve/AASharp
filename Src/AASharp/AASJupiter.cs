@@ -4,8 +4,7 @@ namespace AASharp
 {
     public static class AASJupiter
     {
-                #region coefficients
-                
+        #region coefficients        
                 
         static readonly VSOP87Coefficient[] g_L0JupiterCoefficients =
         { 
