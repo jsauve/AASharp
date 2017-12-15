@@ -41,11 +41,39 @@ namespace AASharp
         public AASSaturnMoonDetail Satellite7 { get; set; }
         public AASSaturnMoonDetail Satellite8 { get; set; }
     }
+
     public static class AASSaturnMoons
     {
+        private static void HelperSubroutine(double e, double lambdadash, double p, double a, double omega, double i, double c1, double s1, ref double r, ref double lambda, ref double gamma, ref double w)
+        {
+            double e2 = e * e;
+            double e3 = e2 * e;
+            double e4 = e3 * e;
+            double e5 = e4 * e;
+            double M = AASCoordinateTransformation.DegreesToRadians(lambdadash - p);
 
+            double Crad = (2 * e - 0.25 * e3 + 0.0520833333 * e5) * Math.Sin(M) +
+                          (1.25 * e2 - 0.458333333 * e4) * Math.Sin(2 * M) +
+                          (1.083333333 * e3 - 0.671875 * e5) * Math.Sin(3 * M) +
+                          1.072917 * e4 * Math.Sin(4 * M) + 1.142708 * e5 * Math.Sin(5 * M);
+            double C = AASCoordinateTransformation.RadiansToDegrees(Crad);
+            r = a * (1 - e2) / (1 + e * Math.Cos(M + Crad));
+            double g = omega - 168.8112;
+            double grad = AASCoordinateTransformation.DegreesToRadians(g);
+            double irad = AASCoordinateTransformation.DegreesToRadians(i);
+            double a1 = Math.Sin(irad) * Math.Sin(grad);
+            double a2 = c1 * Math.Sin(irad) * Math.Cos(grad) - s1 * Math.Cos(irad);
+            gamma = AASCoordinateTransformation.RadiansToDegrees(Math.Asin(Math.Sqrt(a1 * a1 + a2 * a2)));
+            double urad = Math.Atan2(a1, a2);
+            double u = AASCoordinateTransformation.RadiansToDegrees(urad);
+            w = AASCoordinateTransformation.MapTo0To360Range(168.8112 + u);
+            double h = c1 * Math.Sin(irad) - s1 * Math.Cos(irad) * Math.Cos(grad);
+            double psirad = Math.Atan2(s1 * Math.Sin(grad), h);
+            double psi = AASCoordinateTransformation.RadiansToDegrees(psirad);
+            lambda = lambdadash + C + u - g - psi;
+        }
 
-        public static AASSaturnMoonsDetails CalculateHelper(double JD, double sunlongrad, double betarad, double R, bool bHighPrecision)
+        private static AASSaturnMoonsDetails CalculateHelper(double JD, double sunlongrad, double betarad, double R, bool bHighPrecision)
         {
             //What will be the return value
             AASSaturnMoonsDetails details = new AASSaturnMoonsDetails();
@@ -75,7 +103,7 @@ namespace AASharp
                 LightTravelTime = AASElliptical.DistanceToLightTime(DELTA);
 
                 //Prepare for the next loop around
-                bIterate = (Math.Abs(LightTravelTime - PreviousLightTravelTime) > 2E-6); //2E-6 corresponds to 0.17 of a second
+                bIterate = (Math.Abs(LightTravelTime - PreviousLightTravelTime) > 2e-6); //2e-6 corresponds to 0.17 of a second
                 if (bIterate)
                 {
                     JD1 = JD - LightTravelTime;
@@ -147,7 +175,7 @@ namespace AASharp
             double Crad = AASCoordinateTransformation.DegreesToRadians(C);
             double lambda1 = AASCoordinateTransformation.MapTo0To360Range(L + C);
             double r1 = 3.06879 / (1 + 0.01905 * Math.Cos(Mrad + Crad));
-            const double gamma1 = 1.563;
+            double gamma1 = 1.563;
             double omega1 = AASCoordinateTransformation.MapTo0To360Range(54.5 - 365.072 * t2);
 
             //Satellite 2
@@ -159,13 +187,13 @@ namespace AASharp
             Crad = AASCoordinateTransformation.DegreesToRadians(C);
             double lambda2 = AASCoordinateTransformation.MapTo0To360Range(L + C);
             double r2 = 3.94118 / (1 + 0.00485 * Math.Cos(Mrad + Crad));
-            const double gamma2 = 0.0262;
+            double gamma2 = 0.0262;
             double omega2 = AASCoordinateTransformation.MapTo0To360Range(348 - 151.95 * t2);
 
             //Satellite 3
             double lambda3 = AASCoordinateTransformation.MapTo0To360Range(285.306 + 190.69791226 * t1 + 2.063 * Math.Sin(W0rad) + 0.03409 * Math.Sin(3 * W0rad) + 0.001015 * Math.Sin(5 * W0rad));
-            const double r3 = 4.880998;
-            const double gamma3 = 1.0976;
+            double r3 = 4.880998;
+            double gamma3 = 1.0976;
             double omega3 = AASCoordinateTransformation.MapTo0To360Range(111.33 - 72.2441 * t2);
 
             //Satellite 4
@@ -177,14 +205,14 @@ namespace AASharp
             Crad = AASCoordinateTransformation.DegreesToRadians(C);
             double lambda4 = AASCoordinateTransformation.MapTo0To360Range(L + C);
             double r4 = 6.24871 / (1 + 0.002157 * Math.Cos(Mrad + Crad));
-            const double gamma4 = 0.0139;
+            double gamma4 = 0.0139;
             double omega4 = AASCoordinateTransformation.MapTo0To360Range(232 - 30.27 * t2);
 
             //Satellite 5
             double pdash = 342.7 + 10.057 * t2;
             double pdashrad = AASCoordinateTransformation.DegreesToRadians(pdash);
             double a1 = 0.000265 * Math.Sin(pdashrad) + 0.001 * Math.Sin(W4rad); //Note the book uses the incorrect constant 0.01*Math.Sin(W4rad);
-            double a2 = 0.000265 * Math.Cos(pdashrad) + 0.001 * Math.Cos(W4rad); //Note the book uses the incorrect constant 0.01*Math.Cos(W4rad);
+            double a2 = 0.000265 * Math.Cos(pdashrad) + 0.001 * Math.Cos(W4rad); //Note the book uses the incorrect constant 0.01*cos(W4rad);
             double e = Math.Sqrt(a1 * a1 + a2 * a2);
             p = AASCoordinateTransformation.RadiansToDegrees(Math.Atan2(a1, a2));
             double N = 345 - 10.057 * t2;
@@ -258,14 +286,14 @@ namespace AASharp
             double chirad = AASCoordinateTransformation.DegreesToRadians(chi);
             a = 24.50601 - 0.08686 * Math.Cos(etarad) - 0.00166 * Math.Cos(zetarad + etarad) + 0.00175 * Math.Cos(zetarad - etarad);
             e = 0.103458 - 0.004099 * Math.Cos(etarad) - 0.000167 * Math.Cos(zetarad + etarad) + 0.000235 * Math.Cos(zetarad - etarad) +
-            0.02303 * Math.Cos(zetarad) - 0.00212 * Math.Cos(2 * zetarad) + 0.000151 * Math.Cos(3 * zetarad) + 0.00013 * Math.Cos(phirad);
+                0.02303 * Math.Cos(zetarad) - 0.00212 * Math.Cos(2 * zetarad) + 0.000151 * Math.Cos(3 * zetarad) + 0.00013 * Math.Cos(phirad);
             p = w_ + 0.15648 * Math.Sin(chirad) - 0.4457 * Math.Sin(etarad) - 0.2657 * Math.Sin(zetarad + etarad) +
-            -0.3573 * Math.Sin(zetarad - etarad) - 12.872 * Math.Sin(zetarad) + 1.668 * Math.Sin(2 * zetarad) +
-            -0.2419 * Math.Sin(3 * zetarad) - 0.07 * Math.Sin(phirad);
+                -0.3573 * Math.Sin(zetarad - etarad) - 12.872 * Math.Sin(zetarad) + 1.668 * Math.Sin(2 * zetarad) +
+                -0.2419 * Math.Sin(3 * zetarad) - 0.07 * Math.Sin(phirad);
             lambdadash = AASCoordinateTransformation.MapTo0To360Range(177.047 + 16.91993829 * t6 + 0.15648 * Math.Sin(chirad) + 9.142 * Math.Sin(etarad) +
-            0.007 * Math.Sin(2 * etarad) - 0.014 * Math.Sin(3 * etarad) + 0.2275 * Math.Sin(zetarad + etarad) +
-            0.2112 * Math.Sin(zetarad - etarad) - 0.26 * Math.Sin(zetarad) - 0.0098 * Math.Sin(2 * zetarad) +
-            -0.013 * Math.Sin(aS) + 0.017 * Math.Sin(bs) - 0.0303 * Math.Sin(phirad));
+                                                                      0.007 * Math.Sin(2 * etarad) - 0.014 * Math.Sin(3 * etarad) + 0.2275 * Math.Sin(zetarad + etarad) +
+                                                                      0.2112 * Math.Sin(zetarad - etarad) - 0.26 * Math.Sin(zetarad) - 0.0098 * Math.Sin(2 * zetarad) +
+                                                                      -0.013 * Math.Sin(aS) + 0.017 * Math.Sin(bs) - 0.0303 * Math.Sin(phirad));
             i = 27.3347 + 0.643486 * Math.Cos(chirad) + 0.315 * Math.Cos(W3rad) + 0.018 * Math.Cos(theta) - 0.018 * Math.Cos(cs);
             omega = 168.6812 + 1.40136 * Math.Cos(chirad) + 0.68599 * Math.Sin(W3rad) - 0.0392 * Math.Sin(cs) + 0.0366 * Math.Sin(thetadash);
             double lambda7 = 0;
@@ -286,7 +314,6 @@ namespace AASharp
             edash = 0.028298 + 0.001156 * t11;
             double w_0 = 352.91 + 11.71 * t11;
             double mu = AASCoordinateTransformation.MapTo0To360Range(76.3852 + 4.53795125 * t10);
-            mu = AASCoordinateTransformation.MapTo0To360Range(189097.71668440815);
             idash = 18.4602 - 0.9518 * t11 - 0.072 * t112 + 0.0054 * t113;
             idashrad = AASCoordinateTransformation.DegreesToRadians(idash);
             omegadash = 143.198 - 3.919 * t11 + 0.116 * t112 + 0.008 * t113;
@@ -304,17 +331,17 @@ namespace AASharp
             double u5 = 2 * (ls + gs);
             a = 58.935028 + 0.004638 * Math.Cos(u1) + 0.058222 * Math.Cos(u2);
             e = edash - 0.0014097 * Math.Cos(g1 - gt) + 0.0003733 * Math.Cos(u5 - 2 * g) +
-            0.0001180 * Math.Cos(u3) + 0.0002408 * Math.Cos(_l) +
-            0.0002849 * Math.Cos(_l + u2) + 0.0006190 * Math.Cos(u4);
+                0.0001180 * Math.Cos(u3) + 0.0002408 * Math.Cos(_l) +
+                0.0002849 * Math.Cos(_l + u2) + 0.0006190 * Math.Cos(u4);
             double w = 0.08077 * Math.Sin(g1 - gt) + 0.02139 * Math.Sin(u5 - 2 * g) - 0.00676 * Math.Sin(u3) +
-            0.01380 * Math.Sin(_l) + 0.01632 * Math.Sin(_l + u2) + 0.03547 * Math.Sin(u4);
+                       0.01380 * Math.Sin(_l) + 0.01632 * Math.Sin(_l + u2) + 0.03547 * Math.Sin(u4);
             p = w_0 + w / edash;
             lambdadash = mu - 0.04299 * Math.Sin(u2) - 0.00789 * Math.Sin(u1) - 0.06312 * Math.Sin(ls) +
-            -0.00295 * Math.Sin(2 * ls) - 0.02231 * Math.Sin(u5) + 0.00650 * Math.Sin(u5 + psirad);
+                         -0.00295 * Math.Sin(2 * ls) - 0.02231 * Math.Sin(u5) + 0.00650 * Math.Sin(u5 + psirad);
             i = idash + 0.04204 * Math.Cos(u5 + psirad) + 0.00235 * Math.Cos(_l + g1 + lt + gt + phirad) +
-            0.00360 * Math.Cos(u2 + phirad);
+                0.00360 * Math.Cos(u2 + phirad);
             double wdash = 0.04204 * Math.Sin(u5 + psirad) + 0.00235 * Math.Sin(_l + g1 + lt + gt + phirad) +
-            0.00358 * Math.Sin(u2 + phirad);
+                           0.00358 * Math.Sin(u2 + phirad);
             omega = omegadash + wdash / Math.Sin(idashrad);
             double lambda8 = 0;
             double gamma8 = 0;
@@ -379,14 +406,14 @@ namespace AASharp
             double Y8 = r8 * (Math.Sin(u) * Math.Cos(w) * Math.Cos(gamma8rad) + Math.Cos(u) * Math.Sin(w));
             double Z8 = r8 * Math.Sin(u) * Math.Sin(gamma8rad);
 
-            const double X9 = 0;
-            const double Y9 = 0;
-            const double Z9 = 1;
+            double X9 = 0;
+            double Y9 = 0;
+            double Z9 = 1;
 
             //Now do the rotations, first for the ficticious 9th satellite, so that we can calculate D
-            double A4 = 0;
-            double B4 = 0;
-            double C4 = 0;
+            double A4;
+            double B4;
+            double C4;
             Rotations(X9, Y9, Z9, c1, s1, c2, s2, lambda0rad, beta0rad, ref A4, ref B4, ref C4);
             double D = Math.Atan2(A4, C4);
 
@@ -543,7 +570,7 @@ namespace AASharp
                 EarthLightTravelTime = AASElliptical.DistanceToLightTime(DELTA);
 
                 //Prepare for the next loop around
-                bIterate = (Math.Abs(EarthLightTravelTime - PreviousEarthLightTravelTime) > 2E-6); //2E-6 corresponds to 0.17 of a second
+                bIterate = (Math.Abs(EarthLightTravelTime - PreviousEarthLightTravelTime) > 2e-6); //2e-6 corresponds to 0.17 of a second
                 if (bIterate)
                 {
                     JD1 = JD - EarthLightTravelTime;
@@ -553,15 +580,14 @@ namespace AASharp
 
             //Calculate the details as seen from the earth
             AASSaturnMoonsDetails details1 = CalculateHelper(JD, sunlongrad, betarad, R, bHighPrecision);
-
-            var  details1Satellite1 = details1.Satellite1;
-            var  details1Satellite2 = details1.Satellite2;
-            var  details1Satellite3 = details1.Satellite3;
-            var  details1Satellite4 = details1.Satellite4;
-            var  details1Satellite5 = details1.Satellite5;
-            var  details1Satellite6 = details1.Satellite6;
-            var  details1Satellite7 = details1.Satellite7;
-            var  details1Satellite8 = details1.Satellite8;
+            var details1Satellite1 = details1.Satellite1;
+            var details1Satellite2 = details1.Satellite2;
+            var details1Satellite3 = details1.Satellite3;
+            var details1Satellite4 = details1.Satellite4;
+            var details1Satellite5 = details1.Satellite5;
+            var details1Satellite6 = details1.Satellite6;
+            var details1Satellite7 = details1.Satellite7;
+            var details1Satellite8 = details1.Satellite8;
 
             FillInPhenomenaDetails(ref details1Satellite1);
             FillInPhenomenaDetails(ref details1Satellite2);
@@ -571,6 +597,7 @@ namespace AASharp
             FillInPhenomenaDetails(ref details1Satellite6);
             FillInPhenomenaDetails(ref details1Satellite7);
             FillInPhenomenaDetails(ref details1Satellite8);
+
 
             //Calculate the the light travel time from Saturn to the Sun
             JD1 = JD - EarthLightTravelTime;
@@ -584,12 +611,12 @@ namespace AASharp
                 y = r * Math.Cos(brad) * Math.Sin(lrad);
                 z = r * Math.Sin(brad);
             }
+
             DELTA = Math.Sqrt(x * x + y * y + z * z);
             double SunLightTravelTime = AASElliptical.DistanceToLightTime(DELTA);
 
             //Calculate the details as seen from the Sun
             AASSaturnMoonsDetails details2 = CalculateHelper(JD + SunLightTravelTime - EarthLightTravelTime, sunlongrad, betarad, 0, bHighPrecision);
-
             var details2Satellite1 = details2.Satellite1;
             var details2Satellite2 = details2.Satellite2;
             var details2Satellite3 = details2.Satellite3;
@@ -598,7 +625,6 @@ namespace AASharp
             var details2Satellite6 = details2.Satellite6;
             var details2Satellite7 = details2.Satellite7;
             var details2Satellite8 = details2.Satellite8;
-
             FillInPhenomenaDetails(ref details2Satellite1);
             FillInPhenomenaDetails(ref details2Satellite2);
             FillInPhenomenaDetails(ref details2Satellite3);
@@ -629,7 +655,7 @@ namespace AASharp
             return details1;
         }
 
-        public static void Rotations(double X, double Y, double Z, double c1, double s1, double c2, double s2, double lambda0, double beta0, ref double A4, ref double B4, ref double C4)
+        private static void Rotations(double X, double Y, double Z, double c1, double s1, double c2, double s2, double lambda0, double beta0, ref double A4, ref double B4, ref double C4)
         {
             //Rotation towards the plane of the ecliptic
             double A1 = X;
@@ -650,7 +676,7 @@ namespace AASharp
             C4 = C3 * Math.Cos(beta0) - B3 * Math.Sin(beta0);
         }
 
-        public static void FillInPhenomenaDetails(ref AASSaturnMoonDetail detail)
+        private static void FillInPhenomenaDetails(ref AASSaturnMoonDetail detail)
         {
             double Y1 = 1.108601 * detail.ApparentRectangularCoordinates.Y;
 
@@ -675,35 +701,6 @@ namespace AASharp
                 detail.bInTransit = false;
                 detail.bInOccultation = false;
             }
-        }
-
-        private static void HelperSubroutine(double e, double lambdadash, double p, double a, double omega, double i, double c1, double s1, ref double r, ref double lambda, ref double gamma, ref double w)
-        {
-            double e2 = e * e;
-            double e3 = e2 * e;
-            double e4 = e3 * e;
-            double e5 = e4 * e;
-            double M = AASCoordinateTransformation.DegreesToRadians(lambdadash - p);
-
-            double Crad = (2 * e - 0.25 * e3 + 0.0520833333 * e5) * Math.Sin(M) +
-            (1.25 * e2 - 0.458333333 * e4) * Math.Sin(2 * M) +
-            (1.083333333 * e3 - 0.671875 * e5) * Math.Sin(3 * M) +
-            1.072917 * e4 * Math.Sin(4 * M) + 1.142708 * e5 * Math.Sin(5 * M);
-            double C = AASCoordinateTransformation.RadiansToDegrees(Crad);
-            r = a * (1 - e2) / (1 + e * Math.Cos(M + Crad));
-            double g = omega - 168.8112;
-            double grad = AASCoordinateTransformation.DegreesToRadians(g);
-            double irad = AASCoordinateTransformation.DegreesToRadians(i);
-            double a1 = Math.Sin(irad) * Math.Sin(grad);
-            double a2 = c1 * Math.Sin(irad) * Math.Cos(grad) - s1 * Math.Cos(irad);
-            gamma = AASCoordinateTransformation.RadiansToDegrees(Math.Asin(Math.Sqrt(a1 * a1 + a2 * a2)));
-            double urad = Math.Atan2(a1, a2);
-            double u = AASCoordinateTransformation.RadiansToDegrees(urad);
-            w = AASCoordinateTransformation.MapTo0To360Range(168.8112 + u);
-            double h = c1 * Math.Sin(irad) - s1 * Math.Cos(irad) * Math.Cos(grad);
-            double psirad = Math.Atan2(s1 * Math.Sin(grad), h);
-            double psi = AASCoordinateTransformation.RadiansToDegrees(psirad);
-            lambda = lambdadash + C + u - g - psi;
         }
     }
 }

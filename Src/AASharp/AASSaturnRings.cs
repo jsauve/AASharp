@@ -10,6 +10,8 @@ namespace AASharp
         public double a;
         public double b;
         public double DeltaU;
+        public double U1;
+        public double U2;
     }
 
     public static class AASSaturnRings
@@ -69,7 +71,7 @@ namespace AASharp
                 EarthLightTravelTime = AASElliptical.DistanceToLightTime(DELTA);
 
                 //Prepare for the next loop around
-                bIterate = (Math.Abs(EarthLightTravelTime - PreviousEarthLightTravelTime) > 2E-6); //2E-6 corresponds to 0.17 of a second
+                bIterate = (Math.Abs(EarthLightTravelTime - PreviousEarthLightTravelTime) > 2e-6); //2e-6 corresponds to 0.17 of a second
                 if (bIterate)
                 {
                     JD1 = JD - EarthLightTravelTime;
@@ -99,9 +101,11 @@ namespace AASharp
             details.Bdash = AASCoordinateTransformation.RadiansToDegrees(Math.Asin(Math.Sin(irad) * Math.Cos(bdashrad) * Math.Sin(ldashrad - omegarad) - Math.Cos(irad) * Math.Sin(bdashrad)));
 
             //Step 9. Calculate DeltaU
-            double U1 = Math.Atan2(Math.Sin(irad) * Math.Sin(bdashrad) + Math.Cos(irad) * Math.Cos(bdashrad) * Math.Sin(ldashrad - omegarad), Math.Cos(bdashrad) * Math.Cos(ldashrad - omegarad));
-            double U2 = Math.Atan2(Math.Sin(irad) * Math.Sin(beta) + Math.Cos(irad) * Math.Cos(beta) * Math.Sin(lambda - omegarad), Math.Cos(beta) * Math.Cos(lambda - omegarad));
-            details.DeltaU = AASCoordinateTransformation.RadiansToDegrees(Math.Abs(U1 - U2));
+            details.U1 = AASCoordinateTransformation.MapTo0To360Range(AASCoordinateTransformation.RadiansToDegrees(Math.Atan2(Math.Sin(irad) * Math.Sin(bdashrad) + Math.Cos(irad) * Math.Cos(bdashrad) * Math.Sin(ldashrad - omegarad), Math.Cos(bdashrad) * Math.Cos(ldashrad - omegarad))));
+            details.U2 = AASCoordinateTransformation.MapTo0To360Range(AASCoordinateTransformation.RadiansToDegrees(Math.Atan2(Math.Sin(irad) * Math.Sin(beta) + Math.Cos(irad) * Math.Cos(beta) * Math.Sin(lambda - omegarad), Math.Cos(beta) * Math.Cos(lambda - omegarad))));
+            details.DeltaU = Math.Abs(details.U1 - details.U2);
+            if (details.DeltaU > 180)
+                details.DeltaU = 360 - details.DeltaU;
 
             //Step 10. Calculate the Nutations 
             double Obliquity = AASNutation.TrueObliquityOfEcliptic(JD);
