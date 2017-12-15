@@ -4,43 +4,15 @@ namespace AASharp
     {
         internal MoonCoefficient1(int d, int m, int mDash, int f)
         {
-            _D = d;
-            _M = m;
-            _Mdash = mDash;
-            _F = f;
+            D = d;
+            M = m;
+            Mdash = mDash;
+            F = f;
         }
 
-        private readonly int _D;
-        public int D
-        {
-            get
-            {
-                return _D;
-            }
-        }
-        private readonly int _M;
-        public int M
-        {
-            get
-            {
-                return _M;
-            }
-        }
-        private readonly int _Mdash;
-        public int Mdash
-        {
-            get
-            {
-                return _Mdash;
-            }
-        }
-        private readonly int _F;
-        public int F
-        {
-            get
-            {
-                return _F;
-            }
-        }
+        public int D { get; }
+        public int M { get; }
+        public int Mdash { get; }
+        public int F { get; }
     }
 }

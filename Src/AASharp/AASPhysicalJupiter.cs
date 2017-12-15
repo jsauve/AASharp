@@ -4,13 +4,13 @@ namespace AASharp
 {
     public class CAAPhysicalJupiterDetails
     {
-        public double DE;
-        public double DS;
-        public double Geometricw1;
-        public double Geometricw2;
-        public double Apparentw1;
-        public double Apparentw2;
-        public double P;
+        public double DE { get; set; }
+        public double DS { get; set; }
+        public double Geometricw1 { get; set; }
+        public double Geometricw2 { get; set; }
+        public double Apparentw1 { get; set; }
+        public double Apparentw2 { get; set; }
+        public double P { get; set; }
     }
 
     public static class AASPhysicalJupiter

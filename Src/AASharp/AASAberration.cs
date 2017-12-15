@@ -6,7 +6,7 @@ namespace AASharp
     {
         static readonly AberrationCoefficient[] g_AberrationCoefficients =
         {
-        //L2   L3   L4  L5  L6  L7  L8  Ldash D   Mdash F   xsin      xsint xcos    xcost ysin   ysint ycos     ycost zsin   zsint zcos    zcost
+                                 //L2   L3   L4  L5  L6  L7  L8  Ldash D   Mdash F   xsin      xsint xcos    xcost ysin   ysint ycos     ycost zsin   zsint zcos    zcost
         new AberrationCoefficient(  0,  1,   0,  0,  0,  0,  0,  0,    0,  0,    0,  -1719914, -2,   -25,    0,    25,    -13,  1578089, 156,  10,    32,   684185, -358 ),
         new AberrationCoefficient(  0,  2,   0,  0,  0,  0,  0,  0,    0,  0,    0,  6434,     141,  28007,  -107, 25697, -95,  -5904,   -130, 11141, -48,  -2559,  -55  ),
         new AberrationCoefficient(  0,  0,   0,  1,  0,  0,  0,  0,    0,  0,    0,  715,      0,    0,      0,    6,     0,    -657,    0,    -15,   0,    -282,   0    ),
@@ -100,7 +100,7 @@ namespace AASharp
             AAS3DCoordinate velocity = EarthVelocity(JD);
 
             //What is the return value
-            AAS2DCoordinate aberration = new AAS2DCoordinate() { X = AASCoordinateTransformation.RadiansToHours((velocity.Y * cosAlpha - velocity.X * sinAlpha) / (17314463350.0 * cosDelta)), Y = AASCoordinateTransformation.RadiansToDegrees(-(((velocity.X * cosAlpha + velocity.Y * sinAlpha) * sinDelta - velocity.Z * cosDelta) / 17314463350.0)) };
+            AAS2DCoordinate aberration = new AAS2DCoordinate { X = AASCoordinateTransformation.RadiansToHours((velocity.Y * cosAlpha - velocity.X * sinAlpha) / (17314463350.0 * cosDelta)), Y = AASCoordinateTransformation.RadiansToDegrees(-(((velocity.X * cosAlpha + velocity.Y * sinAlpha) * sinDelta - velocity.Z * cosDelta) / 17314463350.0)) };
 
             return aberration;
         }

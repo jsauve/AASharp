@@ -8,45 +8,18 @@ namespace AASharp
         {
             internal PlanetaryPhenomenaCoefficient1(double a, double b, double m0, double m1)
             {
-                _A = a;
-                _B = b;
-                _M0 = m0;
-                _M1 = m1;
+                A = a;
+                B = b;
+                M0 = m0;
+                M1 = m1;
             }
 
-            private readonly double _A;
-            public double A
-            {
-                get
-                {
-                    return _A;
-                }
-            }
-            private readonly double _B;
-            public double B
-            {
-                get
-                {
-                    return _B;
-                }
-            }
-            private readonly double _M0;
-            public double M0
-            {
-                get
-                {
-                    return _M0;
-                }
-            }
-            private readonly double _M1;
-            public double M1
-            {
-                get
-                {
-                    return _M1;
-                }
-            }
+            public double A { get; }
+            public double B { get; }
+            public double M0 { get; }
+            public double M1 { get; }
         }
+        
         private static PlanetaryPhenomenaCoefficient1[] g_PlanetaryPhenomenaCoefficient1 =
         {
         new PlanetaryPhenomenaCoefficient1( 2451612.023, 115.8774771, 63.5867,  114.2088742 ),

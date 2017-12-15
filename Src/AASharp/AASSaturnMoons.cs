@@ -10,12 +10,12 @@ namespace AASharp
             ApparentRectangularCoordinates = new AAS3DCoordinate();
         }
 
-        public AAS3DCoordinate TrueRectangularCoordinates;
-        public AAS3DCoordinate ApparentRectangularCoordinates;
-        public bool bInTransit;
-        public bool bInOccultation;
-        public bool bInEclipse;
-        public bool bInShadowTransit;
+        public AAS3DCoordinate TrueRectangularCoordinates { get; set; }
+        public AAS3DCoordinate ApparentRectangularCoordinates { get; set; }
+        public bool bInTransit { get; set; }
+        public bool bInOccultation { get; set; }
+        public bool bInEclipse { get; set; }
+        public bool bInShadowTransit { get; set; }
     }
 
     public class AASSaturnMoonsDetails

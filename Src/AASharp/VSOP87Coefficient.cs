@@ -4,34 +4,13 @@ namespace AASharp
     {
         internal VSOP87Coefficient(double a, double b, double c)
         {
-            _A = a;
-            _B = b;
-            _C = c;
+            A = a;
+            B = b;
+            C = c;
         }
 
-        private readonly double _A;
-        public double A
-        {
-            get
-            {
-                return _A;
-            }
-        }
-        private readonly double _B;
-        public double B
-        {
-            get
-            {
-                return _B;
-            }
-        }
-        private readonly double _C;
-        public double C
-        {
-            get
-            {
-                return _C;
-            }
-        }
+        public double A { get; }
+        public double B { get; }
+        public double C { get; }
     }
 }

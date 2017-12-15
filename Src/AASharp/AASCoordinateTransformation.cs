@@ -67,7 +67,7 @@ namespace AASharp
             Alpha = DegreesToRadians(Alpha);
             Delta = DegreesToRadians(Delta);
 
-            AAS2DCoordinate Galactic = new AAS2DCoordinate() { X = RadiansToDegrees(Math.Atan2(Math.Sin(Alpha), Math.Cos(Alpha) * Math.Sin(DegreesToRadians(27.4)) - Math.Tan(Delta) * Math.Cos(DegreesToRadians(27.4)))) };
+            AAS2DCoordinate Galactic = new AAS2DCoordinate { X = RadiansToDegrees(Math.Atan2(Math.Sin(Alpha), Math.Cos(Alpha) * Math.Sin(DegreesToRadians(27.4)) - Math.Tan(Delta) * Math.Cos(DegreesToRadians(27.4)))) };
             Galactic.X = 303 - Galactic.X;
             if (Galactic.X >= 360)
                 Galactic.X -= 360;

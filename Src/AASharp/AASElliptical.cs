@@ -4,41 +4,41 @@ namespace AASharp
 {
     public class AASEllipticalObjectElements
     {
-        public double a;
-        public double e;
-        public double i;
-        public double w;
-        public double omega;
-        public double JDEquinox;
-        public double T;
+        public double a { get; set; }
+        public double e { get; set; }
+        public double i { get; set; }
+        public double w { get; set; }
+        public double omega { get; set; }
+        public double JDEquinox { get; set; }
+        public double T { get; set; }
     }
 
     public class AASEllipticalPlanetaryDetails
     {
-        public double ApparentGeocentricLongitude;
-        public double ApparentGeocentricLatitude;
-        public double ApparentGeocentricDistance;
-        public double ApparentLightTime;
-        public double ApparentGeocentricRA;
-        public double ApparentGeocentricDeclination;
+        public double ApparentGeocentricLongitude { get; set; }
+        public double ApparentGeocentricLatitude { get; set; }
+        public double ApparentGeocentricDistance { get; set; }
+        public double ApparentLightTime { get; set; }
+        public double ApparentGeocentricRA { get; set; }
+        public double ApparentGeocentricDeclination { get; set; }
     }
 
     public class AASEllipticalObjectDetails
     {
-        public AAS3DCoordinate HeliocentricRectangularEquatorial;
-        public AAS3DCoordinate HeliocentricRectangularEcliptical;
-        public double HeliocentricEclipticLongitude;
-        public double HeliocentricEclipticLatitude;
-        public double TrueGeocentricRA;
-        public double TrueGeocentricDeclination;
-        public double TrueGeocentricDistance;
-        public double TrueGeocentricLightTime;
-        public double AstrometricGeocentricRA;
-        public double AstrometricGeocentricDeclination;
-        public double AstrometricGeocentricDistance;
-        public double AstrometricGeocentricLightTime;
-        public double Elongation;
-        public double PhaseAngle;
+        public AAS3DCoordinate HeliocentricRectangularEquatorial { get; set; }
+        public AAS3DCoordinate HeliocentricRectangularEcliptical { get; set; }
+        public double HeliocentricEclipticLongitude { get; set; }
+        public double HeliocentricEclipticLatitude { get; set; }
+        public double TrueGeocentricRA { get; set; }
+        public double TrueGeocentricDeclination { get; set; }
+        public double TrueGeocentricDistance { get; set; }
+        public double TrueGeocentricLightTime { get; set; }
+        public double AstrometricGeocentricRA { get; set; }
+        public double AstrometricGeocentricDeclination { get; set; }
+        public double AstrometricGeocentricDistance { get; set; }
+        public double AstrometricGeocentricLightTime { get; set; }
+        public double Elongation { get; set; }
+        public double PhaseAngle { get; set; }
     }
 
     public enum AASEllipticalObject
@@ -365,14 +365,14 @@ namespace AASharp
 
                 if (j == 0)
                 {
-                    details.HeliocentricRectangularEquatorial = new AAS3DCoordinate() { X = x, Y = y, Z = z };
+                    details.HeliocentricRectangularEquatorial = new AAS3DCoordinate { X = x, Y = y, Z = z };
 
                     //Calculate the heliocentric ecliptic coordinates also
                     double u = w + v;
                     double cosu = Math.Cos(u);
                     double sinu = Math.Sin(u);
 
-                    details.HeliocentricRectangularEcliptical = new AAS3DCoordinate()
+                    details.HeliocentricRectangularEcliptical = new AAS3DCoordinate
                     {
                         X = r * (cosOmega * cosu - sinOmega * sinu * cosi),
                         Y = r * (sinOmega * cosu + cosOmega * sinu * cosi),

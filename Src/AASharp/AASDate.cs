@@ -82,7 +82,7 @@ namespace AASharp
             long Minute = 0;
             double Second = 0;
             date.Get(ref gregYear, ref gregMonth, ref gregDay, ref Hour, ref Minute, ref Second);
-            AASCalendarDate GregorianDate = new AASCalendarDate() { Year = gregYear, Month = gregMonth, Day = gregDay };
+            AASCalendarDate GregorianDate = new AASCalendarDate { Year = gregYear, Month = gregMonth, Day = gregDay };
 
             return GregorianDate;
         }
@@ -99,7 +99,7 @@ namespace AASharp
             long Minute = 0;
             double Second = 0;
             date.Get(ref julYear, ref julMonth, ref julDay, ref Hour, ref Minute, ref Second);
-            AASCalendarDate JulianDate = new AASCalendarDate() { Year = julYear, Month = julMonth, Day = julDay };
+            AASCalendarDate JulianDate = new AASCalendarDate { Year = julYear, Month = julMonth, Day = julDay };
 
             return JulianDate;
         }

@@ -6,53 +6,18 @@ namespace AASharp
     {
         internal MoonPerigeeApogeeCoefficient(int d, int m, int f, double c, double t)
         {
-            _D = d;
-            _M = m;
-            _F = f;
-            _C = c;
-            _T = t;
+            D = d;
+            M = m;
+            F = f;
+            C = c;
+            T = t;
         }
 
-        private readonly int _D;
-        public int D
-        {
-            get
-            {
-                return _D;
-            }
-        }
-        private readonly int _M;
-        public int M
-        {
-            get
-            {
-                return _M;
-            }
-        }
-        private readonly int _F;
-        public int F
-        {
-            get
-            {
-                return _F;
-            }
-        }
-        private readonly double _C;
-        public double C
-        {
-            get
-            {
-                return _C;
-            }
-        }
-        private readonly double _T;
-        public double T
-        {
-            get
-            {
-                return _T;
-            }
-        }
+        public int D { get; }
+        public int M { get; }
+        public int F { get; }
+        public double C { get; }
+        public double T { get; }
     }
     
     public static class AASMoonPerigeeApogee

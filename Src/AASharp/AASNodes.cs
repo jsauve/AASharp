@@ -4,8 +4,8 @@ namespace AASharp
 {
     public class AASNodeObjectDetails
     {
-        public double t;
-        public double radius;
+        public double t { get; set; }
+        public double radius { get; set; }
     }
 
     public static class AASNodes

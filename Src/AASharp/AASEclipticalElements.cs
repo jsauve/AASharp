@@ -4,9 +4,9 @@ namespace AASharp
 {
     public class AASEclipticalElementDetails
     {
-        public double i;
-        public double w;
-        public double omega;
+        public double i { get; set; }
+        public double w { get; set; }
+        public double omega { get; set; }
     }
 
     public static class AASEclipticalElements

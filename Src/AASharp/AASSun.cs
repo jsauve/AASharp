@@ -74,7 +74,7 @@ namespace AASharp
             double R = AASEarth.RadiusVector(JD, bHighPrecision);
             double epsilon = AASCoordinateTransformation.DegreesToRadians(AASNutation.MeanObliquityOfEcliptic(JD));
 
-            AAS3DCoordinate value = new AAS3DCoordinate()
+            AAS3DCoordinate value = new AAS3DCoordinate
             {
             X = R * Math.Cos(Latitude) * Math.Cos(Longitude),
             Y = R * (Math.Cos(Latitude) * Math.Sin(Longitude) * Math.Cos(epsilon) - Math.Sin(Latitude) * Math.Sin(epsilon)),
@@ -93,7 +93,7 @@ namespace AASharp
             double R = AASEarth.RadiusVector(JD, bHighPrecision);
 
             double coslatitude = Math.Cos(Latitude);
-            AAS3DCoordinate value = new AAS3DCoordinate()
+            AAS3DCoordinate value = new AAS3DCoordinate
             {
             X = R * coslatitude * Math.Cos(Longitude),
             Y = R * coslatitude * Math.Sin(Longitude),

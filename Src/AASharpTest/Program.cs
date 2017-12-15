@@ -565,7 +565,7 @@ namespace AASharpTest
 
             AASEllipticalPlanetaryDetails SunDetails = AASElliptical.Calculate(2453149.5, AASEllipticalObject.SUN, bHighPrecision);
 
-            AASEllipticalObjectElements elements = new AASEllipticalObjectElements() { a = 2.2091404, e = 0.8502196, i = 11.94524, omega = 334.75006, w = 186.23352, T = 2448192.5 + 0.54502, JDEquinox = 2451544.5 };
+            AASEllipticalObjectElements elements = new AASEllipticalObjectElements { a = 2.2091404, e = 0.8502196, i = 11.94524, omega = 334.75006, w = 186.23352, T = 2448192.5 + 0.54502, JDEquinox = 2451544.5 };
             AASEllipticalObjectDetails details = AASElliptical.Calculate(2448170.5, ref elements, bHighPrecision);
 
             double Velocity1 = AASElliptical.InstantaneousVelocity(1, 17.9400782);
