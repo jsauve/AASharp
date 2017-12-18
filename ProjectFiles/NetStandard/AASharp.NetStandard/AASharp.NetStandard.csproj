@@ -43,6 +43,7 @@
     <Compile Include="..\..\..\Src\AASharp\AASMoonMaxDeclinations.cs" Link="AASMoonMaxDeclinations.cs" />
     <Compile Include="..\..\..\Src\AASharp\AASMoonNodes.cs" Link="AASMoonNodes.cs" />
     <Compile Include="..\..\..\Src\AASharp\AASMoonPhases.cs" Link="AASMoonPhases.cs" />
+    <Compile Include="..\..\..\Src\AASharp\AASMoslemCalendar.cs" Link="AASMoslemCalendar.cs" />
     <Compile Include="..\..\..\Src\AASharp\AASNearParabolic.cs" Link="AASNearParabolic.cs" />
     <Compile Include="..\..\..\Src\AASharp\AASNeptune.cs" Link="AASNeptune.cs" />
     <Compile Include="..\..\..\Src\AASharp\AASNodes.cs" Link="AASNodes.cs" />
