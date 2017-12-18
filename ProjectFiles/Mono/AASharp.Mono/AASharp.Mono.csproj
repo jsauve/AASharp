@@ -255,6 +255,9 @@
     <Compile Include="..\..\..\Src\AASharp\AASJewishCalendar.cs">
       <Link>AASJewishCalendar.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASMoslemCalendar.cs">
+      <Link>AASMoslemCalendar.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
