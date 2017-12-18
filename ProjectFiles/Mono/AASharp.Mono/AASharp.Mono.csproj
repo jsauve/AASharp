@@ -255,6 +255,162 @@
     <Compile Include="..\..\..\Src\AASharp\AASJewishCalendar.cs">
       <Link>AASJewishCalendar.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87_EMB.cs">
+      <Link>AASVSOP87_EMB.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87_Jupiter.cs">
+      <Link>AASVSOP87_Jupiter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87_Mars.cs">
+      <Link>AASVSOP87_Mars.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87_Mercury.cs">
+      <Link>AASVSOP87_Mercury.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87_Neptune.cs">
+      <Link>AASVSOP87_Neptune.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87_Saturn.cs">
+      <Link>AASVSOP87_Saturn.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87_Uranus.cs">
+      <Link>AASVSOP87_Uranus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87_Venus.cs">
+      <Link>AASVSOP87_Venus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87A_Earth.cs">
+      <Link>AASVSOP87A_Earth.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87A_EMB.cs">
+      <Link>AASVSOP87A_EMB.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87A_Jupiter.cs">
+      <Link>AASVSOP87A_Jupiter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87A_Mars.cs">
+      <Link>AASVSOP87A_Mars.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87A_Mercury.cs">
+      <Link>AASVSOP87A_Mercury.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87A_Neptune.cs">
+      <Link>AASVSOP87A_Neptune.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87A_Saturn.cs">
+      <Link>AASVSOP87A_Saturn.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87A_Uranus.cs">
+      <Link>AASVSOP87A_Uranus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87A_Venus.cs">
+      <Link>AASVSOP87A_Venus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87B_Earth.cs">
+      <Link>AASVSOP87B_Earth.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87B_Jupiter.cs">
+      <Link>AASVSOP87B_Jupiter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87B_Mars.cs">
+      <Link>AASVSOP87B_Mars.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87B_Mercury.cs">
+      <Link>AASVSOP87B_Mercury.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87B_Neptune.cs">
+      <Link>AASVSOP87B_Neptune.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87B_Saturn.cs">
+      <Link>AASVSOP87B_Saturn.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87B_Uranus.cs">
+      <Link>AASVSOP87B_Uranus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87B_Venus.cs">
+      <Link>AASVSOP87B_Venus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87C_Earth.cs">
+      <Link>AASVSOP87C_Earth.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87C_Jupiter.cs">
+      <Link>AASVSOP87C_Jupiter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87C_Mars.cs">
+      <Link>AASVSOP87C_Mars.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87C_Mercury.cs">
+      <Link>AASVSOP87C_Mercury.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87C_Neptune.cs">
+      <Link>AASVSOP87C_Neptune.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87C_Saturn.cs">
+      <Link>AASVSOP87C_Saturn.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87C_Uranus.cs">
+      <Link>AASVSOP87C_Uranus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87C_Venus.cs">
+      <Link>AASVSOP87C_Venus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87D_Earth.cs">
+      <Link>AASVSOP87D_Earth.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87D_Jupiter.cs">
+      <Link>AASVSOP87D_Jupiter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87D_Mars.cs">
+      <Link>AASVSOP87D_Mars.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87D_Mercury.cs">
+      <Link>AASVSOP87D_Mercury.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87D_Neptune.cs">
+      <Link>AASVSOP87D_Neptune.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87D_Saturn.cs">
+      <Link>AASVSOP87D_Saturn.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87D_Uranus.cs">
+      <Link>AASVSOP87D_Uranus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87D_Venus.cs">
+      <Link>AASVSOP87D_Venus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87E_Earth.cs">
+      <Link>AASVSOP87E_Earth.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87E_Jupiter.cs">
+      <Link>AASVSOP87E_Jupiter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87E_Mars.cs">
+      <Link>AASVSOP87E_Mars.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87E_Mercury.cs">
+      <Link>AASVSOP87E_Mercury.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87E_Neptune.cs">
+      <Link>AASVSOP87E_Neptune.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87E_Saturn.cs">
+      <Link>AASVSOP87E_Saturn.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87E_Sun.cs">
+      <Link>AASVSOP87E_Sun.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87E_Uranus.cs">
+      <Link>AASVSOP87E_Uranus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASVSOP87E_Venus.cs">
+      <Link>AASVSOP87E_Venus.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\CVSOP87.cs">
+      <Link>CVSOP87.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Src\AASharp\VSOP87Coefficient2.cs">
+      <Link>VSOP87Coefficient2.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
