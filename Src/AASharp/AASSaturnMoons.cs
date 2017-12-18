@@ -411,9 +411,9 @@ namespace AASharp
             double Z9 = 1;
 
             //Now do the rotations, first for the ficticious 9th satellite, so that we can calculate D
-            double A4;
-            double B4;
-            double C4;
+            double A4 = 0;
+            double B4 = 0;
+            double C4 = 0;
             Rotations(X9, Y9, Z9, c1, s1, c2, s2, lambda0rad, beta0rad, ref A4, ref B4, ref C4);
             double D = Math.Atan2(A4, C4);
 

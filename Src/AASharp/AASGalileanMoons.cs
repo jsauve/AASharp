@@ -408,9 +408,9 @@ namespace AASharp
             //Now do the rotations, first for the ficticious 5th satellite, so that we can calculate D
             double omega = AASCoordinateTransformation.DegreesToRadians(AASElementsPlanetaryOrbit.JupiterLongitudeAscendingNode(JD));
             double i = AASCoordinateTransformation.DegreesToRadians(AASElementsPlanetaryOrbit.JupiterInclination(JD));
-            double A6;
-            double B6;
-            double C6;
+            double A6 = 0;
+            double B6 = 0;
+            double C6 = 0;
             Rotations(X5, Y5, Z5, Irad, psi, i, omega, lambda0, beta0, ref A6, ref B6, ref C6);
             double D = Math.Atan2(A6, C6);
 

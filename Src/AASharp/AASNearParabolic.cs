@@ -102,8 +102,8 @@ namespace AASharp
 
             for (int j = 0; j < 2; j++)
             {
-                double v;
-                double r;
+                double v = 0;
+                double r = 0;
                 CalulateTrueAnnomalyAndRadius(JD0, ref elements, ref v, ref r);
 
                 double x = r * a * Math.Sin(A + w + v);
