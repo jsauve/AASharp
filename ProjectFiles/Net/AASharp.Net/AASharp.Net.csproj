@@ -152,6 +152,9 @@
     <Compile Include="..\..\..\Src\AASharp\AASMoonPhases.cs">
       <Link>AASMoonPhases.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\Src\AASharp\AASMoslemCalendar.cs">
+      <Link>AASMoslemCalendar.cs</Link>
+    </Compile>
     <Compile Include="..\..\..\Src\AASharp\AASNearParabolic.cs">
       <Link>AASNearParabolic.cs</Link>
     </Compile>
