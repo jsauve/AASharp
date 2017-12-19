@@ -14,14 +14,14 @@ namespace AASharp
             return AASEarth.EclipticLatitude(JD, bHighPrecision);
         }
 
-        public static double GeometricEclipticLongitudeJ2000(double JD)
+        public static double GeometricEclipticLongitudeJ2000(double JD, bool bHighPrecision)
         {
-            return AASCoordinateTransformation.MapTo0To360Range(AASEarth.EclipticLongitudeJ2000(JD) + 180);
+            return AASCoordinateTransformation.MapTo0To360Range(AASEarth.EclipticLongitudeJ2000(JD, bHighPrecision) + 180);
         }
 
-        public static double GeometricEclipticLatitudeJ2000(double JD)
+        public static double GeometricEclipticLatitudeJ2000(double JD, bool bHighPrecision)
         {
-            return AASEarth.EclipticLatitudeJ2000(JD);
+            return AASEarth.EclipticLatitudeJ2000(JD, bHighPrecision);
         }
 
         public static double GeometricFK5EclipticLongitude(double JD, bool bHighPrecision)
@@ -76,9 +76,9 @@ namespace AASharp
 
             AAS3DCoordinate value = new AAS3DCoordinate
             {
-            X = R * Math.Cos(Latitude) * Math.Cos(Longitude),
-            Y = R * (Math.Cos(Latitude) * Math.Sin(Longitude) * Math.Cos(epsilon) - Math.Sin(Latitude) * Math.Sin(epsilon)),
-            Z = R * (Math.Cos(Latitude) * Math.Sin(Longitude) * Math.Sin(epsilon) + Math.Sin(Latitude) * Math.Cos(epsilon))
+                X = R * Math.Cos(Latitude) * Math.Cos(Longitude),
+                Y = R * (Math.Cos(Latitude) * Math.Sin(Longitude) * Math.Cos(epsilon) - Math.Sin(Latitude) * Math.Sin(epsilon)),
+                Z = R * (Math.Cos(Latitude) * Math.Sin(Longitude) * Math.Sin(epsilon) + Math.Sin(Latitude) * Math.Cos(epsilon))
             };
 
             return value;
@@ -86,18 +86,18 @@ namespace AASharp
 
         public static AAS3DCoordinate EclipticRectangularCoordinatesJ2000(double JD, bool bHighPrecision)
         {
-            double Longitude = GeometricEclipticLongitudeJ2000(JD);
+            double Longitude = GeometricEclipticLongitudeJ2000(JD, bHighPrecision);
             Longitude = AASCoordinateTransformation.DegreesToRadians(Longitude);
-            double Latitude = GeometricEclipticLatitudeJ2000(JD);
+            double Latitude = GeometricEclipticLatitudeJ2000(JD, bHighPrecision);
             Latitude = AASCoordinateTransformation.DegreesToRadians(Latitude);
             double R = AASEarth.RadiusVector(JD, bHighPrecision);
 
             double coslatitude = Math.Cos(Latitude);
             AAS3DCoordinate value = new AAS3DCoordinate
             {
-            X = R * coslatitude * Math.Cos(Longitude),
-            Y = R * coslatitude * Math.Sin(Longitude),
-            Z = R * Math.Sin(Latitude)
+                X = R * coslatitude * Math.Cos(Longitude),
+                Y = R * coslatitude * Math.Sin(Longitude),
+                Z = R * Math.Sin(Latitude)
             };
 
             return value;

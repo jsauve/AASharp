@@ -231,8 +231,8 @@ namespace AASharpTest
             Alpha = AASCoordinateTransformation.DMSToDegrees(2, 44, 11.986);
             Delta = AASCoordinateTransformation.DMSToDegrees(49, 13, 42.48);
             AAS2DCoordinate PA7 = AASPrecession.AdjustPositionUsingUniformProperMotion((2462088.69 - 2451545) / 365.25, Alpha, Delta, 0.03425, -0.0895);
-            AAS3DCoordinate EarthVelocity = AASAberration.EarthVelocity(2462088.69);
-            AAS2DCoordinate Aberration = AASAberration.EquatorialAberration(PA7.X, PA7.Y, 2462088.69);
+            AAS3DCoordinate EarthVelocity = AASAberration.EarthVelocity(2462088.69, bHighPrecision);
+            AAS2DCoordinate Aberration = AASAberration.EquatorialAberration(PA7.X, PA7.Y, 2462088.69, bHighPrecision);
             PA7.X += Aberration.X;
             PA7.Y += Aberration.Y;
             PA7 = AASPrecession.PrecessEquatorial(PA7.X, PA7.Y, 2451545, 2462088.69);
@@ -286,8 +286,8 @@ namespace AASharpTest
             double EarthLat = AASEarth.EclipticLatitude(2448908.5, bHighPrecision);
             double EarthRadius = AASEarth.RadiusVector(2448908.5, bHighPrecision);
 
-            double EarthLong2 = AASEarth.EclipticLongitudeJ2000(2448908.5);
-            double EarthLat2 = AASEarth.EclipticLatitudeJ2000(2448908.5);
+            double EarthLong2 = AASEarth.EclipticLongitudeJ2000(2448908.5, bHighPrecision);
+            double EarthLat2 = AASEarth.EclipticLatitudeJ2000(2448908.5, bHighPrecision);
 
 
             //Test out the CAASun class

@@ -463,6 +463,11 @@ namespace AASharp
 
         public static double EclipticLongitude(double JD, bool bHighPrecision)
         {
+            if (bHighPrecision)
+            {
+                return AASCoordinateTransformation.MapTo0To360Range(AASCoordinateTransformation.RadiansToDegrees(AASVSOP87D_Uranus.L(JD)));
+            }
+            
             double rho = (JD - 2451545) / 365250;
             double rhosquared = rho * rho;
             double rhocubed = rhosquared * rho;
@@ -509,6 +514,11 @@ namespace AASharp
 
         public static double EclipticLatitude(double JD, bool bHighPrecision)
         {
+            if (bHighPrecision)
+            {
+                return AASCoordinateTransformation.MapToMinus90To90Range(AASCoordinateTransformation.RadiansToDegrees(AASVSOP87D_Uranus.B(JD)));
+            }
+
             double rho = (JD - 2451545) / 365250;
             double rhosquared = rho * rho;
             double rhocubed = rhosquared * rho;
@@ -554,6 +564,11 @@ namespace AASharp
 
         public static double RadiusVector(double JD, bool bHighPrecision)
         {
+            if (bHighPrecision)
+            {
+                return AASVSOP87D_Uranus.R(JD);
+            }
+            
             double rho = (JD - 2451545) / 365250;
             double rhosquared = rho * rho;
             double rhocubed = rhosquared * rho;

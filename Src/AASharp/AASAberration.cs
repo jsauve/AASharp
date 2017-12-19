@@ -4,6 +4,8 @@ namespace AASharp
 {
     public static class AASAberration
     {
+        #region coefficients
+        
         static readonly AberrationCoefficient[] g_AberrationCoefficients =
         {
                                  //L2   L3   L4  L5  L6  L7  L8  Ldash D   Mdash F   xsin      xsint xcos    xcost ysin   ysint ycos     ycost zsin   zsint zcos    zcost
@@ -45,9 +47,23 @@ namespace AASharp
         new AberrationCoefficient(  0,  0,   0,  0,  0,  0,  0,  1,    -2, 0,    0,  5,        0,    0,      0,    0,     0,    -5,      0,    0,     0,    -2,     0    )
         };
 
-        public static AAS3DCoordinate EarthVelocity(double JD)
+        #endregion
+        
+        public static AAS3DCoordinate EarthVelocity(double JD, bool bHighPrecision)
         {
-            //TODO : Add bHighPrecision 
+            AAS3DCoordinate velocity = new AAS3DCoordinate();
+            
+            if (bHighPrecision)
+            {
+                velocity.X = AASVSOP87A_Earth.X_DASH(JD);
+                velocity.Y = AASVSOP87A_Earth.Y_DASH(JD);
+                velocity.Z = AASVSOP87A_Earth.Z_DASH(JD);
+                velocity = AASFK5.ConvertVSOPToFK5J2000(velocity);
+                velocity.X *= 100000000;
+                velocity.Y *= 100000000;
+                velocity.Z *= 100000000;
+                return velocity;
+            }
             
             double T = (JD - 2451545) / 36525;
             double L2 = 3.1761467 + 1021.3285546 * T;
@@ -62,7 +78,7 @@ namespace AASharp
             double Mdash = 2.3555559 + 8328.6914289 * T;
             double F = 1.6279052 + 8433.4661601 * T;
 
-            AAS3DCoordinate velocity = new AAS3DCoordinate();
+            
 
             int nAberrationCoefficients = g_AberrationCoefficients.Length;
             for (int i = 0; i < nAberrationCoefficients; i++)
@@ -86,7 +102,7 @@ namespace AASharp
             return velocity;
         }
 
-        public static AAS2DCoordinate EquatorialAberration(double Alpha, double Delta, double JD)
+        public static AAS2DCoordinate EquatorialAberration(double Alpha, double Delta, double JD, bool bHighPrecision)
         {
             //Convert to radians
             Alpha = AASCoordinateTransformation.DegreesToRadians(Alpha * 15);
@@ -97,7 +113,7 @@ namespace AASharp
             double cosDelta = Math.Cos(Delta);
             double sinDelta = Math.Sin(Delta);
 
-            AAS3DCoordinate velocity = EarthVelocity(JD);
+            AAS3DCoordinate velocity = EarthVelocity(JD, bHighPrecision);
 
             //What is the return value
             AAS2DCoordinate aberration = new AAS2DCoordinate { X = AASCoordinateTransformation.RadiansToHours((velocity.Y * cosAlpha - velocity.X * sinAlpha) / (17314463350.0 * cosDelta)), Y = AASCoordinateTransformation.RadiansToDegrees(-(((velocity.X * cosAlpha + velocity.Y * sinAlpha) * sinDelta - velocity.Z * cosDelta) / 17314463350.0)) };

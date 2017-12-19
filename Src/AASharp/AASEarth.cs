@@ -4,6 +4,8 @@ namespace AASharp
 {
     public static class AASEarth
     {
+        #region coefficient
+        
         static VSOP87Coefficient[] g_L0EarthCoefficients =
         {
             new VSOP87Coefficient( 175347046, 0,         0            ),
@@ -366,11 +368,16 @@ namespace AASharp
             new VSOP87Coefficient( 6,  2.27, 6283.08 ),
             new VSOP87Coefficient( 1,  0,    0 )
         };
+        
+        #endregion
 
         public static double EclipticLongitude(double JD, bool bHighPrecision)
         {
-            //TODO support bHighPrecision
-            
+            if (bHighPrecision)
+            {
+                return AASCoordinateTransformation.MapTo0To360Range(AASCoordinateTransformation.RadiansToDegrees(AASVSOP87D_Earth.L(JD)));
+            }
+
             double rho = (JD - 2451545) / 365250;
             double rhosquared = rho * rho;
             double rhocubed = rhosquared * rho;
@@ -423,7 +430,10 @@ namespace AASharp
 
         public static double EclipticLatitude(double JD, bool bHighPrecision)
         {
-            //TODO support bHighPrecision
+            if (bHighPrecision)
+            {
+                return AASCoordinateTransformation.MapToMinus90To90Range(AASCoordinateTransformation.RadiansToDegrees(AASVSOP87D_Earth.B(JD)));
+            }
             
             double rho = (JD - 2451545) / 365250;
 
@@ -451,7 +461,10 @@ namespace AASharp
 
         public static double RadiusVector(double JD, bool bHighPrecision)
         {
-            //TODO support bHighPrecision
+            if (bHighPrecision)
+            {
+                return AASVSOP87D_Earth.R(JD);
+            }
             
             double rho = (JD - 2451545) / 365250;
             double rhosquared = rho * rho;
@@ -492,10 +505,12 @@ namespace AASharp
             return (R0 + R1 * rho + R2 * rhosquared + R3 * rhocubed + R4 * rho4) / 100000000;
         }
 
-
-        public static double EclipticLongitudeJ2000(double JD)
+        public static double EclipticLongitudeJ2000(double JD, bool bHighPrecision)
         {
-            //TODO support bHighPrecision
+            if (bHighPrecision)
+            {
+                return AASCoordinateTransformation.MapTo0To360Range(AASCoordinateTransformation.RadiansToDegrees(AASVSOP87B_Earth.L(JD)));
+            }
             
             double rho = (JD - 2451545) / 365250;
             double rhosquared = rho * rho;
@@ -540,9 +555,12 @@ namespace AASharp
             return value;
         }
 
-        public static double EclipticLatitudeJ2000(double JD)
+        public static double EclipticLatitudeJ2000(double JD, bool bHighPrecision)
         {
-            //TODO support bHighPrecision
+            if (bHighPrecision)
+            {
+                return AASCoordinateTransformation.MapToMinus90To90Range(AASCoordinateTransformation.RadiansToDegrees(AASVSOP87B_Earth.B(JD)));
+            }
             
             double rho = (JD - 2451545) / 365250;
             double rhosquared = rho * rho;
