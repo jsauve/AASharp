@@ -2,6 +2,8 @@
 {
     public class AASVSOP87B_Mercury
     {
+        #region coefficients
+        
         static readonly VSOP87Coefficient[] g_VSOP87B_L0_MERCURY =
         {
             new VSOP87Coefficient(4.40250710144, 0.00000000000, 0.00000000000),
@@ -7226,34 +7228,35 @@
             new VSOP87Coefficient2(g_VSOP87B_R4_MERCURY, g_VSOP87B_R4_MERCURY.Length),
             new VSOP87Coefficient2(g_VSOP87B_R5_MERCURY, g_VSOP87B_R5_MERCURY.Length)
         };
+        
+        #endregion
 
-
-        double L(double JD)
+        public static double L(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87B_L_MERCURY, g_VSOP87B_L_MERCURY.Length, true);
         }
 
-        double L_DASH(double JD)
+        public static double L_DASH(double JD)
         {
             return CVSOP87.Calculate_Dash(JD, g_VSOP87B_L_MERCURY, g_VSOP87B_L_MERCURY.Length);
         }
 
-        double B(double JD)
+        public static double B(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87B_B_MERCURY, g_VSOP87B_B_MERCURY.Length, true);
         }
 
-        double B_DASH(double JD)
+        public static double B_DASH(double JD)
         {
             return CVSOP87.Calculate_Dash(JD, g_VSOP87B_B_MERCURY, g_VSOP87B_B_MERCURY.Length);
         }
 
-        double R(double JD)
+        public static double R(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87B_R_MERCURY, g_VSOP87B_R_MERCURY.Length, false);
         }
 
-        double R_DASH(double JD)
+        public static double R_DASH(double JD)
         {
             return CVSOP87.Calculate_Dash(JD, g_VSOP87B_R_MERCURY, g_VSOP87B_R_MERCURY.Length);
         }

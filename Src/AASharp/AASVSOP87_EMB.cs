@@ -4396,33 +4396,32 @@
         #endregion
     
     
-        double A(double JD)
+        public static double A(double JD)
         {
           return CVSOP87.Calculate(JD, g_VSOP87_A_EMB, g_VSOP87_A_EMB.Length, false);
         }
     
-    
-        double L(double JD)
+        public static double L(double JD)
         {
           return CVSOP87.Calculate(JD, g_VSOP87_L_EMB, g_VSOP87_L_EMB.Length, true);
         }
     
-        double K(double JD)
+        public static double K(double JD)
         {
           return CVSOP87.Calculate(JD, g_VSOP87_K_EMB, g_VSOP87_K_EMB.Length, true);
         }
     
-        double H(double JD)
+        public static double H(double JD)
         {
           return CVSOP87.Calculate(JD, g_VSOP87_H_EMB, g_VSOP87_H_EMB.Length, true);
         }
     
-        double Q(double JD)
+        public static double Q(double JD)
         {
           return CVSOP87.Calculate(JD, g_VSOP87_Q_EMB, g_VSOP87_Q_EMB.Length, true);
         }
     
-        double P(double JD)
+        public static double P(double JD)
         {
           return CVSOP87.Calculate(JD, g_VSOP87_P_EMB, g_VSOP87_P_EMB.Length, true);
         }

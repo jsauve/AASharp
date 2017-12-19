@@ -12542,32 +12542,32 @@
         #endregion
 
 
-        double A(double JD)
+        public static double A(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_A_SATURN, g_VSOP87_A_SATURN.Length, false);
         }
 
-        double L(double JD)
+        public static double L(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_L_SATURN, g_VSOP87_L_SATURN.Length, true);
         }
 
-        double K(double JD)
+        public static double K(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_K_SATURN, g_VSOP87_K_SATURN.Length, true);
         }
 
-        double H(double JD)
+        public static double H(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_H_SATURN, g_VSOP87_H_SATURN.Length, true);
         }
 
-        double Q(double JD)
+        public static double Q(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_Q_SATURN, g_VSOP87_Q_SATURN.Length, true);
         }
 
-        double P(double JD)
+        public static double P(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_P_SATURN, g_VSOP87_P_SATURN.Length, true);
         }

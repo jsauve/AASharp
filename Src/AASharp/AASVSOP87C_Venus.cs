@@ -2,6 +2,8 @@
 {
     public class AASVSOP87C_Venus
     {
+        #region coefficients
+        
         static readonly VSOP87Coefficient[] g_VSOP87C_X0_VENUS =
         {
             new VSOP87Coefficient(0.72268045621, 3.17614669179, 10213.52936369450),
@@ -3007,34 +3009,35 @@
             new VSOP87Coefficient2(g_VSOP87C_Z4_VENUS, g_VSOP87C_Z4_VENUS.Length),
             new VSOP87Coefficient2(g_VSOP87C_Z5_VENUS, g_VSOP87C_Z5_VENUS.Length)
         };
+        
+        #endregion
 
-
-        double X(double JD)
+        public static double X(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87C_X_VENUS, g_VSOP87C_X_VENUS.Length, false);
         }
 
-        double X_DASH(double JD)
+        public static double X_DASH(double JD)
         {
             return CVSOP87.Calculate_Dash(JD, g_VSOP87C_X_VENUS, g_VSOP87C_X_VENUS.Length);
         }
 
-        double Y(double JD)
+        public static double Y(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87C_Y_VENUS, g_VSOP87C_Y_VENUS.Length, false);
         }
 
-        double Y_DASH(double JD)
+        public static double Y_DASH(double JD)
         {
             return CVSOP87.Calculate_Dash(JD, g_VSOP87C_Y_VENUS, g_VSOP87C_Y_VENUS.Length);
         }
 
-        double Z(double JD)
+        public static double Z(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87C_Z_VENUS, g_VSOP87C_Z_VENUS.Length, false);
         }
 
-        double Z_DASH(double JD)
+        public static double Z_DASH(double JD)
         {
             return CVSOP87.Calculate_Dash(JD, g_VSOP87C_Z_VENUS, g_VSOP87C_Z_VENUS.Length);
         }

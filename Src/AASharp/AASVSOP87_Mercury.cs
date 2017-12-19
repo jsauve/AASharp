@@ -4997,32 +4997,32 @@
 
         #endregion
 
-        double A(double JD)
+        public static double A(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_A_MERCURY, g_VSOP87_A_MERCURY.Length, false);
         }
 
-        double L(double JD)
+        public static double L(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_L_MERCURY, g_VSOP87_L_MERCURY.Length, true);
         }
 
-        double K(double JD)
+        public static double K(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_K_MERCURY, g_VSOP87_K_MERCURY.Length, true);
         }
 
-        double H(double JD)
+        public static double H(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_H_MERCURY, g_VSOP87_H_MERCURY.Length, true);
         }
 
-        double Q(double JD)
+        public static double Q(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_Q_MERCURY, g_VSOP87_Q_MERCURY.Length, true);
         }
 
-        double P(double JD)
+        public static double P(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_P_MERCURY, g_VSOP87_P_MERCURY.Length, true);
         }

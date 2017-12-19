@@ -8207,32 +8207,32 @@
 
         #endregion
 
-        double A(double JD)
+        public static double A(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_A_NEPTUNE, g_VSOP87_A_NEPTUNE.Length, false);
         }
 
-        double L(double JD)
+        public static double L(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_L_NEPTUNE, g_VSOP87_L_NEPTUNE.Length, true);
         }
 
-        double K(double JD)
+        public static double K(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_K_NEPTUNE, g_VSOP87_K_NEPTUNE.Length, true);
         }
 
-        double H(double JD)
+        public static double H(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_H_NEPTUNE, g_VSOP87_H_NEPTUNE.Length, true);
         }
 
-        double Q(double JD)
+        public static double Q(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_Q_NEPTUNE, g_VSOP87_Q_NEPTUNE.Length, true);
         }
 
-        double P(double JD)
+        public static double P(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_P_NEPTUNE, g_VSOP87_P_NEPTUNE.Length, true);
         }

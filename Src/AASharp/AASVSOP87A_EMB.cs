@@ -2,6 +2,8 @@
 {
     public class AASVSOP87A_EMB
     {
+        #region coefficients
+        
         static readonly VSOP87Coefficient[] g_VSOP87A_X0_EMB =
         {
             new VSOP87Coefficient(0.99982927460, 1.75348568475, 6283.07584999140),
@@ -3398,73 +3400,62 @@
 
         static readonly VSOP87Coefficient2[] g_VSOP87A_X_EMB =
         {
-            new VSOP87Coefficient2(
-                g_VSOP87A_X0_EMB, g_VSOP87A_X0_EMB.Length),
-            new VSOP87Coefficient2(
-                g_VSOP87A_X1_EMB, g_VSOP87A_X1_EMB.Length),
-            new VSOP87Coefficient2(
-                g_VSOP87A_X2_EMB, g_VSOP87A_X2_EMB.Length),
-            new VSOP87Coefficient2(
-                g_VSOP87A_X3_EMB, g_VSOP87A_X3_EMB.Length),
-            new VSOP87Coefficient2(
-                g_VSOP87A_X4_EMB, g_VSOP87A_X4_EMB.Length),
+            new VSOP87Coefficient2(g_VSOP87A_X0_EMB, g_VSOP87A_X0_EMB.Length),
+            new VSOP87Coefficient2(g_VSOP87A_X1_EMB, g_VSOP87A_X1_EMB.Length),
+            new VSOP87Coefficient2(g_VSOP87A_X2_EMB, g_VSOP87A_X2_EMB.Length),
+            new VSOP87Coefficient2(g_VSOP87A_X3_EMB, g_VSOP87A_X3_EMB.Length),
+            new VSOP87Coefficient2(g_VSOP87A_X4_EMB, g_VSOP87A_X4_EMB.Length),
             new VSOP87Coefficient2(g_VSOP87A_X5_EMB, g_VSOP87A_X5_EMB.Length)
         };
 
         static readonly VSOP87Coefficient2[] g_VSOP87A_Y_EMB =
         {
             new VSOP87Coefficient2(g_VSOP87A_Y0_EMB, g_VSOP87A_Y0_EMB.Length),
-            new VSOP87Coefficient2(
-                g_VSOP87A_Y1_EMB, g_VSOP87A_Y1_EMB.Length),
-            new VSOP87Coefficient2(
-                g_VSOP87A_Y2_EMB, g_VSOP87A_Y2_EMB.Length),
-            new VSOP87Coefficient2(
-                g_VSOP87A_Y3_EMB, g_VSOP87A_Y3_EMB.Length),
-            new VSOP87Coefficient2(
-                g_VSOP87A_Y4_EMB, g_VSOP87A_Y4_EMB.Length),
+            new VSOP87Coefficient2(g_VSOP87A_Y1_EMB, g_VSOP87A_Y1_EMB.Length),
+            new VSOP87Coefficient2(g_VSOP87A_Y2_EMB, g_VSOP87A_Y2_EMB.Length),
+            new VSOP87Coefficient2(g_VSOP87A_Y3_EMB, g_VSOP87A_Y3_EMB.Length),
+            new VSOP87Coefficient2(g_VSOP87A_Y4_EMB, g_VSOP87A_Y4_EMB.Length),
             new VSOP87Coefficient2(g_VSOP87A_Y5_EMB, g_VSOP87A_Y5_EMB.Length)
         };
 
         static readonly VSOP87Coefficient2[] g_VSOP87A_Z_EMB =
         {
             new VSOP87Coefficient2(g_VSOP87A_Z0_EMB, g_VSOP87A_Z0_EMB.Length),
-            new VSOP87Coefficient2(
-                g_VSOP87A_Z1_EMB, g_VSOP87A_Z1_EMB.Length),
-            new VSOP87Coefficient2(
-                g_VSOP87A_Z2_EMB, g_VSOP87A_Z2_EMB.Length),
-            new VSOP87Coefficient2(
-                g_VSOP87A_Z3_EMB, g_VSOP87A_Z3_EMB.Length),
-            new VSOP87Coefficient2(
-                g_VSOP87A_Z4_EMB, g_VSOP87A_Z4_EMB.Length),
+            new VSOP87Coefficient2(g_VSOP87A_Z1_EMB, g_VSOP87A_Z1_EMB.Length),
+            new VSOP87Coefficient2(g_VSOP87A_Z2_EMB, g_VSOP87A_Z2_EMB.Length),
+            new VSOP87Coefficient2(g_VSOP87A_Z3_EMB, g_VSOP87A_Z3_EMB.Length),
+            new VSOP87Coefficient2(g_VSOP87A_Z4_EMB, g_VSOP87A_Z4_EMB.Length),
             new VSOP87Coefficient2(g_VSOP87A_Z5_EMB, g_VSOP87A_Z5_EMB.Length)
         };
+        
+        #endregion
 
-        double X(double JD)
+        public static double X(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87A_X_EMB, g_VSOP87A_X_EMB.Length, false);
         }
 
-        double X_DASH(double JD)
+        public static double X_DASH(double JD)
         {
             return CVSOP87.Calculate_Dash(JD, g_VSOP87A_X_EMB, g_VSOP87A_X_EMB.Length);
         }
 
-        double Y(double JD)
+        public static double Y(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87A_Y_EMB, g_VSOP87A_Y_EMB.Length, false);
         }
 
-        double Y_DASH(double JD)
+        public static double Y_DASH(double JD)
         {
             return CVSOP87.Calculate_Dash(JD, g_VSOP87A_Y_EMB, g_VSOP87A_Y_EMB.Length);
         }
 
-        double Z(double JD)
+        public static double Z(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87A_Z_EMB, g_VSOP87A_Z_EMB.Length, false);
         }
 
-        double Z_DASH(double JD)
+        public static double Z_DASH(double JD)
         {
             return CVSOP87.Calculate_Dash(JD, g_VSOP87A_Z_EMB, g_VSOP87A_Z_EMB.Length);
         }

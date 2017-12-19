@@ -2,6 +2,8 @@
 {
     public class AASVSOP87C_Saturn
     {
+        #region coefficients
+        
         static readonly VSOP87Coefficient[] g_VSOP87C_X0_SATURN =
         {
             new VSOP87Coefficient(9.52312533591, 0.87401491487, 213.54291292150),
@@ -8886,34 +8888,35 @@
             new VSOP87Coefficient2(g_VSOP87C_Z4_SATURN, g_VSOP87C_Z4_SATURN.Length),
             new VSOP87Coefficient2(g_VSOP87C_Z5_SATURN, g_VSOP87C_Z5_SATURN.Length)
         };
+        
+        #endregion
 
-
-        double X(double JD)
+        public static double X(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87C_X_SATURN, g_VSOP87C_X_SATURN.Length, false);
         }
 
-        double X_DASH(double JD)
+        public static double X_DASH(double JD)
         {
             return CVSOP87.Calculate_Dash(JD, g_VSOP87C_X_SATURN, g_VSOP87C_X_SATURN.Length);
         }
 
-        double Y(double JD)
+        public static double Y(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87C_Y_SATURN, g_VSOP87C_Y_SATURN.Length, false);
         }
 
-        double Y_DASH(double JD)
+        public static double Y_DASH(double JD)
         {
             return CVSOP87.Calculate_Dash(JD, g_VSOP87C_Y_SATURN, g_VSOP87C_Y_SATURN.Length);
         }
 
-        double Z(double JD)
+        public static double Z(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87C_Z_SATURN, g_VSOP87C_Z_SATURN.Length, false);
         }
 
-        double Z_DASH(double JD)
+        public static double Z_DASH(double JD)
         {
             return CVSOP87.Calculate_Dash(JD, g_VSOP87C_Z_SATURN, g_VSOP87C_Z_SATURN.Length);
         }
