@@ -2,7 +2,7 @@ using Xunit;
 
 namespace AASharp.Tests
 {
-    public class AATests
+    public class TopocentricHorizontalPositionTest
     {
         /// <summary>
         /// Calculate the topocentric horizontal position of the Sun for Palomar Observatory on midnight UTC for the 21st of September 2007
