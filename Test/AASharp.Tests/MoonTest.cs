@@ -53,6 +53,23 @@ namespace AASharp.Tests
         {
             double moonMeanPerigee = AASMoon.MeanLongitudePerigee(JD);
             Assert.Equal(expectedMeanLongitudePerigee, moonMeanPerigee);
-        } 
+        }
+
+        [Theory]
+        [InlineData(1.0254225820430043, 356399.41899484064)]
+        [InlineData(0.991990, 368409.72288679035)]
+        public void HorizontalParallaxToRadiusVectorTest(double parallax, double expectedRadiusVector)
+        {
+            double radiusVector = AASMoon.HorizontalParallaxToRadiusVector(parallax);
+            Assert.Equal(expectedRadiusVector, radiusVector);
+        }
+
+        [Theory]
+        [InlineData(368409.72288679035, 0.99199)]
+        public void RadiusVectorToHorizontalParallaxTest(double radiusVector, double expectedHorizontalParallax)
+        {
+            double horizontalParallax = AASMoon.RadiusVectorToHorizontalParallax(radiusVector);
+            Assert.Equal(expectedHorizontalParallax, horizontalParallax);
+        }
     }
 }
