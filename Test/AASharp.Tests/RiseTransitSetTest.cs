@@ -7,6 +7,7 @@ namespace AASharp.Tests
     {
         public static IEnumerable<object[]> CalculateParameters()
         {
+            //Venus rise for Boston
             yield return new object[] {
                 2447240.5,
                 2.7120138888888889,
@@ -27,6 +28,29 @@ namespace AASharp.Tests
                     Transit = 19.675106843620839,
                     bSetValid = true,
                     Set = 2.9110969883523952
+                }
+            };
+            //Moon rise for Palomar Observatory
+            yield return new object[] {
+                2455783.5,
+                17.164631754879572,
+                -23.269277043321491,
+                17.164631754879572,
+                -22.56438135426172,
+                19.069958332931705,
+                -20.621024655519513,
+                116.8625,
+                33.356111111111112,
+                0.125,
+                new AASRiseTransitSetDetails
+                {
+                    bRiseValid = false,
+                    Rise = 0,
+                    bTransitValid= true,
+                    bTransitAboveHorizon = true,
+                    Transit = 4.8967468638700478,
+                    bSetValid = true,
+                    Set = 10.050749701783564
                 }
             };
         }
