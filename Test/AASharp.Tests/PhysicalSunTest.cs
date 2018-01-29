@@ -16,7 +16,7 @@ namespace AASharp.Tests
 
         [Theory]
         [InlineData(1699, 2444480.7229647981)]
-        public void TheoryTest(long c, double expectedResult)
+        public void TimeOfStartOfRotationTest(long c, double expectedResult)
         {
             double jed = AASPhysicalSun.TimeOfStartOfRotation(c);
             Assert.Equal(expectedResult, jed);
