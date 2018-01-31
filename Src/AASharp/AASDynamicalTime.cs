@@ -573,12 +573,16 @@ namespace AASharp
 			new DeltaTValue(2457844.5, 68.7135), //1 April 2017
 			new DeltaTValue(2457874.5, 68.7623), //1 May 2017
 			new DeltaTValue(2457905.5, 68.8033), //1 June 2017
+            new DeltaTValue(2457935.5,  68.8245), //1 July 2017
+            new DeltaTValue(2457966.5, 68.8373), //1 August 2017
+            new DeltaTValue(2457997.5, 68.8477), //1 September 2017
+            new DeltaTValue(2458027.5, 68.8689), //1 October 2017
+            new DeltaTValue(2458058.5, 68.9006), //1 November 2017
+            new DeltaTValue(2458088.5, 68.9355), //1 December 2017
+            new DeltaTValue(2458119.5, 68.9677), //1 January 2018
 
-			//All these final values are predicted values from Year 2017.5 to Year 2026.0 are taken from http://maia.usno.navy.mil/ser7/deltat.preds
-			new DeltaTValue(2457937.0, 68.81), //2017.5
-			new DeltaTValue(2458028.25, 68.86), //2017.75
-			new DeltaTValue(2458119.5, 68.99), //2018.0
-			new DeltaTValue(2458210.75, 69.14), //2018.25
+			//All these final values are predicted values from Year 2018.25 to Year 2026.0 are taken from http://maia.usno.navy.mil/ser7/deltat.preds
+            new DeltaTValue(2458210.75, 69.14), //2018.25
 			new DeltaTValue(2458302.0, 69.3), //2018.5
 			new DeltaTValue(2458484.5, 69.5), //2019.0
 			new DeltaTValue(2458575.75, 69.6), //2019.25
@@ -587,7 +591,7 @@ namespace AASharp
 			new DeltaTValue(2458849.5, 69.9), //2020.0
 			new DeltaTValue(2458941.0, 70), //2020.25
 			new DeltaTValue(2459763.0, 71), //2022.5
-			new DeltaTValue(2461041.5, 72), //2026.0
+			new DeltaTValue(2461041.5, 72) //2026.0
 
 			//Note as currently coded there is a single discontinuity of c. 2.074 seconds on 1 January 2026. At this point http://maia.usno.navy.mil/ser7/deltat.preds indicates an error value for DeltaT of about 5 seconds anyway.
 		};
