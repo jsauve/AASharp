@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System.Collections.Generic;
+using Xunit;
 
 namespace AASharp.Tests
 {
@@ -70,51 +71,73 @@ namespace AASharp.Tests
             Assert.Equal(expectedApparentGeocentricDeclination, details.ApparentGeocentricDeclination);
         }
 
+
+
+
+
+        public static IEnumerable<object[]> Parameters()
+        {
+            yield return new object[]
+            {
+                2448170.5, 2.2091404, 0.8502196, 11.94524, 334.75006, 186.23352, 2448192.5 + 0.54502, 2451544.5, false,
+                new AASEllipticalObjectDetails
+                {
+                    HeliocentricRectangularEquatorial = new AAS3DCoordinate
+                    {
+                        X = 0.25080662090393591,
+                        Y = 0.48491755634342543,
+                        Z = 0.35733729658153013
+                    },
+                    HeliocentricRectangularEcliptical = new AAS3DCoordinate
+                    {
+                        X = 0.25080662090393574,
+                        Y = 0.58704377348938708,
+                        Z = 0.13496143147439146
+                    },
+
+                    HeliocentricEclipticLongitude = 66.866050257498955,
+                    HeliocentricEclipticLatitude = 11.937328624923349,
+                    TrueGeocentricRA = 10.570976697892744,
+                    TrueGeocentricDeclination = 19.154435241867631,
+                    TrueGeocentricDistance = 0.82437067376481921,
+                    TrueGeocentricLightTime = 0.0047611679123120429,
+                    AstrometricGeocentricRA = 10.570616116199949,
+                    AstrometricGeocentricDeclination = 19.159048593591574,
+                    AstrometricGeocentricDistance = 0.82428284103181093,
+                    AstrometricGeocentricLightTime = 0.0047606606327552153,
+                    Elongation = 40.507275061114285,
+                    PhaseAngle = 84.362414223484478
+                }
+            };
+        }
+
+
         [Theory]
-        [InlineData(2448170.5, 2.2091404, 0.8502196, 11.94524, 334.75006, 186.23352, 2448192.5 + 0.54502, 2451544.5, false, 
-            0.25080662090393591, 0.48491755634342543, 0.35733729658153013, 0.25080662090393574, 0.58704377348938708, 0.13496143147439146, 66.866050257498955, 11.937328624923349, 10.570976697892744, 19.154435241867631, 0.82437067376481921, 0.0047611679123120429, 10.570616116199949, 19.159048593591574, 0.82428284103181093, 0.0047606606327552153, 40.507275061114285, 84.362414223484478)]
+        [MemberData(nameof(Parameters))]
         public void CalculateWithObjectElementsTest(
-                                double JD, double a, double e, double i, double omega, double w, double T, double JDEquinox, bool bHighPrecision,
-                                double expectedHeliocentricRectangularEquatorialX,
-                                double expectedHeliocentricRectangularEquatorialY,
-                                double expectedHeliocentricRectangularEquatorialZ,
-                                double expectedHeliocentricRectangularEclipticalX,
-                                double expectedHeliocentricRectangularEclipticalY,
-                                double expectedHeliocentricRectangularEclipticalZ,
-                                double expectedHeliocentricEclipticLongitude,
-                                double expectedHeliocentricEclipticLatitude,
-                                double expectedTrueGeocentricRA,
-                                double expectedTrueGeocentricDeclination,
-                                double expectedTrueGeocentricDistance,
-                                double expectedTrueGeocentricLightTime,
-                                double expectedAstrometricGeocentricRA,
-                                double expectedAstrometricGeocentricDeclination,
-                                double expectedAstrometricGeocentricDistance,
-                                double expectedAstrometricGeocentricLightTime,
-                                double expectedElongation,
-                                double expectedPhaseAngle)
+                                double JD, double a, double e, double i, double omega, double w, double T, double JDEquinox, bool bHighPrecision, AASEllipticalObjectDetails expectedEllipticalObjectDetails)
         {
             AASEllipticalObjectElements elements = new AASEllipticalObjectElements { a = a, e = e, i = i, omega = omega, w = w, T = T, JDEquinox = JDEquinox };
             AASEllipticalObjectDetails details = AASElliptical.Calculate(JD, ref elements, bHighPrecision);
 
-            Assert.Equal(expectedHeliocentricRectangularEquatorialX, details.HeliocentricRectangularEquatorial.X);
-            Assert.Equal(expectedHeliocentricRectangularEquatorialY, details.HeliocentricRectangularEquatorial.Y);
-            Assert.Equal(expectedHeliocentricRectangularEquatorialZ, details.HeliocentricRectangularEquatorial.Z);
-            Assert.Equal(expectedHeliocentricRectangularEclipticalX, details.HeliocentricRectangularEcliptical.X);
-            Assert.Equal(expectedHeliocentricRectangularEclipticalY, details.HeliocentricRectangularEcliptical.Y);
-            Assert.Equal(expectedHeliocentricRectangularEclipticalZ, details.HeliocentricRectangularEcliptical.Z);
-            Assert.Equal(expectedHeliocentricEclipticLongitude, details.HeliocentricEclipticLongitude);
-            Assert.Equal(expectedHeliocentricEclipticLatitude, details.HeliocentricEclipticLatitude);
-            Assert.Equal(expectedTrueGeocentricRA, details.TrueGeocentricRA);
-            Assert.Equal(expectedTrueGeocentricDeclination, details.TrueGeocentricDeclination);
-            Assert.Equal(expectedTrueGeocentricDistance, details.TrueGeocentricDistance);
-            Assert.Equal(expectedTrueGeocentricLightTime, details.TrueGeocentricLightTime);
-            Assert.Equal(expectedAstrometricGeocentricRA, details.AstrometricGeocentricRA);
-            Assert.Equal(expectedAstrometricGeocentricDeclination, details.AstrometricGeocentricDeclination);
-            Assert.Equal(expectedAstrometricGeocentricDistance, details.AstrometricGeocentricDistance);
-            Assert.Equal(expectedAstrometricGeocentricLightTime, details.AstrometricGeocentricLightTime);
-            Assert.Equal(expectedElongation, details.Elongation);
-            Assert.Equal(expectedPhaseAngle, details.PhaseAngle);
+            Assert.Equal(expectedEllipticalObjectDetails.HeliocentricRectangularEquatorial.X, details.HeliocentricRectangularEquatorial.X);
+            Assert.Equal(expectedEllipticalObjectDetails.HeliocentricRectangularEquatorial.Y, details.HeliocentricRectangularEquatorial.Y);
+            Assert.Equal(expectedEllipticalObjectDetails.HeliocentricRectangularEquatorial.Z, details.HeliocentricRectangularEquatorial.Z);
+            Assert.Equal(expectedEllipticalObjectDetails.HeliocentricRectangularEcliptical.X, details.HeliocentricRectangularEcliptical.X);
+            Assert.Equal(expectedEllipticalObjectDetails.HeliocentricRectangularEcliptical.Y, details.HeliocentricRectangularEcliptical.Y);
+            Assert.Equal(expectedEllipticalObjectDetails.HeliocentricRectangularEcliptical.Z, details.HeliocentricRectangularEcliptical.Z);
+            Assert.Equal(expectedEllipticalObjectDetails.HeliocentricEclipticLongitude, details.HeliocentricEclipticLongitude);
+            Assert.Equal(expectedEllipticalObjectDetails.HeliocentricEclipticLatitude, details.HeliocentricEclipticLatitude);
+            Assert.Equal(expectedEllipticalObjectDetails.TrueGeocentricRA, details.TrueGeocentricRA);
+            Assert.Equal(expectedEllipticalObjectDetails.TrueGeocentricDeclination, details.TrueGeocentricDeclination);
+            Assert.Equal(expectedEllipticalObjectDetails.TrueGeocentricDistance, details.TrueGeocentricDistance);
+            Assert.Equal(expectedEllipticalObjectDetails.TrueGeocentricLightTime, details.TrueGeocentricLightTime);
+            Assert.Equal(expectedEllipticalObjectDetails.AstrometricGeocentricRA, details.AstrometricGeocentricRA);
+            Assert.Equal(expectedEllipticalObjectDetails.AstrometricGeocentricDeclination, details.AstrometricGeocentricDeclination);
+            Assert.Equal(expectedEllipticalObjectDetails.AstrometricGeocentricDistance, details.AstrometricGeocentricDistance);
+            Assert.Equal(expectedEllipticalObjectDetails.AstrometricGeocentricLightTime, details.AstrometricGeocentricLightTime);
+            Assert.Equal(expectedEllipticalObjectDetails.Elongation, details.Elongation);
+            Assert.Equal(expectedEllipticalObjectDetails.PhaseAngle, details.PhaseAngle);
         }
     }
 }
