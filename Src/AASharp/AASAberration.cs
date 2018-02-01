@@ -1,14 +1,14 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AASharp
 {
     public static class AASAberration
     {
+        #region coefficients
+        
         static readonly AberrationCoefficient[] g_AberrationCoefficients =
         {
-        //L2   L3   L4  L5  L6  L7  L8  Ldash D   Mdash F   xsin      xsint xcos    xcost ysin   ysint ycos     ycost zsin   zsint zcos    zcost
+                                 //L2   L3   L4  L5  L6  L7  L8  Ldash D   Mdash F   xsin      xsint xcos    xcost ysin   ysint ycos     ycost zsin   zsint zcos    zcost
         new AberrationCoefficient(  0,  1,   0,  0,  0,  0,  0,  0,    0,  0,    0,  -1719914, -2,   -25,    0,    25,    -13,  1578089, 156,  10,    32,   684185, -358 ),
         new AberrationCoefficient(  0,  2,   0,  0,  0,  0,  0,  0,    0,  0,    0,  6434,     141,  28007,  -107, 25697, -95,  -5904,   -130, 11141, -48,  -2559,  -55  ),
         new AberrationCoefficient(  0,  0,   0,  1,  0,  0,  0,  0,    0,  0,    0,  715,      0,    0,      0,    6,     0,    -657,    0,    -15,   0,    -282,   0    ),
@@ -47,8 +47,24 @@ namespace AASharp
         new AberrationCoefficient(  0,  0,   0,  0,  0,  0,  0,  1,    -2, 0,    0,  5,        0,    0,      0,    0,     0,    -5,      0,    0,     0,    -2,     0    )
         };
 
-        public static AAS3DCoordinate EarthVelocity(double JD)
+        #endregion
+        
+        public static AAS3DCoordinate EarthVelocity(double JD, bool bHighPrecision)
         {
+            AAS3DCoordinate velocity = new AAS3DCoordinate();
+            
+            if (bHighPrecision)
+            {
+                velocity.X = AASVSOP87A_Earth.X_DASH(JD);
+                velocity.Y = AASVSOP87A_Earth.Y_DASH(JD);
+                velocity.Z = AASVSOP87A_Earth.Z_DASH(JD);
+                velocity = AASFK5.ConvertVSOPToFK5J2000(velocity);
+                velocity.X *= 100000000;
+                velocity.Y *= 100000000;
+                velocity.Z *= 100000000;
+                return velocity;
+            }
+            
             double T = (JD - 2451545) / 36525;
             double L2 = 3.1761467 + 1021.3285546 * T;
             double L3 = 1.7534703 + 628.3075849 * T;
@@ -62,7 +78,7 @@ namespace AASharp
             double Mdash = 2.3555559 + 8328.6914289 * T;
             double F = 1.6279052 + 8433.4661601 * T;
 
-            AAS3DCoordinate velocity = new AAS3DCoordinate();
+            
 
             int nAberrationCoefficients = g_AberrationCoefficients.Length;
             for (int i = 0; i < nAberrationCoefficients; i++)
@@ -86,7 +102,7 @@ namespace AASharp
             return velocity;
         }
 
-        public static AAS2DCoordinate EquatorialAberration(double Alpha, double Delta, double JD)
+        public static AAS2DCoordinate EquatorialAberration(double Alpha, double Delta, double JD, bool bHighPrecision)
         {
             //Convert to radians
             Alpha = AASCoordinateTransformation.DegreesToRadians(Alpha * 15);
@@ -97,15 +113,15 @@ namespace AASharp
             double cosDelta = Math.Cos(Delta);
             double sinDelta = Math.Sin(Delta);
 
-            AAS3DCoordinate velocity = EarthVelocity(JD);
+            AAS3DCoordinate velocity = EarthVelocity(JD, bHighPrecision);
 
             //What is the return value
-            AAS2DCoordinate aberration = new AAS2DCoordinate() { X = AASCoordinateTransformation.RadiansToHours((velocity.Y * cosAlpha - velocity.X * sinAlpha) / (17314463350.0 * cosDelta)), Y = AASCoordinateTransformation.RadiansToDegrees(-(((velocity.X * cosAlpha + velocity.Y * sinAlpha) * sinDelta - velocity.Z * cosDelta) / 17314463350.0)) };
+            AAS2DCoordinate aberration = new AAS2DCoordinate { X = AASCoordinateTransformation.RadiansToHours((velocity.Y * cosAlpha - velocity.X * sinAlpha) / (17314463350.0 * cosDelta)), Y = AASCoordinateTransformation.RadiansToDegrees(-(((velocity.X * cosAlpha + velocity.Y * sinAlpha) * sinDelta - velocity.Z * cosDelta) / 17314463350.0)) };
 
             return aberration;
         }
 
-        public static AAS2DCoordinate EclipticAberration(double Lambda, double Beta, double JD)
+        public static AAS2DCoordinate EclipticAberration(double Lambda, double Beta, double JD, bool bHighPrecision)
         {
             //What is the return value
             AAS2DCoordinate aberration = new AAS2DCoordinate();
@@ -115,7 +131,7 @@ namespace AASharp
             double e = 0.016708634 - 0.000042037 * T - 0.0000001267 * Tsquared;
             double pi = 102.93735 + 1.71946 * T + 0.00046 * Tsquared;
             const double k = 20.49552;
-            double SunLongitude = AASSun.GeometricEclipticLongitude(JD);
+            double SunLongitude = AASSun.GeometricEclipticLongitude(JD, bHighPrecision);
 
             //Convert to radians
             pi = AASCoordinateTransformation.DegreesToRadians(pi);

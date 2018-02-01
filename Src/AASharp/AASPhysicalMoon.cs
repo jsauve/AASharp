@@ -1,16 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace AASharp
 {
     public class AASPhysicalMoonDetails
     {
-        public AASPhysicalMoonDetails()
-        {
-        }
-
         public double ldash;
         public double bdash;
         public double ldash2;
@@ -22,10 +15,6 @@ namespace AASharp
 
     public class AASSelenographicMoonDetails
     {
-        public AASSelenographicMoonDetails()
-        {
-        }
-
         public double l0;
         public double b0;
         public double c0;
@@ -200,11 +189,11 @@ namespace AASharp
             return details;
         }
 
-        public static AASSelenographicMoonDetails CalculateSelenographicPositionOfSun(double JD)
+        public static AASSelenographicMoonDetails CalculateSelenographicPositionOfSun(double JD, bool bHighPrecision)
         {
-            double R = AASEarth.RadiusVector(JD) * 149597970;
+            double R = AASEarth.RadiusVector(JD, bHighPrecision) * 149597970;
             double Delta = AASMoon.RadiusVector(JD);
-            double lambda0 = AASSun.ApparentEclipticLongitude(JD);
+            double lambda0 = AASSun.ApparentEclipticLongitude(JD, bHighPrecision);
             double lambda = AASMoon.EclipticLongitude(JD);
             double beta = AASMoon.EclipticLatitude(JD);
 
@@ -233,10 +222,10 @@ namespace AASharp
             return details;
         }
 
-        public static double AltitudeOfSun(double JD, double Longitude, double Latitude)
+        public static double AltitudeOfSun(double JD, double Longitude, double Latitude, bool bHighPrecision)
         {
             //Calculate the selenographic details
-            AASSelenographicMoonDetails selenographicDetails = CalculateSelenographicPositionOfSun(JD);
+            AASSelenographicMoonDetails selenographicDetails = CalculateSelenographicPositionOfSun(JD, bHighPrecision);
 
             //convert to radians
             Latitude = AASCoordinateTransformation.DegreesToRadians(Latitude);
@@ -247,14 +236,14 @@ namespace AASharp
             return AASCoordinateTransformation.RadiansToDegrees(Math.Asin(Math.Sin(selenographicDetails.b0) * Math.Sin(Latitude) + Math.Cos(selenographicDetails.b0) * Math.Cos(Latitude) * Math.Sin(selenographicDetails.c0 + Longitude)));
         }
 
-        public static double SunriseSunsetHelper(double JD, double Longitude, double Latitude, bool bSunrise)
+        public static double SunriseSunsetHelper(double JD, double Longitude, double Latitude, bool bSunrise, bool bHighPrecision)
         {
             double JDResult = JD;
             double Latituderad = AASCoordinateTransformation.DegreesToRadians(Latitude);
             double h;
             do
             {
-                h = AltitudeOfSun(JDResult, Longitude, Latitude);
+                h = AltitudeOfSun(JDResult, Longitude, Latitude, bHighPrecision);
                 double DeltaJD = h / (12.19075 * Math.Cos(Latituderad));
                 if (bSunrise)
                     JDResult -= DeltaJD;
@@ -266,14 +255,14 @@ namespace AASharp
             return JDResult;
         }
 
-        public static double TimeOfSunrise(double JD, double Longitude, double Latitude)
+        public static double TimeOfSunrise(double JD, double Longitude, double Latitude, bool bHighPrecision)
         {
-            return SunriseSunsetHelper(JD, Longitude, Latitude, true);
+            return SunriseSunsetHelper(JD, Longitude, Latitude, true, bHighPrecision);
         }
 
-        public static double TimeOfSunset(double JD, double Longitude, double Latitude)
+        public static double TimeOfSunset(double JD, double Longitude, double Latitude, bool bHighPrecision)
         {
-            return SunriseSunsetHelper(JD, Longitude, Latitude, false);
+            return SunriseSunsetHelper(JD, Longitude, Latitude, false, bHighPrecision);
         }
     }
 }

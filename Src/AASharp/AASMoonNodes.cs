@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AASharp
 {
@@ -30,7 +28,7 @@ namespace AASharp
             //convert to radians
             D = AASCoordinateTransformation.DegreesToRadians(D);
             double D2 = 2 * D;
-            double D4 = D2 * D2;
+            double D4 = D2 * 2;
             M = AASCoordinateTransformation.DegreesToRadians(M);
             Mdash = AASCoordinateTransformation.DegreesToRadians(Mdash);
             double Mdash2 = 2 * Mdash;
@@ -60,7 +58,7 @@ namespace AASharp
             + 0.0014 * Math.Sin(D4 - Mdash)
             + E * 0.0005 * Math.Sin(D2 + M - Mdash)
             + E * 0.0004 * Math.Sin(D2 - M + Mdash)
-            - E * 0.0003 * Math.Sin(D2 - M * M)
+            - E * 0.0003 * Math.Sin(D2 - 2 * M)
             + E * 0.0003 * Math.Sin(D4 - M)
             + 0.0003 * Math.Sin(V)
             + 0.0003 * Math.Sin(P);

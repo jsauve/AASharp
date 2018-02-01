@@ -1,23 +1,22 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace AASharp
 {
     public class AASSaturnRingDetails
     {
-        public double B;
-        public double Bdash;
-        public double P;
-        public double a;
-        public double b;
-        public double DeltaU;
+        public double B { get; set; }
+        public double Bdash { get; set; }
+        public double P { get; set; }
+        public double a { get; set; }
+        public double b { get; set; }
+        public double DeltaU { get; set; }
+        public double U1 { get; set; }
+        public double U2 { get; set; }
     }
 
     public static class AASSaturnRings
     {
-        public static AASSaturnRingDetails Calculate(double JD)
+        public static AASSaturnRingDetails Calculate(double JD, bool bHighPrecision)
         {
             //What will be the return value
             AASSaturnRingDetails details = new AASSaturnRingDetails();
@@ -32,13 +31,13 @@ namespace AASharp
             double omegarad = AASCoordinateTransformation.DegreesToRadians(omega);
 
             //Step 2. Calculate the heliocentric longitude, latitude and radius vector of the Earth in the FK5 system
-            double l0 = AASEarth.EclipticLongitude(JD);
-            double b0 = AASEarth.EclipticLatitude(JD);
+            double l0 = AASEarth.EclipticLongitude(JD, bHighPrecision);
+            double b0 = AASEarth.EclipticLatitude(JD, bHighPrecision);
             l0 += AASFK5.CorrectionInLongitude(l0, b0, JD);
             double l0rad = AASCoordinateTransformation.DegreesToRadians(l0);
             b0 += AASFK5.CorrectionInLatitude(l0, JD);
             double b0rad = AASCoordinateTransformation.DegreesToRadians(b0);
-            double R = AASEarth.RadiusVector(JD);
+            double R = AASEarth.RadiusVector(JD, bHighPrecision);
 
             //Step 3. Calculate the corresponding coordinates l,b,r for Saturn but for the instance t-lightraveltime
             double DELTA = 9;
@@ -55,14 +54,14 @@ namespace AASharp
             while (bIterate)
             {
                 //Calculate the position of Saturn
-                l = AASSaturn.EclipticLongitude(JD1);
-                b = AASSaturn.EclipticLatitude(JD1);
+                l = AASSaturn.EclipticLongitude(JD1, bHighPrecision);
+                b = AASSaturn.EclipticLatitude(JD1, bHighPrecision);
                 l += AASFK5.CorrectionInLongitude(l, b, JD1);
                 b += AASFK5.CorrectionInLatitude(l, JD1);
 
                 double lrad = AASCoordinateTransformation.DegreesToRadians(l);
                 double brad = AASCoordinateTransformation.DegreesToRadians(b);
-                r = AASSaturn.RadiusVector(JD1);
+                r = AASSaturn.RadiusVector(JD1, bHighPrecision);
 
                 //Step 4
                 x = r * Math.Cos(brad) * Math.Cos(lrad) - R * Math.Cos(l0rad);
@@ -72,7 +71,7 @@ namespace AASharp
                 EarthLightTravelTime = AASElliptical.DistanceToLightTime(DELTA);
 
                 //Prepare for the next loop around
-                bIterate = (Math.Abs(EarthLightTravelTime - PreviousEarthLightTravelTime) > 2E-6); //2E-6 corresponds to 0.17 of a second
+                bIterate = (Math.Abs(EarthLightTravelTime - PreviousEarthLightTravelTime) > 2e-6); //2e-6 corresponds to 0.17 of a second
                 if (bIterate)
                 {
                     JD1 = JD - EarthLightTravelTime;
@@ -102,9 +101,11 @@ namespace AASharp
             details.Bdash = AASCoordinateTransformation.RadiansToDegrees(Math.Asin(Math.Sin(irad) * Math.Cos(bdashrad) * Math.Sin(ldashrad - omegarad) - Math.Cos(irad) * Math.Sin(bdashrad)));
 
             //Step 9. Calculate DeltaU
-            double U1 = Math.Atan2(Math.Sin(irad) * Math.Sin(bdashrad) + Math.Cos(irad) * Math.Cos(bdashrad) * Math.Sin(ldashrad - omegarad), Math.Cos(bdashrad) * Math.Cos(ldashrad - omegarad));
-            double U2 = Math.Atan2(Math.Sin(irad) * Math.Sin(beta) + Math.Cos(irad) * Math.Cos(beta) * Math.Sin(lambda - omegarad), Math.Cos(beta) * Math.Cos(lambda - omegarad));
-            details.DeltaU = AASCoordinateTransformation.RadiansToDegrees(Math.Abs(U1 - U2));
+            details.U1 = AASCoordinateTransformation.MapTo0To360Range(AASCoordinateTransformation.RadiansToDegrees(Math.Atan2(Math.Sin(irad) * Math.Sin(bdashrad) + Math.Cos(irad) * Math.Cos(bdashrad) * Math.Sin(ldashrad - omegarad), Math.Cos(bdashrad) * Math.Cos(ldashrad - omegarad))));
+            details.U2 = AASCoordinateTransformation.MapTo0To360Range(AASCoordinateTransformation.RadiansToDegrees(Math.Atan2(Math.Sin(irad) * Math.Sin(beta) + Math.Cos(irad) * Math.Cos(beta) * Math.Sin(lambda - omegarad), Math.Cos(beta) * Math.Cos(lambda - omegarad))));
+            details.DeltaU = Math.Abs(details.U1 - details.U2);
+            if (details.DeltaU > 180)
+                details.DeltaU = 360 - details.DeltaU;
 
             //Step 10. Calculate the Nutations 
             double Obliquity = AASNutation.TrueObliquityOfEcliptic(JD);

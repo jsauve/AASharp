@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AASharp
 {
@@ -21,7 +19,7 @@ namespace AASharp
 
     public static class AASPhysicalMars
     {
-        public static CAAPhysicalMarsDetails Calculate(double JD)
+        public static CAAPhysicalMarsDetails Calculate(double JD, bool bHighPrecision)
         {
             //What will be the return value
             CAAPhysicalMarsDetails details = new CAAPhysicalMarsDetails();
@@ -34,11 +32,11 @@ namespace AASharp
             double Beta0rad = AASCoordinateTransformation.DegreesToRadians(Beta0);
 
             //Step 2
-            double l0 = AASEarth.EclipticLongitude(JD);
+            double l0 = AASEarth.EclipticLongitude(JD, bHighPrecision);
             double l0rad = AASCoordinateTransformation.DegreesToRadians(l0);
-            double b0 = AASEarth.EclipticLatitude(JD);
+            double b0 = AASEarth.EclipticLatitude(JD, bHighPrecision);
             double b0rad = AASCoordinateTransformation.DegreesToRadians(b0);
-            double R = AASEarth.RadiusVector(JD);
+            double R = AASEarth.RadiusVector(JD, bHighPrecision);
 
             double PreviousLightTravelTime = 0;
             double LightTravelTime = 0;
@@ -56,11 +54,11 @@ namespace AASharp
                 double JD2 = JD - LightTravelTime;
 
                 //Step 3
-                l = AASMars.EclipticLongitude(JD2);
+                l = AASMars.EclipticLongitude(JD2, bHighPrecision);
                 lrad = AASCoordinateTransformation.DegreesToRadians(l);
-                b = AASMars.EclipticLatitude(JD2);
+                b = AASMars.EclipticLatitude(JD2, bHighPrecision);
                 double brad = AASCoordinateTransformation.DegreesToRadians(b);
-                r = AASMars.RadiusVector(JD2);
+                r = AASMars.RadiusVector(JD2, bHighPrecision);
 
                 //Step 4
                 x = r * Math.Cos(brad) * Math.Cos(lrad) - R * Math.Cos(l0rad);
@@ -143,8 +141,8 @@ namespace AASharp
             details.P = AASCoordinateTransformation.MapTo0To360Range(AASCoordinateTransformation.RadiansToDegrees(Math.Atan2(Math.Cos(delta0dash) * Math.Sin(alpha0dash - alphadash), Math.Sin(delta0dash) * Math.Cos(deltadash) - Math.Cos(delta0dash) * Math.Sin(deltadash) * Math.Cos(alpha0dash - alphadash))));
 
             //Step 18
-            double SunLambda = AASSun.GeometricEclipticLongitude(JD);
-            double SunBeta = AASSun.GeometricEclipticLatitude(JD);
+            double SunLambda = AASSun.GeometricEclipticLongitude(JD, bHighPrecision);
+            double SunBeta = AASSun.GeometricEclipticLatitude(JD, bHighPrecision);
             AAS2DCoordinate SunEquatorial = AASCoordinateTransformation.Ecliptic2Equatorial(SunLambda, SunBeta, e0);
             details.X = AASMoonIlluminatedFraction.PositionAngle(SunEquatorial.X, SunEquatorial.Y, alpha, delta);
 

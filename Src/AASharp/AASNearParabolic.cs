@@ -1,19 +1,16 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace AASharp
 {
     public class AASNearParabolicObjectElements
     {
-        public double q;
-        public double i;
-        public double w;
-        public double omega;
-        public double JDEquinox;
-        public double T;
-        public double e;
+        public double q { get; set; }
+        public double i { get; set; }
+        public double w { get; set; }
+        public double omega { get; set; }
+        public double JDEquinox { get; set; }
+        public double T { get; set; }
+        public double e { get; set; }
     }
 
     public class AASNearParabolicObjectDetails
@@ -24,21 +21,22 @@ namespace AASharp
             HeliocentricRectangularEcliptical = new AAS3DCoordinate();
         }
 
-        public AAS3DCoordinate HeliocentricRectangularEquatorial;
-        public AAS3DCoordinate HeliocentricRectangularEcliptical;
-        public double HeliocentricEclipticLongitude;
-        public double HeliocentricEclipticLatitude;
-        public double TrueGeocentricRA;
-        public double TrueGeocentricDeclination;
-        public double TrueGeocentricDistance;
-        public double TrueGeocentricLightTime;
-        public double AstrometricGeocentricRA;
-        public double AstrometricGeocentricDeclination;
-        public double AstrometricGeocentricDistance;
-        public double AstrometricGeocentricLightTime;
-        public double Elongation;
-        public double PhaseAngle;
+        public AAS3DCoordinate HeliocentricRectangularEquatorial { get; set; }
+        public AAS3DCoordinate HeliocentricRectangularEcliptical { get; set; }
+        public double HeliocentricEclipticLongitude { get; set; }
+        public double HeliocentricEclipticLatitude { get; set; }
+        public double TrueGeocentricRA { get; set; }
+        public double TrueGeocentricDeclination { get; set; }
+        public double TrueGeocentricDistance { get; set; }
+        public double TrueGeocentricLightTime { get; set; }
+        public double AstrometricGeocentricRA { get; set; }
+        public double AstrometricGeocentricDeclination { get; set; }
+        public double AstrometricGeocentricDistance { get; set; }
+        public double AstrometricGeocentricLightTime { get; set; }
+        public double Elongation { get; set; }
+        public double PhaseAngle { get; set; }
     }
+
     public static class AASNearParabolic
     {
         private static double Cbrt(double x)
@@ -66,7 +64,7 @@ namespace AASharp
             r = elements.q * (1 + w2) / (1 + w2 * f);
         }
 
-        public static AASNearParabolicObjectDetails Calculate(double JD, ref AASNearParabolicObjectElements elements)
+        public static AASNearParabolicObjectDetails Calculate(double JD, ref AASNearParabolicObjectElements elements, bool bHighPrecision)
         {
             double Epsilon = AASNutation.MeanObliquityOfEcliptic(elements.JDEquinox);
 
@@ -100,7 +98,7 @@ namespace AASharp
             double B = Math.Atan2(G, Q);
             double C = Math.Atan2(H, R);
 
-            AAS3DCoordinate SunCoord = AASSun.EquatorialRectangularCoordinatesAnyEquinox(JD, elements.JDEquinox);
+            AAS3DCoordinate SunCoord = AASSun.EquatorialRectangularCoordinatesAnyEquinox(JD, elements.JDEquinox, bHighPrecision);
 
             for (int j = 0; j < 2; j++)
             {
@@ -127,10 +125,8 @@ namespace AASharp
                     details.HeliocentricRectangularEcliptical.Y = r * (sinOmega * cosu + cosOmega * sinu * cosi);
                     details.HeliocentricRectangularEcliptical.Z = r * sini * sinu;
 
-                    details.HeliocentricEclipticLongitude = Math.Atan2(y, x);
-                    details.HeliocentricEclipticLongitude = AASCoordinateTransformation.MapTo0To24Range(AASCoordinateTransformation.RadiansToDegrees(details.HeliocentricEclipticLongitude) / 15);
-                    details.HeliocentricEclipticLatitude = Math.Asin(z / r);
-                    details.HeliocentricEclipticLatitude = AASCoordinateTransformation.RadiansToDegrees(details.HeliocentricEclipticLatitude);
+                    details.HeliocentricEclipticLongitude = AASCoordinateTransformation.MapTo0To360Range(AASCoordinateTransformation.RadiansToDegrees(Math.Atan2(details.HeliocentricRectangularEcliptical.Y, details.HeliocentricRectangularEcliptical.X)));
+                    details.HeliocentricEclipticLatitude = AASCoordinateTransformation.RadiansToDegrees(Math.Asin(details.HeliocentricRectangularEcliptical.Z / r));
                 }
 
                 double psi = SunCoord.X + x;
@@ -163,8 +159,7 @@ namespace AASharp
                     details.PhaseAngle = AASCoordinateTransformation.RadiansToDegrees(Math.Acos((r * r + Distance * Distance - RES * RES) / (2 * r * Distance)));
                 }
 
-                if (j == 0)
-                    //Prepare for the next loop around
+                if (j == 0) //Prepare for the next loop around
                     JD0 = JD - details.TrueGeocentricLightTime;
             }
 

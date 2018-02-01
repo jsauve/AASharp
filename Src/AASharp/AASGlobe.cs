@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AASharp
 {
@@ -11,7 +9,7 @@ namespace AASharp
             GeographicalLatitude = AASCoordinateTransformation.DegreesToRadians(GeographicalLatitude);
 
             double U = Math.Atan(0.99664719 * Math.Tan(GeographicalLatitude));
-            return 0.99664719 * Math.Sin(U) + (Height / 6378149 * Math.Sin(GeographicalLatitude));
+            return 0.99664719 * Math.Sin(U) + (Height / 6378140 * Math.Sin(GeographicalLatitude));
         }
 
         public static double RhoCosThetaPrime(double GeographicalLatitude, double Height)
@@ -20,7 +18,7 @@ namespace AASharp
             GeographicalLatitude = AASCoordinateTransformation.DegreesToRadians(GeographicalLatitude);
 
             double U = Math.Atan(0.99664719 * Math.Tan(GeographicalLatitude));
-            return Math.Cos(U) + (Height / 6378149 * Math.Cos(GeographicalLatitude));
+            return Math.Cos(U) + (Height / 6378140 * Math.Cos(GeographicalLatitude));
         }
 
         public static double RadiusOfParallelOfLatitude(double GeographicalLatitude)

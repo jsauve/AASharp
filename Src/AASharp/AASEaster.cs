@@ -1,35 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace AASharp
 {
     public class AASEasterDetails
     {
         public AASEasterDetails(long month, long day)
         {
-            _Month = month;
-            _Day = day;
+            Month = month;
+            Day = day;
         }
 
-        private long _Month;
-        private long _Day;
-
-        public long Month
-        {
-            get
-            {
-                return _Month;
-            }
-        }
-        public long Day
-        {
-            get
-            {
-                return _Day;
-            }
-        }
+        public long Month { get; }
+        public long Day { get; }
     }
 
     public static class AASEaster

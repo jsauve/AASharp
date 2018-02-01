@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AASharp
 {
@@ -84,7 +82,7 @@ namespace AASharp
             long Minute = 0;
             double Second = 0;
             date.Get(ref gregYear, ref gregMonth, ref gregDay, ref Hour, ref Minute, ref Second);
-            AASCalendarDate GregorianDate = new AASCalendarDate() { Year = gregYear, Month = gregMonth, Day = gregDay };
+            AASCalendarDate GregorianDate = new AASCalendarDate { Year = gregYear, Month = gregMonth, Day = gregDay };
 
             return GregorianDate;
         }
@@ -101,7 +99,7 @@ namespace AASharp
             long Minute = 0;
             double Second = 0;
             date.Get(ref julYear, ref julMonth, ref julDay, ref Hour, ref Minute, ref Second);
-            AASCalendarDate JulianDate = new AASCalendarDate() { Year = julYear, Month = julMonth, Day = julDay };
+            AASCalendarDate JulianDate = new AASCalendarDate { Year = julYear, Month = julMonth, Day = julDay };
 
             return JulianDate;
         }
@@ -351,7 +349,7 @@ namespace AASharp
 
         public void SetInGregorianCalendar(bool bGregorianCalendar)
         {
-            bool bAfterPapalReform = (m_dblJulian >= 2299160.5);
+            bool bAfterPapalReform = AfterPapalReform(m_dblJulian);
 
 #if DEBUG
             if (bGregorianCalendar) //We do not allow storage of propalatic Gregorian dates

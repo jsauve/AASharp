@@ -1,19 +1,12 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace AASharp
 {
     public class AASEclipticalElementDetails
     {
-        public AASEclipticalElementDetails()
-        {
-        }
-
-        public double i;
-        public double w;
-        public double omega;
+        public double i { get; set; }
+        public double w { get; set; }
+        public double omega { get; set; }
     }
 
     public static class AASEclipticalElements

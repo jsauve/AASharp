@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace AASharp
 {
@@ -14,15 +11,15 @@ namespace AASharp
 
     public static class AASPhysicalSun
     {
-        public static AASPhysicalSunDetails Calculate(double JD)
+        public static AASPhysicalSunDetails Calculate(double JD, bool bHighPrecision)
         {
             double theta = AASCoordinateTransformation.MapTo0To360Range((JD - 2398220) * 360 / 25.38);
             double I = 7.25;
             double K = 73.6667 + 1.3958333 * (JD - 2396758) / 36525;
 
             //Calculate the apparent longitude of the sun (excluding the effect of nutation)
-            double L = AASEarth.EclipticLongitude(JD);
-            double R = AASEarth.RadiusVector(JD);
+            double L = AASEarth.EclipticLongitude(JD, bHighPrecision);
+            double R = AASEarth.RadiusVector(JD, bHighPrecision);
             double SunLong = L + 180 - AASCoordinateTransformation.DMSToDegrees(0, 0, 20.4898 / R);
 
             double epsilon = AASNutation.TrueObliquityOfEcliptic(JD);
@@ -38,11 +35,10 @@ namespace AASharp
             double y = Math.Atan(-Math.Cos(SunLong - K) * Math.Tan(I));
 
             AASPhysicalSunDetails details = new AASPhysicalSunDetails();
-
             details.P = AASCoordinateTransformation.RadiansToDegrees(x + y);
             details.B0 = AASCoordinateTransformation.RadiansToDegrees(Math.Asin(Math.Sin(SunLong - K) * Math.Sin(I)));
-
-            double eta = Math.Atan(Math.Tan(SunLong - K) * Math.Cos(I));
+            double SunLongMinusK = SunLong - K;
+            double eta = Math.Atan2(-Math.Sin(SunLongMinusK) * Math.Cos(I), -Math.Cos(SunLongMinusK));
             details.L0 = AASCoordinateTransformation.MapTo0To360Range(AASCoordinateTransformation.RadiansToDegrees(eta - theta));
 
             return details;

@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AASharp
 {
@@ -69,7 +67,7 @@ namespace AASharp
             Alpha = DegreesToRadians(Alpha);
             Delta = DegreesToRadians(Delta);
 
-            AAS2DCoordinate Galactic = new AAS2DCoordinate() { X = RadiansToDegrees(Math.Atan2(Math.Sin(Alpha), Math.Cos(Alpha) * Math.Sin(DegreesToRadians(27.4)) - Math.Tan(Delta) * Math.Cos(DegreesToRadians(27.4)))) };
+            AAS2DCoordinate Galactic = new AAS2DCoordinate { X = RadiansToDegrees(Math.Atan2(Math.Sin(Alpha), Math.Cos(Alpha) * Math.Sin(DegreesToRadians(27.4)) - Math.Tan(Delta) * Math.Cos(DegreesToRadians(27.4)))) };
             Galactic.X = 303 - Galactic.X;
             if (Galactic.X >= 360)
                 Galactic.X -= 360;
@@ -151,28 +149,59 @@ namespace AASharp
 
         public static double MapTo0To360Range(double Degrees)
         {
-            double Value = Degrees;
+            double fResult = Math.IEEERemainder(Degrees, 360);
+            
+            if (fResult < 0)
+            {
+                fResult += 360;
+            }
+            
+            return fResult;
+        }
+        
+        public static double MapToMinus90To90Range(double Degrees)
+        {
+            double fResult = MapTo0To360Range(Degrees);
 
-            //map it to the range 0 - 360
-            while (Value < 0)
-                Value += 360;
-            while (Value > 360)
-                Value -= 360;
-
-            return Value;
+            if (fResult > 270)
+            {
+                fResult = fResult - 360;
+            }
+            else if (fResult > 180)
+            {
+                fResult = 180 - fResult;
+            }
+            else if (fResult > 90)
+            {
+                fResult = 180 - fResult;
+            }
+            
+            return fResult;
         }
 
         public static double MapTo0To24Range(double HourAngle)
         {
-            double Value = HourAngle;
-
-            //map it to the range 0 - 24
-            while (Value < 0)
-                Value += 24;
-            while (Value > 24)
-                Value -= 24;
-
-            return Value;
+            double fResult = Math.IEEERemainder(HourAngle, 24);
+            
+            if (fResult < 0)
+            {
+                fResult += 24;
+            }
+            
+            return fResult;
+        }
+        
+        
+        public static double MapTo0To2PIRange(double Angle)
+        {
+            double fResult = Math.IEEERemainder(Angle, 2 * PI());
+            
+            if (fResult < 0)
+            {
+                fResult += 2 * PI();
+            }
+            
+            return fResult;
         }
     }
 }
