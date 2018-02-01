@@ -28,7 +28,7 @@ namespace AASharp.Tests
         [InlineData(1128.732, 1402.835, 1677.247, 1951.983, 1540.0014375000003)]
         public void InterpolateToHalvesTest(double Y1, double Y2, double Y3, double Y4, double expectedY)
         {
-            double y = AASInterpolate.InterpolateToHalves(1128.732, 1402.835, 1677.247, 1951.983);
+            double y = AASInterpolate.InterpolateToHalves(Y1, Y2, Y3, Y4);
             Assert.Equal(expectedY, y);
         }
 
@@ -87,7 +87,7 @@ namespace AASharp.Tests
         public void ExtremumTest(double Y1, double Y2, double Y3, double expectedYm, double expectedNm)
         {
             double nm = 0;
-            double ym = AASInterpolate.Extremum(1.3814294, 1.3812213, 1.3812453, ref nm);
+            double ym = AASInterpolate.Extremum(Y1, Y2, Y3, ref nm);
             Assert.Equal(expectedYm, ym);
             Assert.Equal(expectedNm, nm);
         }
