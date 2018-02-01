@@ -11,6 +11,6 @@
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ProjectFiles\NetStandard\AASharp.NetStandard\AASharp.NetStandard.csproj" />
+    <ProjectReference Include="..\..\Src\AASharp\AASharp.NetStandard.csproj" />
   </ItemGroup>
 </Project>
