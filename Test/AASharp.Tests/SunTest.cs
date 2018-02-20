@@ -2,7 +2,6 @@
 
 namespace AASharp.Tests
 {
-    //TODO : add high precision test
     public class SunTest
     {
         [Theory]
