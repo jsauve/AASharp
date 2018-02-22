@@ -53,9 +53,7 @@ namespace AASharp
         NEPTUNE,
         PLUTO
     }
-    
-    //TODO To review
-    
+        
     public static class AASElliptical
     {
         public static double DistanceToLightTime(double Distance)
@@ -68,239 +66,177 @@ namespace AASharp
             //What will the the return value
             AASEllipticalPlanetaryDetails details = new AASEllipticalPlanetaryDetails();
 
+            //Calculate the position of the earth first
             double JD0 = JD;
-            double L0 = 0;
-            double B0 = 0;
-            double R0 = 0;
-            double cosB0 = 0;
-            if (ellipticalObject != AASEllipticalObject.SUN)
-            {
-                L0 = AASEarth.EclipticLongitude(JD0, bHighPrecision);
-                B0 = AASEarth.EclipticLatitude(JD0, bHighPrecision);
-                R0 = AASEarth.RadiusVector(JD0, bHighPrecision);
-                L0 = AASCoordinateTransformation.DegreesToRadians(L0);
-                B0 = AASCoordinateTransformation.DegreesToRadians(B0);
-                cosB0 = Math.Cos(B0);
-            }
+            double L0 = AASEarth.EclipticLongitude(JD0, bHighPrecision);
+            double B0 = AASEarth.EclipticLatitude(JD0, bHighPrecision);
+            double R0 = AASEarth.RadiusVector(JD0, bHighPrecision);
+            L0 = AASCoordinateTransformation.DegreesToRadians(L0);
+            B0 = AASCoordinateTransformation.DegreesToRadians(B0);
+            double cosB0 = Math.Cos(B0);
 
-
-            //Calculate the initial values
+            //Iterate to find the positions adjusting for light-time correction if required
             double L = 0;
             double B = 0;
             double R = 0;
-            switch (ellipticalObject)
-            {
-                case AASEllipticalObject.SUN:
-                    {
-                        L = AASSun.GeometricEclipticLongitude(JD0, bHighPrecision);
-                        B = AASSun.GeometricEclipticLatitude(JD0, bHighPrecision);
-                        R = AASEarth.RadiusVector(JD0, bHighPrecision);
-                        break;
-                    }
-                case AASEllipticalObject.MERCURY:
-                    {
-                        L = AASMercury.EclipticLongitude(JD0, bHighPrecision);
-                        B = AASMercury.EclipticLatitude(JD0, bHighPrecision);
-                        R = AASMercury.RadiusVector(JD0, bHighPrecision);
-                        break;
-                    }
-                case AASEllipticalObject.VENUS:
-                    {
-                        L = AASVenus.EclipticLongitude(JD0, bHighPrecision);
-                        B = AASVenus.EclipticLatitude(JD0, bHighPrecision);
-                        R = AASVenus.RadiusVector(JD0, bHighPrecision);
-                        break;
-                    }
-                case AASEllipticalObject.MARS:
-                    {
-                        L = AASMars.EclipticLongitude(JD0, bHighPrecision);
-                        B = AASMars.EclipticLatitude(JD0, bHighPrecision);
-                        R = AASMars.RadiusVector(JD0, bHighPrecision);
-                        break;
-                    }
-                case AASEllipticalObject.JUPITER:
-                    {
-                        L = AASJupiter.EclipticLongitude(JD0, bHighPrecision);
-                        B = AASJupiter.EclipticLatitude(JD0, bHighPrecision);
-                        R = AASJupiter.RadiusVector(JD0, bHighPrecision);
-                        break;
-                    }
-                case AASEllipticalObject.SATURN:
-                    {
-                        L = AASSaturn.EclipticLongitude(JD0, bHighPrecision);
-                        B = AASSaturn.EclipticLatitude(JD0, bHighPrecision);
-                        R = AASSaturn.RadiusVector(JD0, bHighPrecision);
-                        break;
-                    }
-                case AASEllipticalObject.URANUS:
-                    {
-                        L = AASUranus.EclipticLongitude(JD0, bHighPrecision);
-                        B = AASUranus.EclipticLatitude(JD0, bHighPrecision);
-                        R = AASUranus.RadiusVector(JD0, bHighPrecision);
-                        break;
-                    }
-                case AASEllipticalObject.NEPTUNE:
-                    {
-                        L = AASNeptune.EclipticLongitude(JD0, bHighPrecision);
-                        B = AASNeptune.EclipticLatitude(JD0, bHighPrecision);
-                        R = AASNeptune.RadiusVector(JD0, bHighPrecision);
-                        break;
-                    }
-                case AASEllipticalObject.PLUTO:
-                    {
-                        L = AASPluto.EclipticLongitude(JD0);
-                        B = AASPluto.EclipticLatitude(JD0);
-                        R = AASPluto.RadiusVector(JD0);
-                        break;
-                    }
-            }
 
-            bool bRecalc = true;
-            bool bFirstRecalc = true;
-            double LPrevious = 0;
-            double BPrevious = 0;
-            double RPrevious = 0;
-            while (bRecalc)
+            if (ellipticalObject != AASEllipticalObject.SUN)
             {
-                switch (ellipticalObject)
+                bool bRecalc = true;
+                bool bFirstRecalc = true;
+                double LPrevious = 0;
+                double BPrevious = 0;
+                double RPrevious = 0;
+
+                while (bRecalc)
                 {
-                    case AASEllipticalObject.SUN:
-                        {
+                    switch (ellipticalObject)
+                    {
+                        case AASEllipticalObject.SUN:
+
                             L = AASSun.GeometricEclipticLongitude(JD0, bHighPrecision);
                             B = AASSun.GeometricEclipticLatitude(JD0, bHighPrecision);
                             R = AASEarth.RadiusVector(JD0, bHighPrecision);
                             break;
-                        }
-                    case AASEllipticalObject.MERCURY:
-                        {
+
+                        case AASEllipticalObject.MERCURY:
+
                             L = AASMercury.EclipticLongitude(JD0, bHighPrecision);
                             B = AASMercury.EclipticLatitude(JD0, bHighPrecision);
                             R = AASMercury.RadiusVector(JD0, bHighPrecision);
                             break;
-                        }
-                    case AASEllipticalObject.VENUS:
-                        {
+
+                        case AASEllipticalObject.VENUS:
+
                             L = AASVenus.EclipticLongitude(JD0, bHighPrecision);
                             B = AASVenus.EclipticLatitude(JD0, bHighPrecision);
                             R = AASVenus.RadiusVector(JD0, bHighPrecision);
                             break;
-                        }
-                    case AASEllipticalObject.MARS:
-                        {
+
+                        case AASEllipticalObject.MARS:
+
                             L = AASMars.EclipticLongitude(JD0, bHighPrecision);
                             B = AASMars.EclipticLatitude(JD0, bHighPrecision);
                             R = AASMars.RadiusVector(JD0, bHighPrecision);
                             break;
-                        }
-                    case AASEllipticalObject.JUPITER:
-                        {
+
+                        case AASEllipticalObject.JUPITER:
+
                             L = AASJupiter.EclipticLongitude(JD0, bHighPrecision);
                             B = AASJupiter.EclipticLatitude(JD0, bHighPrecision);
                             R = AASJupiter.RadiusVector(JD0, bHighPrecision);
                             break;
-                        }
-                    case AASEllipticalObject.SATURN:
-                        {
+
+                        case AASEllipticalObject.SATURN:
+
                             L = AASSaturn.EclipticLongitude(JD0, bHighPrecision);
                             B = AASSaturn.EclipticLatitude(JD0, bHighPrecision);
                             R = AASSaturn.RadiusVector(JD0, bHighPrecision);
                             break;
-                        }
-                    case AASEllipticalObject.URANUS:
-                        {
+
+                        case AASEllipticalObject.URANUS:
+
                             L = AASUranus.EclipticLongitude(JD0, bHighPrecision);
                             B = AASUranus.EclipticLatitude(JD0, bHighPrecision);
                             R = AASUranus.RadiusVector(JD0, bHighPrecision);
                             break;
-                        }
-                    case AASEllipticalObject.NEPTUNE:
-                        {
+
+                        case AASEllipticalObject.NEPTUNE:
+
                             L = AASNeptune.EclipticLongitude(JD0, bHighPrecision);
                             B = AASNeptune.EclipticLatitude(JD0, bHighPrecision);
                             R = AASNeptune.RadiusVector(JD0, bHighPrecision);
                             break;
-                        }
-                    case AASEllipticalObject.PLUTO:
-                        {
+
+                        case AASEllipticalObject.PLUTO:
+
                             L = AASPluto.EclipticLongitude(JD0);
                             B = AASPluto.EclipticLatitude(JD0);
                             R = AASPluto.RadiusVector(JD0);
                             break;
-                        }
-                    default:
-                        {
+
+                        default:
                             break;
-                        }
-                }
+                    }
 
-                if (!bFirstRecalc)
-                {
-                    bRecalc = ((Math.Abs(L - LPrevious) > 0.00001) || (Math.Abs(B - BPrevious) > 0.00001) || (Math.Abs(R - RPrevious) > 0.000001));
-                    LPrevious = L;
-                    BPrevious = B;
-                    RPrevious = R;
-                }
-                else
-                    bFirstRecalc = false;
+                    if (!bFirstRecalc)
+                    {
+                        bRecalc = ((Math.Abs(L - LPrevious) > 0.00001) || (Math.Abs(B - BPrevious) > 0.00001) || (Math.Abs(R - RPrevious) > 0.000001));
+                        LPrevious = L;
+                        BPrevious = B;
+                        RPrevious = R;
+                    }
+                    else
+                    {
+                        bFirstRecalc = false;
+                    }
 
-                //Calculate the new value
-                if (bRecalc)
-                {
-                    double distance;
-                    if (ellipticalObject != AASEllipticalObject.SUN)
+                    //Calculate the new value
+                    if (bRecalc)
                     {
                         double Lrad = AASCoordinateTransformation.DegreesToRadians(L);
                         double Brad = AASCoordinateTransformation.DegreesToRadians(B);
                         double cosB = Math.Cos(Brad);
                         double cosL = Math.Cos(Lrad);
-                        double x = R * cosB * cosL - R0 * cosB0 * Math.Cos(L0);
-                        double y = R * cosB * Math.Sin(Lrad) - R0 * cosB0 * Math.Sin(L0);
-                        double z = R * Math.Sin(Brad) - R0 * Math.Sin(B0);
-                        distance = Math.Sqrt(x * x + y * y + z * z);
-                    }
-                    else
-                        distance = R; //Distance to the sun from the earth is in fact the radius vector
+                        double x1 = R * cosB * cosL - R0 * cosB0 * Math.Cos(L0);
+                        double y1 = R * cosB * Math.Sin(Lrad) - R0 * cosB0 * Math.Sin(L0);
+                        double z1 = R * Math.Sin(Brad) - R0 * Math.Sin(B0);
+                        double distance = Math.Sqrt(x1 * x1 + y1 * y1 + z1 * z1);
 
-                    //Prepare for the next loop around
-                    JD0 = JD - AASElliptical.DistanceToLightTime(distance);
+                        //Prepare for the next loop around
+                        JD0 = JD - AASElliptical.DistanceToLightTime(distance);
+                    }
                 }
             }
+
+            double x = 0;
+            double y = 0;
+            double z = 0;
+            if (ellipticalObject != AASEllipticalObject.SUN)
             {
                 double Lrad = AASCoordinateTransformation.DegreesToRadians(L);
                 double Brad = AASCoordinateTransformation.DegreesToRadians(B);
                 double cosB = Math.Cos(Brad);
                 double cosL = Math.Cos(Lrad);
-                double x = R * cosB * cosL - R0 * cosB0 * Math.Cos(L0);
-                double y = R * cosB * Math.Sin(Lrad) - R0 * cosB0 * Math.Sin(L0);
-                double z = R * Math.Sin(Brad) - R0 * Math.Sin(B0);
-                double x2 = x * x;
-                double y2 = y * y;
 
-                details.ApparentGeocentricLatitude = AASCoordinateTransformation.RadiansToDegrees(Math.Atan2(z, Math.Sqrt(x2 + y2)));
-                details.ApparentGeocentricDistance = Math.Sqrt(x2 + y2 + z * z);
-                details.ApparentGeocentricLongitude = AASCoordinateTransformation.MapTo0To360Range(AASCoordinateTransformation.RadiansToDegrees(Math.Atan2(y, x)));
-                details.ApparentLightTime = AASElliptical.DistanceToLightTime(details.ApparentGeocentricDistance);
-
-                //Adjust for Aberration
-                AAS2DCoordinate Aberration = AASAberration.EclipticAberration(details.ApparentGeocentricLongitude, details.ApparentGeocentricLatitude, JD, bHighPrecision);
-                details.ApparentGeocentricLongitude += Aberration.X;
-                details.ApparentGeocentricLatitude += Aberration.Y;
-
-                //convert to the FK5 system
-                double DeltaLong = AASFK5.CorrectionInLongitude(details.ApparentGeocentricLongitude, details.ApparentGeocentricLatitude, JD);
-                details.ApparentGeocentricLatitude += AASFK5.CorrectionInLatitude(details.ApparentGeocentricLongitude, JD);
-                details.ApparentGeocentricLongitude += DeltaLong;
-
-                //Correct for nutation
-                double NutationInLongitude = AASNutation.NutationInLongitude(JD);
-                double Epsilon = AASNutation.TrueObliquityOfEcliptic(JD);
-                details.ApparentGeocentricLongitude += AASCoordinateTransformation.DMSToDegrees(0, 0, NutationInLongitude);
-
-                //Convert to RA and Dec
-                AAS2DCoordinate ApparentEqu = AASCoordinateTransformation.Ecliptic2Equatorial(details.ApparentGeocentricLongitude, details.ApparentGeocentricLatitude, Epsilon);
-                details.ApparentGeocentricRA = ApparentEqu.X;
-                details.ApparentGeocentricDeclination = ApparentEqu.Y;
+                x = R * cosB * cosL - R0 * cosB0 * Math.Cos(L0);
+                y = R * cosB * Math.Sin(Lrad) - R0 * cosB0 * Math.Sin(L0);
+                z = R * Math.Sin(Brad) - R0 * Math.Sin(B0);
             }
+            else
+            {
+                x = -R0 * cosB0 * Math.Cos(L0);
+                y = -R0 * cosB0 * Math.Sin(L0);
+                z = -R0 * Math.Sin(B0);
+            }
+
+            double x2 = x * x;
+            double y2 = y * y;
+
+            details.ApparentGeocentricLatitude = AASCoordinateTransformation.RadiansToDegrees(Math.Atan2(z, Math.Sqrt(x2 + y2)));
+            details.ApparentGeocentricDistance = Math.Sqrt(x2 + y2 + z * z);
+            details.ApparentGeocentricLongitude = AASCoordinateTransformation.MapTo0To360Range(AASCoordinateTransformation.RadiansToDegrees(Math.Atan2(y, x)));
+            details.ApparentLightTime = AASElliptical.DistanceToLightTime(details.ApparentGeocentricDistance);
+
+            //Adjust for Aberration
+            AAS2DCoordinate Aberration = AASAberration.EclipticAberration(details.ApparentGeocentricLongitude, details.ApparentGeocentricLatitude, JD, bHighPrecision);
+            details.ApparentGeocentricLongitude += Aberration.X;
+            details.ApparentGeocentricLatitude += Aberration.Y;
+
+            //convert to the FK5 system
+            double DeltaLong = AASFK5.CorrectionInLongitude(details.ApparentGeocentricLongitude, details.ApparentGeocentricLatitude, JD);
+            details.ApparentGeocentricLatitude += AASFK5.CorrectionInLatitude(details.ApparentGeocentricLongitude, JD);
+            details.ApparentGeocentricLongitude += DeltaLong;
+
+            //Correct for nutation
+            double NutationInLongitude = AASNutation.NutationInLongitude(JD);
+            double Epsilon = AASNutation.TrueObliquityOfEcliptic(JD);
+            details.ApparentGeocentricLongitude += AASCoordinateTransformation.DMSToDegrees(0, 0, NutationInLongitude);
+
+            //Convert to RA and Dec
+            AAS2DCoordinate ApparentEqu = AASCoordinateTransformation.Ecliptic2Equatorial(details.ApparentGeocentricLongitude, details.ApparentGeocentricLatitude, Epsilon);
+            details.ApparentGeocentricRA = ApparentEqu.X;
+            details.ApparentGeocentricDeclination = ApparentEqu.Y;
 
             return details;
         }
