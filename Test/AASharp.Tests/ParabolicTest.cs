@@ -3,13 +3,24 @@ using Xunit;
 
 namespace AASharp.Tests
 {
+    //TODO : add high precision test
     public class ParabolicTest
     {
         public static IEnumerable<object[]> Parameters()
         {
             yield return new object[]
             {
-                1.48678, 104.668, 222.103, 1.146, 2450917.705, 2451545.0, false,
+                2451030.5,
+                false,
+                new AASParabolicObjectElements
+                {
+                    q = 1.48678,
+                    i = 104.668,
+                    omega = 222.103,
+                    w = 1.146,
+                    T = 2450917.705,
+                    JDEquinox = 2451545.0
+                }, //Elements taken from http://www.cfa.harvard.edu/mpec/J98/J98H29.html
                 new AASParabolicObjectDetails
                 {
                     HeliocentricRectangularEquatorial = new AAS3DCoordinate
@@ -27,16 +38,57 @@ namespace AASharp.Tests
 
                     HeliocentricEclipticLongitude = 189.96140866352988,
                     HeliocentricEclipticLatitude = 63.803017382411028,
-                    TrueGeocentricRA = 12.529018462281451,
-                    TrueGeocentricDeclination = 50.722041420446686,
-                    TrueGeocentricDistance = 2.5723991775977266,
-                    TrueGeocentricLightTime = 0.014856938525120621,
-                    AstrometricGeocenticRA = 12.529096109113544,
-                    AstrometricGeocentricDeclination = 50.717458962302587,
-                    AstrometricGeocentricDistance = 2.5722659686324807,
-                    AstrometricGeocentricLightTime = 0.014856169174304119,
-                    Elongation = 53.766284103454716,
-                    PhaseAngle = 22.529380589213471
+                    TrueGeocentricRA = 12.529028827917752,
+                    TrueGeocentricDeclination = 50.722175924951728,
+                    TrueGeocentricDistance = 2.5724075344822066,
+                    TrueGeocentricLightTime = 0.014856986790459865,
+                    AstrometricGeocenticRA = 12.529106474494315,
+                    AstrometricGeocentricDeclination = 50.717593472316992,
+                    AstrometricGeocentricDistance = 2.5722743246607962,
+                    AstrometricGeocentricLightTime = 0.01485621743469857,
+                    Elongation = 53.765835380490721,
+                    PhaseAngle = 22.529244193647607
+                }
+            };
+            yield return new object[]
+            {
+                2451030.5,
+                true,
+                new AASParabolicObjectElements
+                {
+                    q = 1.48678,
+                    i = 104.668,
+                    omega = 222.103,
+                    w = 1.146,
+                    T = 2450917.705,
+                    JDEquinox = 2451545.0
+                }, //Elements taken from http://www.cfa.harvard.edu/mpec/J98/J98H29.html
+                new AASParabolicObjectDetails
+                {
+                    HeliocentricRectangularEquatorial = new AAS3DCoordinate
+                    {
+                        X = -0.92863442225391335,
+                        Y = -0.9119303421072531,
+                        Z = 1.693363394814253
+                    },
+                    HeliocentricRectangularEcliptical = new AAS3DCoordinate
+                    {
+                        X = -0.92863442225391324,
+                        Y = -0.16309845559159331,
+                        Z = 1.9163755971980911
+                    },
+                    HeliocentricEclipticLongitude = 189.96140866352988,
+                    HeliocentricEclipticLatitude = 63.803017382411028,
+                    TrueGeocentricRA = 12.529029981397166,
+                    TrueGeocentricDeclination = 50.722193777863765,
+                    TrueGeocentricDistance = 2.5724076713238784,
+                    TrueGeocentricLightTime = 0.014856987580791445,
+                    AstrometricGeocenticRA = 12.529107627950989,
+                    AstrometricGeocentricDeclination = 50.717611325937675,
+                    AstrometricGeocentricDistance = 2.57227446143634,
+                    AstrometricGeocentricLightTime = 0.014856218224648226,
+                    Elongation = 53.765821116962549,
+                    PhaseAngle = 22.529228089649944
                 }
             };
         }
@@ -44,10 +96,9 @@ namespace AASharp.Tests
 
         [Theory]
         [MemberData(nameof(Parameters))]
-        public void TheoryTest(double q, double i, double omega, double w, double T, double JDEquinox, bool bHighPrecision, AASParabolicObjectDetails expectedParabolicObjectDetails)
+        public void TheoryTest(double JD, bool bHighPrecision, AASParabolicObjectElements elements, AASParabolicObjectDetails expectedParabolicObjectDetails)
         {
-            AASParabolicObjectElements elements = new AASParabolicObjectElements {q = q, i = i, omega = omega, w = w, T = T, JDEquinox = JDEquinox}; //Elements taken from http://www.cfa.harvard.edu/mpec/J98/J98H29.html
-            AASParabolicObjectDetails details = AASParabolic.Calculate(2451030.5, ref elements, bHighPrecision);
+            AASParabolicObjectDetails details = AASParabolic.Calculate(JD, ref elements, bHighPrecision);
 
             Assert.Equal(expectedParabolicObjectDetails.HeliocentricRectangularEquatorial.X, details.HeliocentricRectangularEquatorial.X);
             Assert.Equal(expectedParabolicObjectDetails.HeliocentricRectangularEquatorial.Y, details.HeliocentricRectangularEquatorial.Y);
