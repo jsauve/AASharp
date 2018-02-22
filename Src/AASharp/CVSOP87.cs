@@ -15,11 +15,11 @@ namespace AASharp
                 for (int j = 0; j < pTable[i].nCoefficientsSize; j++)
                     TempResult += pTable[i].pCoefficients[j].A * Math.Cos(pTable[i].pCoefficients[j].B + pTable[i].pCoefficients[j].C * T);
 
-                //if (i)
-                //{
-                TempResult *= TTerm;
-                TTerm *= T;
-                //}
+                if (i > 0)
+                {
+                    TempResult *= TTerm;
+                    TTerm *= T;
+                }
 
                 Result += TempResult;
             }
@@ -47,13 +47,13 @@ namespace AASharp
                     tempPart2 += pTable[i].pCoefficients[j].A * pTable[i].pCoefficients[j].C * Math.Sin(B_CT);
                 }
 
-                //if (i)
-                //{
-                tempPart1 *= TTerm1;
-                tempPart2 *= TTerm2;
-                TTerm1 *= T;
-                TTerm2 *= T;
-                //}
+                if (i > 0)
+                {
+                    tempPart1 *= TTerm1;
+                    tempPart2 *= TTerm2;
+                    TTerm1 *= T;
+                    TTerm2 *= T;
+                }
 
                 Result += (tempPart1 - tempPart2);
             }

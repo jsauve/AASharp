@@ -11,7 +11,7 @@ namespace AASharp
 
         public static double GeometricEclipticLatitude(double JD, bool bHighPrecision)
         {
-            return AASEarth.EclipticLatitude(JD, bHighPrecision);
+            return -AASEarth.EclipticLatitude(JD, bHighPrecision);
         }
 
         public static double GeometricEclipticLongitudeJ2000(double JD, bool bHighPrecision)
@@ -21,7 +21,7 @@ namespace AASharp
 
         public static double GeometricEclipticLatitudeJ2000(double JD, bool bHighPrecision)
         {
-            return AASEarth.EclipticLatitudeJ2000(JD, bHighPrecision);
+            return -AASEarth.EclipticLatitudeJ2000(JD, bHighPrecision);
         }
 
         public static double GeometricFK5EclipticLongitude(double JD, bool bHighPrecision)

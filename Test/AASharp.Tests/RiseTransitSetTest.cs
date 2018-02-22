@@ -7,6 +7,29 @@ namespace AASharp.Tests
     {
         public static IEnumerable<object[]> CalculateParameters()
         {
+            //Venus rise for Reykjavík 
+            yield return new object[] {
+                2458950.5,
+                4.1805065838501578,
+                25.31917565151549,
+                4.2392717862910745,
+                25.522975131091489,
+                4.2972706379370376,
+                25.718064841766768,
+                21.9267,
+                64.1417,
+                -0.56669999999999998,
+                new AASRiseTransitSetDetails
+                {
+                    bRiseValid = false,
+                    Rise = 0,
+                    bTransitValid= true,
+                    bTransitAboveHorizon = true,
+                    Transit = 16.384745033921234,
+                    bSetValid = false,
+                    Set = 0
+                }
+            };
             //Venus rise for Boston
             yield return new object[] {
                 2447240.5,
@@ -51,6 +74,52 @@ namespace AASharp.Tests
                     Transit = 4.8967468638700478,
                     bSetValid = true,
                     Set = 10.050749701783564
+                }
+            };
+            //An interesting case is Rise, Transit and Set for the Moon on October 30 2012 at the specified position
+            yield return new object[] {
+                2456230.5,
+                1.5976289429725621,
+                12.747046266735165,
+                2.3985777701007418,
+                15.932310081432496,
+                3.2150249893175635,
+                18.414729299199248,
+                -5.6306649983214818,
+                71.646778771324804,
+                0.125,
+                new AASRiseTransitSetDetails
+                {
+                    bRiseValid = true,
+                    Rise = 13.220188664463816,
+                    bTransitValid= false,
+                    bTransitAboveHorizon = true,
+                    Transit = 0,
+                    bSetValid = true,
+                    Set = 10.183674235316074
+                }
+            };
+            //An interesting case is Rise, Transit and Set for the Moon on October 31 2012 at the specified position
+            yield return new object[] {
+                2456231.5,
+                2.3985777701007418,
+                15.932310081432496,
+                3.2150249893175635,
+                18.414729299199248,
+                4.0456211083291276,
+                20.085012606344936,
+                -5.6306649983214818,
+                71.646778771324804,
+                0.125,
+                new AASRiseTransitSetDetails
+                {
+                    bRiseValid = false,
+                    Rise = 0,
+                    bTransitValid= true,
+                    bTransitAboveHorizon = true,
+                    Transit = 0.19990251869228498,
+                    bSetValid = true,
+                    Set = 11.685600518729544
                 }
             };
         }

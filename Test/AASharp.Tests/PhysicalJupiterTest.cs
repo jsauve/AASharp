@@ -22,6 +22,21 @@ namespace AASharp.Tests
                     P = 24.800807847334582
                 }
             };
+            yield return new object[]
+            {
+                2448972.50068,
+                true,
+                new CAAPhysicalJupiterDetails
+                {
+                    DE = -2.4846380183035937,
+                    DS = -2.1980557587338838,
+                    Apparentw1 = 268.06320592090793,
+                    Apparentw2 = 72.735503254302941,
+                    Geometricw1 = 267.63468803135646,
+                    Geometricw2 = 72.306985364751455,
+                    P = 24.800809089899719
+                }
+            };
         }
 
         [Theory]
