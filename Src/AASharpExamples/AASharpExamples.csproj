@@ -6,6 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AASharp\AASharp.NetStandard.csproj" />
+    <ProjectReference Include="..\AASharp\AASharp.csproj" />
   </ItemGroup>
 </Project>

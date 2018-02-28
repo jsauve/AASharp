@@ -15,17 +15,17 @@ namespace AASharp.Tests
                 {
                     Satellite1 = new AASSaturnMoonDetail
                     {
+                        TrueRectangularCoordinates= new AAS3DCoordinate
+                        {
+                            X = 3.1017339399666213,
+                            Y = -0.20395517974093325,
+                            Z = 0.29545825805745385
+                        },
                         ApparentRectangularCoordinates = new AAS3DCoordinate
                         {
-                            X = 3.1016923918387653,
-                            Y = -0.20395175511871336,
-                            Z = 0.29545761940405935,
-                        },
-                        TrueRectangularCoordinates = new AAS3DCoordinate
-                        {
-                            X = 3.1017340385922103,
-                            Y = -0.20395460024101164,
-                            Z = 0.29545761940405935,
+                            X = 3.1016922931265998,
+                            Y = -0.20395233460428333,
+                            Z = 0.29545825805745385
                         },
                         bInEclipse = false,
                         bInOccultation = false,
@@ -34,17 +34,17 @@ namespace AASharp.Tests
                     },
                     Satellite2 = new AASSaturnMoonDetail
                     {
-                        ApparentRectangularCoordinates = new AAS3DCoordinate
-                        {
-                            X = 3.8233719188388666,
-                            Y = 0.31811918896949964,
-                            Z = -0.83255254903769371,
-                        },
                         TrueRectangularCoordinates = new AAS3DCoordinate
                         {
-                            X = 3.8232136563876677,
-                            Y = 0.31810668408111975,
-                            Z = -0.83255254903769371,
+                            X = 3.8232139062752344,
+                            Y = 0.31810705002433137,
+                            Z = -0.832551262140742
+                        },
+                        ApparentRectangularCoordinates= new AAS3DCoordinate
+                        {
+                            X = 3.8233721684882589,
+                            Y = 0.3181195549082847,
+                            Z = -0.832551262140742
                         },
                         bInEclipse = false,
                         bInOccultation = false,
@@ -53,17 +53,17 @@ namespace AASharp.Tests
                     },
                     Satellite3 = new AASSaturnMoonDetail
                     {
+                        TrueRectangularCoordinates= new AAS3DCoordinate
+                        {
+                            X = 4.0275686838325768,
+                            Y = -1.0613373337000822,
+                            Z = 2.5448762321789888
+                        },
                         ApparentRectangularCoordinates = new AAS3DCoordinate
                         {
-                            X = 4.0271400578123515,
-                            Y = -1.0612071369846079,
-                            Z = 2.5448761405762617,
-                        },
-                        TrueRectangularCoordinates = new AAS3DCoordinate
-                        {
-                            X = 4.0275694496434147,
-                            Y = -1.0613346472384262,
-                            Z = 2.5448761405762617,
+                            X = 4.027139292080129,
+                            Y = -1.0612098231136384,
+                            Z = 2.5448762321789888
                         },
                         bInEclipse = false,
                         bInOccultation = false,
@@ -72,17 +72,17 @@ namespace AASharp.Tests
                     },
                     Satellite4 = new AASSaturnMoonDetail
                     {
-                        ApparentRectangularCoordinates = new AAS3DCoordinate
-                        {
-                            X = -5.3651542210991146,
-                            Y = -1.1481805137670529,
-                            Z = 3.0044880031708163,
-                        },
                         TrueRectangularCoordinates = new AAS3DCoordinate
                         {
-                            X = -5.3659670058462456,
-                            Y = -1.1483433904605758,
-                            Z = 3.0044880031708163,
+                            X = -5.365967893375406,
+                            Y = -1.1483455626227268,
+                            Z = 3.0044855879356374
+                        },
+                        ApparentRectangularCoordinates = new AAS3DCoordinate
+                        {
+                            X = -5.3651551091479535,
+                            Y = -1.1481826857452817,
+                            Z = 3.0044855879356374
                         },
                         bInEclipse = false,
                         bInOccultation = false,
@@ -91,17 +91,17 @@ namespace AASharp.Tests
                     },
                     Satellite5 = new AASSaturnMoonDetail
                     {
+                        TrueRectangularCoordinates= new AAS3DCoordinate
+                        {
+                            X = -0.97242823299125458,
+                            Y = -3.137242797082691,
+                            Z = 8.0800588301999774
+                        },
                         ApparentRectangularCoordinates = new AAS3DCoordinate
                         {
-                            X = -0.97182771885777874,
-                            Y = -3.1360392351283313,
-                            Z = 8.0800618990774318,
-                        },
-                        TrueRectangularCoordinates = new AAS3DCoordinate
-                        {
-                            X = -0.97242585596389619,
-                            Y = -3.1372356298090152,
-                            Z = 8.0800618990774318,
+                            X = -0.9718300951973845,
+                            Y = -3.1360464000734387,
+                            Z = 8.0800588301999774
                         },
                         bInEclipse = false,
                         bInOccultation = false,
@@ -110,17 +110,17 @@ namespace AASharp.Tests
                     },
                     Satellite6 = new AASSaturnMoonDetail
                     {
+                        TrueRectangularCoordinates= new AAS3DCoordinate
+                        {
+                            X = 14.558765779389741,
+                            Y = 4.7355572559134487,
+                            Z = -12.75482495470677
+                        },
                         ApparentRectangularCoordinates = new AAS3DCoordinate
                         {
-                            X = 14.56769686305441,
-                            Y = 4.7384007528600094,
-                            Z = -12.75483291620292,
-                        },
-                        TrueRectangularCoordinates = new AAS3DCoordinate
-                        {
-                            X = 14.558762073541747,
-                            Y = 4.7355472069734361,
-                            Z = -12.75483291620292,
+                            X = 14.567700565871437,
+                            Y = 4.73841080619133,
+                            Z = -12.75482495470677
                         },
                         bInEclipse = false,
                         bInOccultation = false,
@@ -129,17 +129,17 @@ namespace AASharp.Tests
                     },
                     Satellite7 = new AASSaturnMoonDetail
                     {
-                        ApparentRectangularCoordinates = new AAS3DCoordinate
-                        {
-                            X = -18.001105304122031,
-                            Y = -5.3282129379908509,
-                            Z = 15.120967292536452,
-                        },
                         TrueRectangularCoordinates = new AAS3DCoordinate
                         {
-                            X = -18.014126653460256,
-                            Y = -5.3320169286765573,
-                            Z = 15.120967292536452,
+                            X = -18.014131017851074,
+                            Y = -5.3320287700632889,
+                            Z = 15.120957920106436
+                        },
+                        ApparentRectangularCoordinates = new AAS3DCoordinate
+                        {
+                            X = -18.001109672984395,
+                            Y = -5.3282247731283539,
+                            Z = 15.120957920106436
                         },
                         bInEclipse = false,
                         bInOccultation = false,
@@ -148,17 +148,177 @@ namespace AASharp.Tests
                     },
                     Satellite8 = new AASSaturnMoonDetail
                     {
-                        ApparentRectangularCoordinates = new AAS3DCoordinate
-                        {
-                            X = -48.760294363014452,
-                            Y = 4.1370841818818356,
-                            Z = 32.737995108725315,
-                        },
                         TrueRectangularCoordinates = new AAS3DCoordinate
                         {
-                            X = -48.835863670043935,
-                            Y = 4.1434789490368349,
-                            Z = 32.737995108725315,
+                            X = -48.835871580943447,
+                            Y = 4.1434542606149058,
+                            Z = 32.737986433012466
+                        },
+                        ApparentRectangularCoordinates = new AAS3DCoordinate
+                        {
+                            X = -48.760302278653896,
+                            Y = 4.1370595329899205,
+                            Z = 32.737986433012466
+                        },
+                        bInEclipse = false,
+                        bInOccultation = false,
+                        bInShadowTransit = false,
+                        bInTransit = false
+                    }
+                }
+            };
+            yield return new object[]
+            {
+                2451439.50074,
+                true,
+                new AASSaturnMoonsDetails
+                {
+                    Satellite1 = new AASSaturnMoonDetail
+                    {
+                        TrueRectangularCoordinates = new AAS3DCoordinate
+                        {
+                            X = 3.1017342525489844,
+                            Y = -0.20395333469601007,
+                            Z = 0.29545514689493207
+                        },
+                        ApparentRectangularCoordinates = new AAS3DCoordinate
+                        {
+                            X = 3.10169260667136,
+                            Y = -0.2039504896508581,
+                            Z = 0.29545514689493207
+                        },
+                        bInEclipse = false,
+                        bInOccultation = false,
+                        bInShadowTransit = false,
+                        bInTransit = false,
+                    },
+                    Satellite2 = new AASSaturnMoonDetail
+                    {
+                        TrueRectangularCoordinates = new AAS3DCoordinate
+                        {
+                            X = 3.823213821469357,
+                            Y = 0.31810564462639634,
+                            Z = -0.83255203873865125
+                        },
+                        ApparentRectangularCoordinates = new AAS3DCoordinate
+                        {
+                            X = 3.8233720819374235,
+                            Y = 0.31811814930940324,
+                            Z = -0.83255203873865125
+                        },
+                        bInEclipse = false,
+                        bInOccultation = false,
+                        bInShadowTransit = false,
+                        bInTransit = false,
+                    },
+                    Satellite3 = new AASSaturnMoonDetail
+                    {
+                        TrueRectangularCoordinates = new AAS3DCoordinate
+                        {
+                            X = 4.0275666335179254,
+                            Y = -1.06133392896936,
+                            Z = 2.5448808969764283
+                        },
+                        ApparentRectangularCoordinates = new AAS3DCoordinate
+                        {
+                            X = 4.0271372473723837,
+                            Y = -1.0612064201626392,
+                            Z = 2.5448808969764283
+                        },
+                        bInEclipse = false,
+                        bInOccultation = false,
+                        bInShadowTransit = false,
+                        bInTransit = false,
+                    },
+                    Satellite4 = new AASSaturnMoonDetail
+                    {
+                        TrueRectangularCoordinates = new AAS3DCoordinate
+                        {
+                            X = -5.3659723472927521,
+                            Y = -1.1483375245382268,
+                            Z = 3.0044806721031088
+                        },
+                        ApparentRectangularCoordinates = new AAS3DCoordinate
+                        {
+                            X = -5.3651595734589543,
+                            Y = -1.1481746511166289,
+                            Z = 3.0044806721031088
+                        },
+                        bInEclipse = false,
+                        bInOccultation = false,
+                        bInShadowTransit = false,
+                        bInTransit = false,
+                    },
+                    Satellite5 = new AASSaturnMoonDetail
+                    {
+                        TrueRectangularCoordinates = new AAS3DCoordinate
+                        {
+                            X = -0.9724451111090896,
+                            Y = -3.1372276719967873,
+                            Z = 8.080062662295763
+                        },
+                        ApparentRectangularCoordinates = new AAS3DCoordinate
+                        {
+                            X = -0.97184697130855846,
+                            Y = -3.136031295237764,
+                            Z = 8.080062662295763
+                        },
+                        bInEclipse = false,
+                        bInOccultation = false,
+                        bInShadowTransit = false,
+                        bInTransit = false,
+                    },
+                    Satellite6 = new AASSaturnMoonDetail
+                    {
+                        TrueRectangularCoordinates = new AAS3DCoordinate
+                        {
+                            X = 14.558800712190628,
+                            Y = 4.7355211592204123,
+                            Z = -12.754798683947838
+                        },
+                        ApparentRectangularCoordinates = new AAS3DCoordinate
+                        {
+                            X = 14.567735390401236,
+                            Y = 4.7383746459364682,
+                            Z = -12.754798683947838
+                        },
+                        bInEclipse = false,
+                        bInOccultation = false,
+                        bInShadowTransit = false,
+                        bInTransit = false,
+                    },
+                    Satellite7 = new AASSaturnMoonDetail
+                    {
+                        TrueRectangularCoordinates = new AAS3DCoordinate
+                        {
+                            X = -18.014172683700174,
+                            Y = -5.33198474202644,
+                            Z = 15.120922945624709
+                        },
+                        ApparentRectangularCoordinates = new AAS3DCoordinate
+                        {
+                            X = -18.001151501311433,
+                            Y = -5.3281808331284921,
+                            Z = 15.120922945624709
+                        },
+                        bInEclipse = false,
+                        bInOccultation = false,
+                        bInShadowTransit = false,
+                        bInTransit = false,
+                    },
+                    Satellite8 = new AASSaturnMoonDetail
+                    {
+                        TrueRectangularCoordinates = new AAS3DCoordinate
+                        {
+                            X = -48.835951923571493,
+                            Y = 4.1435608547047078,
+                            Z = 32.737852943980187
+                        },
+                        ApparentRectangularCoordinates = new AAS3DCoordinate
+                        {
+                            X = -48.760383752635391,
+                            Y = 4.1371660689520811,
+                            Z = 32.737852943980187
                         },
                         bInEclipse = false,
                         bInOccultation = false,
