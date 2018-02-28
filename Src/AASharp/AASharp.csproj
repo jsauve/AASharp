@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net40;net45</TargetFrameworks>
+    <AssemblyName>AASharp</AssemblyName>
+    <RootNamespace>AASharp</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+</Project>
