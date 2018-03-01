@@ -257,6 +257,7 @@
     </Compile>
     <Compile Include="..\..\..\Src\AASharp\AASMoslemCalendar.cs">
       <Link>AASMoslemCalendar.cs</Link>
+    </Compile>
     <Compile Include="..\..\..\Src\AASharp\AASVSOP87_EMB.cs">
       <Link>AASVSOP87_EMB.cs</Link>
     </Compile>
