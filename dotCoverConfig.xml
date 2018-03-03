@@ -1,0 +1,20 @@
+<AnalyzeParams>
+  <TargetExecutable>C:\Program Files\dotnet\dotnet.exe</TargetExecutable>
+  <TargetArguments>test Test\AASharp.Tests\AASharp.Tests.csproj</TargetArguments>
+  <TargetWorkingDir>.</TargetWorkingDir>
+  <Output>dotCover.html</Output>
+  <ReportType>html</ReportType>
+  <Filters>
+    <ExcludeFilters>
+		<FilterEntry>
+			<ModuleMask>*.Test*</ModuleMask>
+		</FilterEntry>
+    <FilterEntry>
+      <ModuleMask>xunit.*</ModuleMask>
+		</FilterEntry>
+    <FilterEntry>
+      <ModuleMask>MSBuild</ModuleMask>
+		</FilterEntry>
+    </ExcludeFilters>
+  </Filters>
+</AnalyzeParams>
