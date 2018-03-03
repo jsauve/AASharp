@@ -58,9 +58,9 @@ namespace AASharp.Tests
             Assert.Equal(expectedLatitude, latitude);
         }
         
-        [Theory(Skip = "//TODO : compare with values returned by original C++ code")]
-        [InlineData(2448908.5, 199.90606043815316, 0.00017251315369890997, 13.225202775731649, -7.784202092067309)]
-        [InlineData(2448908.5, 199.9059880933325, 0.00020014657616383325, 13.225202775731649, -7.784202092067309)]
+        [Theory]
+        [InlineData(2448908.5, 199.90606043815316, 0.00017251315369890997, 13.225211869869508, -7.7838705577531435)]
+        [InlineData(2448908.5, 199.9059880933325, 0.00020014657616383325, 13.225208064119263, -7.7838176586458578)]
         public void Ecliptic2EquatorialTest(double JD, double apparentEclipticLongitude, double apparentEclipticLatitude, double expectedX, double expectedY)
         {
             var equatorial = AASCoordinateTransformation.Ecliptic2Equatorial(apparentEclipticLongitude, apparentEclipticLatitude, AASNutation.TrueObliquityOfEcliptic(JD));
