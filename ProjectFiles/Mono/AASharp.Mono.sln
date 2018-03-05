@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AASharp.Mono", "ProjectFiles\Mono\AASharp.Mono\AASharp.Mono.csproj", "{E3934190-045B-48E6-9BE2-814CD87A9C1D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AASharp.Mono", "AASharp.Mono\AASharp.Mono.csproj", "{E3934190-045B-48E6-9BE2-814CD87A9C1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AASharpTest.Mono", "ProjectFiles\Mono\AASharpTest.Mono\AASharpTest.Mono.csproj", "{75A231DA-F445-42F8-8B9E-74F9CB873ED4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AASharpTest.Mono", "AASharpTest.Mono\AASharpTest.Mono.csproj", "{75A231DA-F445-42F8-8B9E-74F9CB873ED4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +26,6 @@ Global
 		{E3934190-045B-48E6-9BE2-814CD87A9C1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = ProjectFiles\Mono\AASharpTest.Mono\AASharpTest.Mono.csproj
+		StartupItem = AASharpTest.Mono\AASharpTest.Mono.csproj
 	EndGlobalSection
 EndGlobal
