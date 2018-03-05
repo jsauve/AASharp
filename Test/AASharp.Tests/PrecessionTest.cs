@@ -4,17 +4,13 @@ namespace AASharp.Tests
 {
     public class PrecessionTest
     {
-        [Fact]
-        public void PrecessEquatorialTest()
+        [Theory]
+        [InlineData(2.7369374156837019, 49.227748999730018, 2451545, 2462088.69, 2.7698141731675268, 49.348482112865824)]
+        public void PrecessEquatorialTest(double alpha, double delta, double jd0, double jd, double expectedX, double expectedY)
         {
-            double alpha = AASCoordinateTransformation.DMSToDegrees(2, 44, 11.986);//2.7366627777777777
-            double delta = AASCoordinateTransformation.DMSToDegrees(49, 13, 42.48);//49.228466666666669
-            AAS2DCoordinate pa = AASPrecession.AdjustPositionUsingUniformProperMotion((2462088.69 - 2451545) / 365.25, alpha, delta, 0.03425, -0.0895);
-
-            AAS2DCoordinate precessed = AASPrecession.PrecessEquatorial(pa.X, pa.Y, 2451545, 2462088.69);
-
-            Assert.Equal(2.769814173163061, precessed.X);
-            Assert.Equal(49.348482112865952, precessed.Y);
+            AAS2DCoordinate precessed = AASPrecession.PrecessEquatorial(alpha, delta, jd0, jd);
+            Assert.Equal(expectedX, precessed.X);
+            Assert.Equal(expectedY, precessed.Y);
         }
 
         [Fact]

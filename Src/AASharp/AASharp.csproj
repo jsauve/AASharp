@@ -8,9 +8,16 @@
 AASharp is a C# port of PJ Naughter's static C++ library, AA+. Naughter's library implements the algorithms in Jean Meuss' book, "Astronomical Algorithms."</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/jsauve/AASharp</PackageProjectUrl>
-    <AssemblyVersion>0.9.0.0</AssemblyVersion>
-    <FileVersion>0.9.0.0</FileVersion>
-    <Version>0.9.0</Version>
+    <AssemblyVersion>1.93.0.0</AssemblyVersion>
+    <FileVersion>1.93.0.0</FileVersion>
+    <Version>1.92</Version>
+    <Authors>Joe Sauve, Julien Tschäppät</Authors>
+    <RepositoryUrl>https://github.com/jsauve/AASharp</RepositoryUrl>
+    <PackageTags>Astronomy,Algorithm</PackageTags>
+    <Copyright>Joe Sauve, Julien Tschäppät. Original copyright of the C++ library : PJ Naughter</Copyright>
+    <PackageReleaseNotes>Fixed a transcription bug in the AASPrecession.PrecessEquatorial method. The "0.017998*tcubed" term was incorrectly using "0.017988*tcubed" when calculating "sigma". 
+
+The version number follows the version number of the C++ library this package is based on.</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     
