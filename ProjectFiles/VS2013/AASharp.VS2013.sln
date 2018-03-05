@@ -1,11 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2026
+
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AASharp.VS2013", "ProjectFiles\VS2013\AASharp.VS2013\AASharp.VS2013.csproj", "{C4C9CAB5-F115-44C6-8A68-A3E7EF07FC00}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AASharp.VS2013", "AASharp.VS2013\AASharp.VS2013.csproj", "{C4C9CAB5-F115-44C6-8A68-A3E7EF07FC00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AASharpExamples.VS2013", "ProjectFiles\VS2013\AASharpExamples.VS2013\AASharpExamples.VS2013.csproj", "{78F68F3E-2D24-4EDE-A03F-42E53FB1C48B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AASharpExamples.VS2013", "AASharpExamples.VS2013\AASharpExamples.VS2013.csproj", "{78F68F3E-2D24-4EDE-A03F-42E53FB1C48B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
