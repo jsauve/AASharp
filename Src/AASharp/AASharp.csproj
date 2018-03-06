@@ -5,7 +5,9 @@
     <RootNamespace>AASharp</RootNamespace>
     <Description>This is the official NuGet package of Astronomical Algorithms # (AASharp or AA#)
 
-AASharp is a C# port of PJ Naughter's static C++ library, AA+. Naughter's library implements the algorithms in Jean Meuss' book, "Astronomical Algorithms."</Description>
+AASharp is a C# port of PJ Naughter's static C++ library, AA+. Naughter's library implements the algorithms in Jean Meuss' book, "Astronomical Algorithms."
+
+Versions history : https://github.com/jsauve/AASharp/releases</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/jsauve/AASharp</PackageProjectUrl>
     <AssemblyVersion>1.93.2</AssemblyVersion>
@@ -15,10 +17,13 @@ AASharp is a C# port of PJ Naughter's static C++ library, AA+. Naughter's librar
     <RepositoryUrl>https://github.com/jsauve/AASharp</RepositoryUrl>
     <PackageTags>Astronomy,Algorithm</PackageTags>
     <Copyright>Joe Sauve, Julien Tschäppät. Original copyright of the C++ library : PJ Naughter</Copyright>
-    <PackageReleaseNotes>- Fixed a transcription bug in the AASPrecession.PrecessEquatorial method. The "0.017998*tcubed" term was incorrectly using "0.017988*tcubed" when calculating "sigma". 
-- Added license
+    <PackageReleaseNotes>- Corrections in AASMoslemCalendar, results were not correct
 
-The version number follows the version number of the C++ library this package is based on.</PackageReleaseNotes>
+
+
+The version number follows the version number of the C++ library this package is based on.
+
+See release notes : https://github.com/jsauve/AASharp/releases</PackageReleaseNotes>
     <PackageLicenseUrl>https://github.com/jsauve/AASharp/blob/master/LICENSE</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
