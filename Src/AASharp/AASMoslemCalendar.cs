@@ -5,7 +5,7 @@
         public static AASCalendarDate MoslemToJulian(long Year, long Month, long Day)
         {
             //What will be the return value
-            AASCalendarDate JulianDate = new AASCalendarDate();
+            AASCalendarDate julianDate = new AASCalendarDate();
       
             long N = Day + AASDate.INT(29.5001 * (Month - 1) + 0.99);
             long Q = AASDate.INT(Year / 30.0);
@@ -34,12 +34,14 @@
             }
       
             AASDate date = new AASDate();
-            JulianDate.Year = X;
-            var julienDateDay = JulianDate.Day;
-            var julienDateMonth = JulianDate.Month;
+            julianDate.Year = X;
+            var julienDateDay = julianDate.Day;
+            var julienDateMonth = julianDate.Month;
             date.DayOfYearToDayAndMonth(J, AASDate.IsLeap(X, false), ref julienDateDay, ref julienDateMonth);
-      
-            return JulianDate;
+            julianDate.Day = julienDateDay;
+            julianDate.Month = julienDateMonth;
+
+            return julianDate;
         }
     
         public static AASCalendarDate JulianToMoslem(long Year, long Month, long Day)
@@ -47,7 +49,7 @@
             //What will be the return value
             AASCalendarDate MoslemDate = new AASCalendarDate();
       
-            long W = ((Year % 4) == 0) ? 2 : 1;
+            long W = Year % 4 != 0 ? 2 : 1;
             long N = AASDate.INT((275 * Month) / 9.0) - (W * AASDate.INT((Month + 9) / 12.0)) + Day - 30;
             long A = Year - 623;
             long B = AASDate.INT(A / 4.0);
@@ -62,7 +64,7 @@
             long R = Ddash % 10631;
             long J = AASDate.INT(R / 354.0);
             long K = R % 354;
-            long O = AASDate.INT((11 * J + 14) / 30);
+            long O = AASDate.INT((11 * J + 14) / 30.0);
             long H = 30 * Q + J + 1;
             long JJ = K - O + N - 1;
       
@@ -101,11 +103,11 @@
       
             return MoslemDate;
         }
-    
-        bool IsLeap(long Year)
+
+        public static bool IsLeap(long Year)
         {
           long R = Year % 30;
-          return ((11 * R + 3) % 30) > 18;
+          return (11 * R + 3) % 30 > 18;
         }
     }
 }
