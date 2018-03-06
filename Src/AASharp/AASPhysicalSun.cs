@@ -4,9 +4,9 @@ namespace AASharp
 {
     public class AASPhysicalSunDetails
     {
-        public double P;
-        public double B0;
-        public double L0;
+        public double P { get; set; }
+        public double B0 { get; set; }
+        public double L0 { get; set; }
     }
 
     public static class AASPhysicalSun

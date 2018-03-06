@@ -4,20 +4,20 @@ namespace AASharp
 {
     public class AASPhysicalMoonDetails
     {
-        public double ldash;
-        public double bdash;
-        public double ldash2;
-        public double bdash2;
-        public double l;
-        public double b;
-        public double P;
+        public double ldash { get; set; }
+        public double bdash { get; set; }
+        public double ldash2 { get; set; }
+        public double bdash2 { get; set; }
+        public double l { get; set; }
+        public double b { get; set; }
+        public double P { get; set; }
     }
 
     public class AASSelenographicMoonDetails
     {
-        public double l0;
-        public double b0;
-        public double c0;
+        public double l0 { get; set; }
+        public double b0 { get; set; }
+        public double c0 { get; set; }
     }
 
     public static class AASPhysicalMoon
@@ -121,7 +121,19 @@ namespace AASharp
             double sigma = 0;
             double I = 0;
             double rho = 0;
-            CalculateOpticalLibration(JD, Lambda, Beta, ref details.ldash, ref details.bdash, ref details.ldash2, ref details.bdash2, ref epsilon, ref omega, ref DeltaU, ref sigma, ref I, ref rho);
+
+            double ldash = 0;
+            double bdash = 0;
+            double ldash2 = 0;
+            double bdash2 = 0;
+
+
+            CalculateOpticalLibration(JD, Lambda, Beta, ref ldash, ref bdash, ref ldash2, ref bdash2, ref epsilon, ref omega, ref DeltaU, ref sigma, ref I, ref rho);
+            details.ldash = ldash;
+            details.bdash = bdash;
+            details.ldash2 = ldash2;
+            details.bdash2 = bdash2;
+
             double epsilonrad = AASCoordinateTransformation.DegreesToRadians(epsilon);
 
             //Calculate the total libration

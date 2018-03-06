@@ -4,14 +4,14 @@ namespace AASharp
 {
     public class CAAPhysicalMarsDetails
     {
-        public double DE;
-        public double DS;
-        public double w;
-        public double P;
-        public double X;
-        public double k;
-        public double q;
-        public double d;
+        public double DE { get; set; }
+        public double DS { get; set; }
+        public double w { get; set; }
+        public double P { get; set; }
+        public double X { get; set; }
+        public double k { get; set; }
+        public double q { get; set; }
+        public double d { get; set; }
     }
 
     //Member variables
