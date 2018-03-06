@@ -3,14 +3,14 @@
     <TargetFrameworks>netstandard2.0;net40;net45</TargetFrameworks>
     <AssemblyName>AASharp</AssemblyName>
     <RootNamespace>AASharp</RootNamespace>
-    <Description>Astronomical Algorithms # (AASharp)
+    <Description>This is the official NuGet package of Astronomical Algorithms # (AASharp or AA#)
 
 AASharp is a C# port of PJ Naughter's static C++ library, AA+. Naughter's library implements the algorithms in Jean Meuss' book, "Astronomical Algorithms."</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/jsauve/AASharp</PackageProjectUrl>
-    <AssemblyVersion>1.93.1</AssemblyVersion>
-    <FileVersion>1.93.1</FileVersion>
-    <Version>1.93.1</Version>
+    <AssemblyVersion>1.93.2</AssemblyVersion>
+    <FileVersion>1.93.2</FileVersion>
+    <Version>1.93.2</Version>
     <Authors>Joe Sauve, Julien Tschäppät</Authors>
     <RepositoryUrl>https://github.com/jsauve/AASharp</RepositoryUrl>
     <PackageTags>Astronomy,Algorithm</PackageTags>
