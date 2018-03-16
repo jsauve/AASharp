@@ -49,13 +49,19 @@ namespace AASharp
         {
             if (bGregorianCalendar)
             {
-                if ((Year % 100) == 0)
-                    return ((Year % 400) == 0) ? true : false;
+                if (Year % 100 == 0)
+                {
+                    return Year % 400 == 0;
+                }
                 else
-                    return ((Year % 4) == 0) ? true : false;
+                {
+                    return Year % 4 == 0;
+                }
             }
             else
-                return ((Year % 4) == 0) ? true : false;
+            {
+                return Year % 4 == 0;
+            }
         }
 
         public void DayOfYearToDayAndMonth(long DayOfYear, bool bLeap, ref long DayOfMonth, ref long Month)
@@ -63,11 +69,15 @@ namespace AASharp
             long K = bLeap ? 1 : 2;
 
             if (DayOfYear < 32)
+            {
                 Month = 1;
+            }
             else
+            {
                 Month = INT(9 * (K + DayOfYear) / 275.0 + 0.98);
+            }
 
-            DayOfMonth = DayOfYear - INT((275 * Month) / 9.0) + (K * INT((Month + 9) / 12.0)) + 30;
+            DayOfMonth = DayOfYear - INT(275 * Month / 9.0) + K * INT((Month + 9) / 12.0) + 30;
         }
 
         public static AASCalendarDate JulianToGregorian(long Year, long Month, long Day)
@@ -107,19 +117,19 @@ namespace AASharp
         public static long INT(double value)
         {
             if (value >= 0)
-                return (long)(value);
+                return (long)value;
             else
                 return (long)(value - 1);
         }
 
         public static bool AfterPapalReform(long Year, long Month, double Day)
         {
-            return ((Year > 1582) || ((Year == 1582) && (Month > 10)) || ((Year == 1582) && (Month == 10) && (Day >= 15)));
+            return Year > 1582 || Year == 1582 && Month > 10 || Year == 1582 && Month == 10 && Day >= 15;
         }
 
         public static bool AfterPapalReform(double JD)
         {
-            return (JD >= 2299160.5);
+            return JD >= 2299160.5;
         }
 
         public static double DayOfYear(double JD, long Year, bool bGregorianCalendar)
@@ -247,7 +257,7 @@ namespace AASharp
         {
             get
             {
-                return (DAY_OF_WEEK)(((long)(m_dblJulian + 1.5) % 7));
+                return (DAY_OF_WEEK)((long)(m_dblJulian + 1.5) % 7);
             }
 
         }
@@ -331,13 +341,13 @@ namespace AASharp
                 else
                     DaysInYear = 365;
 
-                return Year + ((m_dblJulian - DateToJD(Year, 1, 1, AfterPapalReform(Year, 1, 1))) / DaysInYear);
+                return Year + (m_dblJulian - DateToJD(Year, 1, 1, AfterPapalReform(Year, 1, 1))) / DaysInYear;
             }
         }
 
         public void Set(long Year, long Month, double Day, double Hour, double Minute, double Second, bool bGregorianCalendar)
         {
-            double dblDay = Day + (Hour / 24) + (Minute / 1440) + (Second / 86400);
+            double dblDay = Day + Hour / 24 + Minute / 1440 + Second / 86400;
             Set(DateToJD(Year, Month, dblDay, bGregorianCalendar), bGregorianCalendar);
         }
 
@@ -364,7 +374,7 @@ namespace AASharp
             double JD = m_dblJulian + 0.5;
             double tempZ = 0;
             double F = AASMath.modF(JD, ref tempZ);
-            long Z = (long)(tempZ);
+            long Z = (long)tempZ;
             long A;
 
             if (m_bGregorianCalendar) //There is a difference here between the Meeus implementation and this one
@@ -389,7 +399,7 @@ namespace AASharp
             long E = INT((B - D) / 30.6001);
 
             double dblDay = B - D - INT(30.6001 * E) + F;
-            Day = (long)(dblDay);
+            Day = (long)dblDay;
 
             if (E < 14)
                 Month = E - 1;
@@ -403,8 +413,8 @@ namespace AASharp
 
             F = AASMath.modF(dblDay, ref tempZ);
             Hour = INT(F * 24);
-            Minute = INT((F - (Hour) / 24.0) * 1440.0);
-            Second = (F - (Hour / 24.0) - (Minute / 1440.0)) * 86400.0;
+            Minute = INT((F - Hour / 24.0) * 1440.0);
+            Second = (F - Hour / 24.0 - Minute / 1440.0) * 86400.0;
         }
 
         #endregion

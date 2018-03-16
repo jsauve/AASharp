@@ -2,12 +2,20 @@ using System;
 
 namespace AASharp
 {
-    public static class AASMath
+    internal static class AASMath
     {
-        // equivalent of modf in C++
-        public static double modF(double source, ref double integralPart)
+        /// <summary>
+        /// Equivalent of modf in C++.
+        /// Break into fractional and integral parts
+        /// Breaks value into an integral and a fractional part.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="integralPart"></param>
+        /// <returns></returns>
+        internal static double modF(double value, ref double integralPart)
         {
-            return source - (integralPart = Math.Floor(source));
+            integralPart = Math.Floor(value);
+            return value - integralPart;
         }
     }
 }

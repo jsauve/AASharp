@@ -1,6 +1,6 @@
 ﻿namespace AASharp
 {
-    public class AASMoslemCalendar
+    public static class AASMoslemCalendar
     {
         public static AASCalendarDate MoslemToJulian(long Year, long Month, long Day)
         {
