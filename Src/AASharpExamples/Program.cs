@@ -113,7 +113,7 @@ namespace AASharpTest
 
             date.Set(1978, 11, 14, 0, 0, 0, true);
             long DayNumber = (long)(date.DayOfYear());
-            date.DayOfYearToDayAndMonth(DayNumber, date.Leap, ref Day, ref Month);
+            AASDate.DayOfYearToDayAndMonth(DayNumber, date.Leap, ref Day, ref Month);
             Year = date.Year;
 
             //Test out the AAEaster class

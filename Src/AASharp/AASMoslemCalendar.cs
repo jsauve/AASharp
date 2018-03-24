@@ -33,11 +33,10 @@
                 X++;
             }
       
-            AASDate date = new AASDate();
             julianDate.Year = X;
             var julienDateDay = julianDate.Day;
             var julienDateMonth = julianDate.Month;
-            date.DayOfYearToDayAndMonth(J, AASDate.IsLeap(X, false), ref julienDateDay, ref julienDateMonth);
+            AASDate.DayOfYearToDayAndMonth(J, AASDate.IsLeap(X, false), ref julienDateDay, ref julienDateMonth);
             julianDate.Day = julienDateDay;
             julianDate.Month = julienDateMonth;
 
