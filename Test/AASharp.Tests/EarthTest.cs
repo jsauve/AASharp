@@ -48,5 +48,21 @@ namespace AASharp.Tests
             double eclipticLatitude = AASEarth.EclipticLatitudeJ2000(JD, bHighPrecision);
             Assert.Equal(expectedEclipticLatitude, eclipticLatitude);
         }
+
+        [Theory]
+        [InlineData(2448908.5, 278.99396556713828)]
+        public void SunMeanAnomalyTest(double jd, double expectedSunMeanAnomaly)
+        {
+            double sunMeanAnomaly = AASEarth.SunMeanAnomaly(jd);
+            Assert.Equal(expectedSunMeanAnomaly, sunMeanAnomaly);
+        }
+
+        [Theory]
+        [InlineData(2448908.5, 1.0001815749676644)]
+        public void EccentricityTest(double jd, double expectedEccentricity)
+        {
+            double eccentricity = AASEarth.Eccentricity(jd);
+            Assert.Equal(expectedEccentricity, eccentricity);
+        }
     }
 }
