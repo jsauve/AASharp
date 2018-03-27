@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 
 namespace AASharp.Tests
 {
@@ -185,6 +186,17 @@ namespace AASharp.Tests
             //Test of the static method
             Assert.Equal(expectedNumberOfDay, AASDate.DaysInMonth(month, isLeap));
         }
+        
+        [Theory]
+        [InlineData(0)]
+        [InlineData(13)]
+        public void DaysInMonthTest_InvalidParmThrowsException(int month)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => AASDate.DaysInMonth(month, false));
+        }
+        
+        
+        
 
         [Theory]
         [InlineData(2018, 365)]

@@ -147,9 +147,9 @@ namespace AASharp
 
         public static long DaysInMonth(long month, bool isLeap)
         {
-            if (month < 1 && month > 12)
+            if (month < 1 || month > 12)
             {
-                throw new ArgumentOutOfRangeException("month", "Month must be 1 - 12");
+                throw new ArgumentOutOfRangeException(nameof(month), "Month must be 1 - 12");
             }
 
             int[] monthLength = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
