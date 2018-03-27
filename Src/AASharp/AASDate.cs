@@ -4,31 +4,35 @@ namespace AASharp
 {
     public class AASDate
     {
+        #region constructors
+        
         public AASDate()
         {
         }
 
-        public AASDate(long Year, long Month, double Day, bool bGregorianCalendar)
+        public AASDate(long year, long month, double day, bool bGregorianCalendar)
         {
-            Set(Year, Month, Day, 0, 0, 0, bGregorianCalendar);
+            Set(year, month, day, 0, 0, 0, bGregorianCalendar);
         }
 
-        public AASDate(long Year, long Month, double Day, double Hour, double Minute, double Second, bool bGregorianCalendar)
+        public AASDate(long year, long month, double day, double hour, double minute, double second, bool isGregorianCalendar)
         {
-            Set(Year, Month, Day, Hour, Minute, Second, bGregorianCalendar);
+            Set(year, month, day, hour, minute, second, isGregorianCalendar);
         }
 
-        public AASDate(double JD, bool bGregorianCalendar)
+        public AASDate(double JD, bool isGregorianCalendar)
         {
-            Set(JD, bGregorianCalendar);
+            Set(JD, isGregorianCalendar);
         }
+        
+        #endregion
 
         #region static members
 
-        public static double DateToJD(long Year, long Month, double Day, bool bGregorianCalendar)
+        public static double DateToJD(long year, long month, double day, bool isGregorianCalendar)
         {
-            long Y = Year;
-            long M = Month;
+            long Y = year;
+            long M = month;
             if (M < 3)
             {
                 Y = Y - 1;
@@ -36,95 +40,99 @@ namespace AASharp
             }
 
             long B = 0;
-            if (bGregorianCalendar)
+            if (isGregorianCalendar)
             {
                 long A = INT(Y / 100.0);
                 B = 2 - A + INT(A / 4.0);
             }
 
-            return INT(365.25 * (Y + 4716)) + INT(30.6001 * (M + 1)) + Day + B - 1524.5;
+            return INT(365.25 * (Y + 4716)) + INT(30.6001 * (M + 1)) + day + B - 1524.5;
         }
 
-        public static bool IsLeap(long Year, bool bGregorianCalendar)
+        public static bool IsLeap(long year, bool isGregorianCalendar)
         {
-            if (bGregorianCalendar)
+            if (isGregorianCalendar)
             {
-                if (Year % 100 == 0)
+                if (year % 100 == 0)
                 {
-                    return Year % 400 == 0;
+                    return year % 400 == 0;
                 }
                 else
                 {
-                    return Year % 4 == 0;
+                    return year % 4 == 0;
                 }
             }
             else
             {
-                return Year % 4 == 0;
+                return year % 4 == 0;
             }
         }
 
-        public static void DayOfYearToDayAndMonth(long DayOfYear, bool bLeap, ref long DayOfMonth, ref long Month)
+        public static void DayOfYearToDayAndMonth(long dayOfYear, bool isLeap, ref long dayOfMonth, ref long Month)
         {
-            long K = bLeap ? 1 : 2;
+            long K = isLeap ? 1 : 2;
 
-            if (DayOfYear < 32)
+            if (dayOfYear < 32)
             {
                 Month = 1;
             }
             else
             {
-                Month = INT(9 * (K + DayOfYear) / 275.0 + 0.98);
+                Month = INT(9 * (K + dayOfYear) / 275.0 + 0.98);
             }
 
-            DayOfMonth = DayOfYear - INT(275 * Month / 9.0) + K * INT((Month + 9) / 12.0) + 30;
+            dayOfMonth = dayOfYear - INT(275 * Month / 9.0) + K * INT((Month + 9) / 12.0) + 30;
         }
 
-        public static AASCalendarDate JulianToGregorian(long Year, long Month, long Day)
+        public static AASCalendarDate JulianToGregorian(long year, long month, long day)
         {
-            AASDate date = new AASDate(Year, Month, Day, false);
+            AASDate date = new AASDate(year, month, day, false);
             date.SetInGregorianCalendar(true);
 
             long gregYear = 0;
             long gregMonth = 0;
             long gregDay = 0;
-            long Hour = 0;
-            long Minute = 0;
-            double Second = 0;
-            date.Get(ref gregYear, ref gregMonth, ref gregDay, ref Hour, ref Minute, ref Second);
-            AASCalendarDate GregorianDate = new AASCalendarDate { Year = gregYear, Month = gregMonth, Day = gregDay };
+            long hour = 0;
+            long minute = 0;
+            double second = 0;
+            date.Get(ref gregYear, ref gregMonth, ref gregDay, ref hour, ref minute, ref second);
+            AASCalendarDate gregorianDate = new AASCalendarDate { Year = gregYear, Month = gregMonth, Day = gregDay };
 
-            return GregorianDate;
+            return gregorianDate;
         }
 
-        public static AASCalendarDate GregorianToJulian(long Year, long Month, long Day)
+        public static AASCalendarDate GregorianToJulian(long year, long month, long day)
         {
-            AASDate date = new AASDate(Year, Month, Day, true);
+            AASDate date = new AASDate(year, month, day, true);
             date.SetInGregorianCalendar(false);
 
             long julYear = 0;
             long julMonth = 0;
             long julDay = 0;
-            long Hour = 0;
-            long Minute = 0;
-            double Second = 0;
-            date.Get(ref julYear, ref julMonth, ref julDay, ref Hour, ref Minute, ref Second);
-            AASCalendarDate JulianDate = new AASCalendarDate { Year = julYear, Month = julMonth, Day = julDay };
+            long hour = 0;
+            long minute = 0;
+            double second = 0;
+            date.Get(ref julYear, ref julMonth, ref julDay, ref hour, ref minute, ref second);
+            AASCalendarDate julianDate = new AASCalendarDate { Year = julYear, Month = julMonth, Day = julDay };
 
-            return JulianDate;
+            return julianDate;
         }
 
         public static long INT(double value)
         {
             if (value >= 0)
-                return (long)value;
+            {
+                return (long) value;
+            }
             else
-                return (long)(value - 1);
+            {
+                return (long) (value - 1);
+            }
         }
 
-        public static bool AfterPapalReform(long Year, long Month, double Day)
+        public static bool AfterPapalReform(long year, long month, double day)
         {
-            return Year > 1582 || Year == 1582 && Month > 10 || Year == 1582 && Month == 10 && Day >= 15;
+            return year > 1582 || year == 1582 && month > 10 || year == 1582 && month == 10 && day >= 15;
         }
 
         public static bool AfterPapalReform(double JD)
@@ -132,49 +140,48 @@ namespace AASharp
             return JD >= 2299160.5;
         }
 
-        public static double DayOfYear(double JD, long Year, bool bGregorianCalendar)
+        public static double DayOfYear(double JD, long year, bool isGregorianCalendar)
         {
-            return JD - DateToJD(Year, 1, 1, bGregorianCalendar) + 1;
+            return JD - DateToJD(year, 1, 1, isGregorianCalendar) + 1;
         }
 
-        public static long DaysInMonth(long Month, bool bLeap)
+        public static long DaysInMonth(long month, bool isLeap)
         {
-            if (Month < 1 && Month > 12)
-                throw new ArgumentOutOfRangeException("Month", "Month must be 1 - 12");
-            int[] MonthLength = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-            if (bLeap)
-                MonthLength[1]++;
+            if (month < 1 && month > 12)
+            {
+                throw new ArgumentOutOfRangeException("month", "Month must be 1 - 12");
+            }
 
-            return MonthLength[Month - 1];
+            int[] monthLength = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+            if (isLeap)
+            {
+                monthLength[1]++;
+            }
+
+            return monthLength[month - 1];
         }
 
         #endregion
 
         #region instance members
 
-        private double m_dblJulian;
-        private bool m_bGregorianCalendar;
+        private double _mDblJulian;
+        private bool _mBGregorianCalendar;
 
-        public double Julian
-        {
-            get
-            {
-                return m_dblJulian;
-            }
-        }
+        public double Julian => _mDblJulian;
 
         public long Day
         {
             get
             {
-                long Year = 0;
-                long Month = 0;
-                long Day = 0;
-                long Hour = 0;
-                long Minute = 0;
-                double Second = 0;
-                Get(ref Year, ref Month, ref Day, ref Hour, ref Minute, ref Second);
-                return Day;
+                long year = 0;
+                long month = 0;
+                long day = 0;
+                long hour = 0;
+                long minute = 0;
+                double second = 0;
+                Get(ref year, ref month, ref day, ref hour, ref minute, ref second);
+                return day;
             }
         }
 
@@ -182,14 +189,14 @@ namespace AASharp
         {
             get
             {
-                long Year = 0;
-                long Month = 0;
-                long Day = 0;
-                long Hour = 0;
-                long Minute = 0;
-                double Second = 0;
-                Get(ref Year, ref Month, ref Day, ref Hour, ref Minute, ref Second);
-                return Month;
+                long year = 0;
+                long month = 0;
+                long day = 0;
+                long hour = 0;
+                long minute = 0;
+                double second = 0;
+                Get(ref year, ref month, ref day, ref hour, ref minute, ref second);
+                return month;
             }
         }
 
@@ -197,14 +204,14 @@ namespace AASharp
         {
             get
             {
-                long Year = 0;
-                long Month = 0;
-                long Day = 0;
-                long Hour = 0;
-                long Minute = 0;
-                double Second = 0;
-                Get(ref Year, ref Month, ref Day, ref Hour, ref Minute, ref Second);
-                return Year;
+                long year = 0;
+                long month = 0;
+                long day = 0;
+                long hour = 0;
+                long minute = 0;
+                double second = 0;
+                Get(ref year, ref month, ref day, ref hour, ref minute, ref second);
+                return year;
             }
         }
 
@@ -212,14 +219,14 @@ namespace AASharp
         {
             get
             {
-                long Year = 0;
-                long Month = 0;
-                long Day = 0;
-                long Hour = 0;
-                long Minute = 0;
-                double Second = 0;
-                Get(ref Year, ref Month, ref Day, ref Hour, ref Minute, ref Second);
-                return Hour;
+                long year = 0;
+                long month = 0;
+                long day = 0;
+                long hour = 0;
+                long minute = 0;
+                double second = 0;
+                Get(ref year, ref month, ref day, ref hour, ref minute, ref second);
+                return hour;
             }
         }
 
@@ -227,14 +234,14 @@ namespace AASharp
         {
             get
             {
-                long Year = 0;
-                long Month = 0;
-                long Day = 0;
-                long Hour = 0;
-                long Minute = 0;
-                double Second = 0;
-                Get(ref Year, ref Month, ref Day, ref Hour, ref Minute, ref Second);
-                return Minute;
+                long year = 0;
+                long month = 0;
+                long day = 0;
+                long hour = 0;
+                long minute = 0;
+                double second = 0;
+                Get(ref year, ref month, ref day, ref hour, ref minute, ref second);
+                return minute;
             }
         }
 
@@ -242,142 +249,113 @@ namespace AASharp
         {
             get
             {
-                long Year = 0;
-                long Month = 0;
-                long Day = 0;
-                long Hour = 0;
-                long Minute = 0;
-                double Second = 0;
-                Get(ref Year, ref Month, ref Day, ref Hour, ref Minute, ref Second);
-                return Second;
+                long year = 0;
+                long month = 0;
+                long day = 0;
+                long hour = 0;
+                long minute = 0;
+                double second = 0;
+                Get(ref year, ref month, ref day, ref hour, ref minute, ref second);
+                return second;
             }
         }
 
-        public DAY_OF_WEEK DayOfWeek
-        {
-            get
-            {
-                return (DAY_OF_WEEK)((long)(m_dblJulian + 1.5) % 7);
-            }
-
-        }
+        public DAY_OF_WEEK DayOfWeek => (DAY_OF_WEEK)((long)(_mDblJulian + 1.5) % 7);
 
         public double DayOfYear()
         {
-            long Year = 0;
-            long Month = 0;
-            long Day = 0;
-            long Hour = 0;
-            long Minute = 0;
-            double Second = 0;
-            Get(ref Year, ref Month, ref Day, ref Hour, ref Minute, ref Second);
+            long year = 0;
+            long month = 0;
+            long day = 0;
+            long hour = 0;
+            long minute = 0;
+            double second = 0;
+            Get(ref year, ref month, ref day, ref hour, ref minute, ref second);
 
-            return DayOfYear(m_dblJulian, Year, AfterPapalReform(Year, 1, 1));
+            return DayOfYear(_mDblJulian, year, AfterPapalReform(year, 1, 1));
         }
 
         public long DaysInMonth()
         {
-            long Year = 0;
-            long Month = 0;
-            long Day = 0;
-            long Hour = 0;
-            long Minute = 0;
-            double Second = 0;
-            Get(ref Year, ref Month, ref Day, ref Hour, ref Minute, ref Second);
+            long year = 0;
+            long month = 0;
+            long day = 0;
+            long hour = 0;
+            long minute = 0;
+            double second = 0;
+            Get(ref year, ref month, ref day, ref hour, ref minute, ref second);
 
-            return DaysInMonth(Month, IsLeap(Year, m_bGregorianCalendar));
+            return DaysInMonth(month, IsLeap(year, _mBGregorianCalendar));
         }
-
-
 
         public long DaysInYear()
         {
-            long Year = 0;
-            long Month = 0;
-            long Day = 0;
-            long Hour = 0;
-            long Minute = 0;
-            double Second = 0;
-            Get(ref Year, ref Month, ref Day, ref Hour, ref Minute, ref Second);
+            long year = 0;
+            long month = 0;
+            long day = 0;
+            long hour = 0;
+            long minute = 0;
+            double second = 0;
+            Get(ref year, ref month, ref day, ref hour, ref minute, ref second);
 
-            if (IsLeap(Year, m_bGregorianCalendar))
-                return 366;
-            else
-                return 365;
-
+            return IsLeap(year, _mBGregorianCalendar) ? 366 : 365;
         }
 
-        public bool Leap
-        {
-            get
-            {
-                return IsLeap(Year, m_bGregorianCalendar);
-            }
-        }
+        public bool Leap => IsLeap(Year, _mBGregorianCalendar);
 
-        public bool InGregorianCalendar
-        {
-            get
-            {
-                return m_bGregorianCalendar;
-            }
-        }
+        public bool InGregorianCalendar => _mBGregorianCalendar;
 
         public double FractionalYear
         {
             get
             {
-                long Year = 0;
-                long Month = 0;
-                long Day = 0;
-                long Hour = 0;
-                long Minute = 0;
-                double Second = 0;
-                Get(ref Year, ref Month, ref Day, ref Hour, ref Minute, ref Second);
+                long year = 0;
+                long month = 0;
+                long day = 0;
+                long hour = 0;
+                long minute = 0;
+                double second = 0;
+                Get(ref year, ref month, ref day, ref hour, ref minute, ref second);
 
-                long DaysInYear;
-                if (IsLeap(Year, m_bGregorianCalendar))
-                    DaysInYear = 366;
-                else
-                    DaysInYear = 365;
+                long daysInYear = IsLeap(year, _mBGregorianCalendar) ? 366 : 365;
 
-                return Year + (m_dblJulian - DateToJD(Year, 1, 1, AfterPapalReform(Year, 1, 1))) / DaysInYear;
+                return year + (_mDblJulian - DateToJD(year, 1, 1, AfterPapalReform(year, 1, 1))) / daysInYear;
             }
         }
 
-        public void Set(long Year, long Month, double Day, double Hour, double Minute, double Second, bool bGregorianCalendar)
+        public void Set(long year, long month, double day, double hour, double minute, double second, bool isGregorianCalendar)
         {
-            double dblDay = Day + Hour / 24 + Minute / 1440 + Second / 86400;
-            Set(DateToJD(Year, Month, dblDay, bGregorianCalendar), bGregorianCalendar);
+            double dblDay = day + hour / 24 + minute / 1440 + second / 86400;
+            Set(DateToJD(year, month, dblDay, isGregorianCalendar), isGregorianCalendar);
         }
 
-        public void Set(double JD, bool bGregorianCalendar)
+        public void Set(double JD, bool isGregorianCalendar)
         {
-            m_dblJulian = JD;
-            SetInGregorianCalendar(bGregorianCalendar);
+            _mDblJulian = JD;
+            SetInGregorianCalendar(isGregorianCalendar);
         }
 
-        public void SetInGregorianCalendar(bool bGregorianCalendar)
+        public void SetInGregorianCalendar(bool isGregorianCalendar)
         {
-            bool bAfterPapalReform = AfterPapalReform(m_dblJulian);
+            bool bAfterPapalReform = AfterPapalReform(_mDblJulian);
 
 #if DEBUG
-            if (bGregorianCalendar) //We do not allow storage of propalatic Gregorian dates
+            if (isGregorianCalendar) //We do not allow storage of propalatic Gregorian dates
                 System.Diagnostics.Debug.Assert(bAfterPapalReform);
 #endif
 
-            m_bGregorianCalendar = bGregorianCalendar && bAfterPapalReform;
+            _mBGregorianCalendar = isGregorianCalendar && bAfterPapalReform;
         }
 
         public void Get(ref long Year, ref long Month, ref long Day, ref long Hour, ref long Minute, ref double Second)
         {
-            double JD = m_dblJulian + 0.5;
+            double JD = _mDblJulian + 0.5;
             double tempZ = 0;
             double F = AASMath.modF(JD, ref tempZ);
             long Z = (long)tempZ;
             long A;
 
-            if (m_bGregorianCalendar) //There is a difference here between the Meeus implementation and this one
+            if (_mBGregorianCalendar) //There is a difference here between the Meeus implementation and this one
             //if (Z >= 2299161)       //The Meeus implementation automatically assumes the Gregorian Calendar 
             //came into effect on 15 October 1582 (JD: 2299161), while the CAADate
             //implementation has a "m_bGregorianCalendar" value to decide if the date
