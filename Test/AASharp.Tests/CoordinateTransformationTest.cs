@@ -37,26 +37,22 @@ namespace AASharp.Tests
 
         }
 
-        [Fact]
-        public void Equatorial2HorizontalTest()
+        [Theory]
+        [InlineData(-19.709867023950196, -6.7198916666666664, 38.921388888888885, 68.033595944105741, 15.12497383921664)]
+        public void Equatorial2HorizontalTest(double localHourAngle, double delta, double latitude, double expectedX, double expectedY)
         {
-            var date = new AASDate();
-            date.Set(1987, 4, 10, 19, 21, 0, true);
-            var AST = AASSidereal.ApparentGreenwichSiderealTime(date.Julian);
-            var longtitudeAsHourAngle = AASCoordinateTransformation.DegreesToHours(AASCoordinateTransformation.DMSToDegrees(77, 3, 56));
-            double alpha = AASCoordinateTransformation.DMSToDegrees(23, 9, 16.641);
-            var localHourAngle = AST - longtitudeAsHourAngle - alpha;
+            AAS2DCoordinate horizontal = AASCoordinateTransformation.Equatorial2Horizontal(localHourAngle, delta, latitude);
+            Assert.Equal(expectedX, horizontal.X);
+            Assert.Equal(expectedY, horizontal.Y);
+        }
 
-            AAS2DCoordinate Horizontal = AASCoordinateTransformation.Equatorial2Horizontal(localHourAngle, AASCoordinateTransformation.DMSToDegrees(6, 43, 11.61, false), AASCoordinateTransformation.DMSToDegrees(38, 55, 17));
-            Assert.Equal(68.033595944105741, Horizontal.X);
-            Assert.Equal(15.12497383921664, Horizontal.Y);
-
-            AAS2DCoordinate equatorial = AASCoordinateTransformation.Horizontal2Equatorial(Horizontal.X, Horizontal.Y, AASCoordinateTransformation.DMSToDegrees(38, 55, 17));
-            Assert.Equal(4.2901329760498026, equatorial.X);
-            Assert.Equal(-6.7198916666666628, equatorial.Y);
-
-            double alpha2 = AASCoordinateTransformation.MapTo0To24Range(AST - equatorial.X - longtitudeAsHourAngle);
-            Assert.Equal(23.1546225, alpha2);
+        [Theory]
+        [InlineData(68.033595944105741, 15.12497383921664, 38.921388888888885, 4.2901329760498026, -6.7198916666666628)]
+        public void Horizontal2EquatorialTest(double azimuth, double altitude, double latitude, double expectedX, double expectedY)
+        {
+            AAS2DCoordinate horizontal = AASCoordinateTransformation.Horizontal2Equatorial(azimuth, altitude, latitude);
+            Assert.Equal(expectedX, horizontal.X);
+            Assert.Equal(expectedY, horizontal.Y);
         }
 
         [Theory]
