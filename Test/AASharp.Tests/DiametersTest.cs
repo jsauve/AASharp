@@ -14,6 +14,24 @@ namespace AASharp.Tests
         }
 
         [Theory]
+        [InlineData(1, 3.34)]
+        [InlineData(2, 1.67)]
+        public void MercurySemidiameterATest(double delta, double expectedSemidiameter)
+        {
+            double semidiameter = AASDiameters.MercurySemidiameterA(delta);
+            Assert.Equal(expectedSemidiameter, semidiameter);
+        }
+
+        [Theory]
+        [InlineData(1, 3.36)]
+        [InlineData(2, 1.68)]
+        public void MercurySemidiameterBTest(double delta, double expectedSemidiameter)
+        {
+            double semidiameter = AASDiameters.MercurySemidiameterB(delta);
+            Assert.Equal(expectedSemidiameter, semidiameter);
+        }
+        
+        [Theory]
         [InlineData(1, 8.41)]
         [InlineData(2, 4.205)]
         public void VenusSemidiameterATest(double delta, double expectedSemidiameter)
@@ -127,6 +145,15 @@ namespace AASharp.Tests
         public void ApparentSaturnPolarSemidiameterATest(double delta, double B, double expectedApparentDiameter)
         {
             double apparentDiameter = AASDiameters.ApparentSaturnPolarSemidiameterA(delta, B);
+            Assert.Equal(expectedApparentDiameter, apparentDiameter);
+        }
+        
+        [Theory]
+        [InlineData(1, 16.442, 66.541565948420924)]
+        [InlineData(2, 16.442, 33.270782974210462)]
+        public void ApparentSaturnPolarSemidiameterBTest(double delta, double B, double expectedApparentDiameter)
+        {
+            double apparentDiameter = AASDiameters.ApparentSaturnPolarSemidiameterB(delta, B);
             Assert.Equal(expectedApparentDiameter, apparentDiameter);
         }
 

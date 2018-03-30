@@ -24,13 +24,12 @@ namespace AASharp.Tests
             Assert.Equal(expectedPositionAngle, positionAngle);
         }
 
-        [Fact]
-        public void DistanceFromGreatArcTest()
+        [Theory]
+        [InlineData(5.5334444444444442, -0.2991388888888889, 5.6793111111111116, -1.9425833333333333, 5.603558333333333, -1.2019444444444445, 0.089875699406236229)]
+        public void DistanceFromGreatArcTest(double alpha1, double delta1, double alpha2, double delta2, double alpha3, double delta3, double expectedDistance)
         {
-            double distance = AASAngularSeparation.DistanceFromGreatArc(AASCoordinateTransformation.DMSToDegrees(5, 32, 0.4), AASCoordinateTransformation.DMSToDegrees(0, 17, 56.9, false),
-                                                                       AASCoordinateTransformation.DMSToDegrees(5, 40, 45.52), AASCoordinateTransformation.DMSToDegrees(1, 56, 33.3, false),
-                                                                       AASCoordinateTransformation.DMSToDegrees(5, 36, 12.81), AASCoordinateTransformation.DMSToDegrees(1, 12, 7, false));
-            Assert.Equal(0.089875699406236229, distance);
+            double distance = AASAngularSeparation.DistanceFromGreatArc(alpha1, delta1, alpha2, delta2, alpha3, delta3);
+            Assert.Equal(expectedDistance, distance);
         }
 
         [Theory]

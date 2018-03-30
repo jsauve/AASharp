@@ -15,8 +15,5 @@ namespace AASharp.Tests
 
             Assert.Equal(expectedDeltaT, deltaT);
         }
-
-
-        
     }
 }

@@ -3,7 +3,6 @@ using Xunit;
 
 namespace AASharp.Tests
 {
-    //TODO : add high precision test
     public class ParabolicTest
     {
         public static IEnumerable<object[]> Parameters()

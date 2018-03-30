@@ -4,37 +4,40 @@ namespace AASharp.Tests
 {
     public class CoordinateTransformationTest
     {
-        [Fact]
-        public void Equatorial2EclipticTest()
+        [Theory]
+        [InlineData(7.7552627777777774, 28.026183333333332, 23.4392911, 113.215629227584, 6.6841700720452888)]
+        public void Equatorial2EclipticTest(double alpha, double delta, double epsilon, double expectedX, double expectedY)
         {
-            AAS2DCoordinate Ecliptic = AASCoordinateTransformation.Equatorial2Ecliptic(AASCoordinateTransformation.DMSToDegrees(7, 45, 18.946), AASCoordinateTransformation.DMSToDegrees(28, 01, 34.26), 23.4392911);
-            Assert.Equal(113.215629227584, Ecliptic.X);
-            Assert.Equal(6.6841700720452888, Ecliptic.Y);
+            AAS2DCoordinate Ecliptic = AASCoordinateTransformation.Equatorial2Ecliptic(alpha, delta, epsilon);
+            Assert.Equal(expectedX, Ecliptic.X);
+            Assert.Equal(expectedY, Ecliptic.Y);
         }
 
-        [Fact]
-        public void Ecliptic2EquatorialTest()
+        [Theory]
+        [InlineData(113.215629227584, 6.6841700720452888, 23.4392911, 7.7552627777777783, 28.026183333333329)]
+        public void Ecliptic2EquatorialTest(double lambda, double beta, double epsilon, double expectedX, double expectedY)
         {
-            var equatorial = AASCoordinateTransformation.Ecliptic2Equatorial(113.215629227584, 6.6841700720452888, 23.4392911);
-            Assert.Equal(7.7552627777777783, equatorial.X);
-            Assert.Equal(28.026183333333329, equatorial.Y);
+            var equatorial = AASCoordinateTransformation.Ecliptic2Equatorial(lambda, beta, epsilon);
+            Assert.Equal(expectedX, equatorial.X);
+            Assert.Equal(expectedY, equatorial.Y);
         }
 
-        [Fact]
-        public void Equatorial2GalacticTest()
+        [Theory]
+        [InlineData(17.816594444444444, -14.718944444444444, 12.959250041566406, 6.0462984779957027)]
+        public void Equatorial2GalacticTest(double alpha, double delta, double expectedX, double expectedY)
         {
-            AAS2DCoordinate galactic = AASCoordinateTransformation.Equatorial2Galactic(AASCoordinateTransformation.DMSToDegrees(17, 48, 59.74), AASCoordinateTransformation.DMSToDegrees(14, 43, 8.2, false));
-            Assert.Equal(12.959250041566406, galactic.X);
-            Assert.Equal(6.0462984779957027, galactic.Y);
+            AAS2DCoordinate galactic = AASCoordinateTransformation.Equatorial2Galactic(alpha, delta);
+            Assert.Equal(expectedX, galactic.X);
+            Assert.Equal(expectedY, galactic.Y);
         }
 
-        [Fact]
-        public void Galactic2EquatorialTest()
+        [Theory]
+        [InlineData(12.959250041566406, 6.0462984779957027, 17.816594444444444, -14.718944444444446)]
+        public void Galactic2EquatorialTest(double l, double b, double expectedX, double expectedY)
         {
-            AAS2DCoordinate equatorial = AASCoordinateTransformation.Galactic2Equatorial(12.959250041566406, 6.0462984779957027);
-            Assert.Equal(17.816594444444444, equatorial.X);
-            Assert.Equal(-14.718944444444446, equatorial.Y);
-
+            AAS2DCoordinate equatorial = AASCoordinateTransformation.Galactic2Equatorial(l, b);
+            Assert.Equal(expectedX, equatorial.X);
+            Assert.Equal(expectedY, equatorial.Y);
         }
 
         [Theory]
