@@ -120,7 +120,6 @@ namespace AASharp
             beta += AASCoordinateTransformation.DegreesToRadians(0.005693 * Math.Sin(l0rad - lambda) * Math.Sin(beta));
 
             //Step 13. Add nutation in longitude to lambda0 and lambda
-            //double NLrad = AASCoordinateTransformation.DegreesToRadians(NutationInLongitude/3600);
             lambda = AASCoordinateTransformation.RadiansToDegrees(lambda);
             lambda += NutationInLongitude / 3600;
             lambda = AASCoordinateTransformation.MapTo0To360Range(lambda);

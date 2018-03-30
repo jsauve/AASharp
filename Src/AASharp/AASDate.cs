@@ -355,8 +355,8 @@ namespace AASharp
             long Z = (long)tempZ;
             long A;
 
-            if (_mBGregorianCalendar) //There is a difference here between the Meeus implementation and this one
-            //if (Z >= 2299161)       //The Meeus implementation automatically assumes the Gregorian Calendar 
+            //There is a difference here between the Meeus implementation and this one 
+            //if Z >= 2299161 The Meeus implementation automatically assumes the Gregorian Calendar 
             //came into effect on 15 October 1582 (JD: 2299161), while the CAADate
             //implementation has a "m_bGregorianCalendar" value to decide if the date
             //was specified in the Gregorian or Julian Calendars. This difference
@@ -364,6 +364,7 @@ namespace AASharp
             //Julian calendar. This allows you to construct Julian dates after the Papal
             //reform in 1582. This is useful if you want to construct dates in countries
             //which did not immediately adapt the Gregorian calendar
+            if (_mBGregorianCalendar)
             {
                 long alpha = INT((Z - 1867216.25) / 36524.25);
                 A = Z + 1 + alpha - INT(INT(alpha) / 4.0);

@@ -658,7 +658,6 @@ namespace AASharp
 				var nFoundIndex = 0;
 				while (!bFound)
 				{
-					//assert(nFoundIndex < nLookupElements);
 					if (!(nFoundIndex < nLookupElements))
 					{
 						throw new Exception("nFoundIndex must be lower than nLookupElements");

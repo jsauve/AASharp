@@ -64,7 +64,7 @@ namespace AASharp
             else
             {
                 if (!(eventType == EventType.INFERIOR_CONJUNCTION || eventType == EventType.SUPERIOR_CONJUNCTION))
-                    throw new ArgumentOutOfRangeException("eventType", "When planetaryObject is one of the three inner planets, eventType must be either INFERIOR_CONJUNCTION or SUPERIOR_CONJUNCTION");
+                    throw new ArgumentOutOfRangeException(nameof(eventType), "When planetaryObject is one of the three inner planets, eventType must be either INFERIOR_CONJUNCTION or SUPERIOR_CONJUNCTION");
 
                 {
                     if (eventType == EventType.INFERIOR_CONJUNCTION)
@@ -123,14 +123,14 @@ namespace AASharp
         /// </summary>
         /// <param name="k"></param>
         /// <param name="planetaryObject"></param>
-        /// <param name="type"></param>
+        /// <param name="eventType"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when an incorrect EventType is specified for a given PlanetaryObject. When planetaryObject is not one of the three inner planets, eventType must be one of the following: OPPOSITION, CONJUNCTION, STATION1, STATION2. When planetaryObject is one of the three inner planets, eventType must be one of the following: INFERIOR_CONJUNCTION, SUPERIOR_CONJUNCTION, EASTERN_ELONGATION, WESTERN_ELONGATION, STATION1, STATION2.</exception>
-        public static double True(double k, PlanetaryObject planetaryObject, EventType type)
+        public static double True(double k, PlanetaryObject planetaryObject, EventType eventType)
         {
             double JDE0;
 
-            if (type == EventType.WESTERN_ELONGATION || type == EventType.EASTERN_ELONGATION || type == EventType.STATION1 || type == EventType.STATION2)
+            if (eventType == EventType.WESTERN_ELONGATION || eventType == EventType.EASTERN_ELONGATION || eventType == EventType.STATION1 || eventType == EventType.STATION2)
             {
                 if (planetaryObject >= PlanetaryObject.MARS)
                     JDE0 = Mean(k, planetaryObject, EventType.OPPOSITION);
@@ -138,26 +138,26 @@ namespace AASharp
                     JDE0 = Mean(k, planetaryObject, EventType.INFERIOR_CONJUNCTION);
             }
             else
-                JDE0 = Mean(k, planetaryObject, type);
+                JDE0 = Mean(k, planetaryObject, eventType);
 
             uint nCoefficient;
             if (planetaryObject >= PlanetaryObject.MARS)
             {
-                if (!(type == EventType.OPPOSITION || type == EventType.CONJUNCTION || type == EventType.STATION1 || type == EventType.STATION2))
-                    throw new ArgumentOutOfRangeException("eventType", "When planetaryObject is not one of the three inner planets, eventType must be one of the following: OPPOSITION, CONJUNCTION, STATION1, STATION2");
+                if (!(eventType == EventType.OPPOSITION || eventType == EventType.CONJUNCTION || eventType == EventType.STATION1 || eventType == EventType.STATION2))
+                    throw new ArgumentOutOfRangeException(nameof(eventType), "When planetaryObject is not one of the three inner planets, eventType must be one of the following: OPPOSITION, CONJUNCTION, STATION1, STATION2");
 
-                if (type == EventType.OPPOSITION || type == EventType.STATION1 || type == EventType.STATION2)
+                if (eventType == EventType.OPPOSITION || eventType == EventType.STATION1 || eventType == EventType.STATION2)
                     nCoefficient = (uint)planetaryObject * 2;
                 else
                     nCoefficient = (uint)planetaryObject * 2 + 1;
             }
             else
             {
-                if (!(type == EventType.INFERIOR_CONJUNCTION || type == EventType.SUPERIOR_CONJUNCTION || type == EventType.EASTERN_ELONGATION || type == EventType.WESTERN_ELONGATION || type == EventType.STATION1 || type == EventType.STATION2))
-                    throw new ArgumentOutOfRangeException("eventType", "When planetaryObject is one of the three inner planets, eventType must be one of the following: INFERIOR_CONJUNCTION, SUPERIOR_CONJUNCTION, EASTERN_ELONGATION, WESTERN_ELONGATION, STATION1, STATION2");
-                ;
+                if (!(eventType == EventType.INFERIOR_CONJUNCTION || eventType == EventType.SUPERIOR_CONJUNCTION || eventType == EventType.EASTERN_ELONGATION || eventType == EventType.WESTERN_ELONGATION || eventType == EventType.STATION1 || eventType == EventType.STATION2))
+                    throw new ArgumentOutOfRangeException(nameof(eventType), "When planetaryObject is one of the three inner planets, eventType must be one of the following: INFERIOR_CONJUNCTION, SUPERIOR_CONJUNCTION, EASTERN_ELONGATION, WESTERN_ELONGATION, STATION1, STATION2");
+                
 
-                if (type == EventType.INFERIOR_CONJUNCTION || type == EventType.EASTERN_ELONGATION || type == EventType.WESTERN_ELONGATION || type == EventType.STATION1 || type == EventType.STATION2)
+                if (eventType == EventType.INFERIOR_CONJUNCTION || eventType == EventType.EASTERN_ELONGATION || eventType == EventType.WESTERN_ELONGATION || eventType == EventType.STATION1 || eventType == EventType.STATION2)
                     nCoefficient = (uint)planetaryObject * 2;
                 else
                     nCoefficient = (uint)planetaryObject * 2 + 1;
@@ -214,7 +214,7 @@ namespace AASharp
             double delta;
             if (planetaryObject == PlanetaryObject.MERCURY)
             {
-                if (type == EventType.INFERIOR_CONJUNCTION)
+                if (eventType == EventType.INFERIOR_CONJUNCTION)
                 {
                     delta = (0.0545 + 0.0002 * T) +
                     Math.Sin(M) * (-6.2008 + 0.0074 * T + 0.00003 * T2) +
@@ -229,7 +229,7 @@ namespace AASharp
                     Math.Cos(5 * M) * (-0.0040 + 0.0001 * T);
                 }
                 else
-                    if (type == EventType.SUPERIOR_CONJUNCTION)
+                    if (eventType == EventType.SUPERIOR_CONJUNCTION)
                     {
                         delta = (-0.0548 - 0.0002 * T) +
                         Math.Sin(M) * (7.3894 - 0.0100 * T - 0.00003 * T2) +
@@ -244,7 +244,7 @@ namespace AASharp
                         Math.Cos(5 * M) * (0.0173 - 0.0002 * T);
                     }
                     else
-                        if (type == EventType.EASTERN_ELONGATION)
+                        if (eventType == EventType.EASTERN_ELONGATION)
                         {
                             delta = (-21.6101 + 0.0002 * T) +
                             Math.Sin(M) * (-1.9803 - 0.0060 * T + 0.00001 * T2) +
@@ -259,7 +259,7 @@ namespace AASharp
                             Math.Cos(5 * M) * (-0.0032 - 0.0001 * T2);
                         }
                         else
-                            if (type == EventType.WESTERN_ELONGATION)
+                            if (eventType == EventType.WESTERN_ELONGATION)
                             {
                                 delta = (21.6249 - 0.0002 * T) +
                                 Math.Sin(M) * (0.1306 + 0.0065 * T) +
@@ -274,7 +274,7 @@ namespace AASharp
                                 Math.Cos(5 * M) * (0.0037);
                             }
                             else
-                                if (type == EventType.STATION1)
+                                if (eventType == EventType.STATION1)
                                 {
                                     delta = (-11.0761 + 0.0003 * T) +
                                     Math.Sin(M) * (-4.7321 + 0.0023 * T + 0.00002 * T2) +
@@ -306,7 +306,7 @@ namespace AASharp
             else
                 if (planetaryObject == PlanetaryObject.VENUS)
                 {
-                    if (type == EventType.INFERIOR_CONJUNCTION)
+                    if (eventType == EventType.INFERIOR_CONJUNCTION)
                     {
                         delta = (-0.0096 + 0.0002 * T - 0.00001 * T2) +
                         Math.Sin(M) * (2.0009 - 0.0033 * T - 0.00001 * T2) +
@@ -317,7 +317,7 @@ namespace AASharp
                         Math.Cos(3 * M) * (0.0079 + 0.0001 * T);
                     }
                     else
-                        if (type == EventType.SUPERIOR_CONJUNCTION)
+                        if (eventType == EventType.SUPERIOR_CONJUNCTION)
                         {
                             delta = (0.0099 - 0.0002 * T - 0.00001 * T2) +
                             Math.Sin(M) * (4.1991 - 0.0121 * T - 0.00003 * T2) +
@@ -328,7 +328,7 @@ namespace AASharp
                             Math.Cos(3 * M) * (0.0031 + 0.0004 * T);
                         }
                         else
-                            if (type == EventType.EASTERN_ELONGATION)
+                            if (eventType == EventType.EASTERN_ELONGATION)
                             {
                                 delta = (-70.7600 + 0.0002 * T - 0.00001 * T2) +
                                 Math.Sin(M) * (1.0282 - 0.0010 * T - 0.00001 * T2) +
@@ -339,7 +339,7 @@ namespace AASharp
                                 Math.Cos(3 * M) * (-0.0011 + 0.00001 * T2);
                             }
                             else
-                                if (type == EventType.WESTERN_ELONGATION)
+                                if (eventType == EventType.WESTERN_ELONGATION)
                                 {
                                     delta = (70.7462 - 0.00001 * T2) +
                                     Math.Sin(M) * (1.1218 - 0.0025 * T - 0.00001 * T2) +
@@ -350,7 +350,7 @@ namespace AASharp
                                     Math.Cos(3 * M) * (0.0015 - 0.00001 * T2);
                                 }
                                 else
-                                    if (type == EventType.STATION1)
+                                    if (eventType == EventType.STATION1)
                                     {
                                         delta = (-21.0672 + 0.0002 * T - 0.00001 * T2) +
                                         Math.Sin(M) * (1.9396 - 0.0029 * T - 0.00001 * T2) +
@@ -374,7 +374,7 @@ namespace AASharp
                 else
                     if (planetaryObject == PlanetaryObject.MARS)
                     {
-                        if (type == EventType.OPPOSITION)
+                        if (eventType == EventType.OPPOSITION)
                         {
                             delta = (-0.3088 + 0.00002 * T2) +
                             Math.Sin(M) * (-17.6965 + 0.0363 * T + 0.00005 * T2) +
@@ -389,7 +389,7 @@ namespace AASharp
                             Math.Cos(5 * M) * (-0.0980 - 0.0011 * T);
                         }
                         else
-                            if (type == EventType.CONJUNCTION)
+                            if (eventType == EventType.CONJUNCTION)
                             {
                                 delta = (0.3102 - 0.0001 * T + 0.00001 * T2) +
                                 Math.Sin(M) * (9.7273 - 0.0156 * T + 0.00001 * T2) +
@@ -404,7 +404,7 @@ namespace AASharp
                                 Math.Cos(5 * M) * (0.0433);
                             }
                             else
-                                if (type == EventType.STATION1)
+                                if (eventType == EventType.STATION1)
                                 {
                                     delta = (-37.0790 - 0.0009 * T + 0.00002 * T2) +
                                     Math.Sin(M) * (-20.0651 + 0.0228 * T + 0.00004 * T2) +
@@ -436,7 +436,7 @@ namespace AASharp
                     else
                         if (planetaryObject == PlanetaryObject.JUPITER)
                         {
-                            if (type == EventType.OPPOSITION)
+                            if (eventType == EventType.OPPOSITION)
                             {
                                 delta = (-0.1029 - 0.00009 * T2) +
                                 Math.Sin(M) * (-1.9658 - 0.0056 * T + 0.00007 * T2) +
@@ -449,7 +449,7 @@ namespace AASharp
                                 Math.Cos(a) * (0.3642 - 0.0019 * T - 0.00029 * T2);
                             }
                             else
-                                if (type == EventType.CONJUNCTION)
+                                if (eventType == EventType.CONJUNCTION)
                                 {
                                     delta = (0.1027 + 0.0002 * T - 0.00009 * T2) +
                                     Math.Sin(M) * (-2.2637 + 0.0163 * T - 0.00003 * T2) +
@@ -462,7 +462,7 @@ namespace AASharp
                                     Math.Cos(a) * (0.3642 - 0.0019 * T - 0.00029 * T2);
                                 }
                                 else
-                                    if (type == EventType.STATION1)
+                                    if (eventType == EventType.STATION1)
                                     {
                                         delta = (-60.3670 - 0.0001 * T - 0.00009 * T2) +
                                         Math.Sin(M) * (-2.3144 - 0.0124 * T + 0.00007 * T2) +
@@ -490,7 +490,7 @@ namespace AASharp
                         else
                             if (planetaryObject == PlanetaryObject.SATURN)
                             {
-                                if (type == EventType.OPPOSITION)
+                                if (eventType == EventType.OPPOSITION)
                                 {
                                     delta = (-0.0209 + 0.0006 * T + 0.00023 * T2) +
                                     Math.Sin(M) * (4.5795 - 0.0312 * T - 0.00017 * T2) +
@@ -509,7 +509,7 @@ namespace AASharp
                                     Math.Cos(d) * (0.0477 - 0.0005 * T - 0.00006 * T2);
                                 }
                                 else
-                                    if (type == EventType.CONJUNCTION)
+                                    if (eventType == EventType.CONJUNCTION)
                                     {
                                         delta = (0.0172 - 0.0006 * T + 0.00023 * T2) +
                                         Math.Sin(M) * (-8.5885 + 0.0411 * T + 0.00020 * T2) +
@@ -528,7 +528,7 @@ namespace AASharp
                                         Math.Cos(d) * (0.0477 - 0.0005 * T - 0.00006 * T2);
                                     }
                                     else
-                                        if (type == EventType.STATION1)
+                                        if (eventType == EventType.STATION1)
                                         {
                                             delta = (-68.8840 + 0.0009 * T + 0.00023 * T2) +
                                             Math.Sin(M) * (5.5452 - 0.0279 * T - 0.00020 * T2) +
@@ -568,7 +568,7 @@ namespace AASharp
                             else
                                 if (planetaryObject == PlanetaryObject.URANUS)
                                 {
-                                    if (type == EventType.OPPOSITION)
+                                    if (eventType == EventType.OPPOSITION)
                                     {
                                         delta = (0.0844 - 0.0006 * T) +
                                         Math.Sin(M) * (-0.1048 + 0.0246 * T) +
@@ -593,7 +593,7 @@ namespace AASharp
                                 }
                                 else
                                 {
-                                    if (type == EventType.OPPOSITION)
+                                    if (eventType == EventType.OPPOSITION)
                                     {
                                         delta = (-0.0140 + 0.00001 * T2) +
                                         Math.Sin(M) * (-1.3486 + 0.0010 * T + 0.00001 * T2) +
