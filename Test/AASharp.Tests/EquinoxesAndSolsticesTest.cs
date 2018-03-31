@@ -51,54 +51,78 @@ namespace AASharp.Tests
         }
 
         [Theory]
-        [InlineData(-2000, false, 94.286396640585735)]
-        [InlineData(-2000, true, 94.286448843195103)]
-        [InlineData(2000, false, 92.758618404623121)]
-        [InlineData(2000, true, 92.758652227465063)]
-        [InlineData(4000, false, 91.178408439736813)]
-        [InlineData(4000, true, 91.178335872944444)]
-        public void LengthOfSpringTest(long year, bool bHighPrecision, double expectedResult)
+        [InlineData(-2000, true, false, 94.286396640585735)]
+        [InlineData(-2000, true, true, 94.286448843195103)]
+        [InlineData(2000, true, false, 92.758618404623121)]
+        [InlineData(2000, true, true, 92.758652227465063)]
+        [InlineData(4000, true, false, 91.178408439736813)]
+        [InlineData(4000, true, true, 91.178335872944444)]
+        [InlineData(-2000, false, false, 88.393839993979782)]
+        [InlineData(-2000, false, true, 88.393805515603162)]
+        [InlineData(2000, false, false, 89.840221148915589)]
+        [InlineData(2000, false, true, 89.840166262816638)]
+        [InlineData(4000, false, false, 91.401426267810166)]
+        [InlineData(4000, false, true, 91.401439854875207)]
+        public void LengthOfSpringTest(long year, bool isNorthernHemisphere, bool bHighPrecision, double expectedResult)
         {
-            double springLength = AASEquinoxesAndSolstices.LengthOfSpring(year, true, bHighPrecision);
+            double springLength = AASEquinoxesAndSolstices.LengthOfSpring(year, isNorthernHemisphere, bHighPrecision);
             Assert.Equal(expectedResult, springLength);
         }
 
         [Theory]
-        [InlineData(-2000, false, 90.762898253742605)]
-        [InlineData(-2000, true, 90.762723386171274)]
-        [InlineData(2000, false, 93.652660072781146)]
-        [InlineData(2000, true, 93.652698618825525)]
-        [InlineData(4000, false, 93.9336535804905)]
-        [InlineData(4000, true, 93.933674767613411)]
-        public void LengthOfSummerTest(long year, bool bHighPrecision, double expectedResult)
+        [InlineData(-2000, true, false, 90.762898253742605)]
+        [InlineData(-2000, true, true, 90.762723386171274)]
+        [InlineData(2000, true, false, 93.652660072781146)]
+        [InlineData(2000, true, true, 93.652698618825525)]
+        [InlineData(4000, true, false, 93.9336535804905)]
+        [InlineData(4000, true, true, 93.933674767613411)]
+        [InlineData(-2000, false, false, 91.804609601036645)]
+        [InlineData(-2000, false, true, 91.80475937074516)]
+        [InlineData(2000, false, false, 88.995391126722097)]
+        [InlineData(2000, false, true, 88.995333938393742)]
+        [InlineData(4000, false, false, 88.729492589831352)]
+        [InlineData(4000, false, true, 88.729444715194404)]
+        public void LengthOfSummerTest(long year, bool isNorthernHemisphere, bool bHighPrecision, double expectedResult)
         {
-            double summerLength = AASEquinoxesAndSolstices.LengthOfSummer(year, true, bHighPrecision);
+            double summerLength = AASEquinoxesAndSolstices.LengthOfSummer(year, isNorthernHemisphere, bHighPrecision);
             Assert.Equal(expectedResult, summerLength);
         }
 
         [Theory]
-        [InlineData(-2000, false, 88.393839993979782)]
-        [InlineData(-2000, true, 88.393805515603162)]
-        [InlineData(2000, false, 89.840221148915589)]
-        [InlineData(2000, true, 89.840166262816638)]
-        [InlineData(4000, false, 91.401426267810166)]
-        [InlineData(4000, true, 91.401439854875207)]
-        public void LengthOfAutumnTest(long year, bool bHighPrecision, double expectedResult)
+        [InlineData(-2000, true, false, 88.393839993979782)]
+        [InlineData(-2000, true, true, 88.393805515603162)]
+        [InlineData(2000, true, false, 89.840221148915589)]
+        [InlineData(2000, true, true, 89.840166262816638)]
+        [InlineData(4000, true, false, 91.401426267810166)]
+        [InlineData(4000, true, true, 91.401439854875207)]
+        [InlineData(-2000, false, false, 94.286396640585735)]
+        [InlineData(-2000, false, true, 94.286448843195103)]
+        [InlineData(2000, false, false, 92.758618404623121)]
+        [InlineData(2000, false, true, 92.758652227465063)]
+        [InlineData(4000, false, false, 91.178408439736813)]
+        [InlineData(4000, false, true, 91.178335872944444)]
+        public void LengthOfAutumnTest(long year, bool isNorthernHemisphere, bool bHighPrecision, double expectedResult)
         {
-            double autumnLength = AASEquinoxesAndSolstices.LengthOfAutumn(year, true, bHighPrecision);
+            double autumnLength = AASEquinoxesAndSolstices.LengthOfAutumn(year, isNorthernHemisphere, bHighPrecision);
             Assert.Equal(expectedResult, autumnLength);
         }
 
         [Theory]
-        [InlineData(-2000, false, 91.804609601036645)]
-        [InlineData(-2000, true, 91.80475937074516)]
-        [InlineData(2000, false, 88.995391126722097)]
-        [InlineData(2000, true, 88.995333938393742)]
-        [InlineData(4000, false, 88.729492589831352)]
-        [InlineData(4000, true, 88.729444715194404)]
-        public void LengthOfWinterTest(long year, bool bHighPrecision, double expectedResult)
+        [InlineData(-2000, true, false, 91.804609601036645)]
+        [InlineData(-2000, true, true, 91.80475937074516)]
+        [InlineData(2000, true, false, 88.995391126722097)]
+        [InlineData(2000, true, true, 88.995333938393742)]
+        [InlineData(4000, true, false, 88.729492589831352)]
+        [InlineData(4000, true, true, 88.729444715194404)]
+        [InlineData(-2000, false, false, 90.762898253742605)]
+        [InlineData(-2000, false, true, 90.762723386171274)]
+        [InlineData(2000, false, false, 93.652660072781146)]
+        [InlineData(2000, false, true, 93.652698618825525)]
+        [InlineData(4000, false, false, 93.9336535804905)]
+        [InlineData(4000, false, true, 93.933674767613411)]
+        public void LengthOfWinterTest(long year, bool isNorthernHemisphere, bool bHighPrecision, double expectedResult)
         {
-            double winterLength = AASEquinoxesAndSolstices.LengthOfWinter(year, true, bHighPrecision);
+            double winterLength = AASEquinoxesAndSolstices.LengthOfWinter(year, isNorthernHemisphere, bHighPrecision);
             Assert.Equal(expectedResult, winterLength);
         }
     }
