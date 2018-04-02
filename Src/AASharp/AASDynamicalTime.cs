@@ -40,7 +40,7 @@ namespace AASharp
 
 		private static DeltaTValue[] g_DeltaTValues =
 		{
-			new DeltaTValue(2441714.5, 43.4724),
+            new DeltaTValue(2441714.5, 43.4724), //1 Febuary 1973
 			new DeltaTValue(2441742.5, 43.5648),
 			new DeltaTValue(2441773.5, 43.6737),
 			new DeltaTValue(2441803.5, 43.7782),
@@ -777,7 +777,8 @@ namespace AASharp
 					double u3 = u2 * u;
 					Delta = 45.45 + 106.7 * u - u2 / 0.026 - u3 / 0.000718;
 				}
-				else if (y < 2005)
+                //TODO To check. Seems to be unreachable code. 
+                else if (y < 2005)
 				{
 					double u = (y - 2000) / 100.0;
 					double u2 = u * u;
