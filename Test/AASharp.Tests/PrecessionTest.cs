@@ -41,7 +41,25 @@ namespace AASharp.Tests
             AAS2DCoordinate pa = AASPrecession.AdjustPositionUsingUniformProperMotion(t, alpha, delta, PMAlpha, PMDelta);
             Assert.Equal(expectedX, pa.X);
             Assert.Equal(expectedY, pa.Y);
-           
+        }
+
+        [Theory]
+        [InlineData(2.7369374156837019, 49.227748999730018, 2451545, 2462088.69, 2.7698519078219817, 49.348455773353713)]
+        [InlineData(2.5307583333333334, 89.264277777777778, 2451545, 2458204.8202314815, 2.9098080344377761, 89.341187589215878)]
+        public void PrecessEquatorialFK4Test(double alpha, double delta, double jd0, double jd, double expectedX, double expectedY)
+        {
+            AAS2DCoordinate precessed = AASPrecession.PrecessEquatorialFK4(alpha, delta, jd0, jd);
+            Assert.Equal(expectedX, precessed.X);
+            Assert.Equal(expectedY, precessed.Y);
+        }
+
+        [Theory]
+        [InlineData(46.865268970923452, -2.5392751263347213, 2451439.50074, 2433282.4235, 46.170714633141976, -2.5443825251179137)]
+        public void PrecessEclipticTest(double lambda, double beta, double jd0, double jd, double expectedX, double expectedY)
+        {
+            AAS2DCoordinate coordinates = AASPrecession.PrecessEcliptic(lambda, beta, jd0, jd);
+            Assert.Equal(expectedX, coordinates.X);
+            Assert.Equal(expectedY, coordinates.Y);
         }
     }
 }

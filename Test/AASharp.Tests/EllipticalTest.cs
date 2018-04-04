@@ -6,6 +6,15 @@ namespace AASharp.Tests
     public class EllipticalTest
     {
         [Theory]
+        [InlineData(2, 0, 2)]
+        [InlineData(1, 2, -1)]
+        public void SemiMajorAxisFromPerihelionDistanceTest(double q, double e, double expectedSemiMajorAxis)
+        {
+            double semiMajorAxis = AASElliptical.SemiMajorAxisFromPerihelionDistance(q, e);
+            Assert.Equal(expectedSemiMajorAxis, semiMajorAxis);
+        }
+
+        [Theory]
         [InlineData(5.5, 0.378, 10, 0.658, 1.5697179353256814)]
         [InlineData(5.5, 1.1017, 10, 1.5228, 7.5367454285840756)]
         public void CometMagnitudeTest(double g, double delta, double k, double r, double expectedMagnitude)
@@ -59,6 +68,21 @@ namespace AASharp.Tests
             yield return new object[]
             {
                 2448976.5,
+                AASEllipticalObject.MERCURY,
+                false,
+                new AASEllipticalPlanetaryDetails
+                {
+                    ApparentGeocentricLongitude = 249.97017250815131,
+                    ApparentGeocentricLatitude = 1.0647815774960758,
+                    ApparentGeocentricDistance = 1.2157984897835055,
+                    ApparentLightTime = 0.0070218664268569984,
+                    ApparentGeocentricRA = 16.566468800651371,
+                    ApparentGeocentricDeclination = -20.892096087715707
+                }
+            };
+            yield return new object[]
+            {
+                2448976.5,
                 AASEllipticalObject.VENUS,
                 false,
                 new AASEllipticalPlanetaryDetails
@@ -84,6 +108,96 @@ namespace AASharp.Tests
                     ApparentLightTime = 0.0052611951840238931,
                     ApparentGeocentricRA = 21.078181619467397,
                     ApparentGeocentricDeclination = -18.88801099621335
+                }
+            };
+            yield return new object[]
+            {
+                2448976.5,
+                AASEllipticalObject.MARS,
+                false,
+                new AASEllipticalPlanetaryDetails
+                {
+                    ApparentGeocentricLongitude = 114.55924664402549,
+                    ApparentGeocentricLatitude = 3.4384674490125628,
+                    ApparentGeocentricDistance = 0.64833049431177414,
+                    ApparentLightTime = 0.0037444446343456975,
+                    ApparentGeocentricRA = 7.8098066518758875,
+                    ApparentGeocentricDeclination = 24.593175483717221
+                }
+            };
+            yield return new object[]
+            {
+                2448976.5,
+                AASEllipticalObject.JUPITER,
+                false,
+                new AASEllipticalPlanetaryDetails
+                {
+                    ApparentGeocentricLongitude = 192.28579221634001,
+                    ApparentGeocentricLatitude = 1.2562427016733764,
+                    ApparentGeocentricDistance = 5.5991254463876965,
+                    ApparentLightTime = 0.032337851479607813,
+                    ApparentGeocentricRA = 12.786012046351715,
+                    ApparentGeocentricDeclination = -3.6986351842489129
+                }
+            };
+            yield return new object[]
+            {
+                2448976.5,
+                AASEllipticalObject.SATURN,
+                false,
+                new AASEllipticalPlanetaryDetails
+                {
+                    ApparentGeocentricLongitude = 315.14868751884347,
+                    ApparentGeocentricLatitude = -1.0136496991517829,
+                    ApparentGeocentricDistance = 10.514361094669875,
+                    ApparentLightTime = 0.060725884915073892,
+                    ApparentGeocentricRA = 21.194947142507388,
+                    ApparentGeocentricDeclination = -17.261375553947932
+                }
+            };
+            yield return new object[]
+            {
+                2448976.5,
+                AASEllipticalObject.URANUS,
+                false,
+                new AASEllipticalPlanetaryDetails
+                {
+                    ApparentGeocentricLongitude = 286.96928779390845,
+                    ApparentGeocentricLatitude = -0.41110104124921687,
+                    ApparentGeocentricDistance = 20.500057505025254,
+                    ApparentLightTime = 0.1183984572713257,
+                    ApparentGeocentricRA = 19.230172571432227,
+                    ApparentGeocentricDeclination = -22.770281600777611
+                }
+            };
+            yield return new object[]
+            {
+                2448976.5,
+                AASEllipticalObject.NEPTUNE,
+                false,
+                new AASEllipticalPlanetaryDetails
+                {
+                    ApparentGeocentricLongitude = 287.91181018202349,
+                    ApparentGeocentricLatitude = 0.67606713775140337,
+                    ApparentGeocentricDistance = 31.113230210764012,
+                    ApparentLightTime = 0.1796950304543804,
+                    ApparentGeocentricRA = 19.287384441272394,
+                    ApparentGeocentricDeclination = -21.570825564393722
+                }
+            };
+            yield return new object[]
+            {
+                2448976.5,
+                AASEllipticalObject.PLUTO,
+                false,
+                new AASEllipticalPlanetaryDetails
+                {
+                    ApparentGeocentricLongitude = 234.30843562369446,
+                    ApparentGeocentricLatitude = 14.132248389771426,
+                    ApparentGeocentricDistance = 30.502495046916192,
+                    ApparentLightTime = 0.17616771833912381,
+                    ApparentGeocentricRA = 15.692457410493819,
+                    ApparentGeocentricDeclination = -5.1220190782162396
                 }
             };
             yield return new object[]
@@ -120,16 +234,16 @@ namespace AASharp.Tests
 
         [Theory]
         [MemberData(nameof(CalculateTestParameters))]
-        public void CalculateTest(double JD, AASEllipticalObject ellipticalObject, bool bHighPrecision, AASEllipticalPlanetaryDetails expectedAASEllipticalPlanetaryDetails)
+        public void CalculateTest(double JD, AASEllipticalObject ellipticalObject, bool bHighPrecision, AASEllipticalPlanetaryDetails expectedEllipticalPlanetaryDetails)
         {
 
             AASEllipticalPlanetaryDetails details = AASElliptical.Calculate(JD, ellipticalObject, bHighPrecision);
-            Assert.Equal(expectedAASEllipticalPlanetaryDetails.ApparentGeocentricLongitude, details.ApparentGeocentricLongitude);
-            Assert.Equal(expectedAASEllipticalPlanetaryDetails.ApparentGeocentricLatitude, details.ApparentGeocentricLatitude);
-            Assert.Equal(expectedAASEllipticalPlanetaryDetails.ApparentGeocentricDistance, details.ApparentGeocentricDistance);
-            Assert.Equal(expectedAASEllipticalPlanetaryDetails.ApparentLightTime, details.ApparentLightTime);
-            Assert.Equal(expectedAASEllipticalPlanetaryDetails.ApparentGeocentricRA, details.ApparentGeocentricRA);
-            Assert.Equal(expectedAASEllipticalPlanetaryDetails.ApparentGeocentricDeclination, details.ApparentGeocentricDeclination);
+            Assert.Equal(expectedEllipticalPlanetaryDetails.ApparentGeocentricLongitude, details.ApparentGeocentricLongitude);
+            Assert.Equal(expectedEllipticalPlanetaryDetails.ApparentGeocentricLatitude, details.ApparentGeocentricLatitude);
+            Assert.Equal(expectedEllipticalPlanetaryDetails.ApparentGeocentricDistance, details.ApparentGeocentricDistance);
+            Assert.Equal(expectedEllipticalPlanetaryDetails.ApparentLightTime, details.ApparentLightTime);
+            Assert.Equal(expectedEllipticalPlanetaryDetails.ApparentGeocentricRA, details.ApparentGeocentricRA);
+            Assert.Equal(expectedEllipticalPlanetaryDetails.ApparentGeocentricDeclination, details.ApparentGeocentricDeclination);
         }
 
         
