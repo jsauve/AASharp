@@ -10,18 +10,16 @@ AASharp is a C# port of PJ Naughter's static C++ library, AA+. Naughter's librar
 Versions history : https://github.com/jsauve/AASharp/releases</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/jsauve/AASharp</PackageProjectUrl>
-    <AssemblyVersion>1.93.2</AssemblyVersion>
-    <FileVersion>1.93.2</FileVersion>
+    <AssemblyVersion>1.93.3</AssemblyVersion>
+    <FileVersion>1.93.3</FileVersion>
     <Version>1.93.2</Version>
     <Authors>Joe Sauve, Julien Tschäppät</Authors>
     <RepositoryUrl>https://github.com/jsauve/AASharp</RepositoryUrl>
     <PackageTags>Astronomy,Algorithm</PackageTags>
     <Copyright>Joe Sauve, Julien Tschäppät. Original copyright of the C++ library : PJ Naughter</Copyright>
-    <PackageReleaseNotes>- Corrections in AASMoslemCalendar, results were not correct
+    <PackageReleaseNotes>-  Correction of the validation of the parameter "month" in the method DaysInMonth in the class AASDate
 
 
-
-The version number follows the version number of the C++ library this package is based on.
 
 See release notes : https://github.com/jsauve/AASharp/releases</PackageReleaseNotes>
     <PackageLicenseUrl>https://github.com/jsauve/AASharp/blob/master/LICENSE</PackageLicenseUrl>
