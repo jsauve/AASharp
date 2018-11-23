@@ -579,11 +579,13 @@ namespace AASharp
             new DeltaTValue(2458027.5, 68.8689), //1 October 2017
             new DeltaTValue(2458058.5, 68.9006), //1 November 2017
             new DeltaTValue(2458088.5, 68.9355), //1 December 2017
-            new DeltaTValue(2458119.5, 68.9677), //1 January 2018
+		    new DeltaTValue(2458119.5, 68.9676), //1 January 2018
+		    new DeltaTValue(2458150.5, 68.9875), //1 February 2018
+		    new DeltaTValue(2458178.5, 69.0175), //1 March 2018
+		    new DeltaTValue(2458209.5, 69.0499), //1 April 2018
 
-			//All these final values are predicted values from Year 2018.25 to Year 2026.0 are taken from http://maia.usno.navy.mil/ser7/deltat.preds
-            new DeltaTValue(2458210.75, 69.14), //2018.25
-			new DeltaTValue(2458302.0, 69.3), //2018.5
+			//All these final values are predicted values from Year 2018.5 to 2026.0 are taken from http://maia.usno.navy.mil/ser7/deltat.preds
+            new DeltaTValue(2458302.0, 69.3), //2018.5
 			new DeltaTValue(2458484.5, 69.5), //2019.0
 			new DeltaTValue(2458575.75, 69.6), //2019.25
 			new DeltaTValue(2458667.0, 69.7), //2019.5
