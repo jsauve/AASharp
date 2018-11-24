@@ -21,7 +21,7 @@ namespace AASharp.Tests
         [InlineData(1973, 2, 1, 0, 0, 0, true, 43.4724)]
         [InlineData(1985, 12, 31, 23, 59, 59, true, 54.871299982825661)]
         [InlineData(1986, 1, 1, 0, 0, 0, true, 54.8713)]
-        [InlineData(2018, 1, 1, 0, 0, 0, true, 68.967699999999994)]
+        [InlineData(2018, 1, 1, 0, 0, 0, true, 68.967600000000004)]
         [InlineData(2025, 12, 31, 23, 59, 59, true, 71.999999990947188)]
         [InlineData(2026, 1, 1, 0, 0, 0, true, 75.074584000000002)]
         [InlineData(2149, 1, 1, 0, 0, 0, true, 325.81240000000003)]
@@ -86,7 +86,7 @@ namespace AASharp.Tests
         }
 
         [Theory]
-        [InlineData(2458119.5, 2458119.499201763)]
+        [InlineData(2458119.5, 2458119.4992017639)]
         public void TT2UT1Test(double jd, double expectedTime)
         {
             double time = AASDynamicalTime.TT2UT1(jd);
@@ -94,7 +94,7 @@ namespace AASharp.Tests
         }
 
         [Theory]
-        [InlineData(2458119.499201763, 2458119.5)]
+        [InlineData(2458119.499201763, 2458119.4999999991)]
         public void UT12TTTest(double jd, double expectedTime)
         {
             double time = AASDynamicalTime.UT12TT(jd);
@@ -102,7 +102,7 @@ namespace AASharp.Tests
         }
 
         [Theory]
-        [InlineData(2458119.5, 0.2162933349609375)]
+        [InlineData(2458119.5, 0.21641403436660767)]
         public void UT1MinusUTCTest(double jd, double expectedTime)
         {
             double time = AASDynamicalTime.UT1MinusUTC(jd);
