@@ -21,6 +21,6 @@ AASharp is a C# port of PJ Naughter's static C++ library, AA+. Naughter's librar
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   <ItemGroup>
-    
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
 </Project>
