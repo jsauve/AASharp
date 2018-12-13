@@ -599,9 +599,9 @@ namespace AASharp.Tests.Constellations
         public void GivenCoordinates_CorrectConstellationIsReturned(double ra, double dec, double epoch,
             string constellation)
         {
-            var result = CoordinatesToConstellation.get_name(ra, dec, epoch);
+            var result = CoordinatesToConstellation.GetConstellation(ra, dec, epoch);
 
-            Assert.Equal(constellation, result);
+            Assert.Equal(constellation, result.Abbreviation);
         }
     }
 }

@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Linq;
 
 namespace AASharp.Constellations
 {
     /// <summary>
-    ///precess() and get_name() are adapted from program.c, from
+    ///Precess() and GetConstellation() are adapted from program.c, from
     ///ftp://cdsarc.u-strasbg.fr/pub/cats/VI/42/program.c
     ///which is from
     ///CDS (Centre de donnees astronomiques de Strasbourg) catalog VI/42; also see
@@ -20,7 +21,7 @@ namespace AASharp.Constellations
     /// </summary>
     public class CoordinatesToConstellation
     {
-        private static (double ra, double dec) precess(double ra1, double dec1, double epoch1, double epoch2)
+        private static (double ra, double dec) Precess(double ra1, double dec1, double epoch1, double epoch2)
         {
             double cdr, csr;
             double[] x1 = {0.0, 0.0, 0.0};
@@ -77,23 +78,23 @@ namespace AASharp.Constellations
         /// <param name="dec">declination in degrees</param>
         /// <param name="epoch">epoch in years AD</param>
         /// <returns>constellation abbreviation (3 letters), or '' on error</returns>
-        public static string get_name(double ra, double dec, double epoch)
+        public static Constellation GetConstellation(double ra, double dec, double epoch)
         {
             double convh = Math.PI / 12.0;
             double convd = Math.PI / 180.0;
             ra *= convh;
             dec *= convd;
-            (ra, dec) = precess(ra, dec, epoch, 1875.0);
+            (ra, dec) = Precess(ra, dec, epoch, 1875.0);
             ra /= convh;
             dec /= convd;
             for (var i = 0; i < ConstellationsBoundaries.table.Length; i++)
             {
                 if (dec < (double)ConstellationsBoundaries.table[i][2] || ra < (double)ConstellationsBoundaries.table[i][0] || ra >= (double)ConstellationsBoundaries.table[i][1])
                     continue;
-                return (string)ConstellationsBoundaries.table[i][3];
+                return ConstellationsBoundaries.Constellations.Single(c => c.Abbreviation == (string)ConstellationsBoundaries.table[i][3]);
             }
 
-            return "";    // Error!
+            throw new NotFoundException($"Constellation not found for coordinates RA : {ra}, Dec : {dec}");
         }
     }
 }
