@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.97.1 (2018-12-26)
+
+- Fixed a build error that make all target versions of the nuget package to be build with .NET 4.5
+
 ## 1.97.0 (2018-11-24)
 
 - Report of modifications from AA+ v1.97 :
