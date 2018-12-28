@@ -84,9 +84,9 @@ namespace AASharp.Constellations
             dec /= convd;
             for (var i = 0; i < ConstellationsBoundaries.table.Length; i++)
             {
-                if (dec < (double)ConstellationsBoundaries.table[i][2] || ra < (double)ConstellationsBoundaries.table[i][0] || ra >= (double)ConstellationsBoundaries.table[i][1])
+                if (dec < ConstellationsBoundaries.table[i].LowerDeclination || ra < ConstellationsBoundaries.table[i].LowerRightAscension || ra >= ConstellationsBoundaries.table[i].UpperRightAscension)
                     continue;
-                return ConstellationsBoundaries.Constellations.Single(c => c.Abbreviation == (string)ConstellationsBoundaries.table[i][3]);
+                return ConstellationsBoundaries.Constellations.Single(c => c.Abbreviation == ConstellationsBoundaries.table[i].ConstellationAbbreviation);
             }
 
             throw new NotFoundException($"Constellation not found for coordinates RA : {ra}, Dec : {dec}");
