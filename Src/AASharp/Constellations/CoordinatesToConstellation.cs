@@ -82,11 +82,12 @@ namespace AASharp.Constellations
             (ra, dec) = Precess(ra, dec, epoch, 1875.0);
             ra /= convh;
             dec /= convd;
-            for (var i = 0; i < ConstellationsBoundaries.table.Length; i++)
+
+            for (var i = 0; i < Constellations.Boundaries.Length; i++)
             {
-                if (dec < ConstellationsBoundaries.table[i].LowerDeclination || ra < ConstellationsBoundaries.table[i].LowerRightAscension || ra >= ConstellationsBoundaries.table[i].UpperRightAscension)
+                if (dec < Constellations.Boundaries[i].LowerDeclination || ra < Constellations.Boundaries[i].LowerRightAscension || ra >= Constellations.Boundaries[i].UpperRightAscension)
                     continue;
-                return ConstellationsBoundaries.Constellations.Single(c => c.Abbreviation == ConstellationsBoundaries.table[i].ConstellationAbbreviation);
+                return Constellations.ConstellationsData.Single(c => c.Abbreviation == Constellations.Boundaries[i].ConstellationAbbreviation);
             }
 
             throw new NotFoundException($"Constellation not found for coordinates RA : {ra}, Dec : {dec}");

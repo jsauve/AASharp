@@ -2,14 +2,14 @@
 
 namespace AASharp.Constellations
 {
-    public class ConstellationsBoundaries
+    internal static class Constellations
     {
         /// <summary>
         /// From ftp://cdsarc.u-strasbg.fr/pub/cats/VI/42/data.dat .
         /// This collection gives the constellation boundaries.
         /// Each constellation is bounded by lines of constant RA or constant declination, in the 1875 equinox coordinate system.
         /// </summary>
-        internal static ConstellationsBoundary[] table { get; } =
+        internal static ConstellationsBoundary[] Boundaries { get; } =
         {
             new ConstellationsBoundary(0.0000, 24.0000, 88.0000, "UMi"),
             new ConstellationsBoundary(8.0000, 14.5000, 86.5000, "UMi"),
@@ -373,7 +373,7 @@ namespace AASharp.Constellations
         /// <summary>
         /// The 88 constellation abbreviations and their full names and genitives
         /// </summary>
-        internal static List<Constellation> Constellations { get; } =
+        internal static List<Constellation> ConstellationsData { get; } =
         new List<Constellation> {
             new Constellation("And", "Andromeda", "Andromedae"),
             new Constellation("Ant", "Antlia", "Antliae"),
