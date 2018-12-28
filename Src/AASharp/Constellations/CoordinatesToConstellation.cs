@@ -83,11 +83,14 @@ namespace AASharp.Constellations
             ra /= convh;
             dec /= convd;
 
-            for (var i = 0; i < Constellations.Boundaries.Length; i++)
+            var foundConstellationBoundary = Constellations.Boundaries.FirstOrDefault(boundary =>
+                !(dec < boundary.LowerDeclination ||
+                  ra < boundary.LowerRightAscension ||
+                  ra >= boundary.UpperRightAscension));
+
+            if (foundConstellationBoundary != null)
             {
-                if (dec < Constellations.Boundaries[i].LowerDeclination || ra < Constellations.Boundaries[i].LowerRightAscension || ra >= Constellations.Boundaries[i].UpperRightAscension)
-                    continue;
-                return Constellations.ConstellationsData.Single(c => c.Abbreviation == Constellations.Boundaries[i].ConstellationAbbreviation);
+                return Constellations.ConstellationsData.Single(c => c.Abbreviation == foundConstellationBoundary.ConstellationAbbreviation);
             }
 
             throw new NotFoundException($"Constellation not found for coordinates RA : {ra}, Dec : {dec}");
