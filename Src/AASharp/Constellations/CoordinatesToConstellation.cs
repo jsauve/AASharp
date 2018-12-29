@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 namespace AASharp.Constellations
 {
@@ -21,51 +20,6 @@ namespace AASharp.Constellations
     /// </summary>
     public class CoordinatesToConstellation
     {
-        private static (double ra, double dec) Precess(double ra1, double dec1, double epoch1, double epoch2)
-        {
-            double[] x2 = {0.0, 0.0, 0.0};
-            double[][] r = {new[] {0.0, 0.0, 0.0}, new[] {0.0, 0.0, 0.0}, new[] {0.0, 0.0, 0.0}};
-
-            double cdr = Math.PI / 180.0;
-            double csr = cdr / 3600.0;
-            double a = Math.Cos(dec1);
-            double[] x1 = {a * Math.Cos(ra1), a * Math.Sin(ra1), Math.Sin(dec1)};
-
-            double t = 0.001 * (epoch2 - epoch1);
-            double st = 0.001 * (epoch1 - 1900.0);
-            a = csr * t * (23042.53 + st * (139.75 + 0.06 * st) + t * (30.23 - 0.27 * st + 18.0 * t));
-            double b = csr * t * t * (79.27 + 0.66 * st + 0.32 * t) + a;
-            double c = csr * t * (20046.85 - st * (85.33 + 0.37 * st) + t * (-42.67 - 0.37 * st - 41.8 * t));
-            double sina = Math.Sin(a);
-            double sinb = Math.Sin(b);
-            double sinc = Math.Sin(c);
-            double cosa = Math.Cos(a);
-            double cosb = Math.Cos(b);
-            double cosc = Math.Cos(c);
-            r[0][0] = cosa * cosb * cosc - sina * sinb;
-            r[0][1] = -cosa * sinb - sina * cosb * cosc;
-            r[0][2] = -cosb * sinc;
-            r[1][0] = sina * cosb + cosa * sinb * cosc;
-            r[1][1] = cosa * cosb - sina * sinb * cosc;
-            r[1][2] = -sinb * sinc;
-            r[2][0] = cosa * sinc;
-            r[2][1] = -sina * sinc;
-            r[2][2] = cosc;
-            for (var i = 0; i < 3; i++)
-            {
-                x2[i] = r[i][0] * x1[0] + r[i][1] * x1[1] + r[i][2] * x1[2];
-            }
-
-            double ra2 = Math.Atan2(x2[1], x2[0]);
-            if (ra2 < 0.0)
-            {
-                ra2 += 2.0 * Math.PI;
-            }
-
-            double dec2 = Math.Asin(x2[2]);
-            return (ra2, dec2);
-        }
-
         /// <summary>
         /// 
         /// </summary>
@@ -73,15 +27,15 @@ namespace AASharp.Constellations
         /// <param name="dec">declination in degrees</param>
         /// <param name="epoch">epoch in years AD</param>
         /// <returns>constellation abbreviation (3 letters), or '' on error</returns>
-        public static Constellation GetConstellation(double ra, double dec, double epoch)
+        public static Constellation GetConstellation(double ra, double dec, int epoch)
         {
-            double convh = Math.PI / 12.0;
-            double convd = Math.PI / 180.0;
-            ra *= convh;
-            dec *= convd;
-            (ra, dec) = Precess(ra, dec, epoch, 1875.0);
-            ra /= convh;
-            dec /= convd;
+            AASDate j1875 = new AASDate(1875, 1, 1, 12, 0, 0, true);
+            AASDate jEpoch = new AASDate(epoch, 1, 1, 12, 0, 0, true);
+ 
+            var coordinates = AASPrecession.PrecessEquatorial(ra, dec, jEpoch.Julian, j1875.Julian);
+            ra = coordinates.X;
+            dec = coordinates.Y;
+
 
             var foundConstellationBoundary = Constellations.Boundaries.FirstOrDefault(boundary =>
                 !(dec < boundary.LowerDeclination ||

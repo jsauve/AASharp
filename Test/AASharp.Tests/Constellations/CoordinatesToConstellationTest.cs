@@ -593,7 +593,7 @@ namespace AASharp.Tests.Constellations
         [InlineData(8.367902777777777777777777778, -72.600027777777777777777777778, 2000, "Vol")] //* eta Vol 08:22:04.45 -73:23:59.9
         [InlineData(8.651433333333333333333333333, -69.613277777777777777777777778, 2000, "Vol")] //* the Vol 08:39:05.16 -70:23:12.2
         [InlineData(19.478422222222222222222222223, 24.664888888888888888888888889, 2000, "Vul")] //* alf Vul 19:28:42.32 +24:39:53.6
-        public void GivenCoordinates_CorrectConstellationIsReturned(double ra, double dec, double epoch,
+        public void GivenCoordinates_CorrectConstellationIsReturned(double ra, double dec, int epoch,
             string constellation)
         {
             var result = CoordinatesToConstellation.GetConstellation(ra, dec, epoch);
