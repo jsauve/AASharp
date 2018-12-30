@@ -1,10 +1,10 @@
 # Changelog
 
-## 2.0.0 (201x-xx-xx)
+## 2.0.0 (2018-12-30)
 
 ### ADDED
 
-- Helper class that allows to know the constellation corresponding to given coordinates
+- Helper class that allows knowing the constellation corresponding to given coordinates.
 
 ## 1.97.0 (2018-11-24)
 
