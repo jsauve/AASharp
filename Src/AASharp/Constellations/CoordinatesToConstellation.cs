@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace AASharp.Constellations
 {
@@ -18,6 +19,7 @@ namespace AASharp.Constellations
     ///Fortran program.f, made by FO @ CDS  (francois@simbad.u-strasbg.fr)  
     ///in November 1996.
     /// </summary>
+    [Obsolete("This class has been moved into a new project : AASharp.Extension")]
     public class CoordinatesToConstellation
     {
         /// <summary>

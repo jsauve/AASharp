@@ -1,5 +1,8 @@
-﻿namespace AASharp.Constellations
+﻿using System;
+
+namespace AASharp.Constellations
 {
+    [Obsolete("This class has been moved into a new project : AASharp.Extension")]
     public class Constellation
     {
         public Constellation(string abbreviation, string name, string genitive)

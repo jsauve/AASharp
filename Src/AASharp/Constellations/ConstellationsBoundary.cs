@@ -2,6 +2,7 @@
 
 namespace AASharp.Constellations
 {
+    [Obsolete("This class has been moved into a new project : AASharp.Extension")]
     public class ConstellationsBoundary
     {
         public ConstellationsBoundary(double lowerRightAscension, double upperRightAscension, double lowerDeclination,
