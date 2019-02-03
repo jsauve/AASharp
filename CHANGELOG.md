@@ -1,10 +1,14 @@
 # Changelog
 
-## 2.0.0 (2018-12-30)
+## 1.99.1 (2019-02-03)
 
-### ADDED
+- Updated changelog
 
-- Helper class that allows knowing the constellation corresponding to given coordinates.
+## 1.99.0 (2019-02-03)
+
+### UPDATED
+
+- Updated the observed DeltaT values to 1st January 2019 (from AA+ 1.98 & 1.99
 
 ## 1.97.1 (2018-12-26)
 
