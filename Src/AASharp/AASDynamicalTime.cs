@@ -592,16 +592,50 @@ namespace AASharp
             new DeltaTValue(2458423.5, 69.1646), //1 November 2018
             new DeltaTValue(2458453.5, 69.1964), //1 December 2018
             new DeltaTValue(2458484.5, 69.2201), //1 January 2019
+            new DeltaTValue(2458515.5,  69.2452), //1 February 2019
+            new DeltaTValue(2458543.5,  69.2733), //1 March 2019
+			new DeltaTValue(2458574.5,  69.3032), //1 April 2019
+			new DeltaTValue(2458604.5,  69.3326), //1 May 2019
+            new DeltaTValue(2458635.5,  69.3540), //1 June 2019
+            new DeltaTValue(2458665.5,  69.3582), //1 July 2019
+            new DeltaTValue(2458696.5,  69.3442), //1 August 2019
+			new DeltaTValue(2458727.5,  69.3376), //1 September 2019
 
-			//All these final values are predicted values from Year 2018.5 to 2026.0 are taken from http://maia.usno.navy.mil/ser7/deltat.preds
-			new DeltaTValue(2458575.75, 69.6), //2019.25
-			new DeltaTValue(2458667.0, 69.7), //2019.5
-			new DeltaTValue(2458758.25, 69.8), //2019.75
-			new DeltaTValue(2458849.5, 69.9), //2020.0
-			new DeltaTValue(2458941.0, 70), //2020.25
-			new DeltaTValue(2459763.0, 71), //2022.5
-			new DeltaTValue(2461041.5, 72) //2026.0
-
+			//All these final values are predicted values from Year 2019.75 to 2027.75 are taken from http://maia.usno.navy.mil/ser7/deltat.preds
+			new DeltaTValue(2458758.5,  69.71), //2019.75
+			new DeltaTValue(2458849.5,  69.87), //2020.00
+			new DeltaTValue(2458940.5,  70.03), //2020.25
+			new DeltaTValue(2459032.5,  70.16), //2020.50
+			new DeltaTValue(2459123.5,  70.24), //2020.75
+			new DeltaTValue(2459214.5,  70.39), //2021.00
+			new DeltaTValue(2459306.5,  70.55), //2021.25
+			new DeltaTValue(2459397.5,  70.68), //2021.50
+			new DeltaTValue(2459488.5,  70.76), //2021.75
+			new DeltaTValue(2459580.5,  70.91), //2022.00
+			new DeltaTValue(2459671.5,  71.06), //2022.25
+			new DeltaTValue(2459762.5,  71.18), //2022.50
+			new DeltaTValue(2459853.5,  71.25), //2022.75
+			new DeltaTValue(2459945.5,  71.40), //2023.00
+			new DeltaTValue(2460036.5,  71.54), //2023.25
+			new DeltaTValue(2460127.5,  71.67), //2023.50
+			new DeltaTValue(2460219.5,  71.74), //2023.75
+			new DeltaTValue(2460310.5,  71.88), //2024.00
+			new DeltaTValue(2460401.5,  72.03), //2024.25
+			new DeltaTValue(2460493.5,  72.15), //2024.50
+			new DeltaTValue(2460584.5,  72.22), //2024.75
+			new DeltaTValue(2460675.5,  72.36), //2025.00
+			new DeltaTValue(2460767.5,  72.50), //2025.25
+			new DeltaTValue(2460858.5,  72.62), //2025.50
+			new DeltaTValue(2460949.5,  72.69), //2025.75
+			new DeltaTValue(2461041.5,  72.83), //2026.00
+			new DeltaTValue(2461132.5,  72.98), //2026.25
+			new DeltaTValue(2461223.5,  73.10), //2026.50
+			new DeltaTValue(2461314.5,  73.17), //2026.75
+			new DeltaTValue(2461406.5,  73.32), //2027.00
+			new DeltaTValue(2461497.5,  73.46), //2027.25
+			new DeltaTValue(2461588.5,  73.58), //2027.50
+			new DeltaTValue(2461680.5,  73.66 )  //2027.75
+			
 			//Note as currently coded there is a single discontinuity of c. 2.074 seconds on 1 January 2026. At this point http://maia.usno.navy.mil/ser7/deltat.preds indicates an error value for DeltaT of about 5 seconds anyway.
 		};
 
