@@ -4,7 +4,7 @@ namespace AASharp
 {
     public static class AASEquinoxesAndSolstices2
     {
-        public static List<AASEquinoxSolsticeDetails2> Calculate(double StartJD, double EndJD, double StepInterval, bool bHighPrecision)
+        public static List<AASEquinoxSolsticeDetails2> Calculate(double StartJD, double EndJD, double StepInterval = 0.007, bool bHighPrecision = false)
         {
             //What will be the return value
             List<AASEquinoxSolsticeDetails2> events = new List<AASEquinoxSolsticeDetails2>();
