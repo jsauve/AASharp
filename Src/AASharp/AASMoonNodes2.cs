@@ -15,7 +15,7 @@ namespace AASharp
             ELPMPP02DE406 = 5
         };
 
-        public static List<AASMoonNodesDetails2> Calculate(double StartJD, double EndJD, double StepInterval, Algorithm algorithm)
+        public static List<AASMoonNodesDetails2> Calculate(double StartJD, double EndJD, double StepInterval = 0.007, Algorithm algorithm = Algorithm.MeeusTruncated)
         {
             //What will be the return value
             List<AASMoonNodesDetails2> events = new List<AASMoonNodesDetails2>();
