@@ -5,6 +5,7 @@ namespace AASharp
 {
     public static class AASRiseTransitSet2
     {
+        //TODO rename
         public enum Objects
         {
             SUN,
@@ -246,8 +247,8 @@ namespace AASharp
             }
         }
 
-        static List<AASRiseTransitSetDetails2> Calculate(double StartJD, double EndJD, Objects @object, double Longitude, double Latitude, double h0,
-            double Height, double StepInterval, bool bHighPrecision)
+        public static List<AASRiseTransitSetDetails2> Calculate(double StartJD, double EndJD, Objects @object, double Longitude, double Latitude, double h0,
+            double Height = 0, double StepInterval = 0.007, bool bHighPrecision = false)
         {
             //What will be the return value
             List<AASRiseTransitSetDetails2> events = new List<AASRiseTransitSetDetails2>();
