@@ -7,9 +7,9 @@ namespace AASharp.Tests
     public class MoonPerigeeApogee2Test
     {
         [Theory]
-        //[InlineData(AASMoonPerigeeApogee2.Algorithm.MeeusTruncated, 2458492.6872172798, 406114.10658343369, 2458505.3333187373, 357343.6023941451)]
+        [InlineData(AASMoonPerigeeApogee2.Algorithm.MeeusTruncated, 2458492.6872172798, 406114.10658343369, 2458505.3333187373, 357343.6023941451)]
         //TODO Tests cases to check, following algorithms produce StackOverflowException
-        [InlineData(AASMoonPerigeeApogee2.Algorithm.ELP2000, 2458492.6873049531, 406117.4358543175, 2458505.3337862561, 357342.26667280978)]
+        //[InlineData(AASMoonPerigeeApogee2.Algorithm.ELP2000, 2458492.6873049531, 406117.4358543175, 2458505.3337862561, 357342.26667280978)]
         //[InlineData(AASMoonPerigeeApogee2.Algorithm.ELPMPP02Nominal, 2458492.6873064428, 406117.38501540705, 2458505.3337862738, 357342.27224775526)]
         //[InlineData(AASMoonPerigeeApogee2.Algorithm.ELPMPP02DE405, 2458492.6873085788, 406117.41804792883, 2458505.333789947, 357342.24787207792)]
         //[InlineData(AASMoonPerigeeApogee2.Algorithm.ELPMPP02DE406, 2458492.6873085829, 406117.4180467485, 2458505.3337899488, 357342.24787600152)]
