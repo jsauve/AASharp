@@ -8,11 +8,6 @@ namespace AASharp
         public enum Algorithm
         {
             MeeusTruncated = 0,
-            ELP2000 = 1,
-            ELPMPP02Nominal = 2,
-            ELPMPP02LLR = 3,
-            ELPMPP02DE405 = 4,
-            ELPMPP02DE406 = 5
         };
 
         public static List<AASMoonMaxDeclinationsDetails2> Calculate(double StartJD, double EndJD, double StepInterval = 0.007, Algorithm algorithm = Algorithm.MeeusTruncated)
@@ -38,32 +33,6 @@ namespace AASharp
                     case Algorithm.MeeusTruncated:
                         MoonLong = AASMoon.EclipticLongitude(JD);
                         MoonLat = AASMoon.EclipticLatitude(JD);
-                        break;
-
-                    case Algorithm.ELP2000:
-                        MoonLong = AASELP2000.EclipticLongitude(JD);
-                        MoonLat = AASELP2000.EclipticLatitude(JD);
-                        break;
-                    
-                    case Algorithm.ELPMPP02Nominal:
-                        
-                        MoonLong = AASELPMPP02.EclipticLongitude(JD, AASELPMPP02.Correction.Nominal, ref pDerivative);
-                        MoonLat = AASELPMPP02.EclipticLatitude(JD, AASELPMPP02.Correction.Nominal, ref pDerivative);
-                        break;
-
-                    case Algorithm.ELPMPP02LLR:
-                        MoonLong = AASELPMPP02.EclipticLongitude(JD, AASELPMPP02.Correction.LLR, ref pDerivative);
-                        MoonLat = AASELPMPP02.EclipticLatitude(JD, AASELPMPP02.Correction.LLR, ref pDerivative);
-                        break;
-
-                    case Algorithm.ELPMPP02DE405:
-                        MoonLong = AASELPMPP02.EclipticLongitude(JD, AASELPMPP02.Correction.DE405, ref pDerivative);
-                        MoonLat = AASELPMPP02.EclipticLatitude(JD, AASELPMPP02.Correction.DE405, ref pDerivative);
-                        break;
-
-                    case Algorithm.ELPMPP02DE406:
-                        MoonLong = AASELPMPP02.EclipticLongitude(JD, AASELPMPP02.Correction.DE406, ref pDerivative);
-                        MoonLat = AASELPMPP02.EclipticLatitude(JD, AASELPMPP02.Correction.DE406, ref pDerivative);
                         break;
 
                     default:

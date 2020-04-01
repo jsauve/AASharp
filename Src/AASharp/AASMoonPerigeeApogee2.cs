@@ -8,11 +8,6 @@ namespace AASharp
         public enum Algorithm
         {
             MeeusTruncated = 0,
-            ELP2000 = 1,
-            ELPMPP02Nominal = 2,
-            ELPMPP02LLR = 3,
-            ELPMPP02DE405 = 4,
-            ELPMPP02DE406 = 5
         };
     
         public static List<AASMoonPerigeeApogeeDetails2> Calculate(double StartJD, double EndJD, double StepInterval = 0.007, Algorithm algorithm = Algorithm.MeeusTruncated)
@@ -33,36 +28,9 @@ namespace AASharp
                 switch (algorithm)
                 {
                     case Algorithm.MeeusTruncated:
-      
                         MoonDistance = AASMoon.RadiusVector(JD);
                         break;
-      
-                    case Algorithm.ELP2000:
-      
-                        MoonDistance = AASELP2000.RadiusVector(JD);
-                        break;
-
-
-                    case Algorithm.ELPMPP02Nominal:
-                        MoonDistance = AASELPMPP02.RadiusVector(JD, AASELPMPP02.Correction.Nominal, ref pDerivative);
-                        break;
-      
-                    case Algorithm.ELPMPP02LLR:
-      
-                        MoonDistance = AASELPMPP02.RadiusVector(JD, AASELPMPP02.Correction.LLR, ref pDerivative);
-                        break;
-      
-                    case Algorithm.ELPMPP02DE405:
-      
-                        MoonDistance = AASELPMPP02.RadiusVector(JD, AASELPMPP02.Correction.DE405, ref pDerivative);
-                        break;
-      
-                    case Algorithm.ELPMPP02DE406:
-      
-                        MoonDistance = AASELPMPP02.RadiusVector(JD, AASELPMPP02.Correction.DE406, ref pDerivative);
-                        break;
-      
-
+                    
                     default:
                         throw new Exception($"{algorithm} is not a supported value");
                 }

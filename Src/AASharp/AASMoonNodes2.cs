@@ -8,11 +8,6 @@ namespace AASharp
         public enum Algorithm
         {
             MeeusTruncated = 0,
-            ELP2000 = 1,
-            ELPMPP02Nominal = 2,
-            ELPMPP02LLR = 3,
-            ELPMPP02DE405 = 4,
-            ELPMPP02DE406 = 5
         };
 
         public static List<AASMoonNodesDetails2> Calculate(double StartJD, double EndJD, double StepInterval = 0.007, Algorithm algorithm = Algorithm.MeeusTruncated)
@@ -31,32 +26,9 @@ namespace AASharp
                 switch (algorithm)
                 {
                     case Algorithm.MeeusTruncated:
-                    {
                         MoonLatitude = AASMoon.EclipticLatitude(JD);
                         break;
-                    }
-                    case Algorithm.ELP2000:
-                        MoonLatitude = AASELP2000.EclipticLatitude(JD);
-                        break;
-
-
-                    case Algorithm.ELPMPP02Nominal:
-                        
-                        MoonLatitude = AASELPMPP02.EclipticLatitude(JD, AASELPMPP02.Correction.Nominal, ref pDerivative);
-                        break;
-
-                    case Algorithm.ELPMPP02LLR:
-                        MoonLatitude = AASELPMPP02.EclipticLatitude(JD, AASELPMPP02.Correction.LLR, ref pDerivative);
-                        break;
-
-                    case Algorithm.ELPMPP02DE405:
-                        MoonLatitude = AASELPMPP02.EclipticLatitude(JD, AASELPMPP02.Correction.DE405, ref pDerivative);
-                        break;
-
-                    case Algorithm.ELPMPP02DE406:
-                        MoonLatitude = AASELPMPP02.EclipticLatitude(JD, AASELPMPP02.Correction.DE406, ref pDerivative);
-                        break;
-
+                    
                     default:
                         throw new Exception($"{algorithm} is not a valid value");
                 }
