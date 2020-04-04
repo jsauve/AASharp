@@ -21,7 +21,6 @@ namespace AASharp
             while (JD < EndJD)
             {
                 double MoonLatitude = 0;
-                double pDerivative = 0;
 
                 switch (algorithm)
                 {

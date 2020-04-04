@@ -16,11 +16,8 @@ namespace AASharp
             List<AASMoonPerigeeApogeeDetails2> events = new List<AASMoonPerigeeApogeeDetails2>();
 
             double JD = StartJD;
-            double LastJD0 = 0;
-            double LastJD1 = 0;
             double LastDistance0 = 0;
             double LastDistance1 = 0;
-            double pDerivative = 0;
 
             while (JD < EndJD)
             {
@@ -60,8 +57,6 @@ namespace AASharp
                 //Prepare for the next loop
                 LastDistance1 = LastDistance0;
                 LastDistance0 = MoonDistance;
-                LastJD0 = JD;
-                LastJD1 = LastJD0;
                 JD += StepInterval;
             }
 

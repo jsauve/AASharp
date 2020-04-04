@@ -11,7 +11,6 @@ namespace AASharp
 
             double JD = StartJD;
             double LastJD0 = 0;
-            double LastJD1 = 0;
             double LastLatitude0 = -90;
             double LastLatitude1 = -90;
   
@@ -68,7 +67,6 @@ namespace AASharp
                 LastLatitude1 = LastLatitude0;
                 LastLatitude0 = Solarcoord.Y;
                 LastJD0 = JD;
-                LastJD1 = LastJD0;
                 JD += StepInterval;
             }
             

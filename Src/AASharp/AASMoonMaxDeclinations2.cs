@@ -16,13 +16,10 @@ namespace AASharp
             List<AASMoonMaxDeclinationsDetails2> events = new List<AASMoonMaxDeclinationsDetails2>();
 
             double JD = StartJD;
-            double LastJD0 = 0;
-            double LastJD1 = 0;
             double LastLatitude0 = -90;
             double LastLatitude1 = -90;
             double LastRA0 = 0;
             double LastRA1 = 0;
-            double pDerivative = 0;
 
             while (JD < EndJD)
             {
@@ -81,8 +78,6 @@ namespace AASharp
                 LastLatitude0 = Equatorial.Y;
                 LastRA1 = LastRA0;
                 LastRA0 = Equatorial.X;
-                LastJD0 = JD;
-                LastJD1 = LastJD0;
                 JD += StepInterval;
             }
 
