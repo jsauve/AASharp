@@ -12,7 +12,7 @@ namespace AASharp.Tests
             {
                 2458484.5,
                 2458485.5,
-                AASRiseTransitSet2.Objects.SUN,
+                AASRiseTransitSet2.AASRiseSetObject.SUN,
                 0,
                 90,
                 -0.8333,
@@ -40,7 +40,7 @@ namespace AASharp.Tests
             {
                 2458484.5,
                 2458485.5,
-                AASRiseTransitSet2.Objects.SUN,
+                AASRiseTransitSet2.AASRiseSetObject.SUN,
                 0,
                 -90,
                 -0.8333,
@@ -68,7 +68,7 @@ namespace AASharp.Tests
             {
                 2458550.5,
                 2458551.5,
-                AASRiseTransitSet2.Objects.MOON,
+                AASRiseTransitSet2.AASRiseSetObject.MOON,
                 0,
                 90,
                 0.125,
@@ -96,7 +96,7 @@ namespace AASharp.Tests
             {
                 2458551.5,
                 2458552.5,
-                AASRiseTransitSet2.Objects.MOON,
+                AASRiseTransitSet2.AASRiseSetObject.MOON,
                 0,
                 90,
                 0.125,
@@ -132,9 +132,9 @@ namespace AASharp.Tests
 
         [Theory]
         [MemberData(nameof(CalculateParameters))]
-        public void CalculateTest(double startJD, double endJD, AASRiseTransitSet2.Objects @object, double longitude, double latitude, double h0, List<AASRiseTransitSetDetails2> expectedResults)
+        public void CalculateTest(double startJD, double endJD, AASRiseTransitSet2.AASRiseSetObject aasRiseSetObject, double longitude, double latitude, double h0, List<AASRiseTransitSetDetails2> expectedResults)
         {
-            List<AASRiseTransitSetDetails2> results = AASRiseTransitSet2.Calculate(startJD, endJD, @object, longitude, latitude, h0);
+            List<AASRiseTransitSetDetails2> results = AASRiseTransitSet2.Calculate(startJD, endJD, aasRiseSetObject, longitude, latitude, h0);
 
             foreach (AASRiseTransitSetDetails2 expectedResult in expectedResults)
             {

@@ -5,27 +5,13 @@ namespace AASharp
 {
     public static class AASRiseTransitSet2
     {
-        //TODO rename
-        public enum Objects
-        {
-            SUN,
-            MOON,
-            MERCURY,
-            VENUS,
-            MARS,
-            JUPITER,
-            SATURN,
-            URANUS,
-            NEPTUNE,
-            PLUTO,
-            STAR
-        };
+       
 
         static void AddEvents(List<AASRiseTransitSetDetails2> events, double LastAltitudeForDetectingRiseSet, double AltitudeForDetectingRiseSet,
             double LastAltitudeForInterpolation, double h0, AAS2DCoordinate Horizontal, double LastJD, double StepInterval, double LastBearing,
-            Objects @object, double LastAltitudeForDetectingTwilight, double AltitudeForTwilight)
+            AASRiseSetObject @object, double LastAltitudeForDetectingTwilight, double AltitudeForTwilight)
         {
-            if ((@object == Objects.SUN) && (LastAltitudeForDetectingTwilight != -90))
+            if ((@object == AASRiseSetObject.SUN) && (LastAltitudeForDetectingTwilight != -90))
             {
                 if ((LastAltitudeForDetectingTwilight < -18) && (AltitudeForTwilight >= -18)) //We have just ended astronomical twilight
                 {
@@ -247,7 +233,7 @@ namespace AASharp
             }
         }
 
-        public static List<AASRiseTransitSetDetails2> Calculate(double StartJD, double EndJD, Objects @object, double Longitude, double Latitude, double h0,
+        public static List<AASRiseTransitSetDetails2> Calculate(double StartJD, double EndJD, AASRiseSetObject aasRiseSetObject, double Longitude, double Latitude, double h0,
             double Height = 0, double StepInterval = 0.007, bool bHighPrecision = false)
         {
             //What will be the return value
@@ -264,9 +250,9 @@ namespace AASharp
             {
                 AASEllipticalPlanetaryDetails details = new AASEllipticalPlanetaryDetails();
                 AAS2DCoordinate Topo;
-                switch (@object)
+                switch (aasRiseSetObject)
                 {
-                    case Objects.SUN:
+                    case AASRiseSetObject.SUN:
                     {
                         double Long = AASSun.ApparentEclipticLongitude(JD, bHighPrecision);
                         double Lat = AASSun.ApparentEclipticLatitude(JD, bHighPrecision);
@@ -276,7 +262,7 @@ namespace AASharp
                         Topo = AASParallax.Equatorial2Topocentric(Equatorial.X, Equatorial.Y, SunRad, Longitude, Latitude, Height, JD);
                         break;
                     }
-                    case Objects.MOON:
+                    case AASRiseSetObject.MOON:
                     {
                         double Long = AASMoon.EclipticLongitude(JD);
                         double Lat = AASMoon.EclipticLatitude(JD);
@@ -286,56 +272,56 @@ namespace AASharp
                         Topo = AASParallax.Equatorial2Topocentric(Equatorial.X, Equatorial.Y, MoonRad, Longitude, Latitude, Height, JD);
                         break;
                     }
-                    case Objects.MERCURY:
+                    case AASRiseSetObject.MERCURY:
                     {
                         details = AASElliptical.Calculate(JD, AASEllipticalObject.MERCURY, bHighPrecision);
                         Topo = AASParallax.Equatorial2Topocentric(details.ApparentGeocentricRA, details.ApparentGeocentricDeclination,
                             details.ApparentGeocentricDistance, Longitude, Latitude, Height, JD);
                         break;
                     }
-                    case Objects.VENUS:
+                    case AASRiseSetObject.VENUS:
                     {
                         details = AASElliptical.Calculate(JD, AASEllipticalObject.VENUS, bHighPrecision);
                         Topo = AASParallax.Equatorial2Topocentric(details.ApparentGeocentricRA, details.ApparentGeocentricDeclination,
                             details.ApparentGeocentricDistance, Longitude, Latitude, Height, JD);
                         break;
                     }
-                    case Objects.MARS:
+                    case AASRiseSetObject.MARS:
                     {
                         details = AASElliptical.Calculate(JD, AASEllipticalObject.MARS, bHighPrecision);
                         Topo = AASParallax.Equatorial2Topocentric(details.ApparentGeocentricRA, details.ApparentGeocentricDeclination,
                             details.ApparentGeocentricDistance, Longitude, Latitude, Height, JD);
                         break;
                     }
-                    case Objects.JUPITER:
+                    case AASRiseSetObject.JUPITER:
                     {
                         details = AASElliptical.Calculate(JD, AASEllipticalObject.JUPITER, bHighPrecision);
                         Topo = AASParallax.Equatorial2Topocentric(details.ApparentGeocentricRA, details.ApparentGeocentricDeclination,
                             details.ApparentGeocentricDistance, Longitude, Latitude, Height, JD);
                         break;
                     }
-                    case Objects.SATURN:
+                    case AASRiseSetObject.SATURN:
                     {
                         details = AASElliptical.Calculate(JD, AASEllipticalObject.SATURN, bHighPrecision);
                         Topo = AASParallax.Equatorial2Topocentric(details.ApparentGeocentricRA, details.ApparentGeocentricDeclination,
                             details.ApparentGeocentricDistance, Longitude, Latitude, Height, JD);
                         break;
                     }
-                    case Objects.URANUS:
+                    case AASRiseSetObject.URANUS:
                     {
                         details = AASElliptical.Calculate(JD, AASEllipticalObject.URANUS, bHighPrecision);
                         Topo = AASParallax.Equatorial2Topocentric(details.ApparentGeocentricRA, details.ApparentGeocentricDeclination,
                             details.ApparentGeocentricDistance, Longitude, Latitude, Height, JD);
                         break;
                     }
-                    case Objects.NEPTUNE:
+                    case AASRiseSetObject.NEPTUNE:
                     {
                         details = AASElliptical.Calculate(JD, AASEllipticalObject.NEPTUNE, bHighPrecision);
                         Topo = AASParallax.Equatorial2Topocentric(details.ApparentGeocentricRA, details.ApparentGeocentricDeclination,
                             details.ApparentGeocentricDistance, Longitude, Latitude, Height, JD);
                         break;
                     }
-                    case Objects.PLUTO:
+                    case AASRiseSetObject.PLUTO:
                     {
                         details = AASElliptical.Calculate(JD, AASEllipticalObject.PLUTO, bHighPrecision);
                         Topo = AASParallax.Equatorial2Topocentric(details.ApparentGeocentricRA, details.ApparentGeocentricDeclination,
@@ -343,7 +329,7 @@ namespace AASharp
                         break;
                     }
                     default:
-                        throw new Exception($"{@object} is not a valid object");
+                        throw new Exception($"{aasRiseSetObject} is not a valid object");
                 }
 
                 double AST = AASSidereal.ApparentGreenwichSiderealTime(JD);
@@ -353,7 +339,7 @@ namespace AASharp
 
                 //Call the helper method to add any found events
                 AddEvents(events, LastAltitudeForDetectingRiseSet, AltitudeForDetectingRiseSet, LastAltitudeForInterpolation, h0, Horizontal, LastJD,
-                    StepInterval, LastBearing, @object, LastAltitudeForDetectingTwilight, Horizontal.Y);
+                    StepInterval, LastBearing, aasRiseSetObject, LastAltitudeForDetectingTwilight, Horizontal.Y);
 
                 //Prepare for the next loop
                 LastAltitudeForDetectingRiseSet = AltitudeForDetectingRiseSet;
@@ -396,7 +382,7 @@ namespace AASharp
 
                 //Call the helper method to add any found events
                 AddEvents(events, LastAltitudeForDetectingRiseSet, AltitudeForDetectingRiseSet, LastAltitudeForInterpolation, h0, Horizontal, LastJD,
-                    StepInterval, LastBearing, Objects.MOON, 0, 0);
+                    StepInterval, LastBearing, AASRiseSetObject.MOON, 0, 0);
 
                 //Prepare for the next loop
                 LastAltitudeForDetectingRiseSet = AltitudeForDetectingRiseSet;
@@ -432,7 +418,7 @@ namespace AASharp
 
                 //Call the helper method to add any found event
                 AddEvents(events, LastAltitudeForDetectingRiseSet, AltitudeForDetectingRiseSet, LastAltitudeForInterpolation, h0, Horizontal, LastJD,
-                    StepInterval, LastBearing, Objects.STAR, 0, 0);
+                    StepInterval, LastBearing, AASRiseSetObject.STAR, 0, 0);
 
                 //Prepare for the next loop
                 LastAltitudeForDetectingRiseSet = AltitudeForDetectingRiseSet;
