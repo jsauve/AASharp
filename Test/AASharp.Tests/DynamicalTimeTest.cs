@@ -22,8 +22,8 @@ namespace AASharp.Tests
         [InlineData(1985, 12, 31, 23, 59, 59, true, 54.871299982825661)]
         [InlineData(1986, 1, 1, 0, 0, 0, true, 54.8713)]
         [InlineData(2018, 1, 1, 0, 0, 0, true, 68.967600000000004)]
-        [InlineData(2025, 12, 31, 23, 59, 59, true, 71.999999990947188)]
-        [InlineData(2026, 1, 1, 0, 0, 0, true, 75.074584000000002)]
+        [InlineData(2025, 12, 31, 23, 59, 59, true, 72.829999982387378)]
+        [InlineData(2026, 1, 1, 0, 0, 0, true, 72.829999999999998)]
         [InlineData(2149, 1, 1, 0, 0, 0, true, 325.81240000000003)]
         [InlineData(2150, 1, 1, 0, 0, 0, true, 328.47999999999996)]
         public void DeltaTTest2(long year, long month, double day, double hour, double minute, double second, bool isGregorianCalendar, double expectedDeltaT)

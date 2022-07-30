@@ -57,7 +57,7 @@ namespace AASharp
                 details.bTransitAboveHorizon = true;
         }
 
-        private static void CorrectRAValuesForInterpolation(ref double Alpha1, ref double Alpha2, ref double Alpha3)
+        public static void CorrectRAValuesForInterpolation(ref double Alpha1, ref double Alpha2, ref double Alpha3)
         {
             //Ensure the RA values are corrected for interpolation. Due to important Remark 2 by Meeus on Interopolation of RA values
             Alpha1 = AASCoordinateTransformation.MapTo0To24Range(Alpha1);
