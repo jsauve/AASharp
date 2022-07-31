@@ -1,5 +1,22 @@
 # Changelog
 
+## 2.12 (2022-07-31)
+
+Report of modifications from AA+ v2.0 to 2.12
+
+- Addition of a new CAAMoonPhases2 class.
+- Addition of a new CAAMoonNodes2 class.
+- Addition of a new CAAMoonPerigeeApogee2 class.
+- Addition of a new CAAMoonMaxDeclinations2 class.
+- Addition of a new CAAEquinoxesAndSolstices2 class.
+- Addition of a new AASRiseTransitSet2 class which addresses issues with the existing AASRiseTransitSet class which is now considered deprecated.
+- Updated the observed DeltaT values
+
+Fixes
+
+- Renamed CAAPhysicalMarsDetails to AASPhysicalMarsDetails
+- Renamed CAAPhysicalJupiterDetails to AASPhysicalJupiterDetails
+
 ## 1.99.1 (2019-02-03)
 
 - Updated changelog
