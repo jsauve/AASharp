@@ -233,7 +233,7 @@ namespace AASharp
             }
         }
 
-        public static List<AASRiseTransitSetDetails2> Calculate(double StartJD, double EndJD, AASRiseSetObject aasRiseSetObject, double Longitude, double Latitude, double h0,
+        public static List<AASRiseTransitSetDetails2> Calculate(double StartJD, double EndJD, AASRiseSetObject @object, double Longitude, double Latitude, double h0,
             double Height = 0, double StepInterval = 0.007, bool bHighPrecision = false)
         {
             //What will be the return value
@@ -250,7 +250,7 @@ namespace AASharp
             {
                 AASEllipticalPlanetaryDetails details = new AASEllipticalPlanetaryDetails();
                 AAS2DCoordinate Topo;
-                switch (aasRiseSetObject)
+                switch (@object)
                 {
                     case AASRiseSetObject.SUN:
                     {
@@ -329,7 +329,7 @@ namespace AASharp
                         break;
                     }
                     default:
-                        throw new Exception($"{aasRiseSetObject} is not a valid object");
+                        throw new Exception($"{@object} is not a valid object");
                 }
 
                 double AST = AASSidereal.ApparentGreenwichSiderealTime(JD);
@@ -339,7 +339,7 @@ namespace AASharp
 
                 //Call the helper method to add any found events
                 AddEvents(events, LastAltitudeForDetectingRiseSet, AltitudeForDetectingRiseSet, LastAltitudeForInterpolation, h0, Horizontal, LastJD,
-                    StepInterval, LastBearing, aasRiseSetObject, LastAltitudeForDetectingTwilight, Horizontal.Y);
+                    StepInterval, LastBearing, @object, LastAltitudeForDetectingTwilight, Horizontal.Y);
 
                 //Prepare for the next loop
                 LastAltitudeForDetectingRiseSet = AltitudeForDetectingRiseSet;
