@@ -786,7 +786,7 @@ namespace AASharpTest
 
             CAAPhysicalMarsDetails MarsDetails = AASPhysicalMars.Calculate(2448935.500683, bHighPrecision);
 
-            CAAPhysicalJupiterDetails JupiterDetails = AASPhysicalJupiter.Calculate(2448972.50068, bHighPrecision);
+            AASPhysicalJupiterDetails JupiterDetails = AASPhysicalJupiter.Calculate(2448972.50068, bHighPrecision);
 
             //The example as given in the book
             AASGalileanMoonsDetails GalileanDetails = AASGalileanMoons.Calculate(2448972.50068, bHighPrecision);

@@ -4,10 +4,10 @@ namespace AASharp
 {
     public static class AASPhysicalJupiter
     {
-        public static CAAPhysicalJupiterDetails Calculate(double JD, bool bHighPrecision)
+        public static AASPhysicalJupiterDetails Calculate(double JD, bool bHighPrecision)
         {
             //What will be the return value
-            CAAPhysicalJupiterDetails details = new CAAPhysicalJupiterDetails();
+            AASPhysicalJupiterDetails details = new AASPhysicalJupiterDetails();
 
             //Step 1
             double d = JD - 2433282.5;

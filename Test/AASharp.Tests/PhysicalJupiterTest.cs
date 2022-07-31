@@ -11,7 +11,7 @@ namespace AASharp.Tests
             {
                 2448972.50068,
                 false,
-                new CAAPhysicalJupiterDetails
+                new AASPhysicalJupiterDetails
                 {
                     DE = -2.4847151106937355,
                     DS = -2.1981310756592554,
@@ -26,7 +26,7 @@ namespace AASharp.Tests
             {
                 2448972.50068,
                 true,
-                new CAAPhysicalJupiterDetails
+                new AASPhysicalJupiterDetails
                 {
                     DE = -2.4846380183035937,
                     DS = -2.1980557587338838,
@@ -41,9 +41,9 @@ namespace AASharp.Tests
 
         [Theory]
         [MemberData(nameof(CalculateParameters))]
-        public void TheoryTest(double JD, bool bHighPrecision, CAAPhysicalJupiterDetails expectedJupiterDetails)
+        public void TheoryTest(double JD, bool bHighPrecision, AASPhysicalJupiterDetails expectedJupiterDetails)
         {
-            CAAPhysicalJupiterDetails jupiterDetails = AASPhysicalJupiter.Calculate(JD, bHighPrecision);
+            AASPhysicalJupiterDetails jupiterDetails = AASPhysicalJupiter.Calculate(JD, bHighPrecision);
             Assert.Equal(expectedJupiterDetails.DE, jupiterDetails.DE);
             Assert.Equal(expectedJupiterDetails.DS, jupiterDetails.DS);
             Assert.Equal(expectedJupiterDetails.Geometricw1, jupiterDetails.Geometricw1);
