@@ -13,6 +13,7 @@ namespace AASharp
         public double Set { get; set; }
     }
 
+    [Obsolete("Use AASRiseTransitSet2")]
     public static class AASRiseTransitSet
     {
         private static void ConstraintM(ref double M)
