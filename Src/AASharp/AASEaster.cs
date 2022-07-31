@@ -1,17 +1,5 @@
 namespace AASharp
 {
-    public class AASEasterDetails
-    {
-        public AASEasterDetails(long month, long day)
-        {
-            Month = month;
-            Day = day;
-        }
-
-        public long Month { get; }
-        public long Day { get; }
-    }
-
     public static class AASEaster
     {
         public static AASEasterDetails Calculate(long nYear, bool GregorianCalendar)

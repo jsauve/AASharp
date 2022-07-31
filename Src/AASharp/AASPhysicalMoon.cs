@@ -2,24 +2,6 @@ using System;
 
 namespace AASharp
 {
-    public class AASPhysicalMoonDetails
-    {
-        public double ldash { get; set; }
-        public double bdash { get; set; }
-        public double ldash2 { get; set; }
-        public double bdash2 { get; set; }
-        public double l { get; set; }
-        public double b { get; set; }
-        public double P { get; set; }
-    }
-
-    public class AASSelenographicMoonDetails
-    {
-        public double l0 { get; set; }
-        public double b0 { get; set; }
-        public double c0 { get; set; }
-    }
-
     public static class AASPhysicalMoon
     {
         public static void CalculateOpticalLibration(double JD, double Lambda, double Beta, ref double ldash, ref double bdash, ref double ldash2, ref double bdash2, ref double epsilon, ref double omega, ref double DeltaU, ref double sigma, ref double I, ref double rho)

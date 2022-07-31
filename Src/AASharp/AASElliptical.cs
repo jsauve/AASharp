@@ -2,58 +2,6 @@ using System;
 
 namespace AASharp
 {
-    public class AASEllipticalObjectElements
-    {
-        public double a { get; set; }
-        public double e { get; set; }
-        public double i { get; set; }
-        public double w { get; set; }
-        public double omega { get; set; }
-        public double JDEquinox { get; set; }
-        public double T { get; set; }
-    }
-
-    public class AASEllipticalPlanetaryDetails
-    {
-        public double ApparentGeocentricLongitude { get; set; }
-        public double ApparentGeocentricLatitude { get; set; }
-        public double ApparentGeocentricDistance { get; set; }
-        public double ApparentLightTime { get; set; }
-        public double ApparentGeocentricRA { get; set; }
-        public double ApparentGeocentricDeclination { get; set; }
-    }
-
-    public class AASEllipticalObjectDetails
-    {
-        public AAS3DCoordinate HeliocentricRectangularEquatorial { get; set; }
-        public AAS3DCoordinate HeliocentricRectangularEcliptical { get; set; }
-        public double HeliocentricEclipticLongitude { get; set; }
-        public double HeliocentricEclipticLatitude { get; set; }
-        public double TrueGeocentricRA { get; set; }
-        public double TrueGeocentricDeclination { get; set; }
-        public double TrueGeocentricDistance { get; set; }
-        public double TrueGeocentricLightTime { get; set; }
-        public double AstrometricGeocentricRA { get; set; }
-        public double AstrometricGeocentricDeclination { get; set; }
-        public double AstrometricGeocentricDistance { get; set; }
-        public double AstrometricGeocentricLightTime { get; set; }
-        public double Elongation { get; set; }
-        public double PhaseAngle { get; set; }
-    }
-
-    public enum AASEllipticalObject
-    {
-        SUN,
-        MERCURY,
-        VENUS,
-        MARS,
-        JUPITER,
-        SATURN,
-        URANUS,
-        NEPTUNE,
-        PLUTO
-    }
-        
     public static class AASElliptical
     {
         public static double DistanceToLightTime(double Distance)

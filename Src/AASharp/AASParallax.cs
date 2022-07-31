@@ -2,13 +2,6 @@ using System;
 
 namespace AASharp
 {
-    public class AASTopocentricEclipticDetails
-    {
-        public double Lambda { get; set; }
-        public double Beta { get; set; }
-        public double Semidiameter { get; set; }
-    }
-
     public static class AASParallax
     {
         private readonly static double g_AAParallax_C1 = Math.Sin(AASCoordinateTransformation.DegreesToRadians(AASCoordinateTransformation.DMSToDegrees(0, 0, 8.794)));

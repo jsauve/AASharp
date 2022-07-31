@@ -2,13 +2,6 @@ using System;
 
 namespace AASharp
 {
-    public class AASEclipticalElementDetails
-    {
-        public double i { get; set; }
-        public double w { get; set; }
-        public double omega { get; set; }
-    }
-
     public static class AASEclipticalElements
     {
         public static AASEclipticalElementDetails Calculate(double i0, double w0, double omega0, double JD0, double JD)

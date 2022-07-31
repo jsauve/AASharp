@@ -4,34 +4,6 @@ namespace AASharp
 {
 	#region structs
 
-	struct DeltaTValue
-	{
-		public DeltaTValue(double jd, double deltaT)
-		{
-			JD = jd;
-			DeltaT = deltaT;
-		}
-
-		public double JD;
-		public double DeltaT;
-	}
-
-	struct LeapSecondCoefficient
-	{
-		public double JD;
-		public double LeapSeconds;
-		public double BaseMJD;
-		public double Coefficient;
-
-		public LeapSecondCoefficient(double jd, double leapSeconds, double baseMjd, double coefficient)
-		{
-			JD = jd;
-			LeapSeconds = leapSeconds;
-			BaseMJD = baseMjd;
-			Coefficient = coefficient;
-		}
-	}
-
 	#endregion
 
 	public static class AASDynamicalTime

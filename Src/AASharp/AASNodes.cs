@@ -2,12 +2,6 @@ using System;
 
 namespace AASharp
 {
-    public class AASNodeObjectDetails
-    {
-        public double t { get; set; }
-        public double radius { get; set; }
-    }
-
     public static class AASNodes
     {
         public static AASNodeObjectDetails PassageThroAscendingNode(ref AASEllipticalObjectElements elements)

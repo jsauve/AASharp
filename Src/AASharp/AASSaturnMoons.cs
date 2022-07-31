@@ -2,46 +2,6 @@ using System;
 
 namespace AASharp
 {
-    public class AASSaturnMoonDetail
-    {
-        public AASSaturnMoonDetail()
-        {
-            TrueRectangularCoordinates = new AAS3DCoordinate();
-            ApparentRectangularCoordinates = new AAS3DCoordinate();
-        }
-
-        public AAS3DCoordinate TrueRectangularCoordinates { get; set; }
-        public AAS3DCoordinate ApparentRectangularCoordinates { get; set; }
-        public bool bInTransit { get; set; }
-        public bool bInOccultation { get; set; }
-        public bool bInEclipse { get; set; }
-        public bool bInShadowTransit { get; set; }
-    }
-
-    public class AASSaturnMoonsDetails
-    {
-        public AASSaturnMoonsDetails()
-        {
-            Satellite1 = new AASSaturnMoonDetail();
-            Satellite2 = new AASSaturnMoonDetail();
-            Satellite3 = new AASSaturnMoonDetail();
-            Satellite4 = new AASSaturnMoonDetail();
-            Satellite5 = new AASSaturnMoonDetail();
-            Satellite6 = new AASSaturnMoonDetail();
-            Satellite7 = new AASSaturnMoonDetail();
-            Satellite8 = new AASSaturnMoonDetail();
-        }
-
-        public AASSaturnMoonDetail Satellite1 { get; set; }
-        public AASSaturnMoonDetail Satellite2 { get; set; }
-        public AASSaturnMoonDetail Satellite3 { get; set; }
-        public AASSaturnMoonDetail Satellite4 { get; set; }
-        public AASSaturnMoonDetail Satellite5 { get; set; }
-        public AASSaturnMoonDetail Satellite6 { get; set; }
-        public AASSaturnMoonDetail Satellite7 { get; set; }
-        public AASSaturnMoonDetail Satellite8 { get; set; }
-    }
-
     public static class AASSaturnMoons
     {
         private static void HelperSubroutine(double e, double lambdadash, double p, double a, double omega, double i, double c1, double s1, ref double r, ref double lambda, ref double gamma, ref double w)
