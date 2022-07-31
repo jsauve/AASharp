@@ -1,6 +1,6 @@
 ﻿namespace AASharp
 {
-    public class CAAPhysicalMarsDetails
+    public class AASPhysicalMarsDetails
     {
         public double DE { get; set; }
         public double DS { get; set; }

@@ -11,7 +11,7 @@ namespace AASharp.Tests
             {
                 2448935.500683,
                 false,
-                new CAAPhysicalMarsDetails
+                new AASPhysicalMarsDetails
                 {
                     DE = 12.437028414455451,
                     DS = -2.7578433421012014,
@@ -27,7 +27,7 @@ namespace AASharp.Tests
             {
                 2448935.500683,
                 true,
-                new CAAPhysicalMarsDetails
+                new AASPhysicalMarsDetails
                 {
                     DE = 12.437155758807751,
                     DS = -2.757794840729523,
@@ -43,9 +43,9 @@ namespace AASharp.Tests
 
         [Theory]
         [MemberData(nameof(CalculateParameters))]
-        public void TheoryTest(double JD, bool bHighPrecision, CAAPhysicalMarsDetails expectedPhysicalMarsDetails)
+        public void TheoryTest(double JD, bool bHighPrecision, AASPhysicalMarsDetails expectedPhysicalMarsDetails)
         {
-            CAAPhysicalMarsDetails marsDetails = AASPhysicalMars.Calculate(JD, bHighPrecision);
+            AASPhysicalMarsDetails marsDetails = AASPhysicalMars.Calculate(JD, bHighPrecision);
             Assert.Equal(expectedPhysicalMarsDetails.DE, marsDetails.DE);
             Assert.Equal(expectedPhysicalMarsDetails.DS, marsDetails.DS);
             Assert.Equal(expectedPhysicalMarsDetails.w, marsDetails.w);

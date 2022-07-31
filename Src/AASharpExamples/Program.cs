@@ -784,7 +784,7 @@ namespace AASharpTest
             double SaturnMag2 = AASIlluminatedFraction.SaturnMagnitudeAA(9.867882, 10.464606, 4.198, 16.442);
 
 
-            CAAPhysicalMarsDetails MarsDetails = AASPhysicalMars.Calculate(2448935.500683, bHighPrecision);
+            AASPhysicalMarsDetails MarsDetails = AASPhysicalMars.Calculate(2448935.500683, bHighPrecision);
 
             AASPhysicalJupiterDetails JupiterDetails = AASPhysicalJupiter.Calculate(2448972.50068, bHighPrecision);
 

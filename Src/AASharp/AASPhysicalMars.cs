@@ -7,10 +7,10 @@ namespace AASharp
 
     public static class AASPhysicalMars
     {
-        public static CAAPhysicalMarsDetails Calculate(double JD, bool bHighPrecision)
+        public static AASPhysicalMarsDetails Calculate(double JD, bool bHighPrecision)
         {
             //What will be the return value
-            CAAPhysicalMarsDetails details = new CAAPhysicalMarsDetails();
+            AASPhysicalMarsDetails details = new AASPhysicalMarsDetails();
 
             //Step 1
             double T = (JD - 2451545) / 36525;
