@@ -45,7 +45,7 @@ namespace AASharp.Tests
                 new AASRiseTransitSetDetails
                 {
                     bRiseValid = true,
-                    Rise = 12.423760186853372,
+                    Rise = 12.423760188032768,
                     bTransitValid= true,
                     bTransitAboveHorizon = true,
                     Transit = 19.675106843620839,
@@ -76,6 +76,7 @@ namespace AASharp.Tests
                     Set = 10.050749701783564
                 }
             };
+
             //An interesting case is Rise, Transit and Set for the Moon on October 30 2012 at the specified position
             yield return new object[] {
                 2456230.5,
@@ -91,7 +92,7 @@ namespace AASharp.Tests
                 new AASRiseTransitSetDetails
                 {
                     bRiseValid = true,
-                    Rise = 13.220188664463816,
+                    Rise = 13.220188661532028,
                     bTransitValid= false,
                     bTransitAboveHorizon = true,
                     Transit = 0,
