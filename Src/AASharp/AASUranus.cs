@@ -572,6 +572,7 @@ namespace AASharp
             double rho = (JD - 2451545) / 365250;
             double rhosquared = rho * rho;
             double rhocubed = rhosquared * rho;
+            double rho4 = rhocubed * rho;
 
             //Calculate R0
             int nR0Coefficients = g_R0UranusCoefficients.Length;
@@ -598,8 +599,13 @@ namespace AASharp
             for (i = 0; i < nR3Coefficients; i++)
                 R3 += g_R3UranusCoefficients[i].A * Math.Cos(g_R3UranusCoefficients[i].B + g_R3UranusCoefficients[i].C * rho);
 
-
-            return (R0 + R1 * rho + R2 * rhosquared + R3 * rhocubed) / 100000000;
+            //Calculate R4
+            int nR4Coefficients = g_R4UranusCoefficients.Length;
+            double R4 = 0;
+            for (i = 0; i < nR4Coefficients; i++)
+                R4 += g_R4UranusCoefficients[i].A * Math.Cos(g_R4UranusCoefficients[i].B + g_R4UranusCoefficients[i].C * rho);
+            
+            return (R0 + R1 * rho + R2 * rhosquared + R3 * rhocubed + (R4*rho4)) / 100000000;
         }
     }
 }
