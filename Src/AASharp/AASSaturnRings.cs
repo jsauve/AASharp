@@ -2,8 +2,14 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for calculation of various parameters related to the Rings of Saturn. This refers to Chapter 45 in the book.
+    /// </summary>
     public static class AASSaturnRings
     {
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>An instance of AASSaturnRingDetails class with the details.</returns>
         public static AASSaturnRingDetails Calculate(double JD, bool bHighPrecision)
         {
             //What will be the return value

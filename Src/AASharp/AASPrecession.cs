@@ -2,8 +2,17 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for the calculation of the slow drift that the direction of the rotational axis of the Earth undergoes over time. This refers to Chapter 21 in the book.
+    /// </summary>
     public static class AASPrecession
     {
+        /// <param name="t">The number of years from the starting epoch, negative in the past and positive in the future.</param>
+        /// <param name="Alpha">The right ascension expressed as an hour angle.</param>
+        /// <param name="Delta">The declination in degrees.</param>
+        /// <param name="PMAlpha">The proper motion in right ascension in arc seconds per year.</param>
+        /// <param name="PMDelta">The proper motion in declination in arc seconds per year.</param>
+        /// <returns>Returns the converted equatorial coordinates in a AAS2DCoordinate class. The x value in the class corresponds to the right ascension expressed as an hour angle and the y value corresponds to the declination in degrees.</returns>
         public static AAS2DCoordinate AdjustPositionUsingUniformProperMotion(double t, double Alpha, double Delta, double PMAlpha, double PMDelta)
         {
             AAS2DCoordinate value = new AAS2DCoordinate {X = Alpha + (PMAlpha * t / 3600), Y = Delta + (PMDelta * t / 3600)};
@@ -11,6 +20,14 @@ namespace AASharp
             return value;
         }
 
+        /// <param name="r">The stars distance in parsecs.</param>
+        /// <param name="DeltaR">The radial velocity  in km/s.</param>
+        /// <param name="t">The number of years from the starting epoch, negative in the past and positive in the future.</param>
+        /// <param name="Alpha">The right ascension expression as an hour angle.</param>
+        /// <param name="Delta">The declination in degrees.</param>
+        /// <param name="PMAlpha">The proper motion in right ascension in arc seconds per year.</param>
+        /// <param name="PMDelta">The proper motion in declination in arc seconds per year.</param>
+        /// <returns>Returns the converted equatorial coordinates in a AAS2DCoordinate class. The x value in the class corresponds to the right ascension expressed as an hour angle and the y value corresponds to the declination in degrees.</returns>
         public static AAS2DCoordinate AdjustPositionUsingMotionInSpace(double r, double DeltaR, double t, double Alpha, double Delta, double PMAlpha, double PMDelta)
         {
             //Convert DeltaR from km/s to Parsecs / Year
@@ -45,6 +62,11 @@ namespace AASharp
             return value;
         }
 
+        /// <param name="Alpha">The right ascension in hours of the object at time JD0.</param>
+        /// <param name="Delta">The declination in degrees of the object at time JD0.</param>
+        /// <param name="JD0">The date in Dynamical time corresponding to the initial epoch.</param>
+        /// <param name="JD">The date in Dynamical time corresponding to the final epoch.</param>
+        /// <returns>Returns the precessed equatorial coordinates in a AAS2DCoordinate class. The x value in the class corresponds to the right ascension as an hour angle and the y value corresponds to the declination in degrees.</returns>
         public static AAS2DCoordinate PrecessEquatorial(double Alpha, double Delta, double JD0, double JD)
         {
             double T = (JD0 - 2451545.0) / 36525;
@@ -71,6 +93,11 @@ namespace AASharp
             return value;
         }
 
+        /// <param name="Alpha">The right ascension in hours of the object at time JD in the FK4 system.</param>
+        /// <param name="Delta">The declination in degrees of the object at time JD in the FK4 system.</param>
+        /// <param name="JD0">The date in Dynamical time corresponding to the initial epoch.</param>
+        /// <param name="JD">The date in Dynamical time corresponding to the final epoch.</param>
+        /// <returns>Returns the converted equatorial coordinates in a AAS2DCoordinate class. The x value in the class corresponds to the equatorial right ascension in the FK5 system as an hour angle and the y value corresponds to the declination in the FK5 system in degrees.</returns>
         public static AAS2DCoordinate PrecessEquatorialFK4(double Alpha, double Delta, double JD0, double JD)
         {
             double T = (JD0 - 2415020.3135) / 36524.2199;
@@ -97,6 +124,11 @@ namespace AASharp
             return value;
         }
 
+        /// <param name="Lambda">The ecliptical longitude in degrees.</param>
+        /// <param name="Beta">The ecliptical latitude of the star in degrees.</param>
+        /// <param name="JD0">The date in Dynamical time corresponding to the initial epoch.</param>
+        /// <param name="JD">The date in Dynamical time corresponding to the final epoch.</param>
+        /// <returns>Returns the converted ecliptic coordinates in a AAS2DCoordinate class. The x value in the class corresponds to the ecliptical longitude in degrees and the y value corresponds to the ecliptical latitude in degrees.</returns>
         public static AAS2DCoordinate PrecessEcliptic(double Lambda, double Beta, double JD0, double JD)
         {
             double T = (JD0 - 2451545.0) / 36525;
@@ -123,6 +155,13 @@ namespace AASharp
             return value;
         }
 
+        /// <param name="Alpha">The right ascension expressed as an hour angle.</param>
+        /// <param name="Delta">The declination in degrees.</param>
+        /// <param name="Beta">The ecliptical latitude of the star in degrees.</param>
+        /// <param name="PMAlpha">The proper motion in right ascension in arc seconds per year.</param>
+        /// <param name="PMDelta">The proper motion of the declination in arc seconds per year.</param>
+        /// <param name="Epsilon">The obliquity of the ecliptic in degrees.</param>
+        /// <returns>Returns the converted ecliptic proper motions in a AAS2DCoordinate class. The x value in the class corresponds to the proper motion in ecliptical longitude in arc seconds per year and the y value corresponds to the proper motion in ecliptical latitude in arc seconds per year.</returns>
         public static AAS2DCoordinate EquatorialPMToEcliptic(double Alpha, double Delta, double Beta, double PMAlpha, double PMDelta, double Epsilon)
         {
             //Convert to radians

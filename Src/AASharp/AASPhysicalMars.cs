@@ -2,11 +2,14 @@ using System;
 
 namespace AASharp
 {
-    //Member variables
-
-
+    /// <summary>
+    /// This class provides for calculation of various physical parameters related to the Mars. This refers to Chapter 42 in the book.
+    /// </summary>
     public static class AASPhysicalMars
     {
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>An instance of AASPhysicalMarsDetails class with the details.</returns>
         public static AASPhysicalMarsDetails Calculate(double JD, bool bHighPrecision)
         {
             //What will be the return value

@@ -2,8 +2,14 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for calculation of the Equation of Time. This refers to Chapter 28 in the book.
+    /// </summary>
     public static class AASEquationOfTime
     {
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>the equation of time in decimal minutes.</returns>
         public static double Calculate(double JD, bool bHighPrecision)
         {
             double rho = (JD - 2451545) / 365250;

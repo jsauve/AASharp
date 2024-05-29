@@ -3,10 +3,11 @@ using System.Collections.Generic;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for revised algorithms to address issues with the existing AASRiseTransitSet class which as of v2.02 is now considered deprecated. This class and its methods are designed as an improvement on the AASRiseTransitSet class algorithms as provided by in the book. In Q3 2019, some users of AA+ reported that if you used the existing class with a location of either the North or South Poles, that it would fail to find the single sun rise and set times during a whole year. At the poles of course there is just one sun rise and one sun set per year. Each of these events occur quite close to the Equinoxes. Following a private email conversation with Jean Meeus, he confirmed that the AASRiseTransitSet algorithms as presented in the book fail under certain circumstances. In fact the issues which have been reported with this class over the years are almost all a result of the deficiencies of Meeus's algorithms for calculating rise / transit and set. This class is a ground up rewrite with a new step based interpolation algorithm. They will work for any Dynamical Time date range and as such will handle the issue of looking for events when referred to a local time zone day range. It will also detect all types of events during the requested search interval. It will also return northern transits in addition to southern transits and can return multiple occurrences of the same type of event in a 24 hour interval. The code has also been extensively tested for various locations such as the North Pole, South Pole etc. and spot checked against other sources. This class will also return the altitude of transit events and the bearing / azimuth at which rise and set events occur.
+    /// </summary>
     public static class AASRiseTransitSet2
     {
-       
-
         static void AddEvents(List<AASRiseTransitSetDetails2> events, double LastAltitudeForDetectingRiseSet, double AltitudeForDetectingRiseSet,
             double LastAltitudeForInterpolation, double h0, AAS2DCoordinate Horizontal, double LastJD, double StepInterval, double LastBearing,
             AASRiseSetObject @object, double LastAltitudeForDetectingTwilight, double AltitudeForTwilight)
@@ -233,6 +234,44 @@ namespace AASharp
             }
         }
 
+        /// <summary>
+        /// Set is defined when the apparent top edge of the object is exacly on the horizon and the altitude of the object is decreasing.
+        /// <para>
+        /// Rise is defined when the apparent top edge of the object is exacly on the horizon and the altitude of the object is increasing.
+        /// </para>
+        /// <para>
+        /// Civil Dusk is defined when the geometric center of the Sun is 6 degress below the horizon and the altitude of the Sun is decreasing (i.e. in the local evening time after the Sun has set).
+        /// </para>
+        /// <para>
+        /// Nautical Dusk is defined when the geometric center of the Sun is 12 degress below the horizon and the altitude of the Sun is decreasing (i.e. in the local evening time after the Sun has set).
+        /// </para>
+        /// <para>
+        /// Astronomical Dusk is defined when the geometric center of the Sun is 18 degress below the horizon and the altitude of the Sun is decreasing (i.e. in the local evening time after the Sun has set).
+        /// </para>
+        /// <para>
+        /// Civil Dawn is defined when the geometric center of the Sun is 6 degress below the horizon and the altitude of the Sun is increasing (i.e. in the local morning time before the Sun has risen).
+        /// </para>
+        /// <para>
+        /// Nautical Dawn is defined when the geometric center of the Sun is 12 degress below the horizon and the altitude of the Sun is increasing (i.e. in the local morning time before the Sun has risen).
+        /// </para>
+        /// <para>
+        /// Astronomical Dawn is defined when the geometric center of the Sun is 18 degress below the horizon and the altitude of the Sun is increasing (i.e. in the local morning time before the Sun has risen).
+        /// </para>
+        /// <para>
+        /// Please note that this method calculates the times of dusk and dawn for an observer at sea level and does not take atmospheric refraction or altitude of the observer into account. This is unlike the calculation of rise and set which does take this into account due to the presence and usage of the h0 parameter.
+        /// </para>
+        /// </summary>
+        /// <param name="StartJD">The Julian Day corresponding to the Dynamical Time for the date when you want to start the calculation for.</param>
+        /// <param name="EndJD">The Julian Day corresponding to the Dynamical Time for the date when you want to end the calculation for.</param>
+        /// <param name="object">The object type you want to calculate for. This is an enum class of type Object inside the AASRiseTransitSet2 class and can be SUN, MOON, MERCURY, VENUS, MARS, JUPITER, SATURN, URANUS, or NEPTUNE.</param>
+        /// <param name="Longitude">The geographic longitude of the observer in degrees (Positive west, negative east from Greenwich).</param>
+        /// <param name="Latitude">The geographic latitude of the observer in degrees.</param>
+        /// <param name="h0">The "standard" altitude in degrees i.e. the geometric altitude of the center of the body at the time of the apparent rising or setting. For stars and planets, you would normally use -0.5667, for the Sun you would use -0.8333 and for the Moon you would use -0.825. The value to use for the Moon should be -0.825 and not 0.125 as described in Meeus's book. This is because this method already applies parallax corrections for the Moon when converting the geocentric position of the Moon to topocentric coordinates. If you would like to take atmospheric pressure &amp; temperature into account for the amount of refraction to use for this parameter, you can use the AASRefraction class to calculate a custom value. If you would like to take the altitude of the observer into account for calculating Sun rise and Sun sets (such as an observer flying in a plane), then you could use the formulae: double H0 = -0.8333 - AASCoordinateTransformation.RadiansToDegrees(acos(6371008 / (6371008 + Height))) where Height is the altitude above sea-level in meters (assuming you also do not want to account for variable temperature and pressure). For the moon you could use: double H0 = -0.825 - AASCoordinateTransformation.RadiansToDegrees(acos(6371008 / (6371008 + Height))).</param>
+        /// <param name="Height">TBD</param>
+        /// <param name="StepInterval">The step interval in fractions of days to do the calculation for. The default value of 0.007 corresponds to roughly 10 minutes which is a reasonable tradeoff between performance and accuracy for calculating rise / transit and set times.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book. This parameter is not used if you specify Moon for the "object" parameter. This parameter is only used when calculating events for the Sun or planets. This method always uses the truncated Meeus ELP2000 theory when calculating events for the Moon. If you would like to specify the theory used to calculate the position of the Moon to find events, you can use the CalculateMoon method.</param>
+        /// <returns>A list of AASRiseTransitSetDetails2 instances with the details.</returns>
+        /// <exception cref="Exception"></exception>
         public static List<AASRiseTransitSetDetails2> Calculate(double StartJD, double EndJD, AASRiseSetObject @object, double Longitude, double Latitude, double h0,
             double Height = 0, double StepInterval = 0.007, bool bHighPrecision = false)
         {
@@ -353,8 +392,18 @@ namespace AASharp
             return events;
         }
 
-//The higher accuracy version for the moon where the "standard altitude" is not treated as a constant
-        static List<AASRiseTransitSetDetails2> CalculateMoon(double StartJD, double EndJD, double Longitude, double Latitude, double Height,
+        //The higher accuracy version for the moon where the "standard altitude" is not treated as a constant
+        /// <summary>
+        /// This version of the algorithm provides a higher precision method to calculate the rise / transit and set times of the Moon compared to the Calculate method. This is necessary because the "standard" altitude value for the Moon is not constant and depends significantly on the Moon's distance / parallax as well as the "RefractionAtHorizon" parameter. Internally this method calculates the apparent topocentric semidiameter of the moon in degrees and subtracts that value from the RefractionAtHorizon parameter to arrive at the "standard" altitude used to calculate events. In addition this method allows you to specify the theory to use to calculate the position of the Moon.
+        /// </summary>
+        /// <param name="StartJD">The Julian Day corresponding to the Dynamical Time for the date when you want to start the calculation for.</param>
+        /// <param name="EndJD">The Julian Day corresponding to the Dynamical Time for the date when you want to end the calculation for.</param>
+        /// <param name="Longitude">The geographic longitude of the observer in degrees (Positive west, negative east from Greenwich).</param>
+        /// <param name="Latitude">The geographic latitude of the observer in degrees.</param>
+        /// <param name="Height">TBD</param>
+        /// <param name="StepInterval">The step interval in fractions of days to do the calculation for. The default value of 0.007 corresponds to roughly 10 minutes which is a reasonable tradeoff between performance and accuracy for calculating rise / transit and set times.</param>
+        /// <returns>A list of AASRiseTransitSetDetails2 instances with the details.</returns>
+        public static List<AASRiseTransitSetDetails2> CalculateMoon(double StartJD, double EndJD, double Longitude, double Latitude, double Height,
             double StepInterval)
         {
             //What will be the return value
@@ -396,8 +445,20 @@ namespace AASharp
         }
 
 
-//A version for a stationary object such as a star
-        static List<AASRiseTransitSetDetails2> CalculateStationary(double StartJD, double EndJD, double Alpha, double Delta, double Longitude,
+        //A version for a stationary object such as a star
+        /// <summary>
+        /// This version of the algorithm allows you to calculate the rise / transit and set times of an object which is stationary in the sky with fixed Right Ascension and Declination e.g. a star.
+        /// </summary>
+        /// <param name="StartJD">The Julian Day corresponding to the Dynamical Time for the date when you want to start the calculation for.</param>
+        /// <param name="EndJD">The Julian Day corresponding to the Dynamical Time for the date when you want to end the calculation for.</param>
+        /// <param name="Alpha">The right ascension of the object expressed as decimal hours.</param>
+        /// <param name="Delta">The declination of the object in degrees.</param>
+        /// <param name="Longitude">The geographic longitude of the observer in degrees (Positive west, negative east from Greenwich).</param>
+        /// <param name="Latitude">The geographic latitude of the observer in degrees.</param>
+        /// <param name="h0">The "standard" altitude in degrees i.e. the geometric altitude of the center of the body at the time of the apparent rising or setting. This defaults to -0.5667 which is appropriate for a star. If you would like to take atmospheric pressure &amp; temperature into account for the amount of refraction to use for this parameter, you can use the AASRefraction class to calculate a custom value. If you would like to take the altitude of the observer into account for calculating rise and sets (such as an observer flying in a plane), then you could use the formulae: double h0 = -0.5667 - AASCoordinateTransformation.RadiansToDegrees(acos(6371008 / (6371008 + Height))) where Height is the altitude above sea-level in meters (assuming you also do not want to account for variable temperature and pressure).</param>
+        /// <param name="StepInterval">The step interval in fractions of days to do the calculation for. The default value of 0.007 corresponds to roughly 10 minutes which is a reasonable tradeoff between performance and accuracy for calculating rise / transit and set times.</param>
+        /// <returns>A list of AASRiseTransitSetDetails2 instances with the details.</returns>
+        public static List<AASRiseTransitSetDetails2> CalculateStationary(double StartJD, double EndJD, double Alpha, double Delta, double Longitude,
             double Latitude, double h0, double StepInterval)
         {
             //What will be the return value

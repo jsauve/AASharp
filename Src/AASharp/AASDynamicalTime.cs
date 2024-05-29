@@ -2,11 +2,14 @@ using System;
 
 namespace AASharp
 {
-	#region structs
+    #region structs
 
-	#endregion
+    #endregion
 
-	public static class AASDynamicalTime
+    /// <summary>
+    /// This class provides for conversion between Universal Time (both UT1 and UTC) and Terrestrial Time (TT) aka Terrestrial Dynamical Time (TDT) aka Ephemeris Time (ET). This refers to Chapter 10 in the book.
+    /// </summary>
+    public static class AASDynamicalTime
 	{
 		#region constants
 
@@ -18914,9 +18917,12 @@ namespace AASharp
 			new LeapSecondCoefficient(2457754.5, 37.0,      41317, 0.0       ) //1 January 2017
 		};
 
-		#endregion
+        #endregion
 
-		public static double DeltaT(double JD)
+        /// <param name="JD">The Julian day to calculate Cumulative leap seconds for. Because Leap seconds change so slowly, the time used can be in the TT, the UTC or UT1 timeframes although technically leap seconds are only relevant to the UTC timescale.</param>
+        /// <returns>The difference DeltaT which is equal to TT - UT1 in seconds of time.</returns>
+        /// <exception cref="Exception"></exception>
+        public static double DeltaT(double JD)
 		{
 			//What will be the return value from the method
 			double Delta = 0;
@@ -19082,7 +19088,9 @@ namespace AASharp
 			return Delta;
 		}
 
-		public static double CumulativeLeapSeconds(double JD)
+        /// <param name="JD">The Julian day to calculate Cumulative leap seconds for. Because Leap seconds change so slowly, the time used can be in the TT, the UTC or UT1 timeframes although technically leap seconds are only relevant to the UTC timescale.</param>
+        /// <returns>The cumulative total of Leap seconds which have been applied to this point in seconds of time.</returns>
+        public static double CumulativeLeapSeconds(double JD)
 		{
 			//What will be the return value from the method
 			double LeapSeconds = 0;
@@ -19119,7 +19127,9 @@ namespace AASharp
 			return LeapSeconds;
 		}
 
-		public static double TT2UTC(double JD)
+        /// <param name="JD">The Julian day in the TT timeframe to convert.</param>
+        /// <returns>The Julian day in the UTC timeframe.</returns>
+        public static double TT2UTC(double JD)
 		{
 			//Outside of the range 1 January 1961 to 500 days after the last leap second,
 			//we implement TT2UTC as TT2UT1
@@ -19133,7 +19143,9 @@ namespace AASharp
 			return ((DT - LeapSeconds - 32.184) / 86400.0) + UT1;
 		}
 
-		public static double UTC2TT(double JD)
+        /// <param name="JD">The Julian day in the UTC timeframe to convert.</param>
+        /// <returns>The Julian day in the TT timeframe.</returns>
+        public static double UTC2TT(double JD)
 		{
 			//Outside of the range 1 January 1961 to 500 days after the last leap second,
 			//we implement TT2UTC as TT2UT1
@@ -19147,27 +19159,37 @@ namespace AASharp
 			return UT1 + (DT / 86400.0);
 		}
 
-		public static double TT2TAI(double JD)
+        /// <param name="JD">The Julian day in the TT timeframe to convert.</param>
+        /// <returns>The Julian day in the TAI timeframe.</returns>
+        public static double TT2TAI(double JD)
 		{
 			return JD - (32.184 / 86400.0);
 		}
 
-		public static double TAI2TT(double JD)
+        /// <param name="JD">The Julian day in the TAI timeframe to convert.</param>
+        /// <returns>The Julian day in the TT timeframe.</returns>
+        public static double TAI2TT(double JD)
 		{
 			return JD + (32.184 / 86400.0);
 		}
 
-		public static double TT2UT1(double JD)
+        /// <param name="JD">The Julian day in the TT timeframe to convert.</param>
+        /// <returns>The Julian day in the UT1 timeframe.</returns>
+        public static double TT2UT1(double JD)
 		{
 			return JD - (DeltaT(JD) / 86400.0);
 		}
 
-		public static double UT12TT(double JD)
+        /// <param name="JD">The Julian day in the UT1 timeframe to convert.</param>
+        /// <returns>The Julian day in the TT timeframe.</returns>
+        public static double UT12TT(double JD)
 		{
 			return JD + (DeltaT(JD) / 86400.0);
 		}
 
-		public static double UT1MinusUTC(double JD)
+        /// <param name="JD">The Julian day in the UT1 timeframe.</param>
+        /// <returns>The difference between UT1 and UTC in seconds of time.</returns>
+        public static double UT1MinusUTC(double JD)
 		{
 			double JDUTC = JD + ((DeltaT(JD) - CumulativeLeapSeconds(JD) - 32.184) / 86400);
 			return (JD - JDUTC) * 86400;

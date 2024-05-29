@@ -2,6 +2,9 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for calculation of positions of the principle moons of Saturn. This refers to Chapter 46 in the book.
+    /// </summary>
     public static class AASSaturnMoons
     {
         private static void HelperSubroutine(double e, double lambdadash, double p, double a, double omega, double i, double c1, double s1, ref double r, ref double lambda, ref double gamma, ref double w)
@@ -496,6 +499,9 @@ namespace AASharp
             return details;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>An instance of AASSaturnMoonsDetails class with the details.</returns>
         public static AASSaturnMoonsDetails Calculate(double JD, bool bHighPrecision)
         {
             //Calculate the position of the Sun

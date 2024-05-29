@@ -2,8 +2,16 @@ using System.Collections.Generic;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class uses interpolation to calculate the same details as those provided with the existing AASEquinoxesAndSolstices class.
+    /// </summary>
     public static class AASEquinoxesAndSolstices2
     {
+        /// <param name="StartJD">The Julian Day corresponding to the Dynamical Time for the date when you want to start the calculation for.</param>
+        /// <param name="EndJD">The Julian Day corresponding to the Dynamical Time for the date when you want to end the calculation for.</param>
+        /// <param name="StepInterval">The step interval in fractions of days to do the calculation for. The default value of 0.007 corresponds to roughly 10 minutes which is a reasonable tradeoff between performance and accuracy.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>A list of instances of the class AASEquinoxSolsticeDetails2.</returns>
         public static List<AASEquinoxSolsticeDetails2> Calculate(double StartJD, double EndJD, double StepInterval = 0.007, bool bHighPrecision = false)
         {
             //What will be the return value

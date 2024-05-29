@@ -2,8 +2,26 @@ using System;
 
 namespace AASharp
 {
-    public static class AASEclipticalElements
-    {
+    /// <summary>
+    /// This class provides the algorithms which map ecliptical elements from one equinox to another. This refers to Chapter 24 in the book.
+    /// </summary>
+    public static class AASEclipticalElements {
+        /// <param name="i0">The inclination in degrees to reduce.</param>
+        /// <param name="w0">The argument of perihelion in degrees to reduce.</param>
+        /// <param name="omega0">The longitude of the ascending node in degrees to reduce.</param>
+        /// <param name="JD0">The initial epoch in Dynamical time to calculate for.</param>
+        /// <param name="JD">The epoch in Dynamical time to reduce the elements to.</param>
+        /// <returns>A struct containing the following values:
+        /// <para>
+        /// i - The reduced inclination in degrees.
+        /// </para>
+        /// <para>
+        /// w - The reduced argument of perihelion in degrees.
+        /// </para>
+        /// <para>
+        /// omega - The reduced longitude of the ascending node in degrees
+        /// </para>
+        /// </returns>
         public static AASEclipticalElementDetails Calculate(double i0, double w0, double omega0, double JD0, double JD)
         {
             double T = (JD0 - 2451545.0) / 36525;
@@ -53,6 +71,20 @@ namespace AASharp
             return details;
         }
 
+        /// <param name="i0">The inclination in degrees to reduce.</param>
+        /// <param name="w0">The argument of perihelion in degrees to reduce.</param>
+        /// <param name="omega0">The longitude of the ascending node in degrees to reduce.</param>
+        /// <returns>A struct containing the following values:
+        /// <para>
+        /// i - The reduced inclination in degrees.
+        /// </para>
+        /// <para>
+        /// w - The reduced argument of perihelion in degrees.
+        /// </para>
+        /// <para>
+        /// omega - The reduced longitude of the ascending node in degrees
+        /// </para>
+        /// </returns>
         public static AASEclipticalElementDetails FK4B1950ToFK5J2000(double i0, double w0, double omega0)
         {
             //convert to radians

@@ -2,6 +2,9 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for calculation of Nutation and the Obliquity of the Ecliptic. This refers to Chapter 22 and parts of Chapter 23 in the book.
+    /// </summary>
     public static class AASNutation
     {
         internal static readonly NutationCoefficient[] g_NutationCoefficients =
@@ -71,6 +74,8 @@ namespace AASharp
             new NutationCoefficient(  2, -1,  0,  2,  2,     -3,        0,      0,       0    )
         };
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>The nutation in ecliptic longitude in arc seconds of a degree.</returns>
         public static double NutationInLongitude(double JD)
         {
             double T = (JD - 2451545) / 36525;
@@ -106,6 +111,8 @@ namespace AASharp
             return value;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>The nutation in obliquity in arc seconds of a degree.</returns>
         public static double NutationInObliquity(double JD)
         {
             double T = (JD - 2451545) / 36525;
@@ -141,6 +148,8 @@ namespace AASharp
             return value;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>The mean obliquity of the ecliptic in degrees.</returns>
         public static double MeanObliquityOfEcliptic(double JD)
         {
             double U = (JD - 2451545) / 3652500;
@@ -167,11 +176,22 @@ namespace AASharp
             + AASCoordinateTransformation.DMSToDegrees(0, 0, 2.45) * U10;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>The true obliquity of the ecliptic in degrees.</returns>
         public static double TrueObliquityOfEcliptic(double JD)
         {
             return MeanObliquityOfEcliptic(JD) + AASCoordinateTransformation.DMSToDegrees(0, 0, NutationInObliquity(JD));
         }
 
+        /// <summary>
+        /// This refers to algorithm 23.1 on page 151.
+        /// </summary>
+        /// <param name="Alpha">The right ascension of the position in hour angles.</param>
+        /// <param name="Delta">The declination of the position in degrees.</param>
+        /// <param name="Obliquity">The obliquity of the Ecliptic in degrees.</param>
+        /// <param name="NutationInLongitude">The nutation in longitude in arc seconds of a degree.</param>
+        /// <param name="NutationInObliquity">The nutation in obliquity in arc seconds of a degree.</param>
+        /// <returns>The nutation in right ascension in arc seconds of a degree.</returns>
         public static double NutationInRightAscension(double Alpha, double Delta, double Obliquity, double NutationInLongitude, double NutationInObliquity)
         {
             //Convert to radians
@@ -182,6 +202,14 @@ namespace AASharp
             return (Math.Cos(Obliquity) + Math.Sin(Obliquity) * Math.Sin(Alpha) * Math.Tan(Delta)) * NutationInLongitude - Math.Cos(Alpha) * Math.Tan(Delta) * NutationInObliquity;
         }
 
+        /// <summary>
+        /// This refers to algorithm 23.1 on page 151.
+        /// </summary>
+        /// <param name="Alpha">The right ascension of the position in hour angles.</param>
+        /// <param name="Obliquity">The obliquity of the Ecliptic in degrees.</param>
+        /// <param name="NutationInLongitude">The nutation in longitude in arc seconds of a degree.</param>
+        /// <param name="NutationInObliquity">The nutation in obliquity in arc seconds of a degree.</param>
+        /// <returns>The nutation in declination in arc seconds of a degree.</returns>
         public static double NutationInDeclination(double Alpha, double Obliquity, double NutationInLongitude, double NutationInObliquity)
         {
             //Convert to radians

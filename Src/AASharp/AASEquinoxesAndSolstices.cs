@@ -2,8 +2,17 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides the algorithms to calculate the dates of the Equinoxes and Solstices. This refers to Chapter 27 in the book.
+    /// </summary>
     public static class AASEquinoxesAndSolstices
     {
+        /// <summary>
+        /// Calculates the date of Spring Equinox.
+        /// </summary>
+        /// <param name="Year">The year to calculate the occurrence for. Note that this method refers to "Northward Equinox" instead of "Spring Equinox" to avoid a northern hemisphere-specific bias.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>The date in Dynamical time when the sun crosses the equator in a northerly direction.</returns>
         public static double NorthwardEquinox(long Year, bool bHighPrecision)
         {
             //calculate the approximate date
@@ -37,6 +46,12 @@ namespace AASharp
             return JDE;
         }
 
+        /// <summary>
+        /// Calculates the date of Summer Solstice.
+        /// </summary>
+        /// <param name="Year">The year to calculate the occurrence for. Note that this method refers to "Northern Solstice" instead of "Summer Solstice" to avoid a northern hemisphere-specific bias.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>The date in Dynamical time when the sun reaches its highest relative to the celestial equator and appears directly over the Tropic of Cancer.</returns>
         public static double NorthernSolstice(long Year, bool bHighPrecision)
         {
             //calculate the approximate date
@@ -70,6 +85,12 @@ namespace AASharp
             return JDE;
         }
 
+        /// <summary>
+        /// Calculates the date of Autumn (Fall) equinox.
+        /// </summary>
+        /// <param name="Year">The year to calculate the occurrence for. Note that this method refers to "Southward Equinox" instead of "Fall or Autumn equinox" to avoid a northern hemisphere-specific bias.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>The date in Dynamical time when the Southward Equinox occurs.</returns>
         public static double SouthwardEquinox(long Year, bool bHighPrecision)
         {
             //calculate the approximate date
@@ -103,6 +124,12 @@ namespace AASharp
             return JDE;
         }
 
+        /// <summary>
+        /// Calculates the date of Winter Solstice.
+        /// </summary>
+        /// <param name="Year">The year to calculate the occurrence for. Note that this method refers to "Southern Solstice" instead of "Winter Solstice" to avoid a northern hemisphere-specific bias.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>The date in Dynamical time when the sun reaches its lowest relative to the celestial equator and appears directly over the Tropic of Capricorn.</returns>
         public static double SouthernSolstice(long Year, bool bHighPrecision)
         {
             //calculate the approximate date
@@ -136,6 +163,10 @@ namespace AASharp
             return JDE;
         }
 
+        /// <param name="Year">The year to calculate for.</param>
+        /// <param name="bNorthernHemisphere">true to indicate the observer is in the northern hemisphere, while false means the southern hemisphere.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>The length of the astronomical Spring season in days.</returns>
         public static double LengthOfSpring(long Year, bool bNorthernHemisphere, bool bHighPrecision)
         {
             if (bNorthernHemisphere)
@@ -144,6 +175,10 @@ namespace AASharp
                 return SouthernSolstice(Year, bHighPrecision) - SouthwardEquinox(Year, bHighPrecision);
         }
 
+        /// <param name="Year">The year to calculate for.</param>
+        /// <param name="bNorthernHemisphere">true to indicate the observer is in the northern hemisphere, while false means the southern hemisphere.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>The length of the astronomical Summer season in days.</returns>
         public static double LengthOfSummer(long Year, bool bNorthernHemisphere, bool bHighPrecision)
         {
             if (bNorthernHemisphere)
@@ -155,6 +190,10 @@ namespace AASharp
             } 
         }
 
+        /// <param name="Year">The year to calculate for.</param>
+        /// <param name="bNorthernHemisphere">true to indicate the observer is in the northern hemisphere, while false means the southern hemisphere.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>The length of the astronomical Autumn season in days.</returns>
         public static double LengthOfAutumn(long Year, bool bNorthernHemisphere, bool bHighPrecision)
         {
             if (bNorthernHemisphere)
@@ -163,6 +202,10 @@ namespace AASharp
                 return NorthernSolstice(Year, bHighPrecision) - NorthwardEquinox(Year, bHighPrecision);
         }
 
+        /// <param name="Year">The year to calculate for.</param>
+        /// <param name="bNorthernHemisphere">true to indicate the observer is in the northern hemisphere, while false means the southern hemisphere.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>The length of the astronomical Winter season in days.</returns>
         public static double LengthOfWinter(long Year, bool bNorthernHemisphere, bool bHighPrecision)
         {
             if (bNorthernHemisphere)

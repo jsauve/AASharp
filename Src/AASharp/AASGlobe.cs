@@ -2,8 +2,14 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides some basic algorithms related to the figure of the Earth's surface.
+    /// </summary>
     public static class AASGlobe
     {
+        /// <param name="GeographicalLatitude">The latitude of the position in degrees.</param>
+        /// <param name="Height">The observer's height above sea level in meters</param>
+        /// <returns>A numeric value of your position relative to the centre of the earth expressed in units of the equatorial radius. For more information refer to the diagram on Page 81.</returns>
         public static double RhoSinThetaPrime(double GeographicalLatitude, double Height)
         {
             GeographicalLatitude = AASCoordinateTransformation.DegreesToRadians(GeographicalLatitude);
@@ -12,6 +18,9 @@ namespace AASharp
             return 0.99664719 * Math.Sin(U) + (Height / 6378140 * Math.Sin(GeographicalLatitude));
         }
 
+        /// <param name="GeographicalLatitude">The latitude of the position in degrees.</param>
+        /// <param name="Height">The observer's height above sea level in meters</param>
+        /// <returns>A numeric value of your position relative to the centre of the earth expressed in units of the equatorial radius. For more information refer to the diagram on Page 81.</returns>
         public static double RhoCosThetaPrime(double GeographicalLatitude, double Height)
         {
             //Convert from degress to radians
@@ -21,6 +30,8 @@ namespace AASharp
             return Math.Cos(U) + (Height / 6378140 * Math.Cos(GeographicalLatitude));
         }
 
+        /// <param name="GeographicalLatitude">The latitude of the position in degrees.</param>
+        /// <returns>The radius of parallel of latitude expressed in kilometres.</returns>
         public static double RadiusOfParallelOfLatitude(double GeographicalLatitude)
         {
             //Convert from degress to radians
@@ -30,6 +41,8 @@ namespace AASharp
             return (6378.14 * Math.Cos(GeographicalLatitude)) / (Math.Sqrt(1 - 0.0066943847614084 * sinGeo * sinGeo));
         }
 
+        /// <param name="GeographicalLatitude">The latitude of the position in degrees.</param>
+        /// <returns>The radius of curvature of latitude expressed in kilometres.</returns>
         public static double RadiusOfCurvature(double GeographicalLatitude)
         {
             //Convert from degress to radians
@@ -39,6 +52,11 @@ namespace AASharp
             return (6378.14 * (1 - 0.0066943847614084)) / Math.Pow((1 - 0.0066943847614084 * sinGeo * sinGeo), 1.5);
         }
 
+        /// <param name="GeographicalLatitude1">The latitude of the first point in degrees.</param>
+        /// <param name="GeographicalLongitude1">The longitude of the first point in degrees (Positive west, negative east from Greenwich).</param>
+        /// <param name="GeographicalLatitude2">The latitude of the second point in degrees.</param>
+        /// <param name="GeographicalLongitude2">The longitude of the second point in degrees (Positive west, negative east from Greenwich).</param>
+        /// <returns>The shortest distance between two known points on the surface of the Earth expressed in kilometres.</returns>
         public static double DistanceBetweenPoints(double GeographicalLatitude1, double GeographicalLongitude1, double GeographicalLatitude2, double GeographicalLongitude2)
         {
             //Convert from degress to radians

@@ -2,8 +2,13 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for the calculation of sidereal time. This refers to Chapter 12 in the book.
+    /// </summary>
     public static class AASSidereal
     {
+        /// <param name="JD">The Julian Day in Universal time to calculate for.</param>
+        /// <returns>The Mean Greenwich Sidereal Time, that is, the Greenwich hour angle of the mean vernal point (the intersection of the ecliptic of the date with the mean equator of the date), expressed in hours.</returns>
         public static double MeanGreenwichSiderealTime(double JD)
         {
             //Get the Julian day for the same day at midnight
@@ -34,6 +39,8 @@ namespace AASharp
             return AASCoordinateTransformation.MapTo0To24Range(Value);
         }
 
+        /// <param name="JD">The Julian Day in Universal time to calculate for.</param>
+        /// <returns>The Apparent Greenwich Sidereal Time, that is, the Greenwich hour angle of the true vernal equinox, expressed in hours.</returns>
         public static double ApparentGreenwichSiderealTime(double JD)
         {
             double MeanObliquity = AASNutation.MeanObliquityOfEcliptic(JD);

@@ -1,6 +1,9 @@
 namespace AASharp
 {
-    public class  AASEquinoxSolsticeDetails2
+    /// <summary>
+    /// List of instances of this class is returned by the AASEquinoxesAndSolstices2.Calculate method.
+    /// </summary>
+    public class AASEquinoxSolsticeDetails2
     {
         public enum Type
         {

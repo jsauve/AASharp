@@ -1,5 +1,8 @@
 namespace AASharp
 {
+    /// <summary>
+    /// Instances of this class are returned by the AASMoonNodes2.Calculate method.
+    /// </summary>
     public class AASMoonNodesDetails2
     {
         public enum Type

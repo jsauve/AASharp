@@ -2,8 +2,15 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for conversion between apparent and true altitude above the horizon. This refers to Chapter 16 in the book.
+    /// </summary>
     public static class AASRefraction
     {
+        /// <param name="Altitude">The apparent altitude in degrees.</param>
+        /// <param name="Pressure">The atmospheric pressure in millibars</param>
+        /// <param name="Temperature">The air temperature in degrees Celsius.</param>
+        /// <returns>the refraction in degrees.</returns>
         public static double RefractionFromApparent(double Altitude, double Pressure = 1010, double Temperature = 10)
         {
             //return a constant value from this method if the altitude is below a specific value
@@ -16,6 +23,10 @@ namespace AASharp
             return value;
         }
 
+        /// <param name="Altitude">The true altitude in degrees.</param>
+        /// <param name="Pressure">The atmospheric pressure in millibars</param>
+        /// <param name="Temperature">The air temperature in degrees Celsius.</param>
+        /// <returns>the refraction in degrees.</returns>
         public static double RefractionFromTrue(double Altitude, double Pressure = 1010, double Temperature = 10)
         {
             //return a constant value from this method if the altitude is below a specific value

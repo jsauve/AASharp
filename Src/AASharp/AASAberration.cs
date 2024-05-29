@@ -2,6 +2,9 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for calculation of the effects of aberration. This refers to Chapter 23 in the book.
+    /// </summary>
     public static class AASAberration
     {
         #region coefficients
@@ -48,7 +51,10 @@ namespace AASharp
         };
 
         #endregion
-        
+
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>3D rectangular heliocentric equatorial velocity of the Earth based on the fixed equator and equinox of FK5 for the epoch J2000.0. The units of each coordinate returned are in 10 to the power of -8 astronomical units per day.</returns>
         public static AAS3DCoordinate EarthVelocity(double JD, bool bHighPrecision)
         {
             AAS3DCoordinate velocity = new AAS3DCoordinate();
@@ -102,6 +108,11 @@ namespace AASharp
             return velocity;
         }
 
+        /// <param name="Alpha">The right ascension expressed as an hour angle.</param>
+        /// <param name="Delta">The declination in degrees.</param>
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>Returns the correction due to aberration. The X value will contain the right ascension correction expressed as an hour angle and Y will contain the declination correction in degrees.</returns>
         public static AAS2DCoordinate EquatorialAberration(double Alpha, double Delta, double JD, bool bHighPrecision)
         {
             //Convert to radians
@@ -121,6 +132,11 @@ namespace AASharp
             return aberration;
         }
 
+        /// <param name="Lambda">The ecliptic longitude in degrees.</param>
+        /// <param name="Beta">The ecliptic latitude in degrees.</param>
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>Returns the correction due to aberration. The X value will contain the ecliptic longitude correction in degrees and Y will contain the ecliptic latitude correction in degrees.</returns>
         public static AAS2DCoordinate EclipticAberration(double Lambda, double Beta, double JD, bool bHighPrecision)
         {
             //What is the return value

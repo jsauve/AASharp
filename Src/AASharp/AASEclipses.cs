@@ -2,6 +2,9 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for calculation of Solar and Lunar Eclipses. This refers to Chapter 54 in the book.
+    /// </summary>
     public static class AASEclipses
     {
         private static AASSolarEclipseDetails Calculate(double k, ref double Mdash)
@@ -146,6 +149,28 @@ namespace AASharp
             return details;
         }
 
+        /// <param name="k">The same K term as returned from AASMoonPhases.K. For a solar eclipse, this value should be a value without any decimals as a solar eclipse refers to a New Moon.</param>
+        /// <returns>A struct containing the following values:
+        /// <para>
+        /// Flags - A bitmask which indicates the type of solar eclipse which has occurred.See the constant values defined in AASSolarEclopseDetails for more information.
+        /// </para>
+        /// <para>
+        /// TimeOfMaximumEclipse - The date in Dynamical time of maximum eclipse.
+        /// </para>
+        /// <para>
+        /// F - The moons argument of Latitude in degrees at the time of the eclipse.
+        /// </para>
+        /// <para>
+        /// u - The U term for the eclipse.
+        /// </para>
+        /// <para>
+        /// gamma - The gamma term for the eclipse.
+        /// </para>
+        /// <para>
+        /// GreatestMagnitude - The greatest magnitude of the eclipse if the eclipse is partial.
+        /// </para>
+        /// </returns>
+        /// <exception cref="NotSupportedException"></exception>
         public static AASSolarEclipseDetails CalculateSolar(double k)
         {
 #if DEBUG
@@ -158,7 +183,46 @@ namespace AASharp
             return Calculate(k, ref Mdash);
         }
 
-
+        /// <param name="k">The same K term as returned from AASMoonPhases.K. For a lunar eclipse, this value should be decimal value incremented by 0.5 as a lunar eclipse refers to a Full Moon.</param>
+        /// <returns>A struct containing the following values:
+        /// <para>
+        /// bEclipse - true if a lunar eclipse occurs at this Full Moon.
+        /// </para>
+        /// <para>
+        /// TimeOfMaximumEclipse - The date in Dynamical time of maximum eclipse.
+        /// </para>
+        /// <para>
+        /// F - The moons argument of Latitude in degrees at the time of the eclipse.
+        /// </para>
+        /// <para>
+        /// u - The U term for the eclipse.
+        /// </para>
+        /// <para>
+        /// gamma - The gamma term for the eclipse.
+        /// </para>
+        /// <para>
+        /// PenumbralRadii - The radii of the eclipse for the penumbra in equatorial earth radii.
+        /// </para>
+        /// <para>
+        /// UmbralRadii - The radii of the eclipse for the umbra in equatorial earth radii.
+        /// </para>
+        /// <para>
+        /// PenumbralMagnitude - The magnitude of the eclipse if the eclipse is penumbral.
+        /// </para>
+        /// <para>
+        /// UmbralMagnitude - The magnitude of the eclipse if the eclipse is umbral.
+        /// </para>
+        /// <para>
+        /// PartialPhaseSemiDuration - The semi-duration of the eclipse during the partial phase.
+        /// </para>
+        /// <para>
+        /// TotalPhaseSemiDuration - The semi-duration of the eclipse during the total phase.
+        /// </para>
+        /// <para>
+        /// PartialPhasePenumbralSemiDuration - The semi-duration of the partial phase in the penumbra.
+        /// </para>
+        /// </returns>
+        /// <exception cref="NotSupportedException"></exception>
         public static AASLunarEclipseDetails CalculateLunar(double k)
         {
 #if DEBUG

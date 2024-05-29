@@ -2,6 +2,9 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides the algorithms which obtain the position of the Moon. This refers to Chapter 47 in the book.
+    /// </summary>
     public static class AASMoon
     {
         #region coefficients
@@ -261,9 +264,11 @@ namespace AASharp
           115,
           107
         };
-        
+
         #endregion
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the mean longitude of the Moon in degrees.</returns>
         public static double MeanLongitude(double JD)
         {
             double T = (JD - 2451545) / 36525;
@@ -273,6 +278,8 @@ namespace AASharp
             return AASCoordinateTransformation.MapTo0To360Range(218.3164477 + 481267.88123421 * T - 0.0015786 * Tsquared + Tcubed / 538841 - T4 / 65194000);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the mean elongation of the Moon in degrees.</returns>
         public static double MeanElongation(double JD)
         {
             double T = (JD - 2451545) / 36525;
@@ -282,6 +289,8 @@ namespace AASharp
             return AASCoordinateTransformation.MapTo0To360Range(297.8501921 + 445267.1114034 * T - 0.0018819 * Tsquared + Tcubed / 545868 - T4 / 113065000);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the mean anomaly of the Moon in degrees.</returns>
         public static double MeanAnomaly(double JD)
         {
             double T = (JD - 2451545) / 36525;
@@ -291,6 +300,8 @@ namespace AASharp
             return AASCoordinateTransformation.MapTo0To360Range(134.9633964 + 477198.8675055 * T + 0.0087414 * Tsquared + Tcubed / 69699 - T4 / 14712000);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the argument of latitude (mean distance of the Moon from its ascending node) in degrees.</returns>
         public static double ArgumentOfLatitude(double JD)
         {
             double T = (JD - 2451545) / 36525;
@@ -300,6 +311,8 @@ namespace AASharp
             return AASCoordinateTransformation.MapTo0To360Range(93.2720950 + 483202.0175233 * T - 0.0036539 * Tsquared - Tcubed / 3526000 + T4 / 863310000);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the ecliptic longitude in degrees referred to the mean dynamical ecliptic and equinox of the date.</returns>
         public static double EclipticLongitude(double JD)
         {
             double Ldash = MeanLongitude(JD);
@@ -349,6 +362,8 @@ namespace AASharp
             return AASCoordinateTransformation.MapTo0To360Range(LdashDegrees + SigmaL/1000000 + NutationInLong/3600);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the radius vector in kilometres.</returns>
         public static double RadiusVector(double JD)
         {
             double D = MeanElongation(JD);
@@ -379,6 +394,8 @@ namespace AASharp
             return 385000.56 + SigmaR/1000;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the ecliptic latitude in degrees referred to the mean dynamical ecliptic and equinox of the date.</returns>
         public static double EclipticLatitude(double JD)
         {
             double Ldash = MeanLongitude(JD);
@@ -427,16 +444,22 @@ namespace AASharp
             return SigmaB/1000000;
         }
 
+        /// <param name="RadiusVector">The distance to the object (e.g. Moon) in kilometres.</param>
+        /// <returns>the parallax of the object in degrees.</returns>
         public static double RadiusVectorToHorizontalParallax(double RadiusVector)
         {
             return AASCoordinateTransformation.RadiansToDegrees(Math.Asin(6378.14 / RadiusVector));
         }
 
+        /// <param name="Parallax">the parallax of the object (e.g. Moon) in degrees.</param>
+        /// <returns>The distance to the object in kilometres.</returns>
         public static double HorizontalParallaxToRadiusVector(double Parallax)
         {
             return 6378.14 / Math.Sin(AASCoordinateTransformation.DegreesToRadians(Parallax));
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the mean longitude of the ascending node of the Moon in degrees.</returns>
         public static double MeanLongitudeAscendingNode(double JD)
         {
             double T = (JD - 2451545) / 36525;
@@ -446,6 +469,8 @@ namespace AASharp
             return AASCoordinateTransformation.MapTo0To360Range(125.0445479 - 1934.1362891 * T + 0.0020754 * Tsquared + Tcubed / 467441 - T4 / 60616000);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the mean longitude of the perigee of the lunar orbit in degrees.</returns>
         public static double MeanLongitudePerigee(double JD)
         {
             double T = (JD - 2451545) / 36525;
@@ -455,6 +480,8 @@ namespace AASharp
             return AASCoordinateTransformation.MapTo0To360Range(83.3532465 + 4069.0137287 * T - 0.0103200 * Tsquared - Tcubed / 80053 + T4 / 18999000);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the true longitude of the ascending node of the lunar orbit in degrees.</returns>
         public static double TrueLongitudeAscendingNode(double JD)
         {
             double TrueAscendingNode = MeanLongitudeAscendingNode(JD);

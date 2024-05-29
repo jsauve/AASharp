@@ -2,8 +2,36 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for calculation of the position of a Binary Star system. This refers to Chapter 57 in the book.
+    /// </summary>
     public static class AASBinaryStar
     {
+        /// <param name="t">The time given in years and decimals to perform the calculation for.</param>
+        /// <param name="P">The period of revolution expressed in mean solar years.</param>
+        /// <param name="T">The time of periastron passage given in years and decimals.</param>
+        /// <param name="e">Eccentricity of the true orbit.</param>
+        /// <param name="a">The semi major axis expressed in seconds of a degree.</param>
+        /// <param name="i">The inclination of the plane of the true orbit in degrees to the plane at right angles to the line of sight.</param>
+        /// <param name="omega">The position angle of the ascending node in degrees.</param>
+        /// <param name="w">The longitude of the periastron in degrees.</param>
+        /// <returns>A class containing
+        /// <para>
+        /// r - The radius vector of the secondary star in arc seconds of a degree.
+        /// </para>
+        /// <para>
+        /// Theta - The apparent position angle of the secondary star in degrees.
+        /// </para>
+        /// <para>
+        /// Rho - The angular separation between the two stars in arc seconds of a degree.
+        /// </para>
+        /// <para>
+        /// x - The x cartesian coordinate value of the secondary star in arc seconds of a degree.
+        /// </para>
+        /// <para>
+        /// y - The y cartesian coordinate value of the secondary star in arc seconds of a degree.
+        /// </para>
+        /// </returns>
         public static AASBinaryStarDetails Calculate(double t, double P, double T, double e, double a, double i, double omega, double w)
         {
             double n = 360 / P;
@@ -28,6 +56,10 @@ namespace AASharp
             return details;
         }
 
+        /// <param name="e">Eccentricity of the true orbit.</param>
+        /// <param name="i">The inclination of the plane of the true orbit in degrees to the plane at right angles to the line of sight.</param>
+        /// <param name="w">The longitude of the periastron in degrees.</param>
+        /// <returns>The apparent eccentricity of the binary star orbit</returns>
         public static double ApparentEccentricity(double e, double i, double w)
         {
             i = AASCoordinateTransformation.DegreesToRadians(i);

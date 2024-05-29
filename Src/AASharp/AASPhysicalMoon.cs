@@ -2,6 +2,9 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for calculation of various physical parameters related to the Moon. This refers to Chapter 53 in the book.
+    /// </summary>
     public static class AASPhysicalMoon
     {
         public static void CalculateOpticalLibration(double JD, double Lambda, double Beta, ref double ldash, ref double bdash, ref double ldash2, ref double bdash2, ref double epsilon, ref double omega, ref double DeltaU, ref double sigma, ref double I, ref double rho)
@@ -138,6 +141,11 @@ namespace AASharp
             return details;
         }
 
+        /// <summary>
+        /// Calculates the physical parameters referred to the centre of the Earth
+        /// </summary>
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>An instance of AASPhysicalMoonDetails class with the details.</returns>
         public static AASPhysicalMoonDetails CalculateGeocentric(double JD)
         {
             double Lambda = 0;
@@ -147,6 +155,13 @@ namespace AASharp
             return CalculateHelper(JD, ref Lambda, ref Beta, ref epsilon, ref Equatorial);
         }
 
+        /// <summary>
+        /// Calculates the physical parameters referred to the specified position on the Earth
+        /// </summary>
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="Longitude">The topocentric longitude in degrees of the position to perform the calculation for.</param>
+        /// <param name="Latitude">The topocentric latitude in degrees of the position to perform the calculation for.</param>
+        /// <returns>An instance of AASPhysicalMoonDetails class with the details.</returns>
         public static AASPhysicalMoonDetails CalculateTopocentric(double JD, double Longitude, double Latitude)
         {
             //First convert to radians
@@ -183,6 +198,9 @@ namespace AASharp
             return details;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>An instance of AASSelenographicMoonDetails class with the details.</returns>
         public static AASSelenographicMoonDetails CalculateSelenographicPositionOfSun(double JD, bool bHighPrecision)
         {
             double R = AASEarth.RadiusVector(JD, bHighPrecision) * 149597970;
@@ -216,6 +234,11 @@ namespace AASharp
             return details;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="Longitude">The selenographic longitude in degrees of the position to perform the calculation for.</param>
+        /// <param name="Latitude">The selenographic latitude in degrees of the position to perform the calculation for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>Returns the altitude in degrees of the Sun at the specified lunar location.</returns>
         public static double AltitudeOfSun(double JD, double Longitude, double Latitude, bool bHighPrecision)
         {
             //Calculate the selenographic details
@@ -249,11 +272,21 @@ namespace AASharp
             return JDResult;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="Longitude">The selenographic longitude in degrees of the position to perform the calculation for.</param>
+        /// <param name="Latitude">The selenographic latitude in degrees of the position to perform the calculation for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>Returns the nearest Julian date in Dynamical time when the Sun rises at the specified lunar location. This value will always be earlier than the parameter "JD"</returns>
         public static double TimeOfSunrise(double JD, double Longitude, double Latitude, bool bHighPrecision)
         {
             return SunriseSunsetHelper(JD, Longitude, Latitude, true, bHighPrecision);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="Longitude">The selenographic longitude in degrees of the position to perform the calculation for.</param>
+        /// <param name="Latitude">The selenographic latitude in degrees of the position to perform the calculation for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>Returns the nearest Julian date in Dynamical time when the Sun sets at the specified lunar location. This value will always be later than the parameter "JD"</returns>
         public static double TimeOfSunset(double JD, double Longitude, double Latitude, bool bHighPrecision)
         {
             return SunriseSunsetHelper(JD, Longitude, Latitude, false, bHighPrecision);

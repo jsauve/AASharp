@@ -2,13 +2,22 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for calculation of the position of an object in an elliptical orbit. This refers to Chapter 33 in the book.
+    /// </summary>
     public static class AASElliptical
     {
+        /// <param name="Distance">The distance in astronomical units to convert.</param>
+        /// <returns>The light travel time in days corresponding to the distance.</returns>
         public static double DistanceToLightTime(double Distance)
         {
             return Distance * 0.0057755183;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="ellipticalObject">An enum specifying which object (Planet except Earth or the Sun) the calculation is to be carried out for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>An instance of the class AASEllipticalPlanetaryDetails with details.</returns>
         public static AASEllipticalPlanetaryDetails Calculate(double JD, AASEllipticalObject ellipticalObject, bool bHighPrecision)
         {
             //What will the the return value
@@ -189,16 +198,25 @@ namespace AASharp
             return details;
         }
 
+        /// <param name="q">The perihelion distance in astronomical units.</param>
+        /// <param name="e">The eccentricity of the orbit.</param>
+        /// <returns>The semi major axis of the orbit in astronomical units.</returns>
         public static double SemiMajorAxisFromPerihelionDistance(double q, double e)
         {
             return q / (1 - e);
         }
 
+        /// <param name="a">The semi major axis of the orbit in astronomical units.</param>
+        /// <returns>The mean motion in degrees / day.</returns>
         public static double MeanMotionFromSemiMajorAxis(double a)
         {
             return 0.9856076686 / (a * Math.Sqrt(a));
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="elements">The orbital elements of elliptical object.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>An instance of the class AASEllipticalObjectDetails with details.</returns>
         public static AASEllipticalObjectDetails Calculate(double JD, ref AASEllipticalObjectElements elements, bool bHighPrecision)
         {
             double Epsilon = AASNutation.MeanObliquityOfEcliptic(elements.JDEquinox);
@@ -308,32 +326,61 @@ namespace AASharp
             return details;
         }
 
+        /// <param name="r">The distance of the object from the Sun in astronomical units.</param>
+        /// <param name="a">The semi major axis of the orbit in astronomical units.</param>
+        /// <returns>The instantaneous velocity of the object in kilometres per second.</returns>
         public static double InstantaneousVelocity(double r, double a)
         {
             return 42.1219 * Math.Sqrt((1 / r) - (1 / (2 * a)));
         }
 
+        /// <param name="e">The eccentricity of the orbit.</param>
+        /// <param name="a">The semi major axis of the orbit in astronomical units.</param>
+        /// <returns>The velocity of the object in kilometres per second at perihelion.</returns>
         public static double VelocityAtPerihelion(double e, double a)
         {
             return 29.7847 / Math.Sqrt(a) * Math.Sqrt((1 + e) / (1 - e));
         }
 
+        /// <param name="e">The eccentricity of the orbit.</param>
+        /// <param name="a">The semi major axis of the orbit in astronomical units.</param>
+        /// <returns>The velocity of the object in kilometres per second at aphelion.</returns>
         public static double VelocityAtAphelion(double e, double a)
         {
             return 29.7847 / Math.Sqrt(a) * Math.Sqrt((1 - e) / (1 + e));
         }
 
+        /// <param name="e">The eccentricity of the orbit.</param>
+        /// <param name="a">The semi major axis of the orbit in astronomical units.</param>
+        /// <returns>The length of the eclipse in astronomical units.</returns>
         public static double LengthOfEllipse(double e, double a)
         {
             double b = a * Math.Sqrt(1 - e * e);
             return AASCoordinateTransformation.PI() * (3 * (a + b) - Math.Sqrt((a + 3 * b) * (3 * a + b)));
         }
 
+        /// <summary>
+        /// This refers to algorithm 33.13 on page 231
+        /// </summary>
+        /// <param name="g">The absolute magnitude of the comet.</param>
+        /// <param name="delta">Distance of the comet to the Earth in astronomical units.</param>
+        /// <param name="k">A constant which differs from one comet to another.</param>
+        /// <param name="r">Distance of the comet from the Sun in astronomical units</param>
+        /// <returns>The magnitude of the comet.</returns>
         public static double CometMagnitude(double g, double delta, double k, double r)
         {
             return g + 5 * Math.Log10(delta) + k * Math.Log10(r);
         }
 
+        /// <summary>
+        /// This refers to algorithm 33.14 on page 231
+        /// </summary>
+        /// <param name="H">The mean absolute visual magnitude of the minor planet.</param>
+        /// <param name="delta">Distance of the minor planet to the Earth in astronomical units.</param>
+        /// <param name="G">The so called "slope parameter" which differs from one minor planet to another.</param>
+        /// <param name="r">Distance of the minor planet from the Sun in astronomical units</param>
+        /// <param name="PhaseAngle">the Sun - body - Earth angle in degrees</param>
+        /// <returns>The magnitude of the minor planet.</returns>
         public static double MinorPlanetMagnitude(double H, double delta, double G, double r, double PhaseAngle)
         {
             //Convert from degrees to radians

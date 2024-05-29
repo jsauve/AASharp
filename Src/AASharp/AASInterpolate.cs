@@ -2,8 +2,19 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides the algorithms for interpolation. This refers to Chapter 3 in the book.
+    /// </summary>
     public static class AASInterpolate
     {
+        /// <summary>
+        /// Interpolates a function from 3 points.
+        /// </summary>
+        /// <param name="n">The interpolating factor.</param>
+        /// <param name="Y1">The first Y value to interpolate from.</param>
+        /// <param name="Y2">The second Y value to interpolate from.</param>
+        /// <param name="Y3">The third Y value to interpolate from.</param>
+        /// <returns>The interpolated Y value.</returns>
         public static double Interpolate(double n, double Y1, double Y2, double Y3)
         {
             double a = Y2 - Y1;
@@ -13,6 +24,16 @@ namespace AASharp
             return Y2 + n / 2 * (a + b + n * c);
         }
 
+        /// <summary>
+        /// Interpolates a function from 5 points.
+        /// </summary>
+        /// <param name="n">The interpolating factor.</param>
+        /// <param name="Y1">The first Y value to interpolate from.</param>
+        /// <param name="Y2">The second Y value to interpolate from.</param>
+        /// <param name="Y3">The third Y value to interpolate from.</param>
+        /// <param name="Y4">The fourth Y value to interpolate from.</param>
+        /// <param name="Y5">The fifth Y value to interpolate from.</param>
+        /// <returns>The interpolated Y value.</returns>
         public static double Interpolate(double n, double Y1, double Y2, double Y3, double Y4, double Y5)
         {
             double A = Y2 - Y1;
@@ -33,11 +54,27 @@ namespace AASharp
             return Y3 + n * ((B + C) / 2 - (H + J) / 12) + N2 * (F / 2 - K / 24) + N3 * ((H + J) / 12) + N4 * (K / 24);
         }
 
+        /// <summary>
+        /// Interpolates a function to the middle location where 4 evenly spaced values are provided.
+        /// </summary>
+        /// <param name="Y1">The first Y value to interpolate from.</param>
+        /// <param name="Y2">The second Y value to interpolate from.</param>
+        /// <param name="Y3">The third Y value to interpolate from.</param>
+        /// <param name="Y4">The fourth Y value to interpolate from.</param>
+        /// <returns>The interpolated Y value.</returns>
         public static double InterpolateToHalves(double Y1, double Y2, double Y3, double Y4)
         {
             return (9 * (Y2 + Y3) - Y1 - Y4) / 16;
         }
 
+        /// <summary>
+        /// Interpolates a function using Lagrange's formula where an arbitrary number of values are provided.
+        /// </summary>
+        /// <param name="X">The X value to interpolate for.</param>
+        /// <param name="n">The size of the pX and pY arrays.</param>
+        /// <param name="pX">Pointer to the array of X coordinates to interpolate from.</param>
+        /// <param name="pY">Pointer to the array of Y coordinates to interpolate from.</param>
+        /// <returns>The interpolated Y value.</returns>
         public static double LagrangeInterpolate(double X, int n, double[] pX, double[] pY)
         {
             double V = 0;
@@ -56,6 +93,14 @@ namespace AASharp
             return V;
         }
 
+        /// <summary>
+        /// Interpolates a function to determine where the function reaches an extremum.
+        /// </summary>
+        /// <param name="Y1">The first Y value to interpolate from.</param>
+        /// <param name="Y2">The second Y value to interpolate from.</param>
+        /// <param name="Y3">The third Y value to interpolate from.</param>
+        /// <param name="nm">Upon return will contain the corresponding value of the argument X where the extremum is reached.</param>
+        /// <returns>The extreme Y value.</returns>
         public static double Extremum(double Y1, double Y2, double Y3, ref double nm)
         {
             double a = Y2 - Y1;
@@ -68,6 +113,16 @@ namespace AASharp
             return (Y2 - ((ab * ab) / (8 * c)));
         }
 
+        /// <summary>
+        /// Interpolates a function to determine where the function reaches an extremum.
+        /// </summary>
+        /// <param name="Y1">The first Y value to interpolate from.</param>
+        /// <param name="Y2">The second Y value to interpolate from.</param>
+        /// <param name="Y3">The third Y value to interpolate from.</param>
+        /// <param name="Y4">The fourth Y value to interpolate from.</param>
+        /// <param name="Y5">The fifth Y value to interpolate from.</param>
+        /// <param name="nm">Upon return will contain the corresponding value of the argument X where the extremum is reached.</param>
+        /// <returns>The extreme Y value.</returns>
         public static double Extremum(double Y1, double Y2, double Y3, double Y4, double Y5, ref double nm)
         {
             double A = Y2 - Y1;
@@ -98,6 +153,13 @@ namespace AASharp
             return Interpolate(nm, Y1, Y2, Y3, Y4, Y5);
         }
 
+        /// <summary>
+        /// Finds where a function reaches zero when the function is "almost a straight line".
+        /// </summary>
+        /// <param name="Y1">The first Y value to interpolate from.</param>
+        /// <param name="Y2">The second Y value to interpolate from.</param>
+        /// <param name="Y3">The third Y value to interpolate from.</param>
+        /// <returns>The value of the argument X for which the function y becomes zero.</returns>
         public static double Zero(double Y1, double Y2, double Y3)
         {
             double a = Y2 - Y1;
@@ -119,6 +181,15 @@ namespace AASharp
             return n0;
         }
 
+        /// <summary>
+        /// Finds where a function reaches zero when the function is "almost a straight line".
+        /// </summary>
+        /// <param name="Y1">The first Y value to interpolate from.</param>
+        /// <param name="Y2">The second Y value to interpolate from.</param>
+        /// <param name="Y3">The third Y value to interpolate from.</param>
+        /// <param name="Y4">The fourth Y value to interpolate from.</param>
+        /// <param name="Y5">The fifth Y value to interpolate from.</param>
+        /// <returns>The value of the argument X for which the function y becomes zero.</returns>
         public static double Zero(double Y1, double Y2, double Y3, double Y4, double Y5)
         {
             double A = Y2 - Y1;
@@ -151,7 +222,13 @@ namespace AASharp
             return n0;
         }
 
-
+        /// <summary>
+        /// Finds where a function reaches zero when the curvature of the function is important.
+        /// </summary>
+        /// <param name="Y1">The first Y value to interpolate from.</param>
+        /// <param name="Y2">The second Y value to interpolate from.</param>
+        /// <param name="Y3">The third Y value to interpolate from.</param>
+        /// <returns>The value of the argument X for which the function y becomes zero.</returns>
         public static double Zero2(double Y1, double Y2, double Y3)
         {
             double a = Y2 - Y1;
@@ -174,6 +251,15 @@ namespace AASharp
             return n0;
         }
 
+        /// <summary>
+        /// Finds where a function reaches zero when the curvature of the function is important.
+        /// </summary>
+        /// <param name="Y1">The first Y value to interpolate from.</param>
+        /// <param name="Y2">The second Y value to interpolate from.</param>
+        /// <param name="Y3">The third Y value to interpolate from.</param>
+        /// <param name="Y4">The fourth Y value to interpolate from.</param>
+        /// <param name="Y5">The fifth Y value to interpolate from.</param>
+        /// <returns>The value of the argument X for which the function y becomes zero.</returns>
         public static double Zero2(double Y1, double Y2, double Y3, double Y4, double Y5)
         {
             double A = Y2 - Y1;
