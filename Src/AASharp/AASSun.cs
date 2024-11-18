@@ -2,28 +2,46 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for calculation of the geocentric position of the Sun. This refers to Chapter 25 &amp; 26 in the book.
+    /// </summary>
     public static class AASSun
     {
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>the ecliptic longitude in degrees referred to the mean dynamical ecliptic and equinox of the date defined in the VSOP theory.</returns>
         public static double GeometricEclipticLongitude(double JD, bool bHighPrecision)
         {
             return AASCoordinateTransformation.MapTo0To360Range(AASEarth.EclipticLongitude(JD, bHighPrecision) + 180);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>the ecliptic latitude in degrees referred to the mean dynamical ecliptic and equinox of the date defined in the VSOP theory.</returns>
         public static double GeometricEclipticLatitude(double JD, bool bHighPrecision)
         {
             return -AASEarth.EclipticLatitude(JD, bHighPrecision);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>the ecliptic longitude in degrees referred to the J2000 equinox of the date defined in the VSOP theory.</returns>
         public static double GeometricEclipticLongitudeJ2000(double JD, bool bHighPrecision)
         {
             return AASCoordinateTransformation.MapTo0To360Range(AASEarth.EclipticLongitudeJ2000(JD, bHighPrecision) + 180);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>the ecliptic latitude in degrees referred to the J2000 equinox of the date defined in the VSOP theory.</returns>
         public static double GeometricEclipticLatitudeJ2000(double JD, bool bHighPrecision)
         {
             return -AASEarth.EclipticLatitudeJ2000(JD, bHighPrecision);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>the ecliptic longitude in degrees referred to the mean dynamical ecliptic and equinox of the date defined in the FK5 theory.</returns>
         public static double GeometricFK5EclipticLongitude(double JD, bool bHighPrecision)
         {
             //Convert to the FK5 stystem
@@ -34,6 +52,9 @@ namespace AASharp
             return Longitude;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>the ecliptic latitude in degrees referred to the mean dynamical ecliptic and equinox of the date defined in the FK5 theory.</returns>
         public static double GeometricFK5EclipticLatitude(double JD, bool bHighPrecision)
         {
             //Convert to the FK5 stystem
@@ -45,6 +66,9 @@ namespace AASharp
             return Latitude;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>the apparent ecliptic longitude in degrees referred to the mean dynamical ecliptic and equinox of the date defined in the VSOP theory.</returns>
         public static double ApparentEclipticLongitude(double JD, bool bHighPrecision)
         {
             double Longitude = GeometricFK5EclipticLongitude(JD, bHighPrecision);
@@ -62,11 +86,17 @@ namespace AASharp
             return Longitude;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>the apparent ecliptic latitude in degrees referred to the mean dynamical ecliptic and equinox of the date defined in the VSOP theory.</returns>
         public static double ApparentEclipticLatitude(double JD, bool bHighPrecision)
         {
             return GeometricFK5EclipticLatitude(JD, bHighPrecision);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>A class containing the equatorial 3D rectangular coordinates in astronomical units referred to the mean dynamical ecliptic and equinox of the date defined in the FK5 theory.</returns>
         public static AAS3DCoordinate EquatorialRectangularCoordinatesMeanEquinox(double JD, bool bHighPrecision)
         {
             double Longitude = AASCoordinateTransformation.DegreesToRadians(GeometricFK5EclipticLongitude(JD, bHighPrecision));
@@ -84,6 +114,9 @@ namespace AASharp
             return value;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>A class containing the ecliptic 3D rectangular coordinates in astronomical units referred to the J2000 equinox defined in the FK5 theory.</returns>
         public static AAS3DCoordinate EclipticRectangularCoordinatesJ2000(double JD, bool bHighPrecision)
         {
             double Longitude = GeometricEclipticLongitudeJ2000(JD, bHighPrecision);
@@ -103,7 +136,9 @@ namespace AASharp
             return value;
         }
 
-
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>A class containing the equatorial 3D rectangular coordinates in astronomical units referred to the J2000 equinox defined in the FK5 theory.</returns>
         public static AAS3DCoordinate EquatorialRectangularCoordinatesJ2000(double JD, bool bHighPrecision)
         {
             AAS3DCoordinate value = EclipticRectangularCoordinatesJ2000(JD, bHighPrecision);
@@ -112,6 +147,9 @@ namespace AASharp
             return value;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>A class containing the equatorial 3D rectangular coordinates in astronomical units referred to the B1950 equinox defined in the FK5 theory.</returns>
         public static AAS3DCoordinate EquatorialRectangularCoordinatesB1950(double JD, bool bHighPrecision)
         {
             AAS3DCoordinate value = EclipticRectangularCoordinatesJ2000(JD, bHighPrecision);
@@ -120,6 +158,10 @@ namespace AASharp
             return value;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="JDEquinox">The date in Dynamical time specifying the equinox to use.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>A class containing the equatorial 3D rectangular coordinates in astronomical units referred to the specified equinox defined in the FK5 theory.</returns>
         public static AAS3DCoordinate EquatorialRectangularCoordinatesAnyEquinox(double JD, double JDEquinox, bool bHighPrecision)
         {
             AAS3DCoordinate value = EquatorialRectangularCoordinatesJ2000(JD, bHighPrecision);
@@ -128,7 +170,9 @@ namespace AASharp
             return value;
         }
 
-        private static double VariationGeometricEclipticLongitude(double JD)
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>The variation in ecliptic longitude in arcseconds per day of the Sun due to aberation.</returns>
+        public static double VariationGeometricEclipticLongitude(double JD)
         {
             //D is the number of days since the epoch
             double D = JD - 2451545.00;

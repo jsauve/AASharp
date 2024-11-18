@@ -2,8 +2,14 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for calculation of various physical parameters related to the Jupiter. This refers to Chapter 43 in the book.
+    /// </summary>
     public static class AASPhysicalJupiter
     {
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>An instance of AASPhysicalJupiterDetails class with the details.</returns>
         public static AASPhysicalJupiterDetails Calculate(double JD, bool bHighPrecision)
         {
             //What will be the return value

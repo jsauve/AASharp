@@ -2,6 +2,9 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for calculation of the heliocentric position of Pluto. This refers to Chapter 37 in the book.
+    /// </summary>
     public static class AASPluto
     {
         #region coefficients
@@ -193,9 +196,11 @@ namespace AASharp
             new PlutoCoefficient2(  19,         35       ),
             new PlutoCoefficient2(  10,         3        )
         };
-        
+
         #endregion
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the ecliptic longitude in degrees referred to the standard equinox J2000.</returns>
         public static double EclipticLongitude(double JD)
         {
             double T = (JD - 2451545) / 36525;
@@ -219,6 +224,8 @@ namespace AASharp
             return L;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the ecliptic latitude in degrees referred to the standard equinox J2000.</returns>
         public static double EclipticLatitude(double JD)
         {
             double T = (JD - 2451545) / 36525;
@@ -241,6 +248,8 @@ namespace AASharp
             return L;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the radius vector in astronomical units.</returns>
         public static double RadiusVector(double JD)
         {
             double T = (JD - 2451545) / 36525;

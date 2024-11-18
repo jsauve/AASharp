@@ -2,6 +2,9 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for calculation of the time of rise, transit and set of a celestial body. This refers to Chapter 15 in the book. Please note that this class is now considered deprecated as of v2.02 of AA+ and may be removed in a future release of the library. Please use the AASRiseTransitSet2 class instead.
+    /// </summary>
     [Obsolete("Use AASRiseTransitSet2")]
     public static class AASRiseTransitSet
     {
@@ -167,6 +170,23 @@ namespace AASharp
             }
         }
 
+        /// <summary>
+        /// Bear in mind that the times calculated for the phenomena are for the same UTC date. This means that when you are in a non GMT timezone, the calculated local times can be for the previous or next day. Please bear this issue in mind if you are generating an ephemeris of rise, transit and set times for a celestial object for a specific range of local dates. In this case, you will need to rerun the calculation for the previous or next UTC date if the calculated local date is not the same as the required local date.
+        /// <para>
+        /// Another wrinkle to how this method operates is that the same event can occur twice in the same day, even though this method does not provide a method to allow this to be easily obtained. For example, imagine you are located in the timezone PDT which is 4 hours behind GMT and you are calculating the times of sunset during the month of August, when PDT would be in effect. During this period, the length of the day is gradually reducing and the time of sunrise is getting earlier every day. Combined with the fact that the calculated time of Sunset for this period is around 20:00 local time or midnight UTC, you get this interesting effect where Sunrise occurs just around midnight UTC and then again just before midnight the following day!
+        /// </para>
+        /// </summary>
+        /// <param name="JD">The Julian Day corresponding to that midnight Dynamical Time for the date when you want to perform the calculation.</param>
+        /// <param name="Alpha1">The right ascension in hours of the object at time JD - 1 day</param>
+        /// <param name="Delta1">The declination in degrees of the object at time JD - 1 day</param>
+        /// <param name="Alpha2">The right ascension in hours of the object at time JD</param>
+        /// <param name="Delta2">The declination in degrees of the object at time JD</param>
+        /// <param name="Alpha3">The right ascension in hours of the object at time JD + 1 day</param>
+        /// <param name="Delta3">The declination in degrees of the object at time JD + 1 day</param>
+        /// <param name="Longitude">The geographic longitude of the observer in degrees (Positive west, negative east from Greenwich)</param>
+        /// <param name="Latitude">The geographic latitude of the observer in degrees.</param>
+        /// <param name="h0">The "standard" altitude in degrees i.e. the geometric altitude of the centre of the body at the time of the apparent rising or setting. For stars and planets, you would normally use -0.5667, for the Sun you would use -0.8333 and for the moon you would use 0.7275 * PI - 0.5666 where PI is the Moon's horizontal parallax in degrees (If no great accuracy is required, the mean value of h0 = 0.125 can be used).</param>
+        /// <returns>An instance of AASRiseTransitSetDetails class with the details.</returns>
         public static AASRiseTransitSetDetails Calculate(double JD, double Alpha1, double Delta1, double Alpha2, double Delta2, double Alpha3, double Delta3, double Longitude, double Latitude, double h0)
         {
             //What will be the return value

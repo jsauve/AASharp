@@ -2,6 +2,9 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for the calculation of several configurations involving planets Mercury to Neptune; oppositions and conjunctions with the Sun, greatest elongations, and stations. This refers to Chapter 36 in the book.
+    /// </summary>
     public static class AASPlanetaryPhenomena
     {
         internal struct PlanetaryPhenomenaCoefficient1
@@ -38,12 +41,12 @@ namespace AASharp
         new PlanetaryPhenomenaCoefficient1( 2451569.379, 367.486703,  21.5569,  2.194998    ) };
 
         /// <summary>
-        ///
+        /// Please note that the return value from this method must be rounded to an integer by client code before calling other methods in this class with this K value. Any other value of K will give meaningless values. Prior to v2.26 of AA+, this method would return the K value already rounded. This change was made to make this method's behavior consistent with all the other methods in the AA+ framework which return so called "K" values.
         /// </summary>
-        /// <param name="Year"></param>
-        /// <param name="planetaryObject"></param>
-        /// <param name="eventType"></param>
-        /// <returns></returns>
+        /// <param name="Year">The Year including decimals to calculate the K value for.</param>
+        /// <param name="planetaryObject">An enum specifying the planet to calculate for.</param>
+        /// <param name="eventType">An enum to specify the event type to calculate.</param>
+        /// <returns>Returns the approximate value of K (required by the other methods of AASPlanetaryPhenomena) for calculation of the various event types.</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when an incorrect EventType is specified for a given PlanetaryObject. When planetaryObject is one of the four inner planets, eventType must be either EventType.OPPOSITION or EventType.CONJUNCTION. When planetaryObject is not one of the four inner planets, eventType must be either EventType.INFERIOR_CONJUNCTION or EventType.SUPERIOR_CONJUNCTION.</exception>
         public static double K(double Year, PlanetaryObject planetaryObject, EventType eventType)
         {
@@ -78,14 +81,11 @@ namespace AASharp
             return Math.Floor(k + 0.5);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="Year"></param>
-        /// <param name="planetaryObject"></param>
-        /// <param name="eventType"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when an incorrect EventType is specified for a given PlanetaryObject. When planetaryObject is not one of the three inner planets, eventType must be one of the following: OPPOSITION, CONJUNCTION, STATION1, STATION2. When planetaryObject is one of the three inner planets, eventType must be either EventType.INFERIOR_CONJUNCTION or EventType.SUPERIOR_CONJUNCTION.</exception>
+        /// <param name="k">The K value to calculate the phenomena for. This K value must be an integer value. Any other value of K will give meaningless values.</param>
+        /// <param name="planetaryObject">An enum specifying the planet to calculate for.</param>
+        /// <param name="eventType">An enum to specify the event type to calculate.</param>
+        /// <returns>Returns the date in Dynamical time when the specified mean planetary configuration occurs (that is, calculated from circular orbits and uniform planetary motions).</returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static double Mean(double k, PlanetaryObject planetaryObject, EventType eventType)
         {
             uint nCoefficient;
@@ -118,14 +118,11 @@ namespace AASharp
             return g_PlanetaryPhenomenaCoefficient1[nCoefficient].A + g_PlanetaryPhenomenaCoefficient1[nCoefficient].B * k;
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="k"></param>
-        /// <param name="planetaryObject"></param>
-        /// <param name="eventType"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when an incorrect EventType is specified for a given PlanetaryObject. When planetaryObject is not one of the three inner planets, eventType must be one of the following: OPPOSITION, CONJUNCTION, STATION1, STATION2. When planetaryObject is one of the three inner planets, eventType must be one of the following: INFERIOR_CONJUNCTION, SUPERIOR_CONJUNCTION, EASTERN_ELONGATION, WESTERN_ELONGATION, STATION1, STATION2.</exception>
+        /// <param name="k">The K value to calculate the phenomena for. This K value must be an integer value. Any other value of K will give meaningless values.</param>
+        /// <param name="planetaryObject">An enum specifying the planet to calculate for.</param>
+        /// <param name="eventType">An enum to specify the event type to calculate.</param>
+        /// <returns>Returns the date in Dynamical time when the true planetary configuration occurs.</returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static double True(double k, PlanetaryObject planetaryObject, EventType eventType)
         {
             double JDE0;
@@ -618,6 +615,11 @@ namespace AASharp
             return JDE0 + delta;
         }
 
+        /// <param name="k">The K value to calculate the phenomena for. This K value must be an integer value. Any other value of K will give meaningless values.</param>
+        /// <param name="planetaryObject">An enum specifying the planet to calculate for.</param>
+        /// <param name="bEastern">true if you want the elongation value for the eastern elongation, otherwise false implies western elongation.</param>
+        /// <returns>the value of the greatest elongation of a planet.</returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static double ElongationValue(double k, PlanetaryObject planetaryObject, bool bEastern)
         {
             if (!(planetaryObject < PlanetaryObject.MARS))

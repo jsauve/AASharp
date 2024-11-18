@@ -2,13 +2,23 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides algorithms which obtain dates when the Moon passes through its nodes. This refers to Chapter 51 in the book.
+    /// </summary>
     public static class AASMoonNodes
     {
+        /// <summary>
+        /// Please note that the return value from this method must be rounded to an integer or an integer + 0.5 by client code before calling other methods in this class with this K value. Any other value of K will give meaningless values.
+        /// </summary>
+        /// <param name="Year">The Year including decimals to calculate the K value for.</param>
+        /// <returns>Returns the approximate value of K (required by the other methods of AASMoonNodes) for calculation of the specified passage thro the node.</returns>
         public static double K(double Year)
         {
             return 13.4223 * (Year - 2000.05);
         }
 
+        /// <param name="k">The K value to calculate the passage thro the node for. This K value must be an integer value or an integer value + 0.5. Any other value of K will give meaningless values.</param>
+        /// <returns>Returns the date in Dynamical time when the specified passage thro the node occurs.</returns>
         public static double PassageThroNode(double k)
         {
             //convert from K to T

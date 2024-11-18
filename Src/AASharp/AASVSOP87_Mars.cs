@@ -1,5 +1,8 @@
 ﻿namespace AASharp
 {
+    /// <summary>
+    /// This class provides for calculation of the heliocentric ecliptical orbital elements of Mars for the equinox and ecliptic of J2000.0. Please refer to ftp://cdsarc.u-strasbg.fr/pub/cats/VI/81/ for further details.
+    /// </summary>
     public class AASVSOP87_Mars
     {
         #region coefficients
@@ -7698,31 +7701,43 @@
 
         #endregion
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the semi-major axis in astronomical units.</returns>
         public static double A(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_A_MARS, g_VSOP87_A_MARS.Length, false);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the mean longitude in radians.</returns>
         public static double L(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_L_MARS, g_VSOP87_L_MARS.Length, true);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the K value as defined in VSOP87 i.e. k = e cos(p) where p is the perihelion longitude.</returns>
         public static double K(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_K_MARS, g_VSOP87_K_MARS.Length, true);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the H value as defined in VSOP87 i.e. h = e sin(p) where p is the perihelion longitude.</returns>
         public static double H(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_H_MARS, g_VSOP87_H_MARS.Length, true);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the Q value as defined in VSOP87 i.e. q = sin(g) cos(G) where g is the semi-inclination and G is the ascending node longitude.</returns>
         public static double Q(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_Q_MARS, g_VSOP87_Q_MARS.Length, true);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the P value as defined in VSOP87 i.e. p = sin(g) sin(G) where g is the semi-inclination and G is the ascending node longitude.</returns>
         public static double P(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87_P_MARS, g_VSOP87_P_MARS.Length, true);

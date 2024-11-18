@@ -2,8 +2,15 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides the algorithms to convert to the FK5 standard reference frame. This refers to parts of Chapter 26 and 32 in the book.
+    /// </summary>
     public static class AASFK5
     {
+        /// <param name="Longitude">The VSOP heliocentric longitude in degrees.</param>
+        /// <param name="Latitude">The VSOP heliocentric latitude in degrees.</param>
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>The correction in degrees to convert a VSOP heliocentric longitude to the FK5 reference frame.</returns>
         public static double CorrectionInLongitude(double Longitude, double Latitude, double JD)
         {
             double T = (JD - 2451545) / 36525;
@@ -17,6 +24,9 @@ namespace AASharp
             return AASCoordinateTransformation.DMSToDegrees(0, 0, value);
         }
 
+        /// <param name="Longitude">The VSOP heliocentric longitude in degrees.</param>
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>The correction in degrees to convert a VSOP heliocentric latitude to the FK5 reference frame.</returns>
         public static double CorrectionInLatitude(double Longitude, double JD)
         {
             double T = (JD - 2451545) / 36525;
@@ -29,6 +39,8 @@ namespace AASharp
             return AASCoordinateTransformation.DMSToDegrees(0, 0, value);
         }
 
+        /// <param name="value">The geometric rectangular ecliptical coordinates of the object (e.g. the Sun) to convert from the dynamical reference frame (VSOP) to the equatorial FK5 J2000 reference frame.</param>
+        /// <returns>A class containing the converted equatorial FK5 J2000 reference frame coordinates.</returns>
         public static AAS3DCoordinate ConvertVSOPToFK5J2000(AAS3DCoordinate value)
         {
             AAS3DCoordinate result = new AAS3DCoordinate
@@ -41,6 +53,8 @@ namespace AASharp
             return result;
         }
 
+        /// <param name="value">The geometric rectangular ecliptical coordinates of the object (e.g. the Sun) to convert from the dynamical reference frame (VSOP) to the equatorial FK5 B1950 reference frame.</param>
+        /// <returns>A class containing the converted equatorial FK5 B1950 reference frame coordinates.</returns>
         public static AAS3DCoordinate ConvertVSOPToFK5B1950(AAS3DCoordinate value)
         {
             AAS3DCoordinate result = new AAS3DCoordinate
@@ -53,6 +67,9 @@ namespace AASharp
             return result;
         }
 
+        /// <param name="value">The geometric rectangular ecliptical coordinates of the object (e.g. the Sun) to convert from the dynamical reference frame (VSOP) to the equatorial FK5 reference frame of JDEquinox.</param>
+        /// <param name="JDEquinox">The Julian day for which equatorial coordinates should be calculated for.</param>
+        /// <returns>A class containing the converted equatorial FK5 reference frame coordinates.</returns>
         public static AAS3DCoordinate ConvertVSOPToFK5AnyEquinox(AAS3DCoordinate value, double JDEquinox)
         {
             double t = (JDEquinox - 2451545.0) / 36525;

@@ -2,6 +2,9 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for calculation of the position of an object in an orbit which can be best modelled as near parabolic i.e. eccentricity between 0.98 and 1.02. Chapter 35 in the book includes support for calculating Near-parabolic orbits, but the code is provided in BASIC and the algorithm as presented has problems converging when the eccentricity is close to 1. Instead the algorithms used in this class are based upon the worked examples which Paul Schlyter has provided at http://stjarnhimlen.se/comp/tutorial.html#16
+    /// </summary>
     public static class AASNearParabolic
     {
         private static double Cbrt(double x)
@@ -29,6 +32,10 @@ namespace AASharp
             r = elements.q * (1 + w2) / (1 + w2 * f);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="elements">A class containing orbital elements</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>An instance of AASNearParabolicObjectDetails class with the details.</returns>
         public static AASNearParabolicObjectDetails Calculate(double JD, ref AASNearParabolicObjectElements elements, bool bHighPrecision)
         {
             double Epsilon = AASNutation.MeanObliquityOfEcliptic(elements.JDEquinox);

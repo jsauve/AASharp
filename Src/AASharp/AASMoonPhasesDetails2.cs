@@ -1,5 +1,8 @@
 namespace AASharp
 {
+    /// <summary>
+    /// Instances of this class are returned by AASMoonPhases2.Calculate method.
+    /// </summary>
     public class AASMoonPhasesDetails2
     {
         public enum Type
@@ -17,7 +20,7 @@ namespace AASharp
         public Type type { get; set; } = Type.NotDefined;
 
         /// <summary>
-        ///  //When the event occurred in TT
+        /// When the event occurred in TT
         /// </summary>
         public double JD { get; set; }
     }

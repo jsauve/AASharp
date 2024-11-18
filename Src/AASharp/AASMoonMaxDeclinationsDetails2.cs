@@ -1,5 +1,8 @@
 namespace AASharp
 {
+    /// <summary>
+    /// Instances of this class are returned as an array by the AASMoonMaxDeclinations2.Calculate method.
+    /// </summary>
     public class AASMoonMaxDeclinationsDetails2
     {
         public enum Type

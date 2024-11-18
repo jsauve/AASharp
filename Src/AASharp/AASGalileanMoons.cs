@@ -2,6 +2,9 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for calculation of the positions of the Galilean moons of Jupiter. This refers to Chapter 44 in the book.
+    /// </summary>
     public static class AASGalileanMoons
     {
         private static AASGalileanMoonsDetails CalculateHelper(double JD, double sunlongrad, double betarad, double R, bool bHighPrecision)
@@ -474,7 +477,10 @@ namespace AASharp
 
             return details;
         }
-        
+
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>An instance to the AASGalileanMoonsDetails class with details.</returns>
         public static AASGalileanMoonsDetails Calculate(double JD, bool bHighPrecision)
         {
             //Calculate the position of the Sun

@@ -2,6 +2,9 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for calculation of the heliocentric position of Mercury. This refers to Chapter 32 in the book.
+    /// </summary>
     public static class AASMercury
     {
         #region coefficient
@@ -220,9 +223,12 @@ namespace AASharp
             new VSOP87Coefficient( 5,  4.44, 104351.61 ),
             new VSOP87Coefficient( 2,  1.21, 130439.52 ) 
         };
-        
+
         #endregion
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>the ecliptic longitude in degrees referred to the mean dynamical ecliptic and equinox of the date defined in the VSOP theory.</returns>
         public static double EclipticLongitude(double JD, bool bHighPrecision)
         {
             if (bHighPrecision) 
@@ -280,6 +286,9 @@ namespace AASharp
             return value;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>the ecliptic latitude in degrees referred to the mean dynamical ecliptic and equinox of the date defined in the VSOP theory.</returns>
         public static double EclipticLatitude(double JD, bool bHighPrecision)
         {
             if (bHighPrecision) 
@@ -330,6 +339,9 @@ namespace AASharp
             return value;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>the radius vector in astronomical units.</returns>
         public static double RadiusVector(double JD, bool bHighPrecision)
         {
             if (bHighPrecision)

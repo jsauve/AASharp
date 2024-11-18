@@ -2,8 +2,13 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for calculation of the position of an object in a parabolic orbit. This refers to Chapter 34 in the book.
+    /// </summary>
     public static class AASParabolic
     {
+        /// <param name="W">The value W as described in algorithm 34.1 on page 241.</param>
+        /// <returns>The solution to Barkers equation as described in algorithm 34.3 on page 241.</returns>
         public static double CalculateBarkers(double W)
         {
             double S = W / 3;
@@ -21,6 +26,10 @@ namespace AASharp
             return S;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="elements">An instance of the AASParabolicObjectElements class with the orbit elements.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>An instance of AASParabolicObjectDetails class with the details.</returns>
         public static AASParabolicObjectDetails Calculate(double JD, ref AASParabolicObjectElements elements, bool bHighPrecision)
         {
             double Epsilon = AASNutation.MeanObliquityOfEcliptic(elements.JDEquinox);

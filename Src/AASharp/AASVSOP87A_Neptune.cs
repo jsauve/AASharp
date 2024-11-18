@@ -1,5 +1,8 @@
 ﻿namespace AASharp
 {
+    /// <summary>
+    /// This class provides for calculation of the heliocentric rectangular position of Neptune for the equinox and ecliptic of J2000.0. Please refer to ftp://cdsarc.u-strasbg.fr/pub/cats/VI/81/ for further details.
+    /// </summary>
     public class AASVSOP87A_Neptune
     {
         #region coefficients
@@ -2721,34 +2724,46 @@
             new VSOP87Coefficient2(g_VSOP87A_Z2_NEPTUNE, g_VSOP87A_Z2_NEPTUNE.Length),
             new VSOP87Coefficient2(g_VSOP87A_Z3_NEPTUNE, g_VSOP87A_Z3_NEPTUNE.Length)
         };
-        
+
         #endregion
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the X position component in astronomical units.</returns>
         public static double X(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87A_X_NEPTUNE, g_VSOP87A_X_NEPTUNE.Length, false);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the rate of change of the X position component in astronomical units / day.</returns>
         public static double X_DASH(double JD)
         {
             return CVSOP87.Calculate_Dash(JD, g_VSOP87A_X_NEPTUNE, g_VSOP87A_X_NEPTUNE.Length);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the Y position component in astronomical units.</returns>
         public static double Y(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87A_Y_NEPTUNE, g_VSOP87A_Y_NEPTUNE.Length, false);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the rate of change of the Y position component in astronomical units / day.</returns>
         public static double Y_DASH(double JD)
         {
             return CVSOP87.Calculate_Dash(JD, g_VSOP87A_Y_NEPTUNE, g_VSOP87A_Y_NEPTUNE.Length);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the Z position component in astronomical units.</returns>
         public static double Z(double JD)
         {
             return CVSOP87.Calculate(JD, g_VSOP87A_Z_NEPTUNE, g_VSOP87A_Z_NEPTUNE.Length, false);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the rate of change of the Z position component in astronomical units / day.</returns>
         public static double Z_DASH(double JD)
         {
             return CVSOP87.Calculate_Dash(JD, g_VSOP87A_Z_NEPTUNE, g_VSOP87A_Z_NEPTUNE.Length);

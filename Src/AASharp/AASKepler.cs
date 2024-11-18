@@ -2,8 +2,15 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for the solution of Kepler's equation. This refers to Chapter 30 in the book.
+    /// </summary>
     public static class AASKepler
     {
+        /// <param name="M">The mean anomaly in degrees.</param>
+        /// <param name="e">The eccentricity of the orbit</param>
+        /// <param name="nIterations">The method uses the third method to solve the equation. This uses a binary chop to find the solution. The default value of 53 is the number of iterations required to obtain the accuracy of the standard Visual C "double".</param>
+        /// <returns>The Eccentric anomaly in degrees (i.e. the solution to Kepler's equation).</returns>
         public static double Calculate(double M, double e, int nIterations = 53)
         {
             //Convert from degrees to radians

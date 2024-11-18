@@ -2,6 +2,9 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides algorithms to calculate the approximate times when the distance between the Earth and the Moon is a minimum (perigee) or a maximum (apogee). This refers to Chapter 50 in the book.
+    /// </summary>
     public static class AASMoonPerigeeApogee
     {
         #region coefficients
@@ -176,15 +179,21 @@ namespace AASharp
             new MoonPerigeeApogeeCoefficient( 6,  -1, 0,  0.014,      0      ),
             new MoonPerigeeApogeeCoefficient( 8,  0,  0,  0.010,      0      )   
         };
-        
-        #endregion
-        
 
+        #endregion
+
+        /// <summary>
+        /// Please note that the return value from this method must be rounded to an integer or an integer + 0.5 by client code before calling other methods in this class with this K value. Any other value of K will give meaningless values.
+        /// </summary>
+        /// <param name="Year">The Year including decimals to calculate the K value for.</param>
+        /// <returns>Returns the approximate value of K (required by the other methods of AASMoonPerigeeApogee) for calculation of the specified phase.</returns>
         public static double K(double Year)
         {
             return 13.2555 * (Year - 1999.97);
         }
 
+        /// <param name="k">The K value to calculate the perigee for. This K value must be an integer value. Any other value of K will give meaningless values.</param>
+        /// <returns>Returns the date in Dynamical time when the mean perigee occurs.</returns>
         public static double MeanPerigee(double k)
         {
             //convert from K to T
@@ -196,12 +205,16 @@ namespace AASharp
             return 2451534.6698 + 27.55454989 * k - 0.0006691 * Tsquared - 0.000001098 * Tcubed + 0.0000000052 * T4;
         }
 
+        /// <param name="k">The K value to calculate the apogee for. This K value must be an integer value + 0.5. Any other value of K will give meaningless values.</param>
+        /// <returns>Returns the date in Dynamical time when the specified mean apogee occurs.</returns>
         public static double MeanApogee(double k)
         {
             //Uses the same formula as MeanPerigee
             return MeanPerigee(k);
         }
 
+        /// <param name="k">The K value to calculate the perigee for. This K value must be an integer value. Any other value of K will give meaningless values.</param>
+        /// <returns>Returns the date in Dynamical time when the specified true perigee occurs.</returns>
         public static double TruePerigee(double k)
         {
             double MeanJD = MeanPerigee(k);
@@ -230,6 +243,8 @@ namespace AASharp
             return MeanJD + Sigma;
         }
 
+        /// <param name="k">The K value to calculate the perigee parallax for. This K value must be an integer value. Any other value of K will give meaningless values.</param>
+        /// <returns>Returns the parallax at the specified perigee in degrees.</returns>
         public static double PerigeeParallax(double k)
         {
             //convert from K to T
@@ -256,6 +271,8 @@ namespace AASharp
             return Parallax / 3600;
         }
 
+        /// <param name="k">The K value to calculate the apogee for. This K value must be an integer value + 0.5. Any other value of K will give meaningless values.</param>
+        /// <returns>Returns the date in Dynamical time when the specified true apogee occurs.</returns>
         public static double TrueApogee(double k)
         {
             double MeanJD = MeanApogee(k);
@@ -284,6 +301,8 @@ namespace AASharp
             return MeanJD + Sigma;
         }
 
+        /// <param name="k">The K value to calculate the apogee parallax for. This K value must be an integer value + 0.5. Any other value of K will give meaningless values.</param>
+        /// <returns>Returns the parallax at the specified apogee in degrees.</returns>
         public static double ApogeeParallax(double k)
         {
             //convert from K to T

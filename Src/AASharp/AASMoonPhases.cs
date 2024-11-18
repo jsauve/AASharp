@@ -2,13 +2,23 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides algorithms which obtain the dates for the phases of the Moon. This refers to Chapter 49 in the book.
+    /// </summary>
     public static class AASMoonPhases
     {
+        /// <summary>
+        /// Please note that the return value from this method must be rounded to an integer, an integer + 0.25, an integer + 0.5 or an integer + 0.75 by client code before calling other methods in this class with this K value. Any other value of K will give meaningless values.
+        /// </summary>
+        /// <param name="Year">The Year including decimals to calculate the K value for.</param>
+        /// <returns>Returns the approximate value of K (required by the other methods of AASMoonPhases) for calculation of the specified phase.</returns>
         public static double K(double Year)
         {
             return 12.3685 * (Year - 2000);
         }
 
+        /// <param name="k">The K value to calculate the phase for. This K value must be an integer value for New Moon, an integer value + 0.25 for First Quarter, an integer value + 0.5 for Full Moon or an integer value + 0.75 fr Last Quarter. Any other value of K will give meaningless values.</param>
+        /// <returns>Returns the date in Dynamical time when the specified mean moon phase occurs.</returns>
         public static double MeanPhase(double k)
         {
             //convert from K to T
@@ -20,6 +30,9 @@ namespace AASharp
             return 2451550.09766 + 29.530588861 * k + 0.00015437 * T2 - 0.000000150 * T3 + 0.00000000073 * T4;
         }
 
+        /// <param name="k">The K value to calculate the phase for. This K value must be an integer value for New Moon, an integer value + 0.25 for First Quarter, an integer value + 0.5 for Full Moon or an integer value + 0.75 fr Last Quarter. Any other value of K will give meaningless values.</param>
+        /// <returns>Returns the date in Dynamical time when the specified true moon phase occurs.</returns>
+        /// <exception cref="NotSupportedException"></exception>
         public static double TruePhase(double k)
         {
             //What will be the return value

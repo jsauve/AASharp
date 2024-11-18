@@ -1,7 +1,19 @@
 namespace AASharp
 {
-    public static class AASEaster
-    {
+    /// <summary>
+    /// This class provides for calculation of the date of Easter in both the Julian and Gregorian calendars. This refers to Chapter 8 in the book.
+    /// </summary>
+    public static class AASEaster {
+        /// <param name="nYear">The year to perform the calculation for.</param>
+        /// <param name="GregorianCalendar">true if the calculation is to be performed for the Gregorian calendar, false implies the Julian Calendar</param>
+        /// <returns>A class containing
+        /// <para>
+        /// Month - The month on which Easter Sunday occurs.
+        /// </para>
+        /// <para>
+        /// Day - The day of the month on which Easter Sunday occurs.
+        /// </para>
+        /// </returns>
         public static AASEasterDetails Calculate(long nYear, bool GregorianCalendar)
         {
             AASEasterDetails details = null;

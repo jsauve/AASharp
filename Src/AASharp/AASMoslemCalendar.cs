@@ -1,7 +1,14 @@
 ﻿namespace AASharp
 {
+    /// <summary>
+    /// This class provides the algorithms which convert between the Julian and Moslem calendars. This refers to Chapter 9 in the book.
+    /// </summary>
     public static class AASMoslemCalendar
     {
+        /// <param name="Year">The year in the Moslem Calendar to convert</param>
+        /// <param name="Month">The month of the year in the Moslem Calendar (1 for Muharram to 12 for Dhu l-Hijja).</param>
+        /// <param name="Day">The day of the month in the Moslem Calendar.</param>
+        /// <returns>An instance of AASCalendarDate class with Julian year/month/day details.</returns>
         public static AASCalendarDate MoslemToJulian(long Year, long Month, long Day)
         {
             //What will be the return value
@@ -42,7 +49,11 @@
 
             return julianDate;
         }
-    
+
+        /// <param name="Year">The year in the Julian Calendar to convert. (Years are counted astronomically i.e. 1 BC = Year 0)</param>
+        /// <param name="Month">The month of the year in the Julian Calendar (1 for January to 12 for December).</param>
+        /// <param name="Day">The day of the month in the Julian Calendar.</param>
+        /// <returns>An instance of AASCalendarDate class with the Moslem year/month/day details.</returns>
         public static AASCalendarDate JulianToMoslem(long Year, long Month, long Day)
         {
             //What will be the return value
@@ -103,6 +114,8 @@
             return MoslemDate;
         }
 
+        /// <param name="Year">The year in the Moslem calendar.</param>
+        /// <returns>true if the specified year is leap otherwise false.</returns>
         public static bool IsLeap(long Year)
         {
           long R = Year % 30;

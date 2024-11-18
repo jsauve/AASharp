@@ -1,5 +1,8 @@
 namespace AASharp
 {
+    /// <summary>
+    /// Used by the AASPlanetaryPhenomena class methods.
+    /// </summary>
     public enum EventType
     {
         INFERIOR_CONJUNCTION,

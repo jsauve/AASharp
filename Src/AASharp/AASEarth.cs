@@ -2,6 +2,9 @@ using System;
 
 namespace AASharp
 {
+    /// <summary>
+    /// This class provides for calculation of the heliocentric position of the Earth. This refers to Chapter 32 and parts of Chapter 26 and 47 in the book
+    /// </summary>
     public static class AASEarth
     {
         #region coefficient
@@ -368,9 +371,12 @@ namespace AASharp
             new VSOP87Coefficient( 6,  2.27, 6283.08 ),
             new VSOP87Coefficient( 1,  0,    0 )
         };
-        
+
         #endregion
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>the ecliptic longitude in degrees referred to the mean dynamical ecliptic and equinox of the date defined in the VSOP theory.</returns>
         public static double EclipticLongitude(double JD, bool bHighPrecision)
         {
             if (bHighPrecision)
@@ -428,6 +434,9 @@ namespace AASharp
             return value;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>the ecliptic latitude in degrees referred to the mean dynamical ecliptic and equinox of the date defined in the VSOP theory.</returns>
         public static double EclipticLatitude(double JD, bool bHighPrecision)
         {
             if (bHighPrecision)
@@ -459,6 +468,9 @@ namespace AASharp
             return value;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>the radius vector in astronomical units.</returns>
         public static double RadiusVector(double JD, bool bHighPrecision)
         {
             if (bHighPrecision)
@@ -505,6 +517,9 @@ namespace AASharp
             return (R0 + R1 * rho + R2 * rhosquared + R3 * rhocubed + R4 * rho4) / 100000000;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>the ecliptic longitude in degrees referred to the mean dynamical ecliptic and equinox of J2000 in the VSOP theory.</returns>
         public static double EclipticLongitudeJ2000(double JD, bool bHighPrecision)
         {
             if (bHighPrecision)
@@ -555,6 +570,9 @@ namespace AASharp
             return value;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <param name="bHighPrecision">If true then use the full VSOP87 theory instead of the truncated version as provided in Meeus's book.</param>
+        /// <returns>the ecliptic latitude in degrees referred to the mean dynamical ecliptic and equinox of J2000 defined in the VSOP theory.</returns>
         public static double EclipticLatitudeJ2000(double JD, bool bHighPrecision)
         {
             if (bHighPrecision)
@@ -605,6 +623,8 @@ namespace AASharp
             return value;
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the mean anomaly of the Sun in degrees.</returns>
         public static double SunMeanAnomaly(double JD)
         {
             double T = (JD - 2451545) / 36525;
@@ -613,6 +633,8 @@ namespace AASharp
             return AASCoordinateTransformation.MapTo0To360Range(357.5291092 + 35999.0502909 * T - 0.0001536 * Tsquared + Tcubed / 24490000);
         }
 
+        /// <param name="JD">The date in Dynamical time to calculate for.</param>
+        /// <returns>the eccentricity of Earth's orbit.</returns>
         public static double Eccentricity(double JD)
         {
             double T = (JD - 2451545) / 36525;

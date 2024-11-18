@@ -1,5 +1,8 @@
 namespace AASharp
 {
+    /// <summary>
+    /// Instances of this class are returned by AASMoonPerigeeApogee2.Calculate method.
+    /// </summary>
     public class AASMoonPerigeeApogeeDetails2
     {
         public enum Type

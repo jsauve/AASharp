@@ -1,5 +1,8 @@
 ﻿namespace AASharp
 {
+    /// <summary>
+    /// An enumeration used by the AASElliptical.Calculate method.
+    /// </summary>
     public enum AASEllipticalObject
     {
         SUN,

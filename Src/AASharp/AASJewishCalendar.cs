@@ -1,7 +1,13 @@
 ﻿namespace AASharp
 {
+    /// <summary>
+    /// This class provides the algorithms which convert between the Gregorian, Julian and Jewish calendars. This refers to Chapter 9 in the book.
+    /// </summary>
     public static class AASJewishCalendar
     {
+        /// <param name="Year">The year in the Julian or Gregorian Calendar to calculate Jewish Easter or Pesach for. (Years are counted astronomically i.e. 1 BC = Year 0)</param>
+        /// <param name="bGregorianCalendar">true to imply a date in the Gregorian Calendar, false means use the Julian Calendar.</param>
+        /// <returns>An instance of the AASCalendarDate class with details.</returns>
         public static AASCalendarDate DateOfPesach(long Year, bool bGregorianCalendar = true)
         {
             //What will be the return value
@@ -41,6 +47,8 @@
             return Pesach;
         }
 
+        /// <param name="Year">The year in the Jewish calendar.</param>
+        /// <returns>true if the specified year is leap otherwise false.</returns>
         public static bool IsLeap(long Year)
         {
             long ymod19 = Year % 19;
@@ -48,6 +56,8 @@
             return (ymod19 == 0) || (ymod19 == 3) || (ymod19 == 6) || (ymod19 == 8) || (ymod19 == 11) || (ymod19 == 14) || (ymod19 == 17);
         }
 
+        /// <param name="Year">The year in the Jewish Calendar.</param>
+        /// <returns>The number of days in the specified Jewish Year</returns>
         public static long DaysInYear(long Year)
         {
             //Find the previous civil year corresponding to the specified jewish year

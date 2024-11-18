@@ -1,5 +1,8 @@
 namespace AASharp
 {
+    /// <summary>
+    /// List of instances of this class are returned by AASRiseTransitSet2 class methods.
+    /// </summary>
     public class AASRiseTransitSetDetails2
     {
         public enum Type
