@@ -9,9 +9,9 @@ AASharp is a C# port of PJ Naughter's static C++ library, AA+. Naughter's librar
     </Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/jsauve/AASharp</PackageProjectUrl>
-    <AssemblyVersion>2.12.0</AssemblyVersion>
-    <FileVersion>2.12.0</FileVersion>
-    <Version>2.12.0</Version>
+    <AssemblyVersion>2.12.1</AssemblyVersion>
+    <FileVersion>2.12.1</FileVersion>
+    <Version>2.12.1</Version>
     <Authors>Joe Sauve, Julien Tschäppät</Authors>
     <RepositoryUrl>https://github.com/jsauve/AASharp</RepositoryUrl>
     <PackageTags>Astronomy,Algorithm</PackageTags>

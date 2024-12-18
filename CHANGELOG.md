@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.12.1 (2024-12-18)
+- Self documentation (in [PR#19](https://github.com/jsauve/AASharp/pull/19))
+- Extension methods for easy date/time manipulation
+
 ## 2.12 (2022-07-31)
 
 Report of modifications from AA+ v2.0 to 2.12
