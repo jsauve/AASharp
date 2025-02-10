@@ -996,6 +996,19 @@ namespace AASharpTest
             elements6.JDEquinox = elements6.T;
             AASNearParabolicObjectDetails details4 = AASNearParabolic.Calculate(elements6.T - 63.6954, ref elements6, bHighPrecision);
 
+            // test extensions
+            Console.WriteLine();
+
+            var now = DateTime.UtcNow;
+            var jd1 = now.ToAASDate();
+            Console.WriteLine($"Current date/time, UTC: {now:yyyy-MMM-dd HH:mm:ss.fff}");
+            Console.WriteLine($"Current date/time, JDN: {jd1.Julian}");
+
+            var jd2 = now.ToTerrestrialDynamical();
+            Console.WriteLine($"Current date/time => TDT: {jd2}");
+            var tdt = jd2.FromTerrestrialDynamical();
+            Console.WriteLine($"TDT => current date/time: {tdt:yyyy-MMM-dd HH:mm:ss.fff}");
+
             Console.ReadLine();
             return;
         }
