@@ -62,7 +62,7 @@ jobs:
         run: dotnet build ./Src/AASharp/AASharp.csproj --configuration Release --output ./Output/AASharp
           
       - name: 'Upload source artifact'
-        if: ${{ inputs.build_installer == true }}
+        if: ${{ inputs.push_artifact == true }}
         uses: actions/upload-artifact@v4.5.0
         with:
           name: ${{ inputs.artifact_name_out }}
