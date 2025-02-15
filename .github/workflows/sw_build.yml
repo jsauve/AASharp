@@ -1,4 +1,4 @@
-name: 'Build'
+name: 'Build (Sub-Workflow)'
 on:
   workflow_call:
     inputs:
@@ -30,7 +30,7 @@ on:
 
 jobs:
   build:
-    name: 'Build (Sub-Workflow)'
+    name: 'Build'
     runs-on: windows-latest
     outputs:
       MajorMinorPatch: ${{ steps.gitversion.outputs.MajorMinorPatch }}

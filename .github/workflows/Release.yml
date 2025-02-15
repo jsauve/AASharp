@@ -17,5 +17,3 @@ jobs:
       git_config_user_name: ${{ github.repository_owner }}
       git_tag: ${{needs.build.outputs.SemVer}}
       changelog_builder_configuration: './.github/release-changelog-builder-configuration.json'
-    secrets:
-      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}

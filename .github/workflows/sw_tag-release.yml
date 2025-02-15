@@ -23,9 +23,6 @@ on:
         description: 'Relative path to the configuration.json file for the mikepenz/release-changelog-builder-action'
         required: true
         type: string
-    secrets:
-      SSH_PRIVATE_KEY:
-        required: true
 
 jobs:
   release:
@@ -43,32 +40,13 @@ jobs:
           name: ${{ inputs.artifact_name_in }}
           path: ${{ inputs.artifact_name_in }}
 
-      - name: Display structure of downloaded files
-        run: ls -R
-
-      #- uses: webfactory/ssh-agent@v0.7.0
-      #  with:
-      #    ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
       - name: 'Create Tag'
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.2
         with:
+          tag_prefix: ''
           custom_tag: ${{ inputs.git_tag }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      #- name: 'Create Tag'
-      #  run: |
-      #    git remote set-url origin git@github.com:$REPOSITORY.git
-      #    git config user.name "$USER_NAME"
-      #    git config user.email "$EMAIL"
-      #    git tag -a $TAG -m "$TAG"
-      #    git push --follow-tags
-      #  env:
-      #    REPOSITORY: ${{ github.repository }}
-      #    USER_NAME: ${{ inputs.git_config_user_name }}
-      #    EMAIL: ${{ inputs.git_config_user_email }}
-      #    TAG: ${{ inputs.git_tag }}
 
       - name: 'Build Changelog'
         id: build_changelog
