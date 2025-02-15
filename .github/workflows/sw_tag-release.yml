@@ -1,0 +1,90 @@
+name: 'Tag & Release (Sub-Workflow)'
+on:
+  workflow_call:
+    inputs:
+      git_config_user_email:
+        description: 'E-mail to put in git config user.email'
+        required: true
+        type: string
+      git_config_user_name:
+        description: 'E-mail to put in git config user.email'
+        required: true
+        type: string
+      git_tag:
+        description: 'Git tag to create'
+        required: true
+        type: string
+      artifact_name_in:
+        description: 'Name of an artifact saved by a previous workflow'
+        default: 'artifact'
+        required: false
+        type: string
+      changelog_builder_configuration:
+        description: 'Relative path to the configuration.json file for the mikepenz/release-changelog-builder-action'
+        required: true
+        type: string
+    secrets:
+      SSH_PRIVATE_KEY:
+        required: true
+
+jobs:
+  release:
+    name: 'Create Tag and Release'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4.1.7
+        with:
+          fetch-depth: 0
+
+      - name: 'Download source artifact'
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: ${{ inputs.artifact_name_in }}
+          path: ${{ inputs.artifact_name_in }}
+
+      - name: Display structure of downloaded files
+        run: ls -R
+
+      - uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: 'Create Tag'
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.2
+        with:
+          custom_tag: ${{ inputs.git_tag }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      #- name: 'Create Tag'
+      #  run: |
+      #    git remote set-url origin git@github.com:$REPOSITORY.git
+      #    git config user.name "$USER_NAME"
+      #    git config user.email "$EMAIL"
+      #    git tag -a $TAG -m "$TAG"
+      #    git push --follow-tags
+      #  env:
+      #    REPOSITORY: ${{ github.repository }}
+      #    USER_NAME: ${{ inputs.git_config_user_name }}
+      #    EMAIL: ${{ inputs.git_config_user_email }}
+      #    TAG: ${{ inputs.git_tag }}
+
+      - name: 'Build Changelog'
+        id: build_changelog
+        uses: mikepenz/release-changelog-builder-action@v5.0.0
+        with:
+          failOnError: true
+          configuration: '${{ inputs.changelog_builder_configuration }}'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 'Create Release'
+        uses: ncipollo/release-action@v1.12.0
+        with:
+          artifactErrorsFailBuild: true
+          draft: false
+          body: '${{steps.build_changelog.outputs.changelog}}'
+          tag: '${{ inputs.git_tag }}'
+          artifacts: '${{ inputs.artifact_name_in }}/*'
+          token: ${{ secrets.GITHUB_TOKEN }}
