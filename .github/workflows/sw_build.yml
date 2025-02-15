@@ -66,5 +66,5 @@ jobs:
         uses: actions/upload-artifact@v4.5.0
         with:
           name: ${{ inputs.artifact_name_out }}
-          path: ./Output/AASharp
+          path: ./Output/AASharp/*.nupkg
           retention-days: ${{ env.artifacts_retention_days }}

@@ -24,6 +24,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\Release.yml = .github\workflows\Release.yml
 		.github\workflows\Pull-Request.yml = .github\workflows\Pull-Request.yml
 		.github\workflows\Pull-Request-Labeler.yml = .github\workflows\Pull-Request-Labeler.yml
+		.github\workflows\sw_build.yml = .github\workflows\sw_build.yml
+		.github\workflows\sw_tag-release.yml = .github\workflows\sw_tag-release.yml
+		.github\workflows\Pre-Version.yml = .github\workflows\Pre-Version.yml
 	EndProjectSection
 EndProject
 Global
