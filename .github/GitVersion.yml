@@ -1,0 +1,16 @@
+mode: ContinuousDeployment
+commit-message-incrementing: Enabled
+branches:
+  main:
+    tag: rc
+  feature:
+    regex: ^features?[/-]
+    mode: ContinuousDeployment
+    tag: useBranchName
+  hotfix:
+    regex: ^(hot)?fix(es)?[/-]
+    mode: ContinuousDeployment
+    tag: useBranchName
+ignore:
+  sha: []
+merge-message-formats: {}

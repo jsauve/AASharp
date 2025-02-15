@@ -11,6 +11,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AASharp", "Src\AASharp\AASh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AASharpExamples", "Src\AASharpExamples\AASharpExamples.csproj", "{197448A7-30B5-4598-B7D5-AEEB0009524F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{4C622BA3-481E-404F-9536-FC8C39863D19}"
+	ProjectSection(SolutionItems) = preProject
+		.github\GitVersion.yml = .github\GitVersion.yml
+		.github\pr-labeler.yml = .github\pr-labeler.yml
+		.github\GitVersion-Release.yml = .github\GitVersion-Release.yml
+		.github\release-changelog-builder-configuration.json = .github\release-changelog-builder-configuration.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{81ACF38B-F481-4FA9-AFC1-74080E2BF85E}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\Release.yml = .github\workflows\Release.yml
+		.github\workflows\Pull-Request.yml = .github\workflows\Pull-Request.yml
+		.github\workflows\Pull-Request-Labeler.yml = .github\workflows\Pull-Request-Labeler.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +64,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{30AB1644-D813-47A7-9D88-6FE656659D37} = {7DF8E89B-E307-4A50-91D7-B977FF9A76ED}
+		{81ACF38B-F481-4FA9-AFC1-74080E2BF85E} = {4C622BA3-481E-404F-9536-FC8C39863D19}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86D7CF79-DA2E-4B54-9915-570F1572C716}

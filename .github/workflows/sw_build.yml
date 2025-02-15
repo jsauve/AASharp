@@ -1,0 +1,73 @@
+name: 'Build'
+on:
+  workflow_call:
+    inputs:
+      gitversion-config:
+        description: 'Path to GitVersion configuration file'
+        required: true
+        type: string
+      push_artifact:
+        description: 'Push the generated artifact'
+        default: false
+        required: false
+        type: boolean
+      artifact_name_out:
+        description: 'Name of the artifact'
+        default: 'artifact'
+        required: false
+        type: string
+      artifact_retention_days:
+        description: 'retention days for the artifact'
+        default: 5
+        required: false
+        type: number  
+        
+    outputs:
+      MajorMinorPatch:
+        value: ${{ jobs.build.outputs.MajorMinorPatch }}
+      SemVer:
+        value: ${{ jobs.build.outputs.SemVer }}
+
+jobs:
+  build:
+    name: 'Build (Sub-Workflow)'
+    runs-on: windows-latest
+    outputs:
+      MajorMinorPatch: ${{ steps.gitversion.outputs.MajorMinorPatch }}
+      SemVer: ${{ steps.gitversion.outputs.SemVer }}
+      
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0
+
+      - name: 'Setup MSBuild'
+        uses: microsoft/setup-msbuild@v2
+
+      - name: 'Setup GitVersion'
+        uses: gittools/actions/gitversion/setup@v1.2.0
+        with:
+          versionSpec: '5.x'
+
+      - name: 'GitVersion updateprojectfiles'
+        id:   gitversion
+        uses: gittools/actions/gitversion/execute@v1.2.0
+        with:
+          useConfigFile: true
+          configFilePath: ${{ inputs.gitversion-config }}
+          additionalArguments: '/updateprojectfiles'
+
+      - name: 'Build'
+        run: dotnet build ./Src/AASharp/AASharp.csproj --configuration Release --output ./Output/AASharp
+          
+      - name: 'Zip artifact archive'
+        run: 7z a ${{ inputs.artifact_name_out }}.7z ./Publish/AASharp/*.nupkg
+      
+      - name: 'Upload source artifact'
+        if: ${{ inputs.build_installer == true }}
+        uses: actions/upload-artifact@v4.5.0
+        with:
+          name: ${{ inputs.artifact_name_out }}
+          path: ./Output/AASharp
+          retention-days: ${{ env.artifacts_retention_days }}
