@@ -61,9 +61,6 @@ jobs:
       - name: 'Build'
         run: dotnet build ./Src/AASharp/AASharp.csproj --configuration Release --output ./Output/AASharp
           
-      - name: 'Zip artifact archive'
-        run: 7z a ${{ inputs.artifact_name_out }}.7z ./Publish/AASharp/*.nupkg
-      
       - name: 'Upload source artifact'
         if: ${{ inputs.build_installer == true }}
         uses: actions/upload-artifact@v4.5.0
