@@ -61,6 +61,23 @@ jobs:
       - name: 'Build'
         run: dotnet build ./Src/AASharp/AASharp.csproj --configuration Release --output ./Output/AASharp
           
+      - name: 'Run tests'
+        run: dotnet test AASharp.sln --configuration Release --collect:"XPlat Code Coverage"
+
+      - name: 'Report Generator'
+        uses: danielpalme/ReportGenerator-GitHub-Action@5.1.13
+        with:
+          reports: './**/TestResults/**/coverage.cobertura.xml'
+          targetdir: 'coveragereport'
+          reporttypes: 'HtmlSummary'
+
+      - name: 'Upload coverage report artifact'
+        uses: actions/upload-artifact@v4.3.4
+        with:
+          name: CoverageReport
+          path: coveragereport
+          retention-days: ${{ inputs.artifacts_retention_days }}
+          
       - name: 'Upload source artifact'
         if: ${{ inputs.push_artifact == true }}
         uses: actions/upload-artifact@v4.5.0
