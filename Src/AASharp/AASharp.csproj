@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net48</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net48;net8.0</TargetFrameworks>
     <AssemblyName>AASharp</AssemblyName>
     <RootNamespace>AASharp</RootNamespace>
     <Description>This is the official NuGet package of Astronomical Algorithms # (AASharp or AA#)
