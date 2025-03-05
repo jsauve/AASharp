@@ -2,14 +2,6 @@ name: 'Tag & Release (Sub-Workflow)'
 on:
   workflow_call:
     inputs:
-      git_config_user_email:
-        description: 'E-mail to put in git config user.email'
-        required: true
-        type: string
-      git_config_user_name:
-        description: 'E-mail to put in git config user.email'
-        required: true
-        type: string
       git_tag:
         description: 'Git tag to create'
         required: true
