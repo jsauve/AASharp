@@ -1009,6 +1009,11 @@ namespace AASharpTest
             var tdt = jd2.FromTerrestrialDynamical();
             Console.WriteLine($"TDT => current date/time: {tdt:yyyy-MMM-dd HH:mm:ss.fff}");
 
+            Console.OutputEncoding = System.Text.Encoding.UTF8; // to be able to see lunar phase unicode chars in the output
+            var CurrentLunarPhase = now.GetLunarPhaseMessage();
+            Console.WriteLine($"Current lunar phase: {CurrentLunarPhase}");
+
+            Console.WriteLine("Press Enter key to exit...");
             Console.ReadLine();
             return;
         }

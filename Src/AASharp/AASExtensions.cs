@@ -2,7 +2,66 @@
 using System.Diagnostics;
 
 namespace AASharp {
+    /// <summary>
+    /// Various useful extension methods.
+    /// </summary>
     public static class AASExtensions {
+        /// <summary>
+        /// DIFF = (Moon ecliptic longitude - Sun ecliptic longitude).
+        /// Principal phase: DIFF = 0° (or 360°).
+        /// Set to any message for the New Moon phase or use the default.
+        /// </summary>
+        public static string MsgNewMoon = "🌑︎ New Moon";
+
+        /// <summary>
+        /// DIFF = (Moon ecliptic longitude - Sun ecliptic longitude).
+        /// Intermediate phase: 0° &lt; DIFF &lt; 90°.
+        /// Set to any message for the Waxing Crescent phase or use the default.
+        /// </summary>
+        public static string MsgWaxingCrescent = "🌒 Waxing Crescent";
+
+        /// <summary>
+        /// DIFF = (Moon ecliptic longitude - Sun ecliptic longitude).
+        /// Principal phase: DIFF = 90°.
+        /// Set to any message for the First Quarter phase or use the default.
+        /// </summary>
+        public static string MsgFirstQuarter = "🌓︎ First Quarter";
+
+        /// <summary>
+        /// DIFF = (Moon ecliptic longitude - Sun ecliptic longitude).
+        /// Intermediate phase: 90° &lt; DIFF &lt; 180°.
+        /// Set to any message for the Waxing Gibbous phase or use the default.
+        /// </summary>
+        public static string MsgWaxingGibbous = "🌔 Waxing Gibbous";
+
+        /// <summary>
+        /// DIFF = (Moon ecliptic longitude - Sun ecliptic longitude).
+        /// Principal phase: DIFF = 180°.
+        /// Set to any message for the Full Moon phase or use the default.
+        /// </summary>
+        public static string MsgFullMoon = "🌕︎ Full Moon";
+
+        /// <summary>
+        /// DIFF = (Moon ecliptic longitude - Sun ecliptic longitude).
+        /// Intermediate phase: 180° &lt; DIFF &lt; 270°.
+        /// Set to any message for the Waning Gibbous phase or use the default.
+        /// </summary>
+        public static string MsgWaningGibbous = "🌖 Waning Gibbous";
+
+        /// <summary>
+        /// DIFF = (Moon ecliptic longitude - Sun ecliptic longitude).
+        /// Principal phase: DIFF = 270°.
+        /// Set to any message for the Last Quarter phase or use the default.
+        /// </summary>
+        public static string MsgLastQuarter = "🌗 Last Quarter";
+
+        /// <summary>
+        /// DIFF = (Moon ecliptic longitude - Sun ecliptic longitude).
+        /// Intermediate phase: 270° &lt; DIFF &lt; 360° (or 0°).
+        /// Set to any message for the Waning Crescent phase or use the default.
+        /// </summary>
+        public static string MsgWaningCrescent = "🌘 Waning Crescent";
+
         /// <summary>
         /// Converts System.DateTime to AASDate
         /// </summary>
@@ -50,6 +109,32 @@ namespace AASharp {
         public static DateTime FromTerrestrialDynamical(this double JD, bool IsGregorian = true, DateTimeKind KindOfDate = DateTimeKind.Utc) {
             var jdn = AASDynamicalTime.TT2UTC(JD);
             return ToDateTime(jdn, IsGregorian, KindOfDate);
+        }
+
+        /// <summary>
+        /// Returns the current Lunar phase as a customizable message.
+        /// For each principal and intermediate phase the message can be changed to anything by setting the values of static string members of AASExtensions:
+        /// MsgNewMoon, MsgWaxingCrescent, MsgFirstQuarter, MsgWaxingGibbous, MsgFullMoon, MsgWaningGibbous, MsgLastQuarter, MsgWaningCrescent.
+        /// </summary>
+        /// <param name="date">Any UTC date</param>
+        /// <param name="IsGregorian">True if the output date is given in Gregorian calendar, false otherwise (Julian calendar)</param>
+        /// <returns>The lunar phase name or message at the given date.</returns>
+        public static string GetLunarPhaseMessage(this DateTime date, bool IsGregorian = true) {
+            Debug.Assert(date.Kind == DateTimeKind.Utc, "Input date/time is expected to be in UTC!");
+            var jdtt = ToTerrestrialDynamical(date, IsGregorian);
+            var MoonELong = AASMoon.EclipticLongitude(jdtt);
+            var SunELong = AASSun.ApparentEclipticLongitude(jdtt, true);
+            var angle = AASCoordinateTransformation.MapTo0To360Range(MoonELong - SunELong);
+            var msg = "Lunar phase";
+            if (angle == 0 || angle == 360)      msg = MsgNewMoon;
+            else if (angle > 0 && angle < 90)    msg = MsgWaxingCrescent;
+            else if (angle == 90)                msg = MsgFirstQuarter;
+            else if (angle > 90 && angle < 180)  msg = MsgWaxingGibbous;
+            else if (angle == 180)               msg = MsgFullMoon;
+            else if (angle > 180 && angle < 270) msg = MsgWaningGibbous;
+            else if (angle == 270)               msg = MsgLastQuarter;
+            else if (angle > 270 && angle < 360) msg = MsgWaningCrescent;
+            return msg;
         }
     }
 }
