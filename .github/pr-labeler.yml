@@ -1,0 +1,7 @@
+feature: ['feature/*', 'feat/*']
+fix: ['fix/*', 'hotfix/*']
+test: ['test/*', 'tests/*']
+dependencies: ['dependencies/*', 'deps/*', 'dependabot/*']
+other: ['other/*', 'others/*']
+ignore: ['chore/*', 'build/*', 'ci/*', 'refactor/*', 'style/*']
+documentation: ['docs/*', 'doc/*', 'documentation/*']

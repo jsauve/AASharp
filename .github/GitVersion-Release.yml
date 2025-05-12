@@ -1,0 +1,6 @@
+mode: ContinuousDelivery
+commit-message-incrementing: Enabled
+branches: {}
+ignore:
+  sha: []
+merge-message-formats: {}

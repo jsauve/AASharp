@@ -1,0 +1,19 @@
+﻿name: 'Release'
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: ./.github/workflows/sw_build.yml
+    with:
+      gitversion-config: './.github/GitVersion-Release.yml'
+      push_artifact: true
+  
+  release:
+    needs: [build]
+    uses: ./.github/workflows/sw_tag-release.yml
+    with:
+      git_config_user_email: 'git@elendil.software'
+      git_config_user_name: ${{ github.repository_owner }}
+      git_tag: ${{needs.build.outputs.SemVer}}
+      changelog_builder_configuration: './.github/release-changelog-builder-configuration.json'
